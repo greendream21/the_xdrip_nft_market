@@ -14,7 +14,7 @@
 .Loader_box_img{
     margin-bottom: 14rem;
     margin-top: 8rem;
-    animation:  mymove 4s infinite;
+    animation:  mymove 3s infinite;
 }
 
 @keyframes mymove {
