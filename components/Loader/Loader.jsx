@@ -13,8 +13,8 @@ const Loader = () => {
           <Image
             src={images.loader}
             alt="loader"
-            width={200}
-            height={200}
+            width={533}
+            height={300}
             className={Style.Loader_box_img_img}
             style={{objectFit:"cover"}}
           />
