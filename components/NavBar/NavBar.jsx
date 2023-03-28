@@ -1,23 +1,19 @@
 import React, { useState, useEffect, useContext } from "react";
 import Image from "next/image";
-//----IMPORT ICON
+import Link from "next/link";
 import { MdNotifications } from "react-icons/md";
 import { BsSearch } from "react-icons/bs";
 import { CgMenuLeft, CgMenuRight } from "react-icons/cg";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
-//INTERNAL IMPORT
 import Style from "./NavBar.module.css";
 import { Discover, HelpCenter, Notification, Profile, SideBar } from "./index";
 import { Button, Error } from "../componentsindex";
 import images from "../../img";
 
-//IMPORT FROM SMART CONTRACT
 import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
 
 const NavBar = () => {
-  //----USESTATE COMPONNTS
   const [discover, setDiscover] = useState(false);
   const [help, setHelp] = useState(false);
   const [notification, setNotification] = useState(false);
@@ -26,45 +22,45 @@ const NavBar = () => {
 
   const router = useRouter();
 
+  const closeNavbarButtons = () => {
+    setDiscover(false);
+    setHelp(false);
+    setNotification(false);
+    setProfile(false);
+  };
+
   const openMenu = (e) => {
     const btnText = e.target.innerText;
-    if (btnText == "Discover") {
-      setDiscover(true);
+    if (btnText === "Discover") {
+      setDiscover((discover) => !discover);
       setHelp(false);
       setNotification(false);
       setProfile(false);
-    } else if (btnText == "Help Center") {
+    } else if (btnText === "Help Center") {
       setDiscover(false);
-      setHelp(true);
+      setHelp((help) => !help);
       setNotification(false);
       setProfile(false);
     } else {
-      setDiscover(false);
-      setHelp(false);
-      setNotification(false);
-      setProfile(false);
+      closeNavbarButtons();
     }
   };
 
   const openNotification = () => {
     if (!notification) {
+      closeNavbarButtons();
       setNotification(true);
-      setDiscover(false);
-      setHelp(false);
-      setProfile(false);
     } else {
-      setNotification(false);
+      setNotification((notification) => !notification);
     }
   };
 
   const openProfile = () => {
     if (!profile) {
+      closeNavbarButtons();
       setProfile(true);
-      setHelp(false);
-      setDiscover(false);
-      setNotification(false);
     } else {
-      setProfile(false);
+      setProfile((profile) => !profile);
     }
   };
 
@@ -76,7 +72,17 @@ const NavBar = () => {
     }
   };
 
-  //SMART CONTRACT SECTION
+  useEffect(() => {
+    const handleRouteChange = () => {
+      closeNavbarButtons();
+      setOpenSideMenu(false);
+    };
+    router.events.on("routeChangeStart", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, []);
+
   const { currentAccount, connectWallet, openError } = useContext(
     NFTMarketplaceContext
   );
@@ -85,14 +91,18 @@ const NavBar = () => {
     <div className={Style.navbar}>
       <div className={Style.navbar_container}>
         <div className={Style.navbar_container_left}>
-          <div className={Style.logo}>
-            <Image
-              src={images.logo}
-              alt="NFT MARKET PLACE"
-              width={150}
-              height={45}
-            />
-          </div>
+          <Link href="/">
+            <a>
+              <div className={Style.logo}>
+                <Image
+                  src={images.logo}
+                  alt="NFT MARKET PLACE"
+                  width={150}
+                  height={45}
+                />
+              </div>
+            </a>
+          </Link>
           <div className={Style.navbar_container_left_box_input}>
             <div className={Style.navbar_container_left_box_input_box}>
               <input type="text" placeholder="Search NFT" />
