@@ -25,7 +25,7 @@ transition:  all .3s ease-in;
 
 .audioCard_box_like{
     background-color: var(--icons-color);
-    color: var(--shadow-dark-color);
+    color: var(--xdrip-light-gray);
     display: flex;
     align-items: center;
     gap: .7rem;
@@ -41,7 +41,7 @@ transition:  all .3s ease-in;
     font-size: 2rem;
 }
 .audioCard_box_like_icon_unlike{
-    color: var(--main-bg-color);
+    color: var(--xdrip-light-gray);
     font-size: 2rem;
 }
 
@@ -84,9 +84,14 @@ transition:  all .3s ease-in;
     align-items: center;
     border-radius: 50%;
     background-color: var(--icons-color);
-    color: var(--main-bg-color);
-    font-size: 2rem;
+    color: var(--xdrip-light-gray);
+    font-size: 2.5rem;
     cursor: pointer;
+}
+
+.audioCard_box_musicPlayer_icon svg{
+    position:relative;
+    right:-1px;
 }
 
 .audioCard_box_img{
@@ -116,18 +121,21 @@ transition:  all .3s ease-in;
 }
 
 .audioCard_box_details_info_price{
-    border: 1px solid var(--icons-color);
-    padding: .5rem 1rem;
-    border-radius: .5rem;
-    height: 3rem;
+    border: 1px solid var(--xdrip-light-blue);
+    padding: 0 1rem 0.5rem 1rem;
+    margin-top: 2.5rem;
+    border-radius: 0.5rem;
+    height: 3.5rem;
     cursor: pointer;
 }
 
 .audioCard_box_details_info_price small{
     background-color: var(--icons-color);
-    color: var(--main-bg-color);
+    color: var(--xdrip-light-gray);
     padding: .4rem .5rem;
     border-radius: .5rem;
+    position:relative;
+    top:-0.3rem;
 }
 
 .audioCard_box_details_info_price p{

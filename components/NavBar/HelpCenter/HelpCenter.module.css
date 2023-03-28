@@ -5,6 +5,6 @@
 
 .helpCenter:hover{
     background-color: var(--icons-color);
-    color: var(--shadow-dark-color);
+    /*color: var(--shadow-dark-color);*/
     border-radius: .3rem;
 }

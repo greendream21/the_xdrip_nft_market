@@ -46,7 +46,7 @@ const AudioCard = () => {
           <div className={Style.audioCard_box_time}>
             <div className={Style.audioCard_box_like_time_remaing}>
               <small>TIME REMAINING</small>
-              <h5>3H : 6M :9S</h5>
+              <h5>3H : 6M : 9S</h5>
             </div>
           </div>
         </div>
@@ -74,7 +74,7 @@ const AudioCard = () => {
             <h4>MUSIC NFT #1123</h4>
             <div className={Style.audioCard_box_details_info_price}>
               <small>PRICE</small>
-              <p>.25 BNB</p>
+              <p>0.25 BNB</p>
             </div>
           </div>
 

@@ -29,11 +29,11 @@
     font-size: 1.3rem;
     cursor: pointer;
     background-color: var(--main-bg-color);
-    color: var(--icons-color);
+    color: var(--xdrip-light-gray);
 }
 .filter_box_left button:hover{
     border:  1px solid var(--icons-color);
-    color: var(--icons-color);
+    /*color: var(--icons-color);*/
     box-shadow: var(--box-shadow);
 }
 
@@ -41,7 +41,7 @@
     border:  1px solid var(--icons-color);
     padding: 1rem 2rem;
     border-radius: 2rem;
-    color: var(--icons-color);
+    color: var(--xdrip-light-gray);
     box-shadow: var(--box-shadow);
     cursor: pointer;
     display: flex;
@@ -65,7 +65,7 @@
     background-color: var(--icons-color);
     padding: .5rem 1rem;
     border-radius: 2rem;
-    color: var(--main-bg-color);
+    color: var(--xdrip-light-gray);
     cursor: pointer;
 
     display: flex;
@@ -75,7 +75,7 @@
 
 .filter_box_items_box_item_trans{
     border: 1px solid var(--icons-color);
-    color: var(--icons-color);
+    color: var(--xdrip-light-gray);
     padding: .5rem 1rem;
     border-radius: 2rem;
     cursor: pointer;

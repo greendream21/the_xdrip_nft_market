@@ -39,7 +39,7 @@
 
 .slider_box_button_btn_icon:hover{
     background-color: var(--icons-color);
-    color: var(--main-bg-color);
+    /*color: var(--main-bg-color);*/
     box-shadow: var(--box-shadow);
 }
 

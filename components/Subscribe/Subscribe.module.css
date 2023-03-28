@@ -46,7 +46,7 @@
 
 .subscribe_box_left_box span{
     background-color: var(--icons-color);
-    color: var(--main-bg-color);
+    color: var(--xdrip-light-gray);
     padding: .5rem 1rem;
     border-radius: 2rem;
     width: 4rem;
@@ -59,7 +59,7 @@
     width: 80%;
     border-radius: 4rem;
     background-color: var(--icons-color);
-    color: var(--main-bg-color);
+    color: var(--xdrip-light-gray);
 
     display: flex;
     align-items: center;

@@ -59,16 +59,17 @@
     border: none;
     outline: none;
     width: 90%;
-    color: var(--shadow-dark-color);
+    color: var(--xdrip-light-gray);
 }
 
 .subscribe_box input::placeholder{
-    color:  var(--shadow-dark-color);
+    color:  var(--xdrip-light-gray);
 }
 
 .subscribe_box_send{
     cursor: pointer;
     font-size: 2rem;
+    color:  var(--xdrip-light-gray);
 }
 
 .subscribe_box_info{

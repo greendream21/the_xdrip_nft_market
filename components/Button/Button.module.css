@@ -1,10 +1,10 @@
 .button {
-    background-color: var(--icons-color);
+    background-color: var(--icons-color); /*#3d465c;*/
     padding: 1rem 2rem;
-    border: 1px solid var(--icons-color);
+    border: 1px solid var(--xdrip-gold);
     border-radius: 2rem;
     font-size: 1.1rem;
-    color: var(--shadow-light-color);
+    color: var(--xdrip-light-gray);
     cursor: pointer;
     transition:  all .2s ease-in;
     box-shadow: var(--box-shadow);
@@ -12,6 +12,14 @@
 
 .button:hover{
     background-color: var(--main-bg-color);
-    border:  1px solid var(--icons-color);
-    color:  var(--icons-color);
+    /*border:  1px solid var(--icons-color);*/
+    /*color:  var(--icons-color);*/
 }
+
+/*
+.Button_button__QHarr {
+    background-color: var(--darkreader-bg--icons-color); #31384a
+    color: var(--darkreader-text--shadow-light-color); #dbd8d3
+    box-shadow: var(--darkreader-bg--box-shadow);
+    border: 1px solid var(--darkreader-border--icons-color); #736b5e
+}*/

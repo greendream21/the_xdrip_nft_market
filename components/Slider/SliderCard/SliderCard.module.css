@@ -48,7 +48,7 @@
 }
 
 .sliderCard_box_price_box{
-    border: 1px solid var(--icons-color);
+    border: 1px solid var(--xdrip-light-blue);
     padding: .2rem 1rem;
     border-radius: .2rem;
 }
@@ -57,7 +57,7 @@
     background-color: var(--icons-color);
     padding: .2rem .5rem;
     border-radius: .2rem;
-    color: var(--main-bg-color);
+    color: var(--xdrip-light-gray);
 }
 
 .sliderCard_box_price_box p{
