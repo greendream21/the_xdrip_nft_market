@@ -115,7 +115,7 @@ const NavBar = () => {
         <div className={Style.navbar_container_right}>
           <div className={Style.navbar_container_right_discover}>
             {/* DISCOVER MENU */}
-            <p onClick={(e) => openMenu(e)}>Discover</p>
+            <p onClick={(e) => openMenu(e)}>DISCOVER</p>
             {discover && (
               <div className={Style.navbar_container_right_discover_box}>
                 <Discover />
@@ -125,7 +125,7 @@ const NavBar = () => {
 
           {/* HELP CENTER MENU */}
           <div className={Style.navbar_container_right_help}>
-            <p onClick={(e) => openMenu(e)}>Help Center</p>
+            <p onClick={(e) => openMenu(e)}>HELP CENTER</p>
             {help && (
               <div className={Style.navbar_container_right_help_box}>
                 <HelpCenter />
