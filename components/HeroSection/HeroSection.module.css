@@ -8,6 +8,12 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
+    
+}
+
+.heroSection_box_right_img{
+    border-radius: 4rem;
+    background-color: var(--icons-color);
 }
 
 .heroSection_box_left{
@@ -16,7 +22,18 @@
 
 .heroSection_box_left h1{
     font-size: 5rem;
-    line-height: 1;
+    line-height: 3rem;
+}
+
+.heroSection_box_left h2{
+    font-size: 5rem;
+    line-height: 2rem;
+}
+
+.heroSection_box_left h3{
+    font-size: 5rem;
+    line-height: 2rem;
+    margin-bottom: 3rem;
 }
 
 .heroSection_box_left p{
@@ -37,10 +54,5 @@
 
     .heroSection_box_left{
         padding-right: 2rem;
-    }
-
-    .heroSection_box_left h1{
-        line-height: 1;
-        font-size: 3rem;
     }
 }

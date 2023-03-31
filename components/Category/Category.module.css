@@ -7,7 +7,7 @@
 .category{
     padding: 4rem 0;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
 }
 
@@ -31,12 +31,12 @@
 .category_box_title{
     display: flex;
     align-items: center;
-    padding: 1rem;
-    gap: 1rem;
+    padding: 0rem;
+    gap: 0rem;
 }
 
 .category_box_title span{
-    font-size: 3rem;
+    margin-right: 0rem;
     margin-top: 1rem;
 }
 

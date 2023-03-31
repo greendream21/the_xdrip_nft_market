@@ -140,13 +140,13 @@ const Collection = () => {
         <div className={Style.collection_collections}>
           <div className={Style.collection_collections_btn}>
             <button onClick={() => openPopular()}>
-              <BsFillAlarmFill /> 24 HOURS
+              <BsFillAlarmFill /> DAILY
             </button>
             <button onClick={() => openFollower()}>
-              <BsCalendar3 /> 7 DAYS
+              <BsCalendar3 /> WEEKLY
             </button>
             <button onClick={() => openNews()}>
-              <BsFillCalendarDateFill /> 30 DAYS
+              <BsFillCalendarDateFill /> MONTHLY
             </button>
           </div>
         </div>

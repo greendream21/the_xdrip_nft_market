@@ -43,7 +43,7 @@
     box-shadow: var(--box-shadow);
 }
 
-.slider_box_itmes{
+.slider_box_items{
     width: 100%;
     overflow: hidden;
 }

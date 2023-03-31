@@ -1,3 +1,6 @@
+import bullet_1 from "./bullet-1.png";
+import bullet_2 from "./bullet-2.png";
+import bullet_3 from "./bullet-3.png";
 import collection from "./collection.png";
 import creatorbackground1 from "./creatorbackground-1.jpeg";
 import creatorbackground2 from "./creatorbackground-2.jpeg";
@@ -10,6 +13,15 @@ import creatorbackground8 from "./creatorbackground-8.jpg";
 import creatorbackground9 from "./creatorbackground-9.jpg";
 import creatorbackground10 from "./creatorbackground-10.jpg";
 import creatorbackground11 from "./creatorbackground-11.jpg";
+import category_art from "./category-art.jpg";
+import category_favorites from "./category-favorites.jpg";
+import category_gaming from "./category-gaming.jpg";
+import category_metaverse from "./category-metaverse.jpg";
+import category_music from "./category-music.jpg";
+import category_photography from "./category-photography.jpg";
+import category_sports from "./category-sports.jpg";
+import category_videos from "./category-videos.jpg";
+import category_logo from "./category-logo.png";
 import user1 from "./user-1.png";
 import user2 from "./user-2.png";
 import user3 from "./user-3.png";
@@ -83,6 +95,18 @@ export default {
   nft_image_5,
   getAble,
   hero,
+  bullet_1,
+  bullet_2,
+  bullet_3,
+  category_art,
+  category_favorites,
+  category_gaming,
+  category_metaverse,
+  category_music,
+  category_photography,
+  category_sports,
+  category_videos,
+  category_logo,
   creatorbackground1,
   creatorbackground2,
   creatorbackground3,

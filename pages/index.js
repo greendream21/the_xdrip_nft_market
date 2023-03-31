@@ -70,7 +70,7 @@ const Home = () => {
       <Slider />
       <Collection />
       <Title
-        heading="XMARKET FEATURED NFTS"
+        heading="THE FORGE FEATURED NFTS"
         paragraph="THE MOST XCELLENT NFTS FEATURED JUST FOR YOU."
       />
       <Filter />

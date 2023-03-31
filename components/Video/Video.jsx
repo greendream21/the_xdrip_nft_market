@@ -1,37 +1,41 @@
 import React from "react";
-import ReactPlayer from 'react-player';
+import { useRouter } from "next/router";
 
 //INTERNALIMPORT
 import Style from "./Video.module.css";
 import images from "../../img";
+import { Button } from "../../components/componentsindex.js";
 
 const Video = () => {
+  const router = useRouter();
   return (
     <div className={Style.Video}>
       <div className={Style.Video_box}>
-        <h1>
-          <span>🎬</span> OUR VIDEOS
-        </h1>
-        <p>
-          CHECK OUT OUR MOST RECENT VIDEOS.
-        </p>
+        <div className={Style.Video_box_left}>
+          <h1>THE ENTERTAINMENT</h1>
+          <p>FULLY EMERSE YOURSELF IN VISUAL XCELLENCE</p>
 
-        <div className={Style.Video_box_frame}>
-          <div className={Style.Video_box_frame_right}></div>
-          <div className={Style.Video_box_frame_left}>
-            <ReactPlayer
-              url='https://youtu.be/jQG6tgMtLbk'
-              width={1420}
-              height={750}
-              style={{objectFit:"cover"}}
-              className={Style.Video_box_frame_left_img}
+          <div className={Style.Video_box_left_btn}>
+            <Button
+              btnName="XDRIP FLIX"
+              handleClick={() => window.open("https://www.xdrip.io")}
             />
           </div>
         </div>
+        <div className={Style.Video_box_frame_right}>
+            <iframe
+              width="800"
+              height="500"
+              src="https://www.youtube.com/embed/jQG6tgMtLbk"
+              title="XDRIP FLIX Video"
+              className={Style.Video_box_frame_right_img}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
       </div>
     </div>
   );
 };
 
 export default Video;
-

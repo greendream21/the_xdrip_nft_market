@@ -53,7 +53,7 @@ const loginAndSignUp = () => {
         <div className={Style.user_box_input}>
           <div className={Style.user_box_input_box}>
             <label htmlFor="email">EMAIL ADDRESS</label>
-            <input type="email" placeholder="example@emample.com" />
+            <input type="email" placeholder="example@example.com" />
           </div>
 
           <div className={Style.user_box_input_box}>
@@ -63,7 +63,7 @@ const loginAndSignUp = () => {
             >
               <p>Password</p>
               <p>
-                <a href="#">Forget password</a>
+                <a href="#">Forgot password</a>
               </p>
             </label>
             <input type="password" />

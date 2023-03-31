@@ -9,48 +9,36 @@ import images from "../../img";
 const Category = () => {
   const CategoryArray = [
     {
-      images: images.creatorbackground1,
-      name: "DIGITAL ART",
+      images: images.category_art,
+      name: "ART",
     },
     {
-      images: images.creatorbackground2,
-      name: "COLLECTABLES",
+      images: images.category_favorites,
+      name: "FAVORITES",
     },
     {
-      images: images.creatorbackground3,
-      name: "GAMING ART",
+      images: images.category_gaming,
+      name: "GAMING",
     },
     {
-      images: images.creatorbackground4,
-      name: "SPORTS",
+      images: images.category_metaverse,
+      name: "METAVERSE",
     },
     {
-      images: images.creatorbackground5,
-      name: "ANIMAL ART",
+      images: images.category_music,
+      name: "MUSIC",
     },
     {
-      images: images.creatorbackground6,
-      name: "REAL ESTATE",
-    },
-    {
-      images: images.creatorbackground7,
+      images: images.category_photography,
       name: "PHOTOGRAPHY",
     },
     {
-      images: images.creatorbackground8,
-      name: "FASION",
+      images: images.category_sports,
+      name: "SPORTS",
     },
     {
-      images: images.creatorbackground9,
-      name: "MEMES",
-    },
-    {
-      images: images.creatorbackground10,
-      name: "TIME LIFE ART",
-    },
-    {
-      images: images.creatorbackground11,
-      name: "FAVORITES",
+      images: images.category_videos,
+      name: "VIDEOS",
     },
   ];
   return (
@@ -64,16 +52,21 @@ const Category = () => {
               alt="Category Image"
               width={350}
               height={150}
-              objectFit="cover"
+              objectFit="fill"
             />
 
             <div className={Style.category_box_title}>
               <span>
-                <BsCircleFill />
+                <Image
+                src={images.category_logo}
+                alt="Logo"
+                width={90}
+                height={51}
+                />
               </span>
               <div className={Style.category_box_title_info}>
                 <h4>{el.name}</h4>
-                <small>{i + 1}100 NFTS</small>
+                <small>{i + (1)}100 NFTS</small>
               </div>
             </div>
           </div>

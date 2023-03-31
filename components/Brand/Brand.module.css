@@ -20,12 +20,18 @@
 
 .Brand_box_right{
     background-color: var(--shadow-dark-color);
-    border-radius: 25%;
+    border-radius: 2.5rem;
     padding: 1rem;
+    margin-left: 2rem;
+    
+}
+
+.Brand_box_right_img{
+    border-radius: 2rem;
 }
 
 .Brand_box_left h1{
-    font-size: 5rem;
+    font-size: 4rem;
     line-height: 1.3;
     font-weight: bolder;
 }

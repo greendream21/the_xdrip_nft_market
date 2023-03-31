@@ -17,12 +17,14 @@ const HeroSection = () => {
     <div className={Style.heroSection}>
       <div className={Style.heroSection_box}>
         <div className={Style.heroSection_box_left}>
-          <h1>DISCOVER, COLLECT, AND SELL NFTS </h1>
+          <h1>DISCOVER,</h1>
+          <h2>COLLECT, AND</h2>
+          <h3>SELL NFTS </h3>
           <p>
             RAISING THE STANDARD OF XCELLENCE IN DIGITAL ASSETS, ARTWORK, AND COLLECTIVES! 
           </p>
           <Button
-            btnName="START YOUR JOURNEY"
+            btnName="FORGE YOUR DESTINY"
             handleClick={() => router.push("/searchPage")}
           />
         </div>
@@ -30,8 +32,9 @@ const HeroSection = () => {
           <Image
             src={images.hero}
             alt="Hero section"
-            width={700}
-            height={700}
+            width={600}
+            height={600}
+            className={Style.heroSection_box_right_img}
           />
         </div>
       </div>

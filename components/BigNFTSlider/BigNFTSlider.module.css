@@ -1,6 +1,6 @@
 .bigNFTSlider_box{
     margin:  0 auto;
-    width: 80%;
+    width: 70%;
     padding-block: 8rem; 
 
     display: grid;
@@ -16,7 +16,7 @@
     border-radius: 1rem;
     padding: 2rem;
     z-index: 1111;
-    height: 90vh;
+    height: 80vh;
 }
 
 .bigNFTSlider_box_left h2{

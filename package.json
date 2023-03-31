@@ -9,9 +9,13 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.7.3",
+    "@walletconnect/web3-provider": "^1.8.0",
     "axios": "^0.27.2",
     "ether": "^0.0.9",
     "framer-motion": "^7.2.1",
+    "google-auth-library": "^8.7.0",
+    "googleapis": "^114.0.0",
+    "googleapis-common": "^6.0.4",
     "ipfs-http-client": "^58.0.0",
     "net": "^1.0.2",
     "next": "12.2.5",
@@ -21,6 +25,7 @@
     "react-icons": "^4.4.0",
     "react-modal-video": "^2.0.0",
     "react-player": "^2.12.0",
+    "walletconnect": "^1.7.8",
     "web3modal": "^1.9.9"
   },
   "devDependencies": {
