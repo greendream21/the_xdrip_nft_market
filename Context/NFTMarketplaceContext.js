@@ -26,8 +26,6 @@ const client = ipfsHttpClient({
 import {
   NFTMarketplaceAddress,
   NFTMarketplaceABI,
-  transferFundsAddress,
-  transferFundsABI,
 } from "./constants";
 
 //---FETCHING SMART CONTRACT
@@ -101,7 +99,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
     checkIfWalletConnected();
   }, []);
 
-  //---CONNET WALLET FUNCTION
+  //---CONNECT WALLET FUNCTION
   const connectWallet = async () => {
     try {
       if (!window.ethereum)
@@ -184,6 +182,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
 
   const fetchNFTs = async () => {
     try {
+      if (currentAccount) {
       const provider = new ethers.providers.JsonRpcProvider(
         //--process.env.NEXT_PUBLIC_POLYGON_MUMBAI_RPC
         "https://polygon-mumbai.g.alchemy.com/v2/0awa485pp03Dww2fTjrSCg7yHlZECw-K"
@@ -216,12 +215,12 @@ export const NFTMarketplaceProvider = ({ children }) => {
               description,
               tokenURI,
             };
-          }
+          }        
         )
       );
       return items;
 
-      // }
+      }
     } catch (error) {
       // setError("Error while fetching NFTS");
       // setOpenError(true);
@@ -312,7 +311,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
 
   const connectToTransferFunds = async () => {
     try {
-      const web3Modal = new Wenb3Modal();
+      const web3Modal = new Web3Modal();
       const connection = await web3Modal.connect();
       const provider = new ethers.providers.Web3Provider(connection);
       const signer = provider.getSigner();

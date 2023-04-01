@@ -62,11 +62,12 @@
 .navbar_container_right_discover{
     position: relative;
     cursor: pointer;
-}
+   }
+   
 .navbar_container_right_help{
     position: relative;
     cursor: pointer;
-}
+   }
 
 .navbar_container_right_discover_box,
 .navbar_container_right_help_box{

@@ -22,7 +22,42 @@ const Brand = () => {
           }
 
           <h1>THE ECOSYSTEM </h1>
-          <p>GENERATE PASSIVE INCOME WITH XDRIP</p>
+          <p>GENERATING A STRONG PASSIVE INCOME</p>
+
+          <div className={Style.Brand_box_left_box}>
+            <span>                
+              <Image
+                src={images.bullet_2}
+                alt="Logo"
+                width={50}
+                height={50}
+                /></span>
+            <small>DEDICATED DEVELOPMENT TEAM FOCUSED ON THE PROJECTS FUTURE GROWTH</small>
+          </div>
+
+          <div className={Style.Brand_box_left_box}>
+            <span>
+            <Image
+                src={images.bullet_2}
+                alt="Logo"
+                width={50}
+                height={50}
+                />
+            </span>
+            <small>commitment to sustainability is evident in every aspect of our project</small>
+          </div>
+
+          <div className={Style.Brand_box_left_box}>
+            <span>
+            <Image
+                src={images.bullet_2}
+                alt="Logo"
+                width={50}
+                height={50}
+                />
+            </span>
+            <small>SO MUCH more than just a cryptocurrency project - it's a movement </small>
+          </div>
 
           <div className={Style.Brand_box_left_btn}>
             <Button
