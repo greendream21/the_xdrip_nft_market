@@ -2,18 +2,21 @@
 .heroSection{
     width: 80%;
     margin: 3rem auto;
+    padding-top: 4rem;
+    padding-bottom: 8rem;
 }
 
 .heroSection_box{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 6rem;
     
 }
 
 .heroSection_box_right_img{
     border-radius: 4rem;
     background-color: var(--icons-color);
+    
 }
 
 .heroSection_box_left{

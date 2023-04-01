@@ -25,8 +25,7 @@ const Footer = () => {
           <Image src={images.logo} alt="footer logo" height={40} width={150} />
 
           <p>
-          The ultimate destination for crypto enthusiasts and collectors. 
-          XDRIP Marketplace offers a one-stop-shop for buying, selling, and discovering exclusive digital items.
+          The NFT Forge offers a one-stop-shop for buying, selling, and discovering exclusive digital items.
           </p>
 
           <div className={Style.footer_social}>
@@ -67,7 +66,7 @@ const Footer = () => {
           </div>
           <div className={Style.subscribe_box_info}>
             <p>
-              JOIN THE XDRIP MARKETPLACE COMMUNITY TODAY! SUBSCRIBE FOR THE LATEST UPDATES.
+              JOIN THE XDRIP MARKETPLACE COMMUNITY TODAY! 
             </p>
           </div>
         </div>

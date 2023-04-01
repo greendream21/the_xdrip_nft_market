@@ -8,7 +8,6 @@
     width: 80%;
     margin: 0 auto;
     padding-block: 2rem 8rem;
-
     display: grid;
     grid-template-columns: 2.5fr 1fr;
     gap: 2rem;

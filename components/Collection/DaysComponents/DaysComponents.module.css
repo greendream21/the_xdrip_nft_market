@@ -55,7 +55,7 @@
 }
 
 .daysComponent_box_title_info_price small{
-    font-weight: 600;
+    font-weight: 500;
     border: 3px solid var(--icons-color);
     padding: .5rem;
     border-radius: .5rem;
