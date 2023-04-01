@@ -71,6 +71,7 @@ import errorgif from "./error.gif";
 import transfer from "./transfer.gif";
 import transferEther from "./ethereTransfer.gif";
 
+
 export default {
   hero2,
   founder1,

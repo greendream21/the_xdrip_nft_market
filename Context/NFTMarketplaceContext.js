@@ -42,10 +42,12 @@ const connectingWithSmartContract = async () => {
   try {
     const web3Modal = new Web3Modal();
     const connection = await web3Modal.connect();
-    const provider = new ethers.providers.Web3Provider(connection);
+    const provider = new ethers.providers.WebSocketProvider(
+      "wss://data-seed-prebsc-1-s1.binance.org:8545"
+      );
     const signer = provider.getSigner();
 
-    const contract = fetchContract(signer);
+    const contract = new ethers.Contract(contractAddress, contractABI, provider);
     return contract;
   } catch (error) {
     console.log("Something went wrong while connecting with contract", error);

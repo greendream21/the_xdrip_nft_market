@@ -12,6 +12,7 @@
     "@walletconnect/web3-provider": "^1.8.0",
     "axios": "^0.27.2",
     "ether": "^0.0.9",
+    "ethers-utils": "^2.1.11",
     "framer-motion": "^7.2.1",
     "google-auth-library": "^8.7.0",
     "googleapis": "^114.0.0",
