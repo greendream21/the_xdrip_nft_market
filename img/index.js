@@ -37,6 +37,8 @@ import service2 from "./service-2.png";
 import service3 from "./service-3.png";
 import service4 from "./service-4.png";
 import logo from "./logo.png";
+import logo2 from "./logo_2.png";
+import logo3 from "./logo_3.png";
 import facebook from "./facebook.svg";
 import twitter from "./twitter.svg";
 import telegram from "./telegram.svg";
@@ -134,6 +136,8 @@ export default {
   service3,
   service4,
   logo,
+  logo2,
+  logo3,
   facebook,
   telegram,
   twitter,

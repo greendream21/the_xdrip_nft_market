@@ -97,8 +97,8 @@ const NavBar = () => {
                 <Image
                   src={images.logo}
                   alt="NFT MARKET PLACE"
-                  width={150}
-                  height={45}
+                  width={300}
+                  height={50}
                 />
               </div>
             </a>
