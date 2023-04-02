@@ -136,7 +136,7 @@ const Collection = () => {
   return (
     <div className={Style.collection}>
       <div className={Style.collection_title}>
-        <h2>CREATORS OF XCELLENCE</h2>
+        <h2>XMARKET FEATURED CREATORS</h2>
         <div className={Style.collection_collections}>
           <div className={Style.collection_collections_btn}>
             <button onClick={() => openPopular()}>

@@ -36,6 +36,12 @@
    
 }
 
+.category_box_title_info h4{
+    align-items: center;
+    padding-top: 1rem;
+    font-size: 1.2rem;
+}
+
 .category_box_title span{
     margin-right: .5rem;
     margin-top: 1rem;

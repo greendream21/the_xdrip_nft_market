@@ -1,6 +1,7 @@
 
 .Brand_box_left_logo{
     padding-bottom: 0rem;
+   
 }
 
 .Brand{
@@ -37,8 +38,8 @@
     margin-top: 2rem;
 }
 
-.Brand_box_left h1{
-    font-size: 4rem;
+.Brand_box_left h2{
+    font-size: 3rem;
     line-height: 1.4;
     font-weight: bolder;
     margin-top: -.5rem;
@@ -46,7 +47,7 @@
 
 .Brand_box_left p{
     font-size: 1.3rem;
-    margin-top: -3rem;
+    margin-top: -2.5rem;
     
 }
 
@@ -57,7 +58,7 @@
 }
 
 .Brand_box_left_box span{
-    padding: 0rem 0rem;
+    padding: .5rem 0rem;
     text-align: center;
 }
 

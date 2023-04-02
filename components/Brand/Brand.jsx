@@ -14,14 +14,15 @@ const Brand = () => {
       <div className={Style.Brand_box}>
         <div className={Style.Brand_box_left}>
           {<Image
-            src={images.logo2}
+            src={images.logo4}
             alt="brand logo"
-            width={280}
-            height={70}
+            width={320}
+            height={80}
+            className={Style.Brand_box_left_logo}
           />
           }
 
-          <h1>THE ECOSYSTEM </h1>
+          <h2>THE ECOSYSTEM </h2>
           <p>GENERATING A STRONG PASSIVE INCOME</p>
 
           <div className={Style.Brand_box_left_box}>
@@ -32,7 +33,7 @@ const Brand = () => {
                 width={50}
                 height={50}
                 /></span>
-            <small>DEDICATED DEVELOPMENT TEAM FOCUSED ON THE PROJECTS FUTURE GROWTH</small>
+            <small>DEDICATED DEVELOPMENT TEAM FOCUSED ON FUTURE GROWTH</small>
           </div>
 
           <div className={Style.Brand_box_left_box}>
@@ -44,7 +45,7 @@ const Brand = () => {
                 height={50}
                 />
             </span>
-            <small>commitment to sustainability is evident in every aspect of our project</small>
+            <small>commitment to sustainability is evident in every aspect</small>
           </div>
 
           <div className={Style.Brand_box_left_box}>
@@ -56,7 +57,7 @@ const Brand = () => {
                 height={50}
                 />
             </span>
-            <small>SO MUCH more than just a cryptocurrency project - it's a movement </small>
+            <small>More than just a cryptocurrency  - it's a movement </small>
           </div>
 
           <div className={Style.Brand_box_left_btn}>

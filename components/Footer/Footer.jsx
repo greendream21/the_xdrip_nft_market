@@ -28,19 +28,19 @@ const Footer = () => {
           </p>
 
           <div className={Style.footer_social}>
-            <a href="#">
+            <a href="https://www.facebook.com/TheXdripOfficial/">
               <FaFacebookF />
             </a>
-            <a href="#">
+            <a href="https://www.tiktok.com/@xdripofficial?lang=en">
               <FaTiktok />
             </a>
-            <a href="#">
+            <a href="https://twitter.com/XDRIP__">
               <FaTwitter />
             </a>
-            <a href="#">
+            <a href="https://www.youtube.com/channel/UCql_clMpK5GYxXUREIGfnRw">
               <FaYoutube />
             </a>
-            <a href="#">
+            <a href="https://www.instagram.com/thexdripofficial/">
               <FaInstagram />
             </a>
           </div>

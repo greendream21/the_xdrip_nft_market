@@ -14,6 +14,11 @@
     line-height: 0;
 }
 
+.title_box p{
+    font-size: 1.2rem;
+    line-height: 1rem;
+}
+
 @media screen and (min-device-width: 320px) and (max-device-width: 425px) {
     .title_box{
         width: 90%;

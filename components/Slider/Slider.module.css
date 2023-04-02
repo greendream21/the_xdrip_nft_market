@@ -15,6 +15,11 @@
     line-height: 0;
 }
 
+.slider_box_button p{
+    margin-top: -2rem;
+    font-size: 1.2rem;
+}
+
 .slider_box_button{
     display: flex;
     justify-content: space-between;

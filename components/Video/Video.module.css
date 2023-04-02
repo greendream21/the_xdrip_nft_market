@@ -31,15 +31,33 @@
     border-color: var(--shadow-dark-color);
 }
 
-.Video_box_left h1{
-    font-size: 4rem;
-    line-height: 1.3;
+.Video_box_left h2{
+    font-size: 3.5rem;
+    line-height: 1.4;
     font-weight: bolder;
+    margin-top: -.5rem;
 }
 
 .Video_box_left p{
     font-size: 1.3rem;
-    margin-top: -2rem;
+    margin-top: -3rem;
+}
+
+.Video_box_left_box{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.Video_box_left_box small{
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.Video_box_left_box span{
+    padding: .5rem .5rem;
+    text-align: center;
 }
 
 .Video_box_left_btn{

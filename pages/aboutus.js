@@ -69,9 +69,9 @@ const aboutus = () => {
         </div>
 
         <div className={Style.aboutus_box_title}>
-          <h2>XDRIP FOUNDERS</h2>
+          <h2>XDRIP ECOSYSTEM FOUNDERS</h2>
           <p>
-           DEDICATED LEADERS, DRIVEN TO BRING THE BEST USER EXPERIENCE PAIRED WITH A STRONG BUSINESS GROWTH
+          
           </p>
         </div>
 
@@ -94,9 +94,9 @@ const aboutus = () => {
         </div>
 
         <div className={Style.aboutus_box_title}>
-          <h2>PROJECT FAST FACTS</h2>
+          <h2>XDRIP ECOSYSTEM FACTS</h2>
           <p>
-            EVERY DRIP ADDS UP TO A RIPPLE THAT WILL NOT BE IGNORED
+            
           </p>
         </div>
 
