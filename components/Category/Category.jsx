@@ -66,7 +66,7 @@ const Category = () => {
               </span>
               <div className={Style.category_box_title_info}>
                 <h4>{el.name}</h4>
-                <small>{i + (1)}100 NFTS</small>
+                
               </div>
             </div>
           </div>

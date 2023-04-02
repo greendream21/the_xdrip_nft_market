@@ -40,6 +40,7 @@ import xm from "./xm.png";
 import logo from "./logo.png";
 import logo2 from "./logo_2.png";
 import logo3 from "./logo_3.png";
+import logo4 from "./logo_4.png";
 import facebook from "./facebook.svg";
 import twitter from "./twitter.svg";
 import telegram from "./telegram.svg";
@@ -140,6 +141,7 @@ export default {
   logo,
   logo2,
   logo3,
+  logo4,
   facebook,
   telegram,
   twitter,

@@ -5,6 +5,7 @@ import { MdNotifications } from "react-icons/md";
 import { BsSearch } from "react-icons/bs";
 import { CgMenuLeft, CgMenuRight } from "react-icons/cg";
 import { useRouter } from "next/router";
+import { ConnectWallet } from "@thirdweb-dev/react";
 
 import Style from "./NavBar.module.css";
 import { Discover, HelpCenter, Notification, Profile, SideBar } from "./index";
@@ -97,7 +98,7 @@ const NavBar = () => {
                 <Image
                   src={images.logo}
                   alt="NFT MARKET PLACE"
-                 
+
                 />
               </div>
             </a>
@@ -105,7 +106,7 @@ const NavBar = () => {
           <div className={Style.navbar_container_left_box_input}>
             <div className={Style.navbar_container_left_box_input_box}>
               <input type="text" placeholder="XPLORE NFTs" />
-              <BsSearch onClick={() => {}} className={Style.search_icon} />
+              <BsSearch onClick={() => { }} className={Style.search_icon} />
             </div>
           </div>
         </div>
@@ -144,14 +145,10 @@ const NavBar = () => {
           {/* CREATE BUTTON SECTION */}
           <div className={Style.navbar_container_right_button}>
             {currentAccount == "" ? (
-              <Button btnName="Connect" handleClick={() => connectWallet()} />
-            ) : (
-              <Button
-                btnName="Create"
-                handleClick={() => router.push("/uploadNFT")}
-              />
-            )}
+              <ConnectWallet btnTitle="XCONNECT" style={Style.navbar_container_right_button_button} colorMode="dark" />
+            ) : null}
           </div>
+
 
           {/* USER PROFILE */}
 

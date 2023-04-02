@@ -1,5 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
+import Image from 'next/image';
+
 
 //INTERNALIMPORT
 import Style from "./Video.module.css";
@@ -12,12 +14,47 @@ const Video = () => {
     <div className={Style.Video}>
       <div className={Style.Video_box}>
         <div className={Style.Video_box_left}>
-          <h1>THE ENTERTAINMENT</h1>
+          <h2>THE XCAPISM</h2>
           <p>FULLY EMERSE YOURSELF IN VISUAL XCELLENCE</p>
+
+          <div className={Style.Video_box_left_box}>
+            <span>                
+              <Image
+                src={images.bullet_1}
+                alt="Logo"
+                width={50}
+                height={50}
+                /></span>
+            <small>XCLUSIVE CONTENT THAT YOU WONT FIND ANYWHERE ELSE</small>
+          </div>
+
+          <div className={Style.Video_box_left_box}>
+            <span>
+            <Image
+                src={images.bullet_1}
+                alt="Logo"
+                width={50}
+                height={50}
+                />
+            </span>
+            <small>VIDEOS THAT ARE BOTH ENGAGING AND ENTERTAINING</small>
+          </div>
+
+          <div className={Style.Video_box_left_box}>
+            <span>
+            <Image
+                src={images.bullet_1}
+                alt="Logo"
+                width={50}
+                height={50}
+                />
+            </span>
+            <small>INTERACTIVE AND COMMUNITY DRIVEN CONTENT </small>
+          </div>
 
           <div className={Style.Video_box_left_btn}>
             <Button
-              btnName="XDRIP FLIX"
+              btnName="XCAPE TO XDRIPIA"
               handleClick={() => window.open("https://www.xdrip.io")}
             />
           </div>
@@ -37,5 +74,6 @@ const Video = () => {
     </div>
   );
 };
+
 
 export default Video;

@@ -181,7 +181,7 @@ const SideBar = ({ setOpenSideMenu }) => {
 
       <div className={Style.sideBar_button}>
         {currentAccount == "" ? (
-          <Button btnName="CONNECT WALLET" handleClick={() => connectWallet()} />
+           <ConnectWallet className= {Style.connect_button} btnTitle="XCONNECT" accentColor="#f213a4" colorMode="dark" />
         ) : (
           <Button
             btnName="CREATE"

@@ -34,7 +34,7 @@
 }
 
 .aboutus_box_title{
-    margin-top: 5rem;
+    margin-top: 16rem;
 }
 
 .aboutus_box_title h2{
@@ -50,7 +50,7 @@
 }
 
 .aboutus_box_founder{
-    margin-top: 6rem;
+    margin-top: 4rem;
     margin-bottom: 10rem;
 }
 
@@ -78,14 +78,14 @@
 
 .aboutus_box_founder_box_img p{
     line-height: 0;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .aboutus_box_facts_box{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    margin-top: 6rem;
+    margin-top: 4rem;
 }
 
 .aboutus_box_facts_box_info{

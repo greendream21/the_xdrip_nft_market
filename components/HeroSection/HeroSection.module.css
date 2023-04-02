@@ -41,6 +41,7 @@
 
 .heroSection_box_left p{
     margin-bottom:  2rem;
+    font-size: 1.25rem;
 }
 
 @media screen and (max-width: 35em) {
