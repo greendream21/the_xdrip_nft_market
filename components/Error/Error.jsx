@@ -5,8 +5,8 @@ import Image from "next/image";
 import Style from "./Error.module.css";
 import images from "../../img";
 
-//SMART CONTRCAT IMPORT CONTEXT
-//import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
+//SMART CONTRACT IMPORT CONTEXT
+import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
 
 const Error = () => {
   const { error, setOpenError } = useContext(NFTMarketplaceContext);
