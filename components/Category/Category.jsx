@@ -58,10 +58,10 @@ const Category = () => {
             <div className={Style.category_box_title}>
               <span>
                 <Image
-                src={images.category_logo}
+                src={images.xm}
                 alt="Logo"
-                width={90}
-                height={51}
+                width={69}
+                height={28}
                 />
               </span>
               <div className={Style.category_box_title_info}>

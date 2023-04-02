@@ -1,6 +1,12 @@
 
 .footer_box_social_logo{
-    font-size: 5rem;
+    width: 100%;
+    height: 100%;
+}
+
+.footer_box_social p{
+    line-height: 1.5rem;
+    padding-left: .5rem;
 }
 
 .footer{
@@ -18,6 +24,14 @@
     align-items: flex-start;
     justify-content: space-between;
     gap: 3rem;
+}
+
+.footer_box_discover{
+    margin-left: 2rem;
+}
+
+.footer_box_discover h3{
+    margin-left: 1rem;
 }
 
 /* //SOCIAL */
@@ -47,11 +61,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: .75rem 2rem;
     background-color:  var(--icons-color);
     color: var(--shadow-dark-color);
     border-radius: 5rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 .subscribe_box input{
@@ -73,7 +87,7 @@
 }
 
 .subscribe_box_info{
-    padding: 1rem 2rem;
+    padding: .75rem 3rem;
 }
 
 /* //MEDIA QUERY */

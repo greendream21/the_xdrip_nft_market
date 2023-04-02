@@ -22,10 +22,9 @@ const Footer = () => {
     <div className={Style.footer}>
       <div className={Style.footer_box}>
         <div className={Style.footer_box_social}>
-          <Image src={images.logo} alt="footer logo" height={40} width={150} />
-
+          <Image src={images.logo} alt="footer logo"  />
           <p>
-          The NFT Forge offers a one-stop-shop for buying, selling, and discovering exclusive digital items.
+          OFFERING AN XCELLENT AVENUE FOR BUYING, SELLING, AND DISCOVERING XCLUSIVE DIGITAL ART.
           </p>
 
           <div className={Style.footer_social}>
@@ -48,7 +47,7 @@ const Footer = () => {
         </div>
 
         <div className={Style.footer_box_discover}>
-          <h3>DISCOVER</h3>
+          <h3>XPLORE XM</h3>
           <Discover />
         </div>
 
@@ -66,7 +65,7 @@ const Footer = () => {
           </div>
           <div className={Style.subscribe_box_info}>
             <p>
-              JOIN THE XDRIP MARKETPLACE COMMUNITY TODAY! 
+              JOIN OUR GROWING XMARKET COMMUNITY TODAY! 
             </p>
           </div>
         </div>

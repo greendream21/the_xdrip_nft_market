@@ -31,12 +31,13 @@
 .category_box_title{
     display: flex;
     align-items: center;
-    padding: 0rem;
+    padding-left: 0rem;
     gap: 0rem;
+   
 }
 
 .category_box_title span{
-    margin-right: 0rem;
+    margin-right: .5rem;
     margin-top: 1rem;
 }
 

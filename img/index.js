@@ -36,6 +36,7 @@ import service1 from "./service-1.png";
 import service2 from "./service-2.png";
 import service3 from "./service-3.png";
 import service4 from "./service-4.png";
+import xm from "./xm.png";
 import logo from "./logo.png";
 import logo2 from "./logo_2.png";
 import logo3 from "./logo_3.png";
@@ -69,6 +70,7 @@ import founder3 from "./founder3.jpg";
 import founder4 from "./founder4.jpg";
 import founder5 from "./founder5.jpg"
 import loader from "./loadergif.gif";
+import loader2 from "./loadergif2.gif";
 import errorgif from "./error.gif";
 import transfer from "./transfer.gif";
 import transferEther from "./ethereTransfer.gif";
@@ -146,7 +148,9 @@ export default {
   youtube,
   zgcmq,
   loader,
+  loader2,
   errorgif,
   transfer,
   transferEther,
+  xm,
 };

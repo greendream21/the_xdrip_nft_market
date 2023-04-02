@@ -15,7 +15,9 @@
     margin-bottom: 14rem;
     margin-top: 8rem;
     animation:  mymove 3s infinite;
+    
 }
+
 
 @keyframes mymove {
     50% {transform: rotate(360deg);}

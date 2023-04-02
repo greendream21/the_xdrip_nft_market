@@ -1,7 +1,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["daulat-nft-marketplace.infura-ipfs.io"],
+    domains: [],
     formats: ["image/webp"],
   },
 };

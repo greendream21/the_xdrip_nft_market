@@ -143,7 +143,7 @@ const SideBar = ({ setOpenSideMenu }) => {
             className={Style.sideBar_menu_box}
             onClick={() => openDiscoverMenu()}
           >
-            <p>DISCOVER</p>
+            <p>XPLORE XM</p>
             <FaArrowDown />
           </div>
 

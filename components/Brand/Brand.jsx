@@ -14,7 +14,7 @@ const Brand = () => {
       <div className={Style.Brand_box}>
         <div className={Style.Brand_box_left}>
           {<Image
-            src={images.logo}
+            src={images.logo2}
             alt="brand logo"
             width={280}
             height={70}
