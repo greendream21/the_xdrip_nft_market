@@ -1,34 +1,26 @@
 import React, { useState, useEffect } from "react";
-import Web3Modal from "web3modal";
-import { ethers } from "ethers";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { create as ipfsHttpClient } from "ipfs-http-client";
-
-const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
-const projectSecretKey = process.env.NEXT_PUBLIC_SECRECT_KEY;
-const auth = `Basic ${Buffer.from(`${projectId}:${projectSecretKey}`).toString(
-  "base64"
-)}`;
+import { ethers } from "ethers";
+import {
+  useSDK,
+  useConnect,
+  useAddress,
+  useConnectionStatus,
+} from "@thirdweb-dev/react";
+import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 
 const subdomain = process.env.NEXT_PUBLIC_SUBDOMAIN;
 
-const client = ipfsHttpClient({
-  host: "infura-ipfs.io",
-  port: 5001,
-  protocol: "https",
-  headers: {
-    authorization: auth,
-  },
-});
 
-//INTERNAL  IMPORT
 import {
   NFTMarketplaceAddress,
   NFTMarketplaceABI,
 } from "./constants";
 
-//---FETCHING SMART CONTRACT
+
+
+
 const fetchContract = (signerOrProvider) =>
   new ethers.Contract(
     NFTMarketplaceAddress,
@@ -36,92 +28,56 @@ const fetchContract = (signerOrProvider) =>
     signerOrProvider
   );
 
-//---CONNECTING WITH SMART CONTRACT
-
-const connectingWithSmartContract = async () => {
-  try {
-    const web3Modal = new Web3Modal();
-    const connection = await web3Modal.connect();
-    const provider = new ethers.providers.WebSocketProvider(
-      "wss://data-seed-prebsc-1-s1.binance.org:8545"
-      );
-    const signer = provider.getSigner();
-
-    const contract = new ethers.Contract(contractAddress, contractABI, provider);
-    return contract;
-  } catch (error) {
-    console.log("Something went wrong while connecting with contract", error);
-  }
-};
-
 export const NFTMarketplaceContext = React.createContext();
 
 export const NFTMarketplaceProvider = ({ children }) => {
   const titleData = "Discover, collect, and sell NFTs";
-
-  //------USESTAT
+  const sdk = useSDK();
+  const connect = useConnect();
+  const address = useAddress();
+  const connectionStatus = useConnectionStatus();
   const [error, setError] = useState("");
   const [openError, setOpenError] = useState(false);
   const [currentAccount, setCurrentAccount] = useState("");
   const [accountBalance, setAccountBalance] = useState("");
   const router = useRouter();
 
-  //---CHECK IF WALLET IS CONNECTD
+  useEffect(() => {
+    if (address) {
+      setCurrentAccount(address);
+      updateBalance();
+    }
+  }, [address]);
 
-  const checkIfWalletConnected = async () => {
-    try {
-      if (!window.ethereum)
-        return setOpenError(true), setError("Install MetaMask");
-
-      const accounts = await window.ethereum.request({
-        method: "eth_accounts",
-      });
-
-      if (accounts.length) {
-        setCurrentAccount(accounts[0]);
-        // console.log(accounts[0]);
-      } else {
-        // setError("No Account Found");
-        // setOpenError(true);
-        console.log("No account");
-      }
-
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const getBalance = await provider.getBalance(accounts[0]);
+  const updateBalance = async () => {
+    if (sdk.provider && currentAccount) {
+      const ethProvider = new ethers.providers.Web3Provider(sdk.provider);
+      const getBalance = await ethProvider.getBalance(currentAccount);
       const bal = ethers.utils.formatEther(getBalance);
       setAccountBalance(bal);
-    } catch (error) {
-      // setError("Something wrong while connecting to wallet");
-      // setOpenError(true);
-      console.log("not connected");
+    }
+  };
+
+  const checkIfWalletConnected = async () => {
+    if (address) {
+      setCurrentAccount(address);
+      updateBalance();
+    } else {
+      console.log("No account");
     }
   };
 
   useEffect(() => {
-    checkIfWalletConnected();
-  }, []);
-
-  //---CONNECT WALLET FUNCTION
-  const connectWallet = async () => {
-    try {
-      if (!window.ethereum)
-        return setOpenError(true), setError("Install MetaMask");
-
-      const accounts = await window.ethereum.request({
-        method: "eth_requestAccounts",
-      });
-
-      console.log(accounts);
-      setCurrentAccount(accounts[0]);
-
-      // window.location.reload();
-      connectingWithSmartContract();
-    } catch (error) {
-      // setError("Error while connecting to wallet");
-      // setOpenError(true);
+    if (connectionStatus === "connected") {
+      checkIfWalletConnected();
     }
-  };
+  }, [connectionStatus]);
 
+  const handleConnect = async () => {
+    await connect();
+  };
+  
+  
   //---UPLOAD TO IPFS FUNCTION
   const uploadToIPFS = async (file) => {
     try {
@@ -399,8 +355,8 @@ export const NFTMarketplaceProvider = ({ children }) => {
   return (
     <NFTMarketplaceContext.Provider
       value={{
+        handleConnect,
         checkIfWalletConnected,
-        connectWallet,
         uploadToIPFS,
         createNFT,
         fetchNFTs,
@@ -421,6 +377,15 @@ export const NFTMarketplaceProvider = ({ children }) => {
       }}
     >
       {children}
+      <button onClick={handleConnect}>Connect wallet</button>
     </NFTMarketplaceContext.Provider>
   );
 };
+/*
+export const ThirdwebWrapper = ({ children }) => {
+  return (
+    <ThirdwebProvider>
+      <NFTMarketplaceProvider>{children}</NFTMarketplaceProvider>
+    </ThirdwebProvider>
+  );
+}; */

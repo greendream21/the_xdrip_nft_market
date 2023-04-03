@@ -6,8 +6,10 @@ import { BsSearch } from "react-icons/bs";
 import { CgMenuLeft, CgMenuRight } from "react-icons/cg";
 import { useRouter } from "next/router";
 import { ConnectWallet } from "@thirdweb-dev/react";
+import StyleWallet from "/styles/connectWallet.module.css";
 
 import Style from "./NavBar.module.css";
+import WalletStyle from "./Xconnect.module.css";
 import { Discover, HelpCenter, Notification, Profile, SideBar } from "./index";
 import { Button, Error } from "../componentsindex";
 import images from "../../img";
@@ -20,6 +22,7 @@ const NavBar = () => {
   const [notification, setNotification] = useState(false);
   const [profile, setProfile] = useState(false);
   const [openSideMenu, setOpenSideMenu] = useState(false);
+  const [hasConnectedWallet, setHasConnectedWallet] = useState(false);
 
   const router = useRouter();
 
@@ -143,12 +146,17 @@ const NavBar = () => {
           </div>
 
           {/* CREATE BUTTON SECTION */}
-          <div className={Style.navbar_container_right_button}>
-            {currentAccount == "" ? (
-              <ConnectWallet btnTitle="XCONNECT" style={Style.navbar_container_right_button_button} colorMode="dark" />
-            ) : null}
+          <div >
+       {!hasConnectedWallet && (
+  <ConnectWallet
+    btnTitle="XCONNECT"
+    className="Xconnect.module.css"
+    theme="dark"
+    onConnect={() => setHasConnectedWallet(true)}
+  />
+)}
           </div>
-
+          
 
           {/* USER PROFILE */}
 
