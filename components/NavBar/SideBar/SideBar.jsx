@@ -16,7 +16,6 @@ import {
 //INTERNAL IMPORT
 import Style from "./SideBar.module.css";
 import images from "../../../img";
-import Button from "../../Button/Button";
 import { Router } from "next/router";
 
 const SideBar = ({ setOpenSideMenu }) => {
@@ -51,10 +50,6 @@ const SideBar = ({ setOpenSideMenu }) => {
     {
       name: "Upload NFT",
       link: "uploadNFT",
-    },
-    {
-      name: "CONNECT WALLET",
-      link: "connectWallet",
     },
     {
       name: "NEWS",
@@ -180,16 +175,13 @@ const SideBar = ({ setOpenSideMenu }) => {
       </div>
 
       <div className={Style.sideBar_button}>
-        {currentAccount == "" ? (
-           <ConnectWallet className= {Style.connect_button} btnTitle="XCONNECT" accentColor="#f213a4" colorMode="dark" />
-        ) : (
-          <Button
-            btnName="CREATE"
-            handleClick={() => router.push("/uploadNFT")}
-          />
-        )}
-
-        <Button btnName="CONNECT WALLET" handleClick={() => {}} />
+      {!hasConnectedWallet && (
+  <ConnectWallet
+    className={Style.box_box_right}
+    btnTitle="XCONNECT"    
+    onConnect={() => setHasConnectedWallet(true)}
+  />
+)}
       </div>
     </div>
   );

@@ -66,9 +66,22 @@
 
 }
 
-.sideBar_button{
-    padding: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+
+.box_box_right {
+    background-color: var(--icons-color); /*#3d465c;*/
+    padding: 1rem 2rem;
+    border: 1px solid var(--xdrip-gold);
+    border-radius: 2rem;
+    font-size: 1.1rem;
+    color: var(--xdrip-light-gray);
+    font-family: "Good Times";
+    cursor: pointer;
+    transition:  all .2s ease-in;
+    box-shadow: var(--box-shadow);
+}
+
+.box_box_right{
+    background-color: var(--main-bg-color);
+    /*border:  1px solid var(--icons-color);*/
+    /*color:  var(--icons-color);*/
 }

@@ -6,12 +6,11 @@ import { BsSearch } from "react-icons/bs";
 import { CgMenuLeft, CgMenuRight } from "react-icons/cg";
 import { useRouter } from "next/router";
 import { ConnectWallet } from "@thirdweb-dev/react";
-import StyleWallet from "/styles/connectWallet.module.css";
+
 
 import Style from "./NavBar.module.css";
-import WalletStyle from "./Xconnect.module.css";
 import { Discover, HelpCenter, Notification, Profile, SideBar } from "./index";
-import { Button, Error } from "../componentsindex";
+import { Error } from "../componentsindex";
 import images from "../../img";
 
 import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
@@ -149,9 +148,8 @@ const NavBar = () => {
           <div >
        {!hasConnectedWallet && (
   <ConnectWallet
-    btnTitle="XCONNECT"
-    className="Xconnect.module.css"
-    theme="dark"
+    className={Style.box_box_right} 
+    btnTitle="XCONNECT"    
     onConnect={() => setHasConnectedWallet(true)}
   />
 )}

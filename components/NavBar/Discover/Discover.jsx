@@ -32,10 +32,6 @@ const Discover = () => {
       link: "uploadNFT",
     },
     {
-      name: "CONNECT WALLET",
-      link: "connectWallet",
-    },
-    {
       name: "NEWS",
       link: "https://www.xdrip.io/news",
     },

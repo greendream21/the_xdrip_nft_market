@@ -111,6 +111,26 @@
     cursor: pointer;
 }
 
+
+.box_box_right {
+        background-color: var(--icons-color) !important; 
+        padding: 1rem 2rem !important;
+        border: 1px solid var(--xdrip-gold) !important;
+        border-radius: 1rem !important;
+        font-size: 1.1rem !important;
+        color: var(--xdrip-light-gray) !important;
+        font-family: "Good Times" !important;
+        cursor: pointer !important;
+        transition:  all .2s ease-in !important;
+        box-shadow: var(--box-shadow) !important;
+    }
+    
+.box_box_right{
+        background-color: var(--main-bg-color);
+        /*border:  1px solid var(--icons-color);*/
+        /*color:  var(--icons-color);*/
+    }
+
 /* /////------SIDEBAR */
 
 .sideBar{
