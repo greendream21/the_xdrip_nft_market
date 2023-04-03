@@ -14,6 +14,7 @@
     "@thirdweb-dev/react": "^3.11.4",
     "@thirdweb-dev/sdk": "^3.10.7",
     "@walletconnect/web3-provider": "^1.8.0",
+    "@web3modal/react": "^2.2.2",
     "axios": "^0.27.2",
     "ether": "^0.0.9",
     "ethers-utils": "^2.1.11",

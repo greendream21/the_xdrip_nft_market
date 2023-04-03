@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import { ThirdwebProvider } from "@thirdweb-dev/react";
+import { ThirdwebProvider, ChainId } from "@thirdweb-dev/react";
 import Head from "next/head";
 import { NavBar, Footer } from "../components/componentsindex";
 import { NFTMarketplaceProvider } from "../Context/NFTMarketplaceContext";

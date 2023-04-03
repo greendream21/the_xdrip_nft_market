@@ -32,8 +32,8 @@ const HeroSection = () => {
           <Image
             src={images.hero}
             alt="Hero section"
-            width={700}
-            height={600}
+            width={650}
+            height={650}
             className={Style.heroSection_box_right_img}
           />
         </div>
