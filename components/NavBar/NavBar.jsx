@@ -22,8 +22,12 @@ const NavBar = () => {
   const [profile, setProfile] = useState(false);
   const [openSideMenu, setOpenSideMenu] = useState(false);
   const [hasConnectedWallet, setHasConnectedWallet] = useState(false);
+  const [timeoutId, setTimeoutId] = useState(null);
+const [isMenuHovered, setIsMenuHovered] = useState(false);
+
 
   const router = useRouter();
+
 
   const closeNavbarButtons = () => {
     setDiscover(false);
@@ -32,23 +36,38 @@ const NavBar = () => {
     setProfile(false);
   };
 
-  const openMenu = (e) => {
-    const btnText = e.target.innerText;
-    if (btnText === "XPLORE XM") {
-      setDiscover((discover) => !discover);
-      setHelp(false);
-      setNotification(false);
-      setProfile(false);
-    } else if (btnText === "Help Center") {
-      setDiscover(false);
-      setHelp((help) => !help);
-      setNotification(false);
-      setProfile(false);
-    } else {
-      closeNavbarButtons();
-    }
-  };
 
+
+  const openMenu = (e) => {
+  const btnText = e.target.innerText;
+  if (btnText === "XPLORE XM") {
+    setDiscover((discover) => !discover);
+    setHelp(false);
+    setNotification(false);
+    setProfile(false);
+  } else if (btnText === "Help Center") {
+    setDiscover(false);
+    setHelp((help) => !help);
+    setNotification(false);
+    setProfile(false);
+  } else {
+    closeNavbarButtons();
+  }
+};
+  
+  const handleMouseEnter = () => {
+  setIsMenuHovered(true);
+  clearTimeout(timeoutId);
+};
+
+const handleMouseLeave = () => {
+  setIsMenuHovered(false);
+  const newTimeoutId = setTimeout(() => {
+    closeNavbarButtons();
+  }, 50);
+  setTimeoutId(newTimeoutId);
+};
+  
   const openNotification = () => {
     if (!notification) {
       closeNavbarButtons();
@@ -76,15 +95,15 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    const handleRouteChange = () => {
-      closeNavbarButtons();
-      setOpenSideMenu(false);
-    };
-    router.events.on("routeChangeStart", handleRouteChange);
-    return () => {
-      router.events.off("routeChangeStart", handleRouteChange);
-    };
-  }, []);
+  const handleRouteChange = () => {
+    closeNavbarButtons();
+    setOpenSideMenu(false);
+  };
+  router.events.on("routeChangeStart", handleRouteChange);
+  return () => {
+    router.events.off("routeChangeStart", handleRouteChange);
+  };
+}, [timeoutId, setTimeoutId]);
 
   const { currentAccount, connectWallet, openError } = useContext(
     NFTMarketplaceContext
@@ -115,25 +134,33 @@ const NavBar = () => {
 
         {/* //END OF LEFT SECTION */}
         <div className={Style.navbar_container_right}>
-          <div className={Style.navbar_container_right_discover}>
-            {/* DISCOVER MENU */}
-            <p onClick={(e) => openMenu(e)}>XPLORE XM</p>
-            {discover && (
-              <div className={Style.navbar_container_right_discover_box}>
-                <Discover />
-              </div>
-            )}
-          </div>
+  <div
+  className={Style.navbar_container_right_discover}
+  onMouseEnter={handleMouseEnter}
+  onMouseLeave={handleMouseLeave}
+>
+  {/* DISCOVER MENU */}
+  <p onClick={(e) => openMenu(e)}>XPLORE XM</p>
+  {discover && (
+    <div className={Style.navbar_container_right_discover_box}>
+      <Discover />
+    </div>
+  )}
+</div>
 
           {/* HELP CENTER MENU */}
-          <div className={Style.navbar_container_right_help}>
-            <p onClick={(e) => openMenu(e)}>Help Center</p>
-            {help && (
-              <div className={Style.navbar_container_right_help_box}>
-                <HelpCenter />
-              </div>
-            )}
-          </div>
+<div
+  className={Style.navbar_container_right_help}
+  onMouseEnter={handleMouseEnter}
+  onMouseLeave={handleMouseLeave}
+>
+  <p onClick={(e) => openMenu(e)}>Help Center</p>
+  {help && (
+    <div className={Style.navbar_container_right_help_box}>
+      <HelpCenter />
+    </div>
+  )}
+</div>
 
           {/* NOTIFICATION */}
           <div className={Style.navbar_container_right_notify}>
