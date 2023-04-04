@@ -56,12 +56,17 @@ const aboutus = () => {
           <div className={Style.aboutus_box_hero_left}>
             <h1>ABOUT US</h1>
             <p>
-            We are a team of dedicated and innovative entrepreneurs with a shared passion for creating meaningful and impactful solutions. 
-            Our diverse backgrounds and areas of expertise allow us to approach challenges from different angles and find creative solutions to complex problems. 
-            We value collaboration, integrity, and excellence in everything we do, and we strive to bring these values to our work every day. 
-            Our goal is to make a positive difference in the world by developing and delivering high-quality products and services 
-            that meet the needs of our customers and contribute to the greater good.
-            </p>
+  We are a team of dedicated and innovative entrepreneurs with a shared passion for creating meaningful and impactful solutions.
+  <br /><br />
+  Our diverse backgrounds and areas of expertise allow us to approach challenges from different angles and find creative solutions to complex problems.
+  <br /><br />
+  We value collaboration, integrity, and excellence in everything we do, and we strive to bring these values to our work every day.
+  <br /><br />
+  Our goal is to make a positive difference in the world by developing and delivering high-quality products and services
+  that meet the needs of our customers and contribute to the greater good.
+</p>
+
+
           </div>
           <div className={Style.aboutus_box_hero_right}>
             <Image src={images.hero2} />
