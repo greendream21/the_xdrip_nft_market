@@ -4,17 +4,18 @@
   margin-bottom: 8rem;
 }
 
-.ui_styled_accordion small{
-  text-align: center;
-  font-size: 1.4rem;
-  margin-top: 8rem;
-  margin-bottom: 6rem;
-}
 
 .ui_styled_accordion h1{
   text-align: center;
   font-size: 4rem;
   margin-top: 8rem;
+  margin-bottom: 0rem;
+}
+
+.ui_styled_accordion h3{
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 1rem;
   margin-bottom: 6rem;
 }
 

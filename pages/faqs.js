@@ -84,12 +84,11 @@ const FAQ = () => {
     return (
         <div className={Style.ui_styled_accordion}>
                       <h1>XMARKET FAQS</h1>
-          <small>
-            PLEASE FEEL FREE TO EMAIL US ANY QUESTIONS YOU FEEL CAN BE ADDED TO OUR FAQS.
-          </small>
-            <div className={Style.ui_styled_accordion_box}>
+                      <h3>IF YOU HAVE ANY OTHER QUESTIONS YOU FIND RELEVENT PLEASE CONTACT THE DEVELOPERS</h3>
+                      <div className={Style.ui_styled_accordion_box}>
                 {renderedItems}
             </div>
+            <div></div>
             <Brand />
         </div>
     );
