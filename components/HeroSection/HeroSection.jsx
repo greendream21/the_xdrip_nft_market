@@ -24,13 +24,13 @@ const HeroSection = () => {
             RAISING THE STANDARD OF XCELLENCE IN DIGITAL ASSETS, ARTWORK, AND COLLECTIVES! 
           </p>
           <Button
-            btnName="FORGE YOUR DESTINY"
+            btnName="BEGIN XPLORING"
             handleClick={() => router.push("/searchPage")}
           />
         </div>
         <div className={Style.heroSection_box_right}>
           <Image
-            src={images.hero}
+            src={images.hero4}
             alt="Hero section"
             width={650}
             height={650}

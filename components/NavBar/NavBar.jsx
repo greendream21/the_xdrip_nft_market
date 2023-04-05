@@ -23,7 +23,7 @@ const NavBar = () => {
   const [openSideMenu, setOpenSideMenu] = useState(false);
   const [hasConnectedWallet, setHasConnectedWallet] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
-const [isMenuHovered, setIsMenuHovered] = useState(false);
+  const [isMenuHovered, setIsMenuHovered] = useState(false);
 
 
   const router = useRouter();
@@ -176,7 +176,8 @@ const handleMouseLeave = () => {
        {!hasConnectedWallet && (
   <ConnectWallet
     className={Style.box_box_right} 
-    btnTitle="XCONNECT"    
+    btnTitle="XCONNECT" 
+    colorMode= "dark"   
     onConnect={() => setHasConnectedWallet(true)}
   />
 )}

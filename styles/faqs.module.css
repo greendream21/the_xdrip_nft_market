@@ -1,0 +1,68 @@
+.ui_styled_accordion_box{  
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 8rem;
+  
+}
+
+.ui_styled_accordion h1{
+  text-align: center;
+  font-size: 4rem;
+  margin-top: 8rem;
+  margin-bottom: 0rem;
+  
+}
+
+.ui_styled_accordion p{
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 0rem;
+  margin-bottom: 6rem;
+  }
+
+
+.ui_styled_accordion {
+  max-width: 100%;
+  position: relative;
+    
+}
+
+.ui_accordion_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgb(216, 208, 208);
+  padding: 10px;
+  background-color: var(--main-bg-color);
+  padding: 1em;
+  cursor: pointer;
+  
+}
+
+.ui_accordion_title:hover {
+  background-color: var(--shadow-color);
+}
+
+
+.active .dropdown_icon {
+  transform: rotate(-135deg);
+}
+
+
+.ui_accordion_content {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 1rem;
+  transition: max-height 0.4s ease-in-out;
+  margin-top: 0rem;
+  margin-bottom: 2rem;  
+  background-color: var(--icons-color);
+}
+
+.ui_accordion_content.active {
+  max-height: 1000px;
+}
+
+.brand{
+  margin-top: 4rem;
+}

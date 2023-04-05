@@ -16,6 +16,7 @@
 
 .NFTDescription_box_share_box_icon{
     cursor: pointer;
+    font-size: 2rem;
 }
 
 .NFTDescription_box_share_box_social{
@@ -127,14 +128,14 @@
 
 .NFTDescription_box_profile_biding_box_timer_item span{
     font-weight: 600;
+    
 }
 
 .NFTDescription_box_profile_biding_box_price{
     line-height: 0;
     margin-top: 4rem;
-
     display: grid;
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 3fr 1fr;
     gap: 3rem;
     align-items: flex-end;
     justify-content: space-between;
@@ -160,6 +161,7 @@
     font-size: 1.5rem;
     font-weight: 900;
 }
+
 
 .NFTDescription_box_profile_biding_box_button{
     margin-top: 3rem;

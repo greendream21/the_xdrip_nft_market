@@ -24,6 +24,7 @@
     line-height: 0;
 }
 
+
 .bigNFTSlider_box_right{
     grid-column: 6 / -1;
     grid-row:  1 / -1;
@@ -52,7 +53,7 @@
 }
 
 .bigNFTSlider_box_left_creator_profile_info{
-    line-height: 0;
+    line-height: 1;
 }
 
 .bigNFTSlider_box_left_creator_profile_info p{
@@ -63,11 +64,12 @@
 .bigNFTSlider_box_left_creator_collection{
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: .5rem;
+    
 }
 
 .bigNFTSlider_box_left_creator_collection_icon{
-    font-size: 4rem;
+    margin-bottom: 0rem;
 }
 
 .bigNFTSlider_box_left_creator_collection_info{

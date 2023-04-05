@@ -36,16 +36,12 @@ const SideBar = ({ setOpenSideMenu }) => {
       link: "search",
     },
     {
-      name: "CREATOR PROFILE",
+      name: "CREATORS",
       link: "author",
     },
     {
       name: "NFT DETAILS",
       link: "NFTDetails",
-    },
-    {
-      name: "ACCOUNT SETTINGS",
-      link: "account",
     },
     {
       name: "Upload NFT",
@@ -65,18 +61,6 @@ const SideBar = ({ setOpenSideMenu }) => {
     {
       name: "CONTACT US",
       link: "contactus",
-    },
-    {
-      name: "SIGN UP",
-      link: "signUp",
-    },
-    {
-      name: "LOGIN",
-      link: "login",
-    },
-    {
-      name: "SUBSCRIPTION",
-      link: "subscription",
     },
   ];
 

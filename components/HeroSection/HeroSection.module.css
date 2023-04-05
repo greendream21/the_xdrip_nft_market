@@ -2,7 +2,7 @@
 .heroSection{
     width: 80%;
     margin: 3rem auto;
-    padding-top: 4rem;
+    padding-top: 3rem;
     padding-bottom: 8rem;
 }
 
@@ -13,14 +13,20 @@
     
 }
 
+.heroSection_box_right{
+    padding-bottom: 2rem;
+}
+
 .heroSection_box_right_img{
-    border-radius: 4rem;
+    border-radius: 2rem;
+    
    
     
 }
 
 .heroSection_box_left{
     padding-right: 6rem;
+    padding-top: 4rem;
 }
 
 .heroSection_box_left h1{

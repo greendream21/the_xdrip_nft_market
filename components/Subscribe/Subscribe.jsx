@@ -1,19 +1,24 @@
 import React from "react";
 import { RiSendPlaneFill } from "react-icons/ri";
 import Image from "next/image";
+import { Button } from "../componentsindex";
+import { useRouter } from "next/router";
 
 //INTERNAL IMPORT
 import Style from "./Subscribe.module.css";
 import images from "../../img";
 
 const Subscribe = () => {
+
+  const router = useRouter();
+
   return (
     <div className={Style.subscribe}>
       <div className={Style.subscribe_box}>
         <div className={Style.subscribe_box_left}>
           <h2>BECOME A CREATOR</h2>
           <p>
-            SUBSCRIBE FOR XCLUSIVE CONTENT  
+            SUBSCRIBE FOR XCLUSIVE ACCESS  
           </p>
           <div className={Style.subscribe_box_left_box}>
             <span>                
@@ -50,9 +55,11 @@ const Subscribe = () => {
             <small>STAY UP TO DATE ON DEVELOPMENTS WITH THE XDRIP ECOSYSTEM</small>
           </div>
 
-          <div className={Style.subscribe_box_left_input}>
-            <input type="email" placeholder="ENTER YOUR EMAIL ADDRESS" />
-            <RiSendPlaneFill className={Style.subscribe_box_left_input_icon} />
+          <div className={Style.subscribe_box_left_btn}>
+          <Button
+            btnName="CREATOR PACKAGES"
+            handleClick={() => router.push("/subscription")}
+          />
           </div>
         </div>
 

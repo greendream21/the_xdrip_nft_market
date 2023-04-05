@@ -16,16 +16,12 @@ const Discover = () => {
       link: "searchPage",
     },
     {
-      name: "CREATOR PROFILE",
+      name: "CREATORS",
       link: "author",
     },
     {
       name: "NFT DETAILS",
       link: "NFTDetails",
-    },
-    {
-      name: "PROFILE SETTINGS",
-      link: "account",
     },
     {
       name: "UPLOAD NFT",

@@ -227,7 +227,7 @@ const UloadNFT = ({ uploadToIPFS, createNFT }) => {
             classStyle={Style.upload_box_btn_style}
           />
           <Button
-            btnName="PREVIEW YOUR DRIP"
+            btnName="PREVIEW YOUR NFT"
             handleClick={() => {}}
             classStyle={Style.upload_box_btn_style}
           />

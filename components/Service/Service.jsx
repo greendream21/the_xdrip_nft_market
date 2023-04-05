@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
+
 //INTERNAL IMPORT
 import Style from "./Service.module.css";
 import images from "../../img";
@@ -16,11 +17,11 @@ const Service = () => {
                         height={200}
                     />
                     <p className={Style.service_box_item_step}>
-                        <span>DRIP 1</span>
+                        <span>SIGN UP/ IN AND CONNECT</span>
                     </p>
-                    <h3>CONNECT YOUR WALLET</h3>
+                    
                     <p>
-                        CONNECT YOUR WALLET USING THE "CONNECT WALLET" BUTTON IN THE HEADER.
+                        CREATE YOUR ACCOUNT, LOG IN, AND CONNECT YOUR WALLET.
                     </p>
                 </div>
                 <div className={Style.service_box_item}>
@@ -31,9 +32,9 @@ const Service = () => {
                         height={200}
                     />
                     <p className={Style.service_box_item_step}>
-                        <span>DRIP 2</span>
+                        <span>SEARCH AND FILTER</span>
                     </p>
-                    <h3>FILTER & SEARCH</h3>
+                    
                     <p>
                        ENTER IN YOUR DESIRED FILTERS AND SEARCH OUR NFT DATABASE.
                     </p>
@@ -46,11 +47,11 @@ const Service = () => {
                         height={200}
                     />
                     <p className={Style.service_box_item_step}>
-                        <span>DRIP 3</span>
+                        <span>XPLORE OUR CREATORS</span>
                     </p>
-                    <h3>DISCOVER</h3>
+                    
                     <p>
-                        DISCOVER THE NFT THAT FITS YOUR WANTS, NEEDS, AND XPECTATIONS.
+                        XPLORE OUR GROWING DATABASE OF VERIFIED NFT CREATORS.
                     </p>
                 </div>
                 <div className={Style.service_box_item}>
@@ -61,11 +62,11 @@ const Service = () => {
                         height={200}
                     />
                     <p className={Style.service_box_item_step}>
-                        <span>DRIP 4</span>
+                        <span>START TRADING WITH XMARKET</span>
                     </p>
-                    <h3>START TRADING WITH X-MARKET</h3>
+                    
                     <p>
-                        BEGIN YOUR NFT TRADING JOURNEY WITH THE SUPPORT OF THE XDRIP FAMILY.
+                        BEGIN YOUR TRADING XPERIENCE WITH THE XMARKET FAMILY.
                     </p>
                 </div>
             </div>

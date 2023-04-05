@@ -17,7 +17,7 @@ const contactus = () => {
   return (
     <div className={Style.contactus}>
       <div className={Style.contactus_box}>
-        <h1>Contact</h1>
+        <h1>CONTACT XMARKET</h1>
         <div className={Style.contactus_box_box}>
           <div className={Style.contactus_box_box_left}>
             <div className={Style.contactus_box_box_left_item}>

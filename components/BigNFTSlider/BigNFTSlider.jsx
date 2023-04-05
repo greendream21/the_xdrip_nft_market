@@ -19,7 +19,7 @@ const BigNFTSlider = () => {
       name: "XDRIP OFFICIAL",
       collection: "MEDALS OF HONOR",
       price: "0.25 BNB",
-      like: 369,
+      like: 1,
       image: images.user1,
       nftImage: images.nft_image_1,
       time: {
@@ -51,7 +51,7 @@ const BigNFTSlider = () => {
       name: "XDRIP OFFICIAL",
       collection: "MEDALS OF HONOR",
       price: "0.75 BNB",
-      like: 369,
+      like: 1,
       image: images.user1,
       nftImage: images.nft_image_3,
       time: {
@@ -67,7 +67,7 @@ const BigNFTSlider = () => {
       name: "XDRIP OFFICIAL",
       collection: "MEDALS OF HONOR",
       price: "1.0 BNB",
-      like: 369,
+      like: 1,
       image: images.user1,
       nftImage: images.nft_image_4,
       time: {
@@ -83,7 +83,7 @@ const BigNFTSlider = () => {
         name: "XDRIP OFFICIAL",
         collection: "MEDALS OF HONOR",
         price: "1.5 BNB",
-        like: 369,
+        like: 1,
         image: images.user1,
         nftImage: images.nft_image_5,
         time: {
@@ -135,7 +135,12 @@ const BigNFTSlider = () => {
             </div>
 
             <div className={Style.bigNFTSlider_box_left_creator_collection}>
-              <AiFillRocket
+            <Image
+                src={images.xm}
+                alt="Logo"
+                width={80}
+                height={40}
+                
                 className={Style.bigNFTSlider_box_left_creator_collection_icon}
               />
 
@@ -194,7 +199,7 @@ const BigNFTSlider = () => {
             </div>
 
             <div className={Style.bigNFTSlider_box_left_button}>
-              <Button btnName="FORGE" handleClick={() => {}} />
+              <Button btnName="MINT" handleClick={() => {}} />
               <Button btnName="VIEW" handleClick={() => {}} />
             </div>
           </div>

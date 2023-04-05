@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@openzeppelin/contracts": "^4.7.3",
     "@thirdweb-dev/auth": "^3.0.12",
     "@thirdweb-dev/chains": "^0.1.10",
@@ -23,6 +24,7 @@
     "googleapis": "^114.0.0",
     "googleapis-common": "^6.0.4",
     "ipfs-http-client": "^58.0.0",
+    "jquery": "^3.6.4",
     "net": "^1.0.2",
     "next": "12.2.5",
     "react": "18.2.0",

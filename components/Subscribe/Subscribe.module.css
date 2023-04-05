@@ -52,33 +52,16 @@
     text-align: center;
 }
 
-.subscribe_box_left_input{
-    margin-top: 3rem;
-    padding: 1rem;
-    width: 80%;
-    border-radius: 4rem;
-    background-color: var(--icons-color);
-    color: var(--xdrip-light-gray);
-
+.subscribe_box_left_btn{
     display: flex;
     align-items: center;
+    gap: 2rem;
+    margin-top: 3rem;
 }
 
-.subscribe_box_left_input input{
-    background-color: transparent;
-    border: 0;
-    outline: none;
-    width: 90%;
-}
 
-.subscribe_box_left_input input::placeholder{
-    color: var(--main-bg-color);
-    font-size: 1.2rem;
-}
 
-.subscribe_box_left_input_icon{
-    font-size: 2rem;
-}
+
 
 @media screen and (min-device-width: 320px) and (max-device-width: 768px){
     .subscribe_box{

@@ -10,15 +10,18 @@
 }
 
 .Video_box{
+    display: flex;
     width: 80%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.5fr 2fr;
     gap: 5rem;
     align-items: center;
+    display: flex;
 }
 
 .Video_box_frame_right{
+    display: flex;
     background-color: var(--shadow-dark-color);
     border-radius: 2.5rem;
     padding: 1rem;
@@ -27,8 +30,9 @@
 }
 
 .Video_box_frame_right_img{
+    display: flex;
     border-radius: 2rem;
-    border-color: var(--shadow-dark-color);
+    
 }
 
 .Video_box_left h2{
@@ -77,5 +81,20 @@
     }
     .Video_box_left p{
         margin-top: -.5rem;
+    }
+
+    .Video_box_frame_right{
+        display: flex;
+        background-color: var(--shadow-dark-color);
+        border-radius: 2.5rem;
+        padding: 1rem;
+        margin-left: 2rem;
+        
+    }
+    
+    .Video_box_frame_right_img{
+        display: flex;
+        border-radius: 2rem;
+        
     }
 }

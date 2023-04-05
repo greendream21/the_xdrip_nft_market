@@ -41,6 +41,9 @@ import logo from "./logo.png";
 import logo2 from "./logo_2.png";
 import logo3 from "./logo_3.png";
 import logo4 from "./logo_4.png";
+import logo5 from "./logo_5.png";
+import logo6 from "./logo_6.png";
+import logo7 from "./logo_7.png";
 import facebook from "./facebook.svg";
 import twitter from "./twitter.svg";
 import telegram from "./telegram.svg";
@@ -49,7 +52,8 @@ import vimeo from "./vimeo.svg";
 import vector from "./VectorHIW.svg";
 import zgcmq from "./zgcmq.svg";
 import hero from "./hero.png";
-import getAble from "./getable.png";
+import hero3 from "./hero3.png";
+import hero4 from "./hero4.png";
 import nft_image_1 from "./nft-image-1.png";
 import nft_image_2 from "./nft-image-2.png";
 import nft_image_3 from "./nft-image-3.png";
@@ -99,8 +103,9 @@ export default {
   nft_image_3,
   nft_image_4,
   nft_image_5,
-  getAble,
   hero,
+  hero3,
+  hero4,
   bullet_1,
   bullet_2,
   bullet_3,
@@ -142,6 +147,9 @@ export default {
   logo2,
   logo3,
   logo4,
+  logo5,
+  logo6,
+  logo7,
   facebook,
   telegram,
   twitter,

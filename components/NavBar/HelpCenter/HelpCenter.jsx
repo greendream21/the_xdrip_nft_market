@@ -15,16 +15,8 @@ const HelpCenter = () => {
       link: "contactus",
     },
     {
-      name: "SIGN UP",
-      link: "signUp",
-    },
-    {
-      name: "SIGN IN",
-      link: "login",
-    },
-    {
-      name: "SUBSCRIPTION",
-      link: "subscription",
+      name: "FAQS",
+      link: "faqs",
     },
   ];
   return (

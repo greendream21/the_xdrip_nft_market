@@ -12,12 +12,11 @@ import {
 import { BsThreeDots } from "react-icons/bs";
 import { FaWallet, FaPercentage } from "react-icons/fa";
 import {
-  FaFacebookF,
-  FaTikTok,
-  FaTwitter,
-  FaYoutube,
-  FaInstagram,
-} from "react-icons/fa";
+  TiSocialFacebook,
+  TiSocialTwitter,
+  TiSocialInstagram,
+  TiSocialYoutube,
+} from "react-icons/ti";
 import { BiTransferAlt, BiDollar } from "react-icons/bi";
 
 //INTERNAL IMPORT
@@ -35,8 +34,15 @@ const NFTDescription = ({ nft }) => {
   const [history, setHistory] = useState(true);
   const [provanance, setProvanance] = useState(false);
   const [owner, setOwner] = useState(false);
+  const [timeoutId, setTimeoutId] = useState(null);
+  const [isMenuHovered, setIsMenuHovered] = useState(false);
 
   const router = useRouter();
+
+  const closeSocialsButtons = () => {
+    setSocial(false);
+    setNFTMenu(false);
+  };
 
   const historyArray = [
     images.user1,
@@ -103,6 +109,19 @@ const NFTDescription = ({ nft }) => {
     }
   };
 
+  const handleMouseEnter = () => {
+    setIsMenuHovered(true);
+    clearTimeout(timeoutId);
+  };
+
+  const handleMouseLeave = () => {
+    setIsMenuHovered(false);
+    const newTimeoutId = setTimeout(() => {
+      closeSocialsButtons();
+    }, 70);
+    setTimeoutId(newTimeoutId);
+  };
+
   //SMART CONTRACT DATA
   const { buyNFT, currentAccount } = useContext(NFTMarketplaceContext);
 
@@ -112,28 +131,28 @@ const NFTDescription = ({ nft }) => {
         {/* //Part ONE */}
         <div className={Style.NFTDescription_box_share}>
           <p>XDRIP WORLDS</p>
-          <div className={Style.NFTDescription_box_share_box}>
+          <div className={Style.NFTDescription_box_share_box}  
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}>
             <MdCloudUpload
               className={Style.NFTDescription_box_share_box_icon}
-              onClick={() => openSocial()}
+              onClick={() => openSocial()} 
+              
             />
 
             {social && (
               <div className={Style.NFTDescription_box_share_box_social}>
                 <a href="#">
-                  <FaFacebookF /> FACEBOOK
+                  <TiSocialFacebook /> FACEBOOK
                 </a>
                 <a href="#">
-                  <FaInstagram /> INSTAGRAM
+                  <TiSocialInstagram /> INSTAGRAM
                 </a>
                 <a href="#">
-                  <FaTikTok /> TIKTOK
+                  <TiSocialTwitter /> TWITTER
                 </a>
                 <a href="#">
-                  <FaTwitter /> TWITTER
-                </a>
-                <a href="#">
-                  <FaYoutube /> YOUTUBE
+                  <TiSocialYoutube /> YOUTUBE
                 </a>
               </div>
             )}
@@ -144,7 +163,10 @@ const NFTDescription = ({ nft }) => {
             />
 
             {NFTMenu && (
-              <div className={Style.NFTDescription_box_share_box_social}>
+              <div className={Style.NFTDescription_box_share_box_social}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              >
                 <a href="#">
                   <BiDollar /> CHANGE PRICE
                 </a>
