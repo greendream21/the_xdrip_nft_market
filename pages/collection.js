@@ -3,6 +3,8 @@ import React from "react";
 //INTERNAL IMPORT
 import Style from "../styles/collection.module.css";
 import images from "../img";
+import videos from "../videos"
+
 import {
   Banner,
   CollectionProfile,
@@ -40,7 +42,7 @@ const collection = () => {
   ];
   return (
     <div className={Style.collection}>
-      <Banner bannerImage={images.creatorbackground1} />
+      <Banner bannerVideo={videos.bannerVideo} />
       <CollectionProfile />
       <Filter />
       <NFTCardTwo NFTData={collectionArray} />

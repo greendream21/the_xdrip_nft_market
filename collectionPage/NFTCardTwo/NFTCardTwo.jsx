@@ -11,7 +11,7 @@ import { LikeProfile } from "../../components/componentsindex";
 
 const NFTCardTwo = ({ NFTData }) => {
   const [like, setLike] = useState(false);
-  const [likeInc, setLikeInc] = useState(21);
+  const [likeInc, setLikeInc] = useState(0);
 
   const likeNFT = () => {
     if (!like) {
@@ -59,13 +59,13 @@ const NFTCardTwo = ({ NFTData }) => {
                 <LikeProfile />
                 <p>{el.name}</p>
               </div>
-              <small>4{i + 2}</small>
+              <small>{i + 1}</small>
             </div>
 
             <div className={Style.NFTCardTwo_box_price}>
               <div className={Style.NFTCardTwo_box_price_box}>
                 <small>CURRENT PRICE</small>
-                <p>{el.price || i + 4} BNB</p>
+                <p>{el.price} BNB</p>
               </div>
               <p className={Style.NFTCardTwo_box_price_stock}>
                 <MdTimer /> <span>{i + 1} HOURS LEFT</span>

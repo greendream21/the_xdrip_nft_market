@@ -24,7 +24,7 @@ const HeroSection = () => {
             RAISING THE STANDARD OF XCELLENCE IN DIGITAL ASSETS, ARTWORK, AND COLLECTIVES! 
           </p>
           <Button
-            btnName="BEGIN XPLORING"
+            btnName="BEGIN YOUR JOURNEY"
             handleClick={() => router.push("/searchPage")}
           />
         </div>

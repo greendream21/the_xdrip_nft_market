@@ -1,20 +1,10 @@
-import React from "react";
-import Style from "./Banner.module.css";
-import ReactPlayer from "react-player";
-
+import React from 'react';
+import Style from './Banner.module.css';
 
 const Banner = ({ bannerVideo }) => {
   return (
     <div className={Style.banner}>
-      <ReactPlayer
-        url={bannerVideo}
-        width="100%"
-        height="100%"
-        loop
-        muted
-        playing
-        playsinline
-      />
+      <video src={bannerVideo} width="100%" height="100%" loop muted autoPlay playsInline />
     </div>
   );
 };
