@@ -1,33 +1,65 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useWeb3React } from "@web3-react/core";
 import Image from "next/image";
 import Link from "next/link";
 import { MdNotifications } from "react-icons/md";
 import { BsSearch } from "react-icons/bs";
-import { CgMenuLeft, CgMenuRight } from "react-icons/cg";
+import { CgMenuRight } from "react-icons/cg";
 import { useRouter } from "next/router";
 import { ConnectWallet } from "@thirdweb-dev/react";
-
+import { useDisconnect } from "@thirdweb-dev/react";
 
 import Style from "./NavBar.module.css";
 import { Discover, HelpCenter, Notification, Profile, SideBar } from "./index";
 import { Error } from "../componentsindex";
 import images from "../../img";
-
 import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
 
 const NavBar = () => {
   const [discover, setDiscover] = useState(false);
+  const [showWalletInfo, setShowWalletInfo] = useState(false);
   const [help, setHelp] = useState(false);
   const [notification, setNotification] = useState(false);
   const [profile, setProfile] = useState(false);
   const [openSideMenu, setOpenSideMenu] = useState(false);
-  const [hasConnectedWallet, setHasConnectedWallet] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
   const [isMenuHovered, setIsMenuHovered] = useState(false);
-
-
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false); // new state for profile menu items
+  const disconnectWallet = useDisconnect();
   const router = useRouter();
+  const { account, library } = useWeb3React();
+  const [profileImageSrc, setProfileImageSrc] = useState("/default-user.png");
 
+  const { currentAccount, connectWallet, openError } = useContext(
+    NFTMarketplaceContext
+  );
+  const isWalletConnected = Boolean(currentAccount);
+
+const closeNotificationMenu = () => {
+  setNotification(false);
+};
+
+
+useEffect(() => {
+  if (isWalletConnected) {
+    setProfileImageSrc("/pfp.jpg");
+  } else {
+    setProfileImageSrc("/default-user.png");
+  }
+}, [isWalletConnected]);
+
+  useEffect(() => {
+    if (account && library) {
+      library
+        .getBalance(account)
+        .then((balance) => {
+          setBalance(library.utils.fromWei(balance));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [account, library]);
 
   const closeNavbarButtons = () => {
     setDiscover(false);
@@ -36,38 +68,43 @@ const NavBar = () => {
     setProfile(false);
   };
 
-
+  const closeProfileMenu = () => {
+    setProfile(false);
+    setIsProfileMenuOpen(false);
+  };
+  
+  
 
   const openMenu = (e) => {
-  const btnText = e.target.innerText;
-  if (btnText === "XPLORE XM") {
-    setDiscover((discover) => !discover);
-    setHelp(false);
-    setNotification(false);
-    setProfile(false);
-  } else if (btnText === "Help Center") {
-    setDiscover(false);
-    setHelp((help) => !help);
-    setNotification(false);
-    setProfile(false);
-  } else {
-    closeNavbarButtons();
-  }
-};
-  
-  const handleMouseEnter = () => {
-  setIsMenuHovered(true);
-  clearTimeout(timeoutId);
-};
+    const btnText = e.target.innerText;
+    if (btnText === "XPLORE XM") {
+      setDiscover((discover) => !discover);
+      setHelp(false);
+      setNotification(false);
+      setProfile(false);
+    } else if (btnText === "Help Center") {
+      setDiscover(false);
+      setHelp((help) => !help);
+      setNotification(false);
+      setProfile(false);
+    } else {
+      closeNavbarButtons();
+    }
+  };
 
-const handleMouseLeave = () => {
-  setIsMenuHovered(false);
-  const newTimeoutId = setTimeout(() => {
-    closeNavbarButtons();
-  }, 50);
-  setTimeoutId(newTimeoutId);
-};
-  
+  const handleMouseEnter = () => {
+    setIsMenuHovered(true);
+    clearTimeout(timeoutId);
+  };
+
+  const handleMouseLeave = () => {
+    setIsMenuHovered(false);
+    const newTimeoutId = setTimeout(() => {
+      closeNavbarButtons();
+    }, 50);
+    setTimeoutId(newTimeoutId);
+  };
+
   const openNotification = () => {
     if (!notification) {
       closeNavbarButtons();
@@ -78,13 +115,19 @@ const handleMouseLeave = () => {
   };
 
   const openProfile = () => {
-    if (!profile) {
+    if (!isProfileMenuOpen) {
       closeNavbarButtons();
       setProfile(true);
+      setIsProfileMenuOpen(true);
     } else {
-      setProfile((profile) => !profile);
+      setProfile(false);
+      setIsProfileMenuOpen(false);
     }
-  };
+  
+   if (currentAccount && !isWalletConnected) {
+    setIsWalletConnected(true);
+  }
+};
 
   const openSideBar = () => {
     if (!openSideMenu) {
@@ -95,19 +138,24 @@ const handleMouseLeave = () => {
   };
 
   useEffect(() => {
-  const handleRouteChange = () => {
-    closeNavbarButtons();
-    setOpenSideMenu(false);
-  };
-  router.events.on("routeChangeStart", handleRouteChange);
-  return () => {
-    router.events.off("routeChangeStart", handleRouteChange);
-  };
-}, [timeoutId, setTimeoutId]);
+    const handleRouteChange = () => {
+      closeNavbarButtons();
+      setOpenSideMenu(false);
+    };
+    router.events.on("routeChangeStart", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, [timeoutId, setTimeoutId]);
 
-  const { currentAccount, connectWallet, openError } = useContext(
-    NFTMarketplaceContext
-  );
+
+const handleConnectWallet = () => {
+  // connect wallet logic here
+  setIsWalletConnected(true);
+  setShowWalletInfo(true);
+  setProfileImageSrc("/pfp.jpg"); // Set the custom image when wallet connects
+};
+  
 
   return (
     <div className={Style.navbar}>
@@ -116,103 +164,119 @@ const handleMouseLeave = () => {
           <Link href="/">
             <a>
               <div className={Style.logo}>
-                <Image
-                  src={images.logo}
-                  alt="NFT MARKET PLACE"
-
-                />
+                <Image src={images.logo} alt="NFT MARKET PLACE" />
               </div>
             </a>
           </Link>
           <div className={Style.navbar_container_left_box_input}>
             <div className={Style.navbar_container_left_box_input_box}>
               <input type="text" placeholder="XPLORE NFTs" />
-              <BsSearch onClick={() => { }} className={Style.search_icon} />
+              <BsSearch onClick={() => {}} className={Style.search_icon} />
             </div>
           </div>
         </div>
 
-        {/* //END OF LEFT SECTION */}
+        {/* END OF LEFT SECTION */}
         <div className={Style.navbar_container_right}>
-  <div
-  className={Style.navbar_container_right_discover}
-  onMouseEnter={handleMouseEnter}
-  onMouseLeave={handleMouseLeave}
->
-  {/* DISCOVER MENU */}
-  <p onClick={(e) => openMenu(e)}>XPLORE XM</p>
-  {discover && (
-    <div className={Style.navbar_container_right_discover_box}>
-      <Discover />
-    </div>
-  )}
-</div>
+          <div
+            className={Style.navbar_container_right_discover}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            {/* DISCOVER MENU */}
+            <p onClick={(e) => openMenu(e)}>XPLORE XM</p>
+            {discover && (
+              <div className={Style.navbar_container_right_discover_box}>
+                <Discover />
+              </div>
+            )}
+          </div>
 
           {/* HELP CENTER MENU */}
+          <div
+            className={Style.navbar_container_right_help}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <p onClick={(e) => openMenu(e)}>Help Center</p>
+            {help && (
+              <div className={Style.navbar_container_right_help_box}>
+                <HelpCenter />
+              </div>
+            )}
+          </div>
+
+         {/* NOTIFICATION */}
 <div
-  className={Style.navbar_container_right_help}
-  onMouseEnter={handleMouseEnter}
-  onMouseLeave={handleMouseLeave}
+  className={Style.navbar_container_right_notify}
+  onMouseLeave={closeNotificationMenu}
 >
-  <p onClick={(e) => openMenu(e)}>Help Center</p>
-  {help && (
-    <div className={Style.navbar_container_right_help_box}>
-      <HelpCenter />
+  <MdNotifications
+    className={Style.notify}
+    onClick={() => openNotification()}
+  />
+  {notification && (
+    <div
+      className={Style.notification_menu}
+      onMouseLeave={closeNotificationMenu}
+    >
+      <Notification />
     </div>
   )}
 </div>
 
-          {/* NOTIFICATION */}
-          <div className={Style.navbar_container_right_notify}>
-            <MdNotifications
-              className={Style.notify}
-              onClick={() => openNotification()}
-            />
-            {notification && <Notification />}
-          </div>
 
-          {/* CREATE BUTTON SECTION */}
-          <div >
-       {!hasConnectedWallet && (
+         {/* CREATE BUTTON SECTION 
+<div className={Style.box_box_right}>*/}
   <ConnectWallet
-    className={Style.box_box_right} 
-    btnTitle="XCONNECT" 
-    colorMode= "dark"   
-    onConnect={() => setHasConnectedWallet(true)}
+    className={Style.box_box_right}
+    btnTitle={isWalletConnected ? "XDISCONNECTED" : "XCONNECT"}
+    colorMode="dark"
+    onConnect={handleConnectWallet}
+    disableDisconnect 
   />
-)}
-          </div>
-          
+
 
           {/* USER PROFILE */}
-
           <div className={Style.navbar_container_right_profile_box}>
-            <div className={Style.navbar_container_right_profile}>
+            <div
+              className={Style.navbar_container_right_profile}
+              onClick={() => openProfile()}
+            >
               <Image
-                src={images.user1}
+                src={profileImageSrc}
                 alt="Profile"
                 width={40}
                 height={40}
-                onClick={() => openProfile()}
                 className={Style.navbar_container_right_profile}
               />
-
-              {profile && <Profile currentAccount={currentAccount} />}
             </div>
-          </div>
-
-          {/* MENU BUTTON */}
-
-          <div className={Style.navbar_container_right_menuBtn}>
-            <CgMenuRight
-              className={Style.menuIcon}
-              onClick={() => openSideBar()}
-            />
+            {isProfileMenuOpen && (
+              <div className={Style.profile_menu}
+              onMouseLeave={closeProfileMenu}
+              >
+                <div className={Style.profileMenuContainer}>
+                  <Profile
+                    currentAccount={currentAccount}
+                    isWalletConnected={isWalletConnected}
+                    disconnectWallet={disconnectWallet}
+                    closeMenu={openProfile}
+                    setIsProfileMenuOpen={setIsProfileMenuOpen}
+                    showWalletInfo={showWalletInfo} 
+                    setProfileImageSrc={setProfileImageSrc} 
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
+      {/* MENU BUTTON */}
+      <div className={Style.navbar_container_right_menuBtn}>
+        <CgMenuRight className={Style.menuIcon} onClick={() => openSideBar()} />
+      </div>
 
-      {/* SIDBAR CPMPONE/NT */}
+      {/* SIDEBAR COMPONENT */}
       {openSideMenu && (
         <div className={Style.sideBar}>
           <SideBar

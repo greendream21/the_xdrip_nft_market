@@ -13,6 +13,13 @@
     background-color: var(--main-bg-color);
 }
 
+.profileMenuContainer {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 1;
+}
+
 .profile_account{
     display: flex;
     align-items: flex-start;
@@ -44,6 +51,12 @@
     background-color: var(--icons-color);
     /*color: var(--shadow-dark-color);*/
     border-radius: .3rem;
+}
+
+.profileItem:hover {
+  background-color: #555555;
+  color: #2A2A2A;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 35em) {

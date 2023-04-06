@@ -41,6 +41,10 @@ export const NFTMarketplaceProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
   const [accountBalance, setAccountBalance] = useState("");
   const router = useRouter();
+  
+  const disconnectWallet = () => {
+  setCurrentAccount(null);
+};
 
   useEffect(() => {
     if (address) {
@@ -374,6 +378,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
         accountBalance,
         transactionCount,
         transactions,
+        disconnectWallet,
       }}
     >
       {children}
@@ -381,11 +386,3 @@ export const NFTMarketplaceProvider = ({ children }) => {
     </NFTMarketplaceContext.Provider>
   );
 };
-/*
-export const ThirdwebWrapper = ({ children }) => {
-  return (
-    <ThirdwebProvider>
-      <NFTMarketplaceProvider>{children}</NFTMarketplaceProvider>
-    </ThirdwebProvider>
-  );
-}; */
