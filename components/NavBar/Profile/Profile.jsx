@@ -1,66 +1,83 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import Image from "next/image";
 import { FaUserAlt, FaRegImage, FaUserEdit } from "react-icons/fa";
 import { MdHelpCenter } from "react-icons/md";
 import { TbDownloadOff, TbDownload } from "react-icons/tb";
 import Link from "next/link";
-import { useDisconnect } from "@thirdweb-dev/react";
+import { useWeb3React } from "@web3-react/core";
+import { ConnectWallet } from "@thirdweb-dev/react";
 
-//INTERNAL IMPORT
-import Style from "./Profile.module.css";
-import images from "../../../img";
+import styles from "./Profile.module.css";
 
-const Profile = () => {
-  const disconnect = useDisconnect();
+const Profile = ({
+  currentAccount,
+  closeMenu,
+  isWalletConnected,
+  disconnectWallet,
+  setIsProfileMenuOpen,
+  setProfileImageSrc,
+}) => {
+  const { account, library } = useWeb3React();
 
   const handleDisconnect = () => {
-    disconnect();
+    disconnectWallet();
+    setIsProfileMenuOpen(false); // close the profile menu
+    if (closeMenu) closeMenu(); // close the parent menu if it exists
+    setProfileImageSrc("/default-user.png"); // Set the default image when wallet disconnects
   };
+  const [balance, setBalance] = React.useState("0");
+
+  React.useEffect(() => {
+    if (account && library) {
+      library
+        .getBalance(account)
+        .then((balance) => {
+          setBalance(library.utils.fromWei(balance));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [account, library]);
 
   return (
-    <div className={Style.profile}>
-      {/* ... */}
-      <div className={Style.profile_menu}>
-        <div className={Style.profile_menu_one}>
-          <div className={Style.profile_menu_one_item}>
-            <FaUserAlt />
-            <p>
-              <Link href={{ pathname: "/myprofile" }}>MY PROFILE</Link>
-            </p>
+    <>
+      <div className={styles.profile}>
+        <div className={styles.profileContainer}>
+          <div className={styles.profileBox}>
+            <div className={styles.profileItems}>
+              <div className={styles.profileItem} onClick={closeMenu}>
+                <FaUserAlt />
+                <p>{isWalletConnected ? "My Profile" : "Login"}</p>
+              </div>
+              <div className={styles.profileItem}>
+                <FaRegImage />
+                <p>My Collections</p>
+              </div>
+              <div className={styles.profileItem}>
+                <FaUserEdit />
+                <p>Edit Profile</p>
+              </div>
+              <div className={styles.profileItem}>
+                <MdHelpCenter />
+                <p>Help Center</p>
+              </div>
+              {isWalletConnected && (
+                <div className={styles.profileItem} onClick={handleDisconnect}>
+                  <TbDownloadOff />
+                  <p>Disconnect Wallet</p>
+                </div>
+              )}
+            </div>
           </div>
-          <div className={Style.profile_menu_one_item}>
-            <FaRegImage />
-            <p>
-              <Link href={{ pathname: "/my-items" }}>MY ITEMS</Link>
-            </p>
-          </div>
-          <div className={Style.profile_menu_one_item}>
-            <FaUserEdit />
-            <p>
-              <Link href={{ pathname: "/edit-profile" }}>EDIT PROFILE</Link>
-            </p>
-          </div>
-        </div>
-
-        <div className={Style.profile_menu_two}>
-          <div className={Style.profile_menu_one_item}>
-            <MdHelpCenter />
-            <p>
-              <Link href={{ pathname: "/help" }}>HELP</Link>
-            </p>
-          </div>
-          <div
-            className={Style.profile_menu_one_item}
-            onClick={handleDisconnect}
-            role="button"
-            tabIndex={0}
-          >
-            <TbDownload />
-            <p>DISCONNECT</p>
+          <div className={styles.profileUpgrade}>
+            {isWalletConnected && (
+              <div>{/* Render wallet information */}</div>
+            )}
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
