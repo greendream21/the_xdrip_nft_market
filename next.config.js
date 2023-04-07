@@ -12,6 +12,7 @@ module.exports = {
         options: {
           name: "[name].[ext]",
           outputPath: "videos/",
+          publicPath: "/videos",
         },
       },
     });

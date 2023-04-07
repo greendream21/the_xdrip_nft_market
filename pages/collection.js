@@ -3,7 +3,7 @@ import React from "react";
 //INTERNAL IMPORT
 import Style from "../styles/collection.module.css";
 import images from "../img";
-import videos from "../videos"
+import videos from "../public/videos"
 
 import {
   Banner,
