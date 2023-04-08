@@ -29,7 +29,7 @@
 .audioPlayer_box_info_box_price{
     border:  1px solid var(--xdrip-light-blue);
     font-size: .8rem;
-    width: 40%;
+    width: 50%;
     font-weight: 600;
     border-radius: .2rem;
     padding: 0.3rem 1rem;
@@ -49,11 +49,13 @@
 }
 
 .audioPlayer_box_playBtn{
-    font-size: 2.5rem;
-    background-color: var(--icons-color);
+    padding: 1.3rem;
+    display: flex;
+    align-items: center;
+    border: .4rem double silver;
     border-radius: 50%;
-    color: var(--xdrip-light-gray);
-    padding: 1rem;
+    background-color: var(--main-bg-color);
+    font-size: 2.0rem;
     cursor: pointer;
 }
 

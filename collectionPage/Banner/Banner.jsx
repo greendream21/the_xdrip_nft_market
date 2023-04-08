@@ -9,4 +9,6 @@ const Banner = ({ bannerVideo }) => {
   );
 };
 
+
 export default Banner;
+

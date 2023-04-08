@@ -2,12 +2,16 @@
 
 .sliderCard{
     padding: 1rem;
+    width: 90%;
+    
 }
 
 .sliderCard_box{
     transition: all .3s ease-in;
     border-radius: 2rem;
-    padding-bottom: 1rem;
+    margin-left: 3rem;
+    width: 100%;
+    gap: 0rem
 }
 
 .sliderCard_box:hover{

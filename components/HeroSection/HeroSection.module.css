@@ -1,32 +1,55 @@
 
 .heroSection{
-    width: 80%;
+    width: 90%;
     margin: 3rem auto;
-    padding-top: 3rem;
-    padding-bottom: 8rem;
+    margin-top: 8rem;
+    
 }
 
 .heroSection_box{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 6rem;
+    gap: 0rem;
     
 }
 
 .heroSection_box_right{
-    padding-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 115%;
+    margin-left: -10rem;
+    
 }
 
-.heroSection_box_right_img{
-    border-radius: 2rem;
-    
-   
-    
-}
+
+.heroSection_box_right_vid {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 1rem;
+    box-shadow: var(--box-shadow);
+  }
+  
+ 
+  
+  .heroSection_box_right_muteBtn {
+    position: absolute;
+    color: #ffffff91;
+    bottom: 115px;
+    right: 115px;
+    z-index: 1;
+    border: none;
+    background: transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
 
 .heroSection_box_left{
-    padding-right: 6rem;
-    padding-top: 4rem;
+    padding-left: 6rem;
+    padding-top: 2rem;
+    
+   
 }
 
 .heroSection_box_left h1{
@@ -46,9 +69,12 @@
 }
 
 .heroSection_box_left p{
-    margin-bottom:  2rem;
+    padding-right: 10rem;
+    margin-bottom:  4rem;
     font-size: 1.25rem;
 }
+
+
 
 @media screen and (max-width: 35em) {
     .heroSection{

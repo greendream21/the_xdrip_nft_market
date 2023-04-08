@@ -51,7 +51,7 @@ const Category = () => {
               className={Style.category_box_img}
               alt="Category Image"
               width={350}
-              height={150}
+              height={190}
               objectFit="fill"
             />
 
@@ -60,8 +60,8 @@ const Category = () => {
                 <Image
                 src={images.xm}
                 alt="Logo"
-                width={69}
-                height={28}
+                width={58}
+                height={25}
                 />
               </span>
               <div className={Style.category_box_title_info}>

@@ -4,6 +4,7 @@ import rare from "./rare.mp4";
 import epic from "./epic.mp4";
 import legendary from "./legendary.mp4";
 import bannerVideo from "./banner-video.mp4";
+import heroVideo from "./hero-video.mp4";
 
 export default {
     common,
@@ -12,5 +13,5 @@ export default {
     epic,
     legendary,
     bannerVideo,
-
+    heroVideo,
 };

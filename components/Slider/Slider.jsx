@@ -1,11 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import { TiArrowLeftThick, TiArrowRightThick } from "react-icons/ti";
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 //INTERNAL IMPORT
 import Style from "./Slider.module.css";
 import SliderCard from "./SliderCard/SliderCard";
 import images from "../../img";
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import 'swiper/css/autoplay';
 
 const Slider = () => {
   const FollowingArray = [
@@ -58,36 +65,27 @@ const Slider = () => {
         <h2>XPLORE VIDEO NFTS</h2>
         <div className={Style.slider_box_button}>
           <p> XCELLENT VIDEOS DESIGNED FOR YOU VISUAL PLEASURE</p>
-          <div className={Style.slider_box_button_btn}>
-            <div
-              className={Style.slider_box_button_btn_icon}
-              onClick={() => handleScroll("left")}
-            >
-              <TiArrowLeftThick />
-            </div>
-            <div
-              className={Style.slider_box_button_btn_icon}
-              onClick={() => handleScroll("right")}
-            >
-              <TiArrowRightThick />
-            </div>
           </div>
         </div>
-
-        <motion.div className={Style.slider_box_items} ref={dragSlider}>
-          <motion.div
-            ref={dragSlider}
-            className={Style.slider_box_item}
-            drag="x"
-            dragConstraints={{ right: 0, left: -width }}
-          >
-            {FollowingArray.map((el, i) => (
-              <SliderCard key={i + 1} el={el} i={i} />
-            ))}
-          </motion.div>
-        </motion.div>
-      </div>
-    </div>
+        <Swiper className={Style.slider_box_items} ref={dragSlider}
+          modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+          spaceBetween={100}
+          slidesPerView={2}
+          loop={true}
+          navigation={true}
+          pagination={{ clickable: true }}
+          scrollbar={{ draggable: true }}
+          autoplay={{ delay: 3000 }}
+          onSlideChange={() => console.log('slide change')}
+          onSwiper={(swiper) => console.log(swiper)}
+        >
+          {FollowingArray.map((el, i) => (
+            <SwiperSlide key={i + 1}>
+              <SliderCard el={el} i={i} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>   
   );
 };
 

@@ -55,6 +55,10 @@ const Home = () => {
     <div className={Style.homePage}>
       <HeroSection />
       <Service />
+      <Title
+        heading="DEVELOPMENT COLLECTION"
+        paragraph="A COLLECTION FROM THE TEAM TO THEIR SOLDIERS ."
+      />
       <BigNFTSlider />
       <Title
         heading="AUDIO COLLECTIONS"

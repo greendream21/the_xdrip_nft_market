@@ -24,7 +24,7 @@
 }
 
 .audioCard_box_like{
-    background-color: var(--icons-color);
+    background-color: #212325c5;
     color: var(--xdrip-light-gray);
     display: flex;
     align-items: center;
@@ -70,7 +70,6 @@
 .audioCard_box_player{
     grid-column: 1 / -1;
     grid-row:  4 / 5;
-
     display:  flex;
     padding-inline: 3rem;
     gap: 4rem;
@@ -82,10 +81,10 @@
     padding: 1.3rem;
     display: flex;
     align-items: center;
+    border: .4rem double silver;
     border-radius: 50%;
-    background-color: var(--icons-color);
-    color: var(--xdrip-light-gray);
-    font-size: 2.5rem;
+    background-color: var(--main-bg-color);
+    font-size: 2.0rem;
     cursor: pointer;
 }
 
@@ -102,7 +101,6 @@
 .audioCard_box_details{
     grid-column: 1 / -1;
     grid-row: 5 / -1;
-
     z-index: 123;
     display: flex;
     align-items: center;

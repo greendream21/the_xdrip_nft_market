@@ -21,34 +21,34 @@
 }
 
 .filter_box_left button{
-    border: none;
-    outline: none;
-    padding: 1rem 1.5rem;
-    border-radius: 2rem;
-    border:  1px solid var(--main-bg-color);
-    transition: all .3s ease-in;
-    font-size: 1.1rem;
-    cursor: pointer;
-    background-color: var(--main-bg-color);
+    background-color: var(--main-bg-color); /*#3d465c;*/
+    padding: 1rem 1rem;
+    border: 5px double silver;
+    border-radius: 1rem;
+    font-size: 1rem;
     color: var(--xdrip-light-gray);
     font-family: "Good Times";
+    cursor: pointer;
+    transition:  all .2s ease-in;
+    box-shadow: var(--box-shadow);
 }
 .filter_box_left button:hover{
-    border:  1px solid var(--icons-color);
-    /*color: var(--icons-color);*/
-    box-shadow: var(--box-shadow);
+    background-color: var(--xdrip-light-gray);
+    
+    
 }
 
 .filter_box_right_box{
-    border:  1px solid var(--icons-color);
-    padding: 1rem 2rem;
-    border-radius: 2rem;
-    color: var(--xdrip-light-gray);
-    box-shadow: var(--box-shadow);
+    background-color: var(--main-bg-color); /*#3d465c;*/
+    padding: 1rem 1rem;
+    border: 5px double silver;
+    border-radius: 1rem;
+    font-size: 1.1rem;
+   
+    font-family: "Good Times";
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    transition:  all .2s ease-in;
+    box-shadow: var(--box-shadow);
 }
 
 .filter_box_items{
@@ -56,7 +56,7 @@
     margin:  0 auto;
     display: flex;
     padding: 2rem 0;
-    border-top: 1px solid var(--icons-light-color);
+    border-top: 3px solid var(--icons-light-color);
 }
 
 .filter_box_items_box{
@@ -66,22 +66,19 @@
 .filter_box_items_box_item{
     background-color: var(--icons-color);
     padding: .5rem 1rem;
-    border-radius: 2rem;
-    color: var(--xdrip-light-gray);
+    border-radius: .5rem;
     cursor: pointer;
-
     display: flex;
     align-items: center;
     gap: .5rem;
 }
 
 .filter_box_items_box_item_trans{
-    border: 1px solid var(--icons-color);
-    color: var(--xdrip-light-gray);
+    border: 1px double silver;
+    background-color: var(--main-bg-color);
     padding: .5rem 1rem;
-    border-radius: 2rem;
+    border-radius: .5rem;
     cursor: pointer;
-
     display: flex;
     align-items: center;
     gap: .5rem;

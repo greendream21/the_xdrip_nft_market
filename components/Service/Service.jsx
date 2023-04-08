@@ -9,7 +9,7 @@ const Service = () => {
     return (
         <div className={Style.service}>
             <div className={Style.service_box}>
-                <div className={Style.service_box_item}>
+                <div className={Style.service_box_item1}>
                     <Image
                         src={images.service1}
                         alt="Connect Your Wallet"
@@ -24,7 +24,7 @@ const Service = () => {
                         CREATE YOUR ACCOUNT, LOG IN, AND CONNECT YOUR WALLET.
                     </p>
                 </div>
-                <div className={Style.service_box_item}>
+                <div className={Style.service_box_item2}>
                     <Image
                         src={images.service2}
                         alt="Filter & Discover"
@@ -39,7 +39,7 @@ const Service = () => {
                        ENTER IN YOUR DESIRED FILTERS AND SEARCH OUR NFT DATABASE.
                     </p>
                 </div>
-                <div className={Style.service_box_item}>
+                <div className={Style.service_box_item3}>
                     <Image
                         src={images.service3}
                         alt="Connect Wallet"
@@ -54,7 +54,7 @@ const Service = () => {
                         XPLORE OUR GROWING DATABASE OF VERIFIED NFT CREATORS.
                     </p>
                 </div>
-                <div className={Style.service_box_item}>
+                <div className={Style.service_box_item4}>
                     <Image
                         src={images.service4}
                         alt="Filter & Discover"

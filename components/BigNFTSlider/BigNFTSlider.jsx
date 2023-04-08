@@ -7,92 +7,90 @@ import { TbArrowBigLeftLines, TbArrowBigRightLine } from "react-icons/tb";
 //INTERNAL IMPORT
 import Style from "./BigNFTSlider.module.css";
 import images from "../../img";
+import videos from "../../public/videos"
 import Button from "../Button/Button";
 
 const BigNFTSlider = () => {
   const [idNumber, setIdNumber] = useState(0);
 
+  
+
   const sliderData = [
     {
-      title: "COMMON MEDAL",
+      title: "COMMON",
       id: 1,
       name: "XDRIP OFFICIAL",
       collection: "MEDALS OF HONOR",
       price: "0.25 BNB",
       like: 1,
       image: images.user1,
-      nftImage: images.nft_image_1,
-      time: {
-        days: 14,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-      },
+      nftVideo: videos.common,
+      description:"Common Medal, forged in the fires of battle, this medal represents the courage and determination of the XdRiP warrior.",
+      inventory: {
+        forged: 0,
+        available: 100,
+       },
     },
     {
-      title: "UNCOMMON MEDAL",
+      title: "UNCOMMON",
       id: 2,
       name: "XDRIP OFFICIAL",
       collection: "MEDALS OF HONOR",
       price: "0.50 BNB",
       like: 369,
       image: images.user1,
-      nftImage: images.nft_image_2,
-      time: {
-        days: 14,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-      },
+      nftVideo: videos.uncommon,
+      description:"Uncommon Medal, crafted by the most skilled, this medal is a symbol of the exceptional strength and valor possessed by those who rise above the rest.",
+      inventory: {
+        forged: 0,
+        available: 80,
+       },
     },
     {
-      title: "RARE MEDAL",
+      title: "RARE ",
       id: 3,
       name: "XDRIP OFFICIAL",
       collection: "MEDALS OF HONOR",
       price: "0.75 BNB",
       like: 1,
       image: images.user1,
-      nftImage: images.nft_image_3,
-      time: {
-        days: 14,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-      },
+      nftVideo: videos.rare,
+      description:"Rare Medal, forged from rare and precious metals, this medal is a testament to the elite few who have demonstrated unparalleled bravery and honor.",
+      inventory: {
+        forged: 0,
+        available: 60,
+       },
     },
     {
-      title: "EPIC MEDAL",
+      title: "EPIC ",
       id: 4,
       name: "XDRIP OFFICIAL",
       collection: "MEDALS OF HONOR",
       price: "1.0 BNB",
       like: 1,
       image: images.user1,
-      nftImage: images.nft_image_4,
-      time: {
-        days: 14,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-      },
+      nftVideo: videos.epic,
+      description:"Epic Medal, wrought with mystical powers, this medal is a sign of the legendary feats accomplished by only the most heroic and mighty of warriors.",
+      inventory: {
+        forged: 0,
+        available: 40,
+       },
     },
     {
-        title: "LEGENDARY MEDAL",
-        id: 5,
-        name: "XDRIP OFFICIAL",
-        collection: "MEDALS OF HONOR",
-        price: "1.5 BNB",
-        like: 1,
-        image: images.user1,
-        nftImage: images.nft_image_5,
-        time: {
-          days: 14,
-          hours: 0,
-          minutes: 0,
-          seconds: 0,
-        },
-      },
+      title: "LEGENDARY ",
+      id: 5,
+      name: "XDRIP OFFICIAL",
+      collection: "MEDALS OF HONOR",
+      price: "1.5 BNB",
+      like: 1,
+      image: images.user1,
+      nftVideo: videos.legendary,
+      description:"Legendary Medal, forged by the XdRiP Gods, this medal is a symbol of the ultimate achievement in battle, an honor bestowed only upon the greatest of heroes. ",
+      inventory: {
+        forged: 0,
+        available: 20,
+       },
+    },
   ];
 
   //-------INC
@@ -135,12 +133,12 @@ const BigNFTSlider = () => {
             </div>
 
             <div className={Style.bigNFTSlider_box_left_creator_collection}>
-            <Image
+              <Image
                 src={images.xm}
                 alt="Logo"
-                width={80}
+                width={75}
                 height={40}
-                
+
                 className={Style.bigNFTSlider_box_left_creator_collection_icon}
               />
 
@@ -157,50 +155,38 @@ const BigNFTSlider = () => {
             <div className={Style.bigNFTSlider_box_left_bidding_box}>
               <small>CURRENT PRICE</small>
               <p>
-                {sliderData[idNumber].price} <span>$589</span>
+                {sliderData[idNumber].price} 
               </p>
             </div>
 
+            <div className={Style.bigNFTSlider_box_left_origin}> 
+                <h3>ORIGIN:</h3>
+            </div>
+
             <p className={Style.bigNFTSlider_box_left_bidding_box_auction}>
-              <MdTimer
-                className={Style.bigNFTSlider_box_left_bidding_box_icon}
-              />
-              <span>AUCTION ENDING IN</span>
+            {sliderData[idNumber].description}
             </p>
 
             <div className={Style.bigNFTSlider_box_left_bidding_box_timer}>
               <div
                 className={Style.bigNFTSlider_box_left_bidding_box_timer_item}
               >
-                <p>{sliderData[idNumber].time.days}</p>
-                <span>DAYS</span>
+                <p>{sliderData[idNumber].inventory.forged}</p>
+                <span>TOTAL FORGED</span>
               </div>
 
               <div
                 className={Style.bigNFTSlider_box_left_bidding_box_timer_item}
               >
-                <p>{sliderData[idNumber].time.hours}</p>
-                <span>HOURS</span>
+                <p>{sliderData[idNumber].inventory.available}</p>
+                <span>TOTAL AVAILABLE</span>
               </div>
 
-              <div
-                className={Style.bigNFTSlider_box_left_bidding_box_timer_item}
-              >
-                <p>{sliderData[idNumber].time.minutes}</p>
-                <span>MINUTES</span>
-              </div>
-
-              <div
-                className={Style.bigNFTSlider_box_left_bidding_box_timer_item}
-              >
-                <p>{sliderData[idNumber].time.seconds}</p>
-                <span>SECONDS</span>
-              </div>
             </div>
 
             <div className={Style.bigNFTSlider_box_left_button}>
-              <Button btnName="MINT" handleClick={() => {}} />
-              <Button btnName="VIEW" handleClick={() => {}} />
+              <Button btnName="FORGE YOUR MEDAL" handleClick={() => { }} />
+              <Button btnName="DETAILS" handleClick={() => { }} />
             </div>
           </div>
 
@@ -218,10 +204,28 @@ const BigNFTSlider = () => {
 
         <div className={Style.bigNFTSlider_box_right}>
           <div className={Style.bigNFTSlider_box_right_box}>
-            <Image
-              src={sliderData[idNumber].nftImage}
-              alt="NFT IMAGE"
+            <video
+              src={sliderData[idNumber].nftVideo}
+              width="100%"
+              height="100%"
+              loop
+              muted
+              autoPlay
+              preload="auto"
+              playsInline
+              alt="NFT VIDEO"
+              transition="transform 0.5s cubic-bezier(0.42, 0, 0.58, 1)"
               className={Style.bigNFTSlider_box_right_box_img}
+              controlsList="nodownload noplaybackspeed "
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (!document.fullscreenElement) {
+                  e.target.requestFullscreen();
+                } else {
+                  document.exitFullscreen();
+                }
+              }}
             />
 
             <div className={Style.bigNFTSlider_box_right_box_like}>

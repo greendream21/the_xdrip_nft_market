@@ -4,7 +4,8 @@
     padding-block: 1.5rem;
     position: relative;
     z-index: 111111111;
-    
+    background-color: rgba(0, 0, 0, 0.918);
+   
     
 }
 
@@ -37,7 +38,7 @@
     display: flex;
     align-items: center;
     padding: .5rem;
-    border-radius: 2rem;
+    border-radius: 1rem;
     margin-left: 8rem;
 }
 

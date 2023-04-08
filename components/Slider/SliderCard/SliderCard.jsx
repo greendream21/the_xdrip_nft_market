@@ -16,7 +16,7 @@ const SliderCard = ({ el, i }) => {
             src={el.background}
             className={Style.sliderCard_box_img_img}
             alt="slider profile"
-            width={500}
+            width={600}
             height={300}
             objectFit="cover"
           />
@@ -24,7 +24,7 @@ const SliderCard = ({ el, i }) => {
         <div className={Style.sliderCard_box_title}>
           <p>NFT VIDEO #{i + 1}</p>
           <div className={Style.sliderCard_box_title_like}>
-            {/* <LikeProfile /> */}
+            { <LikeProfile /> }
             <small>{i + 4} 0f 100</small>
           </div>
         </div>
@@ -32,7 +32,7 @@ const SliderCard = ({ el, i }) => {
         <div className={Style.sliderCard_box_price}>
           <div className={Style.sliderCard_box_price_box}>
             <small>CURRENT PRICE</small>
-            <p>{i + 2}.000 BNB</p>
+            <p>{i + 2}.0 BNB</p>
           </div>
 
           <div className={Style.sliderCard_box_price_time}>

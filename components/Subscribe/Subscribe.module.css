@@ -2,6 +2,7 @@
 
 .subscribe{
     width: 100%;
+    margin-top: 10rem;
 }
 
 .subscribe_box{
@@ -28,7 +29,7 @@
 }
 
 .subscribe_box_right{
-    background-color: var(--shadow-dark-color);
+    background-color: #212325c5;
     border-radius: 2.5rem;
     padding: 1rem;
     margin-left: 2rem;

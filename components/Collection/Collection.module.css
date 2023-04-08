@@ -2,7 +2,8 @@
 .collection{
     width: 100%;
     padding: 3rem 0;
-    padding-bottom: 12rem;
+    margin-top: 14rem;
+    
 }
 
 .collection_title{
@@ -32,21 +33,19 @@
 }
 
 .collection_collections_btn button{
-    border: none;
-    outline: none;
-    padding: 1rem 1.5rem;
-    border-radius: 2rem;
-    border:  1px solid var(--main-bg-color);
-    transition: all .3s ease-in;
+    background-color: var(--main-bg-color); /*#3d465c;*/
+    padding: 1rem 1rem;
+    border: 5px double silver;
+    border-radius: 1rem;
     font-size: 1.1rem;
-    cursor: pointer;
-    background-color: var(--main-bg-color);
-    color: var(--xdrip-light-gray);
     font-family: "Good Times";
+    cursor: pointer;
+    transition:  all .2s ease-in;
+    box-shadow: var(--box-shadow);
 }
 
 .collection_collections_btn button:hover{
-    border:  1px solid var(--icons-color);
+    background-color: var(--xdrip-light-gray);
     /*color: var(--icons-color);*/
     box-shadow: var(--box-shadow);
 }
