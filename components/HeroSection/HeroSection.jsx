@@ -7,12 +7,11 @@ import heroVideo from "../../public/videos/hero-video.mp4";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
 import { FaVolumeMute, FaVolumeUp } from "react-icons/fa";
-;
 
 const HeroSection = () => {
   const router = useRouter();
   const [isMuted, setIsMuted] = useState(true);
-  
+
   const handleMuteClick = () => {
     setIsMuted(!isMuted);
   };
@@ -33,19 +32,22 @@ const HeroSection = () => {
           />
         </div>
         <div className={Style.heroSection_box_right}>
-          <video
-            src={heroVideo}            
-            loop
-            autoPlay
-            playsInline
-            className={Style.heroSection_box_right_vid}
-            muted={isMuted}
-          />
-          <div>
-        <button onClick={handleMuteClick} className={Style.heroSection_box_right_muteBtn}>
-         {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
-        </button>
-        </div>
+          <div className={Style.heroSection_box_right_container}>
+            <video
+              src={heroVideo}            
+              loop
+              autoPlay
+              playsInline
+              className={Style.heroSection_box_right_vid}
+              muted={isMuted}
+            />
+            <button
+              onClick={handleMuteClick}
+              className={Style.heroSection_box_right_muteBtn}
+            >
+              {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
+            </button>
+          </div>
         </div>
       </div>
     </div>

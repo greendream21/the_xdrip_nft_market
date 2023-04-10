@@ -57,16 +57,16 @@
 }
 
 .subscribe_box{
-    width: 100%;
+    border: 4px double rgba(1,122,254,255);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: .75rem 2rem;
-    background-color:  var(--icons-color);
-    color: var(--shadow-dark-color);
-    border-radius: 5rem;
-    margin-top: 2rem;
+    width: 100%;
+    padding: .5rem;    
+    border-radius: 1rem;
+    
 }
+
 
 .subscribe_box input{
     background: transparent;

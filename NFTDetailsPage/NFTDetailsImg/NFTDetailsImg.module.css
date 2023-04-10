@@ -25,7 +25,7 @@
     grid-row: 1 / end;
     z-index: 111111;
     align-self: flex-start;
-    padding-inline: 2rem;
+    padding-right: 8rem;
 }
 
 .NFTDetailsImg_box_NFT_like p{
@@ -35,8 +35,9 @@
     display: flex;
     align-items: center;
     gap: .5rem;
-    border-radius: 2rem;
+    border-radius: .5rem;
     cursor: pointer;
+    border: 4px double rgba(1,122,254,255);
 }
 
 .NFTDetailsImg_box_NFT_like_icon{

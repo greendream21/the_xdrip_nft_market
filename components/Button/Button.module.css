@@ -1,7 +1,7 @@
 .button {
     background-color: var(--main-bg-color); /*#3d465c;*/
     padding: 1rem 1rem;
-    border: 5px double silver;
+    border: 4px double rgba(1,122,254,255);
     border-radius: 1rem;
     font-size: 1.1rem;
     font-family: "Good Times";
@@ -12,9 +12,10 @@
 
 .button:hover{
     background-color: var(--xdrip-light-gray);
-    /*border:  1px solid var(--icons-color);*/
-    /*color:  var(--icons-color);*/
+    color: var(--main-bg-color);
+    box-shadow: var(--box-shadow);
 }
+
 
 /*
 .Button_button__QHarr {

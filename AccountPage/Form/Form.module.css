@@ -18,7 +18,7 @@
 
 .Form_box_input_userName{
     width: 100%;
-    border: 1px solid var(--icons-color);
+    border: 4px double rgba(1,122,254,255);
     padding: 1rem;
     border-radius: 1rem;
     background-color: transparent;
@@ -33,7 +33,7 @@
 
 .Form_box_input_box{
     width: 100%;
-    border: 1px solid var(--icons-color);
+    border: 4px double rgba(1,122,254,255);
     border-radius: 1rem;
     align-items: center;
     display: flex;
@@ -63,7 +63,7 @@
     outline: none;
     border-radius: 1rem;
     padding: 1rem;
-    border: 1px solid var(--icons-color);
+    border: 4px double rgba(1,122,254,255);
 }
 
 .Form_box_input_social{

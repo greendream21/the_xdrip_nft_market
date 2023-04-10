@@ -23,7 +23,7 @@
 .filter_box_left button{
     background-color: var(--main-bg-color); /*#3d465c;*/
     padding: 1rem 1rem;
-    border: 5px double silver;
+    border: 4px double rgba(1,122,254,255);
     border-radius: 1rem;
     font-size: 1rem;
     color: var(--xdrip-light-gray);
@@ -41,7 +41,7 @@
 .filter_box_right_box{
     background-color: var(--main-bg-color); /*#3d465c;*/
     padding: 1rem 1rem;
-    border: 5px double silver;
+    border: 4px double rgba(1,122,254,255);
     border-radius: 1rem;
     font-size: 1.1rem;
    
@@ -56,7 +56,7 @@
     margin:  0 auto;
     display: flex;
     padding: 2rem 0;
-    border-top: 3px solid var(--icons-light-color);
+    border-top: 2px double rgba(1,122,254,255);
 }
 
 .filter_box_items_box{
@@ -64,7 +64,8 @@
 }
 
 .filter_box_items_box_item{
-    background-color: var(--icons-color);
+    background-color: black;
+    border: 4px double rgba(1,122,254,255);
     padding: .5rem 1rem;
     border-radius: .5rem;
     cursor: pointer;
@@ -74,7 +75,7 @@
 }
 
 .filter_box_items_box_item_trans{
-    border: 1px double silver;
+    border: 4px double rgba(1,122,254,255);
     background-color: var(--main-bg-color);
     padding: .5rem 1rem;
     border-radius: .5rem;
@@ -162,6 +163,7 @@
     }
 
 }
+
 
 @media screen and (min-device-width: 427px) and (max-device-width: 786px) {
     .filter_box{

@@ -14,6 +14,8 @@
     position: relative;
 }
 
+
+
 .NFTDescription_box_share_box_icon{
     cursor: pointer;
     font-size: 2rem;
@@ -27,6 +29,7 @@
     background-color: var(--main-bg-color);
     box-shadow: var(--box-shadow);
     border-radius: .5rem;
+    
     padding: 1rem;
 }
 
@@ -48,9 +51,10 @@
 
 .NFTDescription_box_share p{
     background-color: var(--icons-color);
+    border: 4px double rgba(1,122,254,255);
     color: var(--main-bg-color);
     padding: .2rem .8rem;
-    border-radius: 2rem;
+    border-radius: .5rem;
 }
 
 .NFTDescription_box_share_box{
@@ -99,7 +103,7 @@
     align-items: center;
     gap: 1rem;
     line-height: 1;
-    border-left: 1px solid var(--icons-color);
+    border-left: 4px double rgba(1,122,254,255);
     padding-left: 2rem;
 }
 
@@ -143,15 +147,16 @@
 
 
 .NFTDescription_box_profile_biding_box_price_bid{
-    border:  2px solid var(--icons-color);
+    border: 4px double rgba(1,122,254,255);
     border-radius: .5rem;
 }
 
 .NFTDescription_box_profile_biding_box_price_bid small{
     font-size: 1.2rem;
-    background-color: var(--icons-color);
-    color: var(--main-bg-color);
+    background-color: black;
+    color: white;
     padding: .5rem 1rem;
+    border: 4px double rgba(1,122,254,255);
     border-radius: .5rem;
     margin-left: 2rem;
 }
@@ -181,8 +186,9 @@
     padding: 1rem 2rem;
     border:  0;
     background-color: var(--shadow-dark-color);
-    color: var(--icons-color);
-    border-radius: 2rem;
+    color: white;
+    border-radius: 1rem;
+    border: 4px double rgba(1,122,254,255);
     cursor: pointer;
     font-weight: 600;
 }

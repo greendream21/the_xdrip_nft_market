@@ -4,6 +4,7 @@
     border-radius: 1rem;
     transition: all .3s ease-in;
     cursor: pointer;
+    
 }
 
 .daysComponent:hover{
@@ -13,6 +14,7 @@
 
 .daysComponent_box_img_img{
     border-radius: 1rem;
+    
 }
 
 .daysComponent_box_profile{
@@ -37,6 +39,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    
 }
 
 .daysComponent_box_title_info{
@@ -47,17 +50,21 @@
 
 .daysComponent_box_title_info_profile_img{
     border-radius: 50%;
+    
 }
 
 .daysComponent_box_title_info_profile span{
   font-weight: 600;
   padding-inline: .5rem;
+  
 }
 
 .daysComponent_box_title_info_price small{
     font-weight: 500;
-    border: 3px solid var(--icons-color);
+    border: 4px double rgba(1,122,254,255);
     padding: .5rem;
+    font-size: 1.1rem;
+    color: white;
     border-radius: .5rem;
 }
 

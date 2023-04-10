@@ -88,7 +88,7 @@ const FAQ = () => {
                       <div className={Style.ui_styled_accordion_box}>
                 {renderedItems}
             </div>
-            <div></div>
+            <div className={Style.brand}></div>
             <Brand />
         </div>
     );

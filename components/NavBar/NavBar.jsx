@@ -155,11 +155,25 @@ const handleConnectWallet = () => {
   setShowWalletInfo(true);
   setProfileImageSrc("/pfp.jpg"); // Set the custom image when wallet connects
 };
+
+
+const [isNavbarDocked, setIsNavbarDocked] = useState(true);
+
+useEffect(() => {
+  const handleScroll = () => {
+    setIsNavbarDocked(window.scrollY < 100);
+  };
+  window.addEventListener("scroll", handleScroll);
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+}, []);
+
   
 
-  return (
-    <div className={Style.navbar}>
-      <div className={Style.navbar_container}>
+return (
+  <div className={`${Style.navbar} ${isNavbarDocked ? "" : Style["navbar-undocked"]}`}>
+    <div className={Style.navbar_container}>
         <div className={Style.navbar_container_left}>
           <Link href="/">
             <a>
@@ -194,17 +208,17 @@ const handleConnectWallet = () => {
 
           {/* HELP CENTER MENU */}
           <div
-            className={Style.navbar_container_right_help}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <p onClick={(e) => openMenu(e)}>Help Center</p>
-            {help && (
-              <div className={Style.navbar_container_right_help_box}>
-                <HelpCenter />
-              </div>
-            )}
-          </div>
+  className={Style.navbar_container_right_help}
+  onMouseEnter={handleMouseEnter}
+  onMouseLeave={handleMouseLeave}
+>
+  <p onClick={(e) => openMenu(e)}>Help Center</p>
+  {help && (
+    <div className={Style.navbar_container_right_help_box}>
+      <HelpCenter />
+    </div>
+  )}
+</div>
 
          {/* NOTIFICATION */}
 <div
@@ -226,16 +240,16 @@ const handleConnectWallet = () => {
 </div>
 
 
-         {/* CREATE BUTTON SECTION 
-<div className={Style.box_box_right}>*/}
+          
+<div className={Style.box_box_right}>
   <ConnectWallet
-    className={Style.box_box_right}
+    className={Style.box_box_right_btn}
     btnTitle={isWalletConnected ? "XDISCONNECTED" : "XCONNECT"}
     colorMode="dark"
     onConnect={handleConnectWallet}
     disableDisconnect 
   />
-
+</div>
 
           {/* USER PROFILE */}
           <div className={Style.navbar_container_right_profile_box}>

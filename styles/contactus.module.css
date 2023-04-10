@@ -1,6 +1,7 @@
 
 .contactus{
     width: 100%;
+    padding-top: 12rem;
 }
 
 .contactus_box{
@@ -10,21 +11,21 @@
 
 .contactus_box h1{
     text-align: center;
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 900;
 }
 
 .contactus_box_box{
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 5rem;
+    gap: rem;
     align-items: center;
     align-self: flex-start;
-    margin-bottom: 10rem;
+    margin-bottom: 14rem;
 }
 
 .contactus_box_box_left_item p{
-    line-height: 1.2;
+    line-height: 1;
     width: 80%;
     font-size: 1rem;
 }
@@ -33,6 +34,12 @@
     font-size: 1.5rem;
     border-radius: 50%;
     padding: .3rem;
+}
+
+.contactus_box_box_left_item{
+    width: 75%;
+    font-size: 1.5rem;
+    border-bottom: .4rem double rgba(1,122,254,255);
 }
 
 .button{

@@ -85,7 +85,7 @@
 }
 
 .NFTCardTwo_box_price_box p{
-    border:  1px solid var(--icons-color);
+    border: 1px double rgba(1,122,254,255);
     padding: 1.5rem 1rem 1rem 1rem;
     font-size: 1.4rem;
     margin-top: .5rem;
@@ -93,9 +93,10 @@
 }
 
 .NFTCardTwo_box_price_box small{
-    background-color: var(--icons-color);
-    color: var(--main-bg-color);
+    background-color: black;
+    color: white;
     padding: .3rem;
+    border: 1px double rgba(1,122,254,255);
     border-radius: .3rem;
     margin-left: 1rem;
 }

@@ -88,7 +88,7 @@ const AudioCard = () => {
           <Image
             src={images.creatorbackground10}
             alt="background"
-            width={500}
+            width={525}
             height={500}
           />
         </div>

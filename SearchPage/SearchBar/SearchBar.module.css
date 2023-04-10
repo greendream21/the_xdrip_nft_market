@@ -7,10 +7,10 @@
 .SearchBar_box{
     width: 40%;
     margin:  0 auto;
-    background-color: var(--main-bg-color);
     color: var(--main-bg-color);
     display: flex;
-    border-radius: 5rem;
+    border-radius: 1.5rem;
+    border: 4px double rgba(1,122,254,255);
     align-items: center;
     margin-top: 8rem;
     margin-bottom: 3rem;
@@ -29,7 +29,7 @@
     border: 0;
     outline: 0;
     padding: 2rem;
-    background-color: var(--main-bg-color);
+    background-color: black;
 
 }
 

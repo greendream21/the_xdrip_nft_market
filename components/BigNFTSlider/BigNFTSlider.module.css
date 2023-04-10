@@ -22,6 +22,7 @@
 .bigNFTSlider_box_left h2{
     font-size: 3.5rem;
     line-height: 0;
+    margin-top: 1.5rem;
 }
 
 
@@ -33,7 +34,7 @@
     background-color: transparent;
     border-radius: 2.5rem;
     box-shadow: var(--box-shadow-2);
-    /* box-shadow: var(--main-bg-color); */
+    
 }
 
 /* //CREATOR SECTION */
@@ -41,6 +42,8 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
+    padding-top: .5rem;
+    padding-bottom: 1rem;
 }
 
 .bigNFTSlider_box_left_creator_profile{
@@ -78,15 +81,17 @@
 }
 
 .bigNFTSlider_box_left_bidding_box{
-    border: 1px solid var(--xdrip-light-blue);
+    border: 4px double rgba(1,122,254,255);
     margin-block: 2rem;
     padding: 0 4rem;
     border-radius: .5rem;
     
 }
 
+
+
 .bigNFTSlider_box_left_bidding_box p {
-    font-size: 2em;
+    font-size: 2rem;
 }
 
 .bigNFTSlider_box_left_origin{
@@ -102,7 +107,8 @@
 }
 
 .bigNFTSlider_box_left_bidding_box small{
-    background-color: var(--icons-color);
+    background-color: var(--main-bg-color);
+    border: 4px double rgba(1,122,254,255);
     padding: 1rem 2rem;
     border-radius: .5rem;
     font-weight: 600;
@@ -118,7 +124,7 @@
     gap: 4rem;
     text-align: center;
     padding: 0rem 0rem 1.5rem 0;
-    border-bottom:  1px solid var(--xdrip-light-blue);
+    border-bottom: 4px double rgba(1,122,254,255);
 }
 
 
@@ -134,13 +140,22 @@
 
 
 
-.bigNFTSlider_box_left_button{
+.bigNFTSlider_box_left_button {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 4rem;
     padding-block: 2rem 0rem;
+
 }
+
+.bigNFTSlider_box_left_buttonbutton:hover {
+    background-color: rgba(1,122,254,255);
+    color: var(--main-bg-color);
+    box-shadow: var(--box-shadow);
+
+}
+
 
 .bigNFTSlider_box_left_sliderBtn{
     display: flex;
@@ -155,11 +170,14 @@
 .bigNFTSlider_box_left_sliderBtn_icon{
     cursor: pointer;
     transition:  all .3s ease-in;
+    color: rgba(1,122,254,255);
+    
 }
 
 .bigNFTSlider_box_left_sliderBtn_icon:hover{
     border-radius: 50%;
     padding: 1rem;
+    
 }
 
 /* //---RIGHT SECTION */

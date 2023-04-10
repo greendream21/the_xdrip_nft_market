@@ -3,7 +3,7 @@
 .FollowerTabCard_box{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    background-color: var(--main-bg-color);
+    background-color: black;
     border-radius: 2rem;
     transition: all .2s ease-in;
     cursor: pointer;
@@ -17,8 +17,8 @@
 .FollowerTabCard_rank{
     position: absolute;
     z-index: 11111;
-    background-color: var(--icons-color);
-    color: var(--main-bg-color);
+    background-color: var(--main-bg-color);
+    color: white;
     line-height: 0;
     margin:  1rem;
     font-size: .8rem;
@@ -30,7 +30,7 @@
 
 .FollowerTabCard_rank:hover{
     background-color: var(--main-bg-color);
-    color: var(--icons-color);
+    
 }
 
 .FollowerTabCard_box_img{
@@ -46,12 +46,15 @@
     text-align: center;
     margin-top: -2rem;
     position: relative;
+    padding-right: 1rem;
+    
 }
 
 .FollowerTabCard_box_profile_img{
     border-radius: 50%;
-    padding: 1rem;
+    padding: 2rem;
     z-index: 222;
+    
 }
 
 .FollowerTabCard_box_profile::before{
@@ -59,10 +62,10 @@
     content: "";
     width: 5rem;
     height: 5rem;
-    background-color: var(--main-bg-color);
+    background-color:rgb(15, 15, 15);
     border-radius: 50%;
-    top: -20%;
-    left: 38%;
+    top: -13%;
+    
 }
 
 .FollowerTabCard_box_info{
@@ -71,7 +74,7 @@
     align-items: center;
     line-height: 0;
     justify-content: space-between;
-    margin-top: -1rem;
+    margin-top: 0rem;
     padding-inline: 1rem;
     padding-bottom: 1rem;
 }
@@ -82,15 +85,18 @@
 }
 
 .FollowerTabCard_box_info_following a{
-    background-color: var(--shadow-dark-color);
+    background-color: var(--main-bg-color);
     padding: .7rem 1.5rem;
-    border-radius: 2rem;
-    border:  1px solid var(--shadow-dark-color);
+    border-radius: .7rem;
+    border: 4px double rgba(1,122,254,255);
     transition:  all .3s ease-in;
+    color: white;
 }
 
 .FollowerTabCard_box_info_following a:hover{
-    background-color: transparent;
+    background-color: var(--xdrip-light-gray);
+    color: var(--main-bg-color);
+    box-shadow: var(--box-shadow);
 }
 
 @media screen and (min-device-width:320px)  {

@@ -5,7 +5,7 @@
 }
 
 .DropZone_box{
-    border: 5px dotted var(--icons-color);
+    border: 5px dotted rgba(1,122,254,255);
    border-radius: 1rem;
     text-align: center;
     padding: 1rem;
@@ -23,7 +23,7 @@
 
 .DropZone_box_aside{
     padding: 2rem;
-    border: 3px dotted var(--icons-color);
+    border: 3px dotted rgba(1,122,254,255);
     margin-top: 3rem;
     border-radius: 1px;
 }

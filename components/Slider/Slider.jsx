@@ -62,10 +62,7 @@ const Slider = () => {
   return (
     <div className={Style.slider}>
       <div className={Style.slider_box}>
-        <h2>XPLORE VIDEO NFTS</h2>
-        <div className={Style.slider_box_button}>
-          <p> XCELLENT VIDEOS DESIGNED FOR YOU VISUAL PLEASURE</p>
-          </div>
+        <div className={Style.slider_box_button}></div>
         </div>
         <Swiper className={Style.slider_box_items} ref={dragSlider}
           modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
@@ -75,7 +72,7 @@ const Slider = () => {
           navigation={true}
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
-          autoplay={{ delay: 3000 }}
+          autoplay={{ delay: 5000 }}
           onSlideChange={() => console.log('slide change')}
           onSwiper={(swiper) => console.log(swiper)}
         >

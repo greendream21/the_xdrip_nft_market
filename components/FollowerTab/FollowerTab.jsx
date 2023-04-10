@@ -5,6 +5,7 @@ import {
   RiAwardLine,
 } from "react-icons/ri";
 
+
 //INTERNAL IMPORT
 import Style from "./FollowerTab.module.css";
 import FollowerTabCard from "./FollowerTabCard/FollowerTabCard";
@@ -49,74 +50,74 @@ const FollowerTab = ({ TopCreator }) => {
     {
       background: images.creatorbackground3,
       user: images.user3,
-      seller: "7200d8d8390d9993ujdc93900399djj277x",
+      seller: "7200d",
     },
     {
       background: images.creatorbackground4,
       user: images.user4,
-      seller: "7200d8d8390d9993ujdc93900399djj277x",
+      seller: "7200d",
     },
     {
       background: images.creatorbackground5,
       user: images.user5,
-      seller: "7200d8d8390d9993ujdc93900399djj277x",
+      seller: "7200d",
     },
     {
       background: images.creatorbackground6,
       user: images.user6,
-      seller: "7200d8d8390d9993ujdc93900399djj277x",
+      seller: "7200d",
     },
     {
       background: images.creatorbackground1,
       user: images.user1,
-      seller: "7200d8d8390d9993ujdc93900399djj277x",
+      seller: "7200d",
     },
     {
       background: images.creatorbackground2,
       user: images.user2,
-      seller: "7200d8d8390d9993ujdc93900399djj277x",
+      seller: "7200d",
     },
   ];
   const NewsArray = [
     {
       background: images.creatorbackground1,
       user: images.user1,
-      seller: "7200d8d8390d9993ujdc93900399djj277x",
+      seller: "7200d",
     },
     {
       background: images.creatorbackground2,
       user: images.user2,
-      seller: "7200d8d8390d9993ujdc93900399djj277x",
+      seller: "7200d",
     },
     {
       background: images.creatorbackground3,
       user: images.user3,
-      seller: "7200d8d8390d9993ujdc93900399djj277x",
+      seller: "7200d",
     },
     {
       background: images.creatorbackground4,
       user: images.user4,
-      seller: "7200d8d8390d9993ujdc93900399djj277x",
+      seller: "7200d",
     },
     {
       background: images.creatorbackground5,
       user: images.user5,
-      seller: "7200d8d8390d9993ujdc93900399djj277x",
+      seller: "7200d",
     },
     {
       background: images.creatorbackground6,
       user: images.user6,
-      seller: "7200d8d8390d9993ujdc93900399djj277x",
+      seller: "7200d",
     },
     {
       background: images.creatorbackground7,
       user: images.user7,
-      seller: "7200d8d8390d9993ujdc93900399djj277x",
+      seller: "7200d",
     },
     {
       background: images.creatorbackground8,
       user: images.user8,
-      seller: "7200d8d8390d9993ujdc93900399djj277x",
+      seller: "7200d",
     },
   ];
 
@@ -149,7 +150,6 @@ const FollowerTab = ({ TopCreator }) => {
   return (
     <div className={Style.followerTab}>
       <div className={Style.followerTab_title}>
-        <h2> OUR XCELLENT CREATORS</h2>
         <div className={Style.followerTab_tabs}>
           <div className={Style.followerTab_tabs_btn}>
             <button onClick={() => openPopular()}>

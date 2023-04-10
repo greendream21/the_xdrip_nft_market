@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { Button, Category, Brand } from "../components/componentsindex";
 import NFTDetailsPage from "../NFTDetailsPage/NFTDetailsPage";
 
+
 //IMPORT SMART CONTRACT DATA
 import { NFTMarketplaceContext } from "../Context/NFTMarketplaceContext";
 const NFTDetails = () => {
@@ -26,7 +27,7 @@ const NFTDetails = () => {
   }, [router.isReady]);
 
   return (
-    <div>
+    <div className={StyleSheet.NFTDetails}>
       <NFTDetailsPage nft={nft} />
       <Category />
       <Brand />

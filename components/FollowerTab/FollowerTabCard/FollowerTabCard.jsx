@@ -40,8 +40,8 @@ const FollowerTabCard = ({ i, el }) => {
           <Image
             className={Style.FollowerTabCard_box_profile_img}
             alt="profile picture"
-            width={50}
-            height={50}
+            width={55}
+            height={55}
             src={el.user || images[`user${i + 1}`]}
           />
         </div>

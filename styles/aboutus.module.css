@@ -1,7 +1,8 @@
 
 .aboutus{
     width: 100%;
-    margin-block: 5rem;
+    margin-block: 0rem;
+    padding-top: 4rem;
 }
 
 .aboutus_box{
@@ -11,10 +12,16 @@
 
 .aboutus_box_hero{
     display: grid;
-    grid-template-columns: 1.5fr 2fr;
+    grid-template-columns: 50% 50%;
     align-items: center;
-    margin-top: 4rem;
-    gap: 3rem;
+    margin-top: 0rem;
+    padding-top: 10rem;
+    gap: 0rem;
+}
+
+.aboutus_box_hero_left {
+    padding-left: 0rem;
+    padding-right: 2rem;
 }
 
 .aboutus_box_hero_left h1{
@@ -23,8 +30,8 @@
 }
 
 .aboutus_box_hero_right {
-    margin-left: 6rem;
-    margin-right: -6rem;
+    padding-left: 3rem;
+    padding-right: 0rem;
     
 }
 

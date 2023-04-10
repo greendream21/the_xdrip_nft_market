@@ -18,10 +18,12 @@
     overflow: hidden;
     cursor: pointer;
     padding-bottom: 1rem;
+    
 }
 
 .category_box:hover{
     box-shadow: var(--box-shadow);
+    
 }
 
 .category_box_img{
@@ -29,6 +31,7 @@
 }
 
 .category_box_title{
+    
     display: flex;
     align-items: center;
     padding-left: 0rem;

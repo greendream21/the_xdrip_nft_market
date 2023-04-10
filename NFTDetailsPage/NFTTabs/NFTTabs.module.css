@@ -5,7 +5,7 @@
     gap: 1rem;
     line-height: 0;
     padding: 1rem 0;
-    border-bottom: 1px solid var(--shadow-dark-color);
+    border-bottom: 4px double rgba(1,122,254,255);
 }
 
 .NFTTabs_box_img{

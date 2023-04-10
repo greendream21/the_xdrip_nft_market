@@ -1,143 +1,190 @@
-
-.navbar{
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1.25rem 0;
     width: 100%;
-    padding-block: 1.5rem;
-    position: relative;
+    background-color: #2b2a2a3a;
     z-index: 111111111;
-    background-color: rgba(0, 0, 0, 0.918);
-   
-    
+    transition: background-color 0.2s ease;
 }
 
-.navbar_container{
-    width: 95%;
-    margin:  0 auto;
-    display:  grid;
-    grid-template-columns: repeat(2, 1fr);
+.navbar-undocked {
+    background-color: #000000e5;
+}
+
+
+.navbar_container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60% 40%;
     align-items: center;
     justify-content: space-between;
-    gap: 2rem;
+
 }
 
-.navbar_container_left{
+.navbar_container_left {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    align-items:  center;
+    grid-template-columns: 35% 65%;
+    align-items: center;
 }
 
-.logo{
-  align-items: center;
-  width: 95%;
-  height: 95%;
-  
-}
-
-.navbar_container_left_box_input_box{
-    width: 60%;
-    border: 1px solid var(--icons-color);
+.logo {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-left: 2rem;
+}
+
+.navbar_container_left_box_input_box {
+    border: 4px double rgba(1,122,254,255);
+    display: flex;
+    justify-content: center;
     align-items: center;
     padding: .5rem;
+    margin-left: 2rem;
     border-radius: 1rem;
-    margin-left: 8rem;
+    gap: 1rem;
 }
 
-.navbar_container_left_box_input_box input{
-    width: 90%;
+.navbar_container_left_box_input_box input {
+    width: 100%;
     border: none;
     outline: none;
-    background-color:  transparent;
+    background-color: transparent;
 }
 
-.search_icon{
+.search_icon {
     cursor: pointer;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 
 /* //-------RIGHT */
 
-.navbar_container_right{
+.navbar_container_right {
     display: grid;
-    grid-template-columns: .4fr .4fr .2fr .4fr .2fr;
+    padding-right: 3rem;
+    grid-template-columns: 23% 23% 7% 32% 10%;
     gap: 1rem;
     align-items: center;
-     
+
 }
 
-.navbar_container_right_discover,
+.navbar_container_right_discover {
+    position: relative;
+    cursor: pointer;
+    font-size: 1.12rem;
+    display: flex;
+    justify-content: center;
+    padding-left: 2rem;
+}
+
 .navbar_container_right_help{
     position: relative;
     cursor: pointer;
     font-size: 1.12rem;
-   }
-   
+    display: flex;
+    justify-content: center;
+    
+}
+
 .navbar_container_right_discover_box,
 .navbar_container_right_help_box{
     position: absolute;
     padding: 1rem .5rem;
     box-shadow: var(--box-shadow);
-    width: 15rem;
+    font-size: 1rem;
+    width: 11rem;
     border-radius: 1rem;
     background-color: var(--main-bg-color);
+    margin-top: 3.75rem;
 }
 
-.navbar_container_right_notify{
+
+.navbar_container_right_notify {
     position: relative;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    
 }
 
-.notify{
+.notify {
     font-size: 2rem;
 }
 
-.navbar_container_right_button{
+.notification_menu{
+    position: absolute;
+    margin-top: 0rem;
+}
+
+.navbar_container_right_profile_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     cursor: pointer;
 }
 
-.navbar_container_right_profile_box{
-    position: relative;
-    cursor: pointer;
+.navbar_container_right_profile {
+    border-radius: .5rem;
 }
 
-.navbar_container_right_profile{
-    border-radius: 2rem;
+.navbar_container_right_discover:hover,
+.navbar_container_right_help:hover{
+    text-shadow: var(--box-shadow);
 }
 
-.navbar_container_right_menuBtn{
+  .navbar_container_right_profile_box:hover .navbar_container_right_profile {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.9);
+  }
+  
+.navbar_container_right_menuBtn {
     display: none;
 }
 
-.menuIcon{
+.menuIcon {
     font-size: 2.5rem;
     cursor: pointer;
 }
 
-
 .box_box_right {
-        background-color: #000000a2 !important; 
-        padding: 1rem 1.5rem !important;
-        border: 1.5px solid !important;
-        border-color: white;
-        border-radius: 1rem !important;
-        font-size: 1.1rem !important;
-        color: white !important;
-        font-family: "Good Times" !important;
-        cursor: pointer !important;
-        transition:  all .2s ease-in !important;
-        box-shadow: var(--box-shadow) !important;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0rem;
+}
+
+
+.box_box_right_btn {
+    background-color: #000000a2 !important;
+    padding: 1rem 1rem !important;    
+    border: 4px double rgba(1,122,254,255) !important;
+    border-radius: 1rem !important;
+    font-size: 1.1rem !important;
+    color: white !important;
+    font-family: "Good Times" !important;
+    cursor: pointer !important;
+    transition: all .2s ease-in !important;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.9) !important;
     
-        
-.box_box_right:hover{
-        background-color: var(--xdrip-light-gray)!important;
-        /*border:  1px solid var(--icons-color);*/
-        /*color:  var(--icons-color);*/
-    }
+}
+
+
+.box_box_right_btn:hover {
+    background-color: var(--xdrip-gray) !important;
+    /*border:  1px solid var(--icons-color);*/
+    /*color:  var(--icons-color);*/
+}
+
+
 
 /* /////------SIDEBAR */
 
-.sideBar{
+.sideBar {
     position: fixed;
     top: 0;
     width: 24rem;
@@ -149,43 +196,44 @@
     z-index: 11111;
 }
 
-.sideBar::-webkit-scrollbar{
+.sideBar::-webkit-scrollbar {
     display: none;
 }
 
 @media screen and (min-device-width: 320px) and (max-device-width: 768px) {
-    .navbar_container{
+    .navbar_container {
         grid-template-columns: 1fr 1fr;
     }
 
-    .navbar_container_left{
+    .navbar_container_left {
         grid-template-columns: 1fr;
     }
 
-    .navbar_container_right{
+    .navbar_container_right {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .navbar_container_right_menuBtn{
+    .navbar_container_right_menuBtn {
         display: block;
     }
 
-    .navbar_container_left_box_input_box{
-        display: none;
-    }
-    .navbar_container_right_discover{
+    .navbar_container_left_box_input_box {
         display: none;
     }
 
-    .navbar_container_right_help{
+    .navbar_container_right_discover {
         display: none;
     }
 
-    .navbar_container_right_button{
+    .navbar_container_right_help {
         display: none;
     }
 
-    .sideBar{
+    .navbar_container_right_button {
+        display: none;
+    }
+
+    .sideBar {
         display: block;
     }
 }

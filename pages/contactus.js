@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   TiSocialFacebook,
   TiSocialLinkedin,
@@ -14,6 +14,20 @@ import formStyle from "../AccountPage/Form/Form.module.css";
 import { Button } from "../components/componentsindex";
 
 const contactus = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Here, you can make an API call to send the form data to a server
+    console.log({ name, email, message });
+    // Clear the form inputs after submission
+    setName("");
+    setEmail("");
+    setMessage("");
+  };
+
   return (
     <div className={Style.contactus}>
       <div className={Style.contactus_box}>
@@ -44,13 +58,15 @@ const contactus = () => {
             </div>
           </div>
           <div className={Style.contactus_box_box_right}>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className={formStyle.Form_box_input}>
                 <label htmlFor="name">Full Name</label>
                 <input
                   type="text"
                   placeholder="YOUR FULL NAME"
                   className={formStyle.Form_box_input_userName}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
               <div className={formStyle.Form_box_input}>
@@ -59,7 +75,12 @@ const contactus = () => {
                   <div className={formStyle.Form_box_input_box_icon}>
                     <HiOutlineMail />
                   </div>
-                  <input type="text" placeholder="EMAIL" />
+                  <input
+                    type="text"
+                    placeholder="EMAIL"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
               </div>
               <div className={formStyle.Form_box_input}>
@@ -70,12 +91,15 @@ const contactus = () => {
                   cols="30"
                   rows="6"
                   placeholder="LET US KNOW HOW WE MAY HELP YOU"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                 ></textarea>
               </div>
               <Button
                 btnName="SEND MESSAGE"
                 handleClick={() => {}}
                 classStyle={Style.button}
+                type="submit"
               />
             </form>
           </div>

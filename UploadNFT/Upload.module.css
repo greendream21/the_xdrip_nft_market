@@ -9,7 +9,7 @@
 }
 
 .upload_box_slider{
-    border: 1px solid var(--icons-color);
+    border: 4px double rgba(1,122,254,255);
     border-radius: 1rem;
     padding: 1rem;
     cursor: pointer;

@@ -9,43 +9,41 @@
 }
 
 .followerTab_title{
-    width: 30rem;
+    width: 60rem;
     margin: 0 auto;
     padding: 0 0 6rem 0;
     text-align: center;
 }
 
-.followerTab_title h2{
-    font-size: 3rem;
-    margin-bottom: 4rem;
-}
+
 
 .followerTab_tabs_btn{
-    background-color: var(--main-bg-color);
-    padding: .5rem 1rem;
-    border-radius: 4rem;
+    
+    border-radius: 2rem;
     display: flex;
     justify-content:  space-around;
-    gap: 1rem;
+    gap: 10rem;
     align-items: center;
     font-size: 1.2rem;
-    box-shadow: var(--box-shadow);
+    
 }
 
 .followerTab_tabs_btn button{
-    background-color: var(--icons-color);
-    color: var(--main-bg-color);
-    padding: 1rem;
-    border: none;
-    border-radius: 4rem;
+    background-color: var(--main-bg-color); /*#3d465c;*/
+    padding: 1rem 1rem;
+    border: 4px double rgba(1,122,254,255);
+    border-radius: 1rem;
+    font-size: 1.1rem;
+    font-family: "Good Times";
     cursor: pointer;
-    border: 1px solid var(--icons-color);
-    transition: all .3s ease-in;
+    transition:  all .2s ease-in;
+    box-shadow: var(--box-shadow);
 }
 
 .followerTab_tabs_btn button:hover{
-    background-color: transparent;
-    color: var(--icons-color);
+    background-color: var(--xdrip-light-gray);
+    color: var(--main-bg-color);
+    box-shadow: var(--box-shadow);
 }
 
 .followerTab_box{
@@ -68,25 +66,27 @@
 
 .followerTab_member_box a:first-child{
     background-color: transparent;
-    color: var(--icons-color);
+    color: white;
     transition:  all .3s ease-in;
 }
 
 .followerTab_member_box a:hover{
-    background-color: var(--icons-color);
+    background-color: var(--xdrip-light-gray);
     color: var(--main-bg-color);
 }
 
 
 .followerTab_member_box a{
-    background-color: var(--icons-color);
+    background-color: var(--main-bg-color); /*#3d465c;*/
+    padding: 1rem 1rem;
+    border: 4px double rgba(1,122,254,255);
+    border-radius: 1rem;
+    font-size: 1.1rem;
+    font-family: "Good Times";
+    cursor: pointer;
+    transition:  all .2s ease-in;
+    box-shadow: var(--box-shadow);
     margin-inline: 1.5rem;
-    padding: 1rem 2rem;
-    color: var(--main-bg-color);
-    border-radius: 2rem;
-    border:  1px solid var(--icons-color);
-    box-shadow:  var(--box-shadow);
-    font-size: 1.3rem;
 }
 
 @media screen and (min-device-width: 320px) and (max-device-width: 425px) {

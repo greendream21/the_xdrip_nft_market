@@ -71,7 +71,7 @@
     border-radius: 50%;
     display: grid;
     padding: .5rem;
-    border: 1px solid var(--icons-color);
+    border: 1px double rgba(1,122,254,255);
     transition: all .3s ease-in;
     cursor: pointer;
 }
@@ -79,7 +79,7 @@
 .AuthorProfileCard_box_info_social a:hover{
     box-shadow: var(--box-shadow);
     background-color: var(--main-bg-color);
-    border: 1px solid var(--icons-color);
+    border: 1px double rgba(1,122,254,255);
     color: var(--icons-color);
 }
 

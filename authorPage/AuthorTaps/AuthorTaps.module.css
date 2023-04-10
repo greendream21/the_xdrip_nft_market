@@ -19,7 +19,7 @@
 }
 
 .AuthorTaps_box_left_btn button{
-    border: 1px solid var(--icons-color);
+    border: 4px double rgba(1,122,254,255);
     outline: 0;
     background-color: var(--main-bg-color);
     font-size: 1.2rem;
@@ -27,19 +27,19 @@
     padding: .5rem 1rem;
     cursor: pointer;
     transition: all .3s ease-in;
-    color: var(--icons-color);
+    color: white;
 }
 
 .AuthorTaps_box_left_btn .active{
-    border:  1px solid var(--icons-color);
+    border: 4px double rgba(1,122,254,255);
     background-color: var(--icons-color);
-    color: var(--main-bg-color);
+    color: white;
 }
 
 .AuthorTaps_box_left_btn button:hover{
-    border: 1px solid var(--icons-color);
+    border: 4px double rgba(1,122,254,255);
     background-color: var(--icons-color);
-    color: var(--main-bg-color);
+    color: white;
 }
 
 .AuthorTaps_box_right{
@@ -47,7 +47,7 @@
 }
 
 .AuthorTaps_box_right_para{
-    border: 1px solid var(--icons-color);
+    border: 4px double rgba(1,122,254,255);
     border-radius: 2rem;
     width: 17.5rem;
     padding: 0 2rem;
