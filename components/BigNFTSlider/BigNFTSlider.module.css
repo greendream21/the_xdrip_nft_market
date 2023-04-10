@@ -1,7 +1,7 @@
 .bigNFTSlider_box{
     margin:  0 auto;
     width: 70%;
-    margin-top: 4rem;
+    margin-top: 8rem;
     margin-bottom: 20rem;
     display: grid;
     grid-template-columns: repeat(13, 1fr);
@@ -22,7 +22,7 @@
 .bigNFTSlider_box_left h2{
     font-size: 3.5rem;
     line-height: 0;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
 }
 
 
@@ -34,6 +34,7 @@
     background-color: transparent;
     border-radius: 2.5rem;
     box-shadow: var(--box-shadow-2);
+    height: 90vh;
     
 }
 
@@ -82,8 +83,8 @@
 
 .bigNFTSlider_box_left_bidding_box{
     border: 4px double rgba(1,122,254,255);
-    margin-block: 2rem;
-    padding: 0 4rem;
+    margin-block: 1.5rem;
+    padding: 0 3rem;
     border-radius: .5rem;
     
 }
@@ -130,7 +131,7 @@
 
 .bigNFTSlider_box_left_bidding_box_timer_item {
     font-size: 1.1rem;
-    margin-top: 2rem;
+    margin-top: 0rem;
     align-items: center;
     padding-left: 4.5rem;
     font-weight: 900;
