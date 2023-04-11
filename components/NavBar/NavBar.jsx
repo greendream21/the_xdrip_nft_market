@@ -2,6 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import { useWeb3React } from "@web3-react/core";
 import Image from "next/image";
 import Link from "next/link";
+
+import LoginAndSignUp from "../../loginAndSignUp/LoginAndSignUp";
+
 import { MdNotifications } from "react-icons/md";
 import { BsSearch } from "react-icons/bs";
 import { CgMenuRight } from "react-icons/cg";
@@ -16,6 +19,7 @@ import images from "../../img";
 import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
 
 const NavBar = () => {
+   //const { currentAccount } = useContext(NFTMarketplaceContext);
   const [discover, setDiscover] = useState(false);
   const [showWalletInfo, setShowWalletInfo] = useState(false);
   const [help, setHelp] = useState(false);
@@ -29,6 +33,10 @@ const NavBar = () => {
   const router = useRouter();
   const { account, library } = useWeb3React();
   const [profileImageSrc, setProfileImageSrc] = useState("/default-user.png");
+  const [isLoginAndSignUpOpen, setIsLoginAndSignUpOpen] = useState(false);
+  const [showLoginAndSignUp, setShowLoginAndSignUp] = useState(false);
+
+  
 
   const { currentAccount, connectWallet, openError } = useContext(
     NFTMarketplaceContext
@@ -149,11 +157,12 @@ useEffect(() => {
   }, [timeoutId, setTimeoutId]);
 
 
-const handleConnectWallet = () => {
-  // connect wallet logic here
-  setIsWalletConnected(true);
-  setShowWalletInfo(true);
-  setProfileImageSrc("/pfp.jpg"); // Set the custom image when wallet connects
+const handleConnectWallet = async (account) => {
+  // Fetch the user profile picture and set it
+  const profileData = await getUserProfile(account);
+  if (profileData && profileData.profilePicture) {
+    setProfileImageSrc(profileData.profilePicture);
+  }
 };
 
 
@@ -252,37 +261,42 @@ return (
 </div>
 
           {/* USER PROFILE */}
-          <div className={Style.navbar_container_right_profile_box}>
-            <div
-              className={Style.navbar_container_right_profile}
-              onClick={() => openProfile()}
-            >
-              <Image
-                src={profileImageSrc}
-                alt="Profile"
-                width={40}
-                height={40}
-                className={Style.navbar_container_right_profile}
-              />
-            </div>
-            {isProfileMenuOpen && (
-              <div className={Style.profile_menu}
-              onMouseLeave={closeProfileMenu}
-              >
-                <div className={Style.profileMenuContainer}>
-                  <Profile
-                    currentAccount={currentAccount}
-                    isWalletConnected={isWalletConnected}
-                    disconnectWallet={disconnectWallet}
-                    closeMenu={openProfile}
-                    setIsProfileMenuOpen={setIsProfileMenuOpen}
-                    showWalletInfo={showWalletInfo} 
-                    setProfileImageSrc={setProfileImageSrc} 
-                  />
-                </div>
-              </div>
-            )}
-          </div>
+<div className={Style.navbar_container_right_profile_box}>
+  <div
+    className={Style.navbar_container_right_profile}
+    onClick={() => openProfile()}
+  >
+    <Image
+      src={profileImageSrc}
+      alt="Profile"
+      width={40}
+      height={40}
+      className={Style.navbar_container_right_profile}
+    />
+  </div>
+  {isProfileMenuOpen && (
+    <div className={Style.profile_menu} onMouseLeave={closeProfileMenu}>
+      <div className={Style.profileMenuContainer}>
+        <Profile
+           currentAccount={currentAccount}
+  isWalletConnected={isWalletConnected}
+  disconnectWallet={disconnectWallet}
+  closeMenu={openProfile}
+  setIsProfileMenuOpen={setIsProfileMenuOpen}
+  showWalletInfo={showWalletInfo}
+  setProfileImageSrc={setProfileImageSrc}
+  isLoginAndSignUpOpen={isLoginAndSignUpOpen} // Add this line
+  setIsLoginAndSignUpOpen={setIsLoginAndSignUpOpen}
+  showLoginAndSignUp={showLoginAndSignUp}
+  setShowLoginAndSignUp={setShowLoginAndSignUp}
+        />
+      </div>
+    </div>
+  )}
+</div>
+
+
+          
         </div>
       </div>
       {/* MENU BUTTON */}

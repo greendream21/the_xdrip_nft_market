@@ -1,17 +1,22 @@
 
-.user_box_social_item{
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-top: 1.5rem;
-    border: 2px solid var(--shadow-dar-color);
-    padding: 1rem;
-    border-radius: 1rem;
-    font-size: 1.2rem;
-    line-height: 0;
-    cursor: pointer;
-    transition: all .3s ease-in;
+.user_box_social_item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%; 
+  margin: 0 auto 20px auto;
 }
+
+.user {
+    margin-top: 100px; 
+  z-index: 10;
+}
+
+
+.user_box_social {
+  margin-top: 2rem;
+}
+
 
 .active{
     box-shadow: var(--box-shadow);
@@ -47,10 +52,19 @@
     margin-top: 3rem;
 }
 
-.user_box_input_box{
+/*.user_box_input_box{
     display: grid;
     align-items: center;
     margin-top: 1rem;
+}
+*/
+
+.user_box_input_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%; 
+  margin: 0 auto 20px auto;
 }
 
 .user_box_input_box_label{
@@ -72,7 +86,7 @@ border: 1px solid var(--shadow-dark-color);
 
 
 .button{
-    width: 100%;
+    width: 40%;
     margin-top: 3rem;
     display: flex;
     justify-content: center;
