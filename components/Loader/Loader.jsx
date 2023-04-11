@@ -11,10 +11,10 @@ const Loader = () => {
       <div className={Style.Loader_box}>
         <div className={Style.Loader_box_img}>
           <Image
-            src={images.loader}
+            src={images.logo}
             alt="loader"
-            width={533}
-            height={300}
+            width={322}
+            height={53}
             className={Style.Loader_box_img_img}
             style={{objectFit:"cover"}}
           />

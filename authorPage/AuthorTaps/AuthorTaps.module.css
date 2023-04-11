@@ -10,20 +10,23 @@
     margin:  0 auto;
     display: flex;
     justify-content: space-between;
+    
 }
 
 .AuthorTaps_box_left_btn{
     display: flex;
     gap: 2rem;
     align-items: center;
+    
 }
 
 .AuthorTaps_box_left_btn button{
     border: 4px double rgba(1,122,254,255);
     outline: 0;
     background-color: var(--main-bg-color);
-    font-size: 1.2rem;
-    border-radius: 2rem;
+    font-family: "Good Times";
+    font-size: 1rem;
+    border-radius: .5rem;
     padding: .5rem 1rem;
     cursor: pointer;
     transition: all .3s ease-in;
@@ -48,7 +51,7 @@
 
 .AuthorTaps_box_right_para{
     border: 4px double rgba(1,122,254,255);
-    border-radius: 2rem;
+    border-radius: .75rem;
     width: 17.5rem;
     padding: 0 2rem;
     display: grid;

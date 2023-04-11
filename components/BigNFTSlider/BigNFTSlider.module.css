@@ -1,3 +1,5 @@
+
+
 .bigNFTSlider_box{
     margin:  0 auto;
     width: 70%;
@@ -22,7 +24,7 @@
 .bigNFTSlider_box_left h2{
     font-size: 3.5rem;
     line-height: 0;
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
 
@@ -131,7 +133,7 @@
 
 .bigNFTSlider_box_left_bidding_box_timer_item {
     font-size: 1.1rem;
-    margin-top: 0rem;
+    margin-top: 2rem;
     align-items: center;
     padding-left: 4.5rem;
     font-weight: 900;

@@ -6,23 +6,32 @@
 }
 
 .Loader_box{
-    width: 50%;
+    width: 100%;
     margin: 0 auto;
     text-align: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
 
-.Loader_box_img{
+.Loader_box_img {
     margin-bottom: 14rem;
     margin-top: 8rem;
-    animation:  mymove 3s infinite;
-    
+    animation: mymove 10s infinite;
+    opacity: 0;
+    animation-name: fade;
+    animation-duration: 4s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
 }
 
-
-@keyframes mymove {
-    50% {transform: rotate(360deg);}
-}
-
-.Loader_box_img_img{
-    border-radius: 50%;
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
