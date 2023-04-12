@@ -39,12 +39,8 @@ import service4 from "./service-4.png";
 import xm from "./xm.png";
 import logo from "./logo.png";
 import logo2 from "./logo_2.png";
-import logo3 from "./logo_3.png";
-import logo4 from "./logo_4.png";
-import logo5 from "./logo_5.png";
-import logo6 from "./logo_6.png";
-import logo7 from "./logo_7.png";
 import facebook from "./facebook.svg";
+import google from "./google.svg";
 import twitter from "./twitter.svg";
 import telegram from "./telegram.svg";
 import youtube from "./youtube.svg";
@@ -145,12 +141,8 @@ export default {
   service4,
   logo,
   logo2,
-  logo3,
-  logo4,
-  logo5,
-  logo6,
-  logo7,
   facebook,
+  google,
   telegram,
   twitter,
   vector,

@@ -183,11 +183,12 @@ return (
           >
             <p>Password</p>
             <p>
-              <a href="#">Forgot password</a>
+              <a href="#">Forgot password ?</a>
             </p>
           </label>
           <input
             type="password"
+            placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
