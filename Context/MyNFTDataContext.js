@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import Web3 from 'web3';
 import { useAddress } from "@thirdweb-dev/react";
 import mohABI from "./mohABI"
 
 
 const BSC_RPC_URL = 'https://data-seed-prebsc-1-s1.binance.org:8545/'; 
+
+export const MyNFTDataContext = createContext();
 
 const MyNFTData = ({ children }) => {
   const address = useAddress();
@@ -44,7 +46,29 @@ const MyNFTData = ({ children }) => {
     fetchNFTs();
   }, [address]);
 
+
+
+  const renderMedia = (url) => {
+  if (!url) {
+    return <p>No media found</p>;
+  }
+
+  const fileExtension = url.split('.').pop().toLowerCase();
+
+  if (['mp4', 'webm', 'ogg'].includes(fileExtension)) {
+    return <video src={url} alt="video" width="150" controls />;
+  } else if (['mp3', 'wav', 'ogg'].includes(fileExtension)) {
+    return <audio src={url} controls />;
+  } else {
+    return <img src={url} alt="NFT" width="150" />;
+  }
+};
+  
+
+
   return (
+    
+        
     <MyNFTDataContext.Provider value={{ nfts }}>
       {children}
     </MyNFTDataContext.Provider>

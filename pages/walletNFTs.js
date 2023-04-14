@@ -1,8 +1,13 @@
 import React from 'react';
 import  NFTWallet  from '../components/NFTWallet/NFTWallet';
+import MyNFTData from '../Context/MyNFTDataContext';
 
 const MyNFTsPage = () => {
-  return <NFTWallet />;
+  return (
+    <MyNFTData>
+      <NFTWallet />
+    </MyNFTData>
+  );
 };
 
 export default MyNFTsPage;
