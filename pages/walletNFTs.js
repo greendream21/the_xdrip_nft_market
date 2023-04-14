@@ -42,18 +42,38 @@ const NFTWallet = () => {
 
     fetchNFTs();
   }, [address]);
+  
 
-  return (
+  const renderMedia = (url) => {
+  if (!url) {
+    return <p>No media found</p>;
+  }
+
+  const fileExtension = url.split('.').pop().toLowerCase();
+
+  if (['mp4', 'webm', 'ogg'].includes(fileExtension)) {
+    return <video src={url} alt="video" width="150" controls />;
+  } else if (['mp3', 'wav', 'ogg'].includes(fileExtension)) {
+    return <audio src={url} controls />;
+  } else {
+    return <img src={url} alt="NFT" width="150" />;
+  }
+};
+  
+  
+  
+
+   return (
     <div>
-      <h1>My NFTs</h1>
+      <h1>My Medal</h1>
       {address ? (
         <div>
           {nfts.map(({ tokenId, metadata }) => (
-            <div key={tokenId}>
-              <h2>{metadata.name}</h2>
-              <img src={metadata.image} alt={metadata.name} width="150" />
-              <p>Token ID: {tokenId}</p>
-              <p>Description: {metadata.description}</p>
+  <div key={tokenId}>
+    <h2>{metadata.name}</h2>
+    {renderMedia(metadata.animation_url)}
+    <p>Token ID: {tokenId}</p>
+    <p>Description: {metadata.description}</p>
             </div>
           ))}
         </div>
