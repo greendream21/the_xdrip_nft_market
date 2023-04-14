@@ -4,6 +4,7 @@ import Head from "next/head";
 import { NavBar, Footer } from "../components/componentsindex";
 import { NFTMarketplaceProvider } from "../Context/NFTMarketplaceContext";
 
+
 const activeChainId = 97;
 
 const MyApp = ({ Component, pageProps }) => (
@@ -16,13 +17,13 @@ const MyApp = ({ Component, pageProps }) => (
         content=""
       />
     </Head>
+    
     <NFTMarketplaceProvider>
-      <NavBar />
-      <Component {...pageProps} />
-      <Footer />
+        <NavBar />
+        <Component {...pageProps} />
+        <Footer />      
     </NFTMarketplaceProvider>
   </ThirdwebProvider>
 );
 
 export default MyApp;
-

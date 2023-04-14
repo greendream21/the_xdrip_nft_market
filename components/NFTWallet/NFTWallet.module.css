@@ -1,0 +1,38 @@
+/* NFTWallet.module.css */
+
+.collection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Styles for Banner component */
+  .banner-video {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+  
+  /* Styles for NFTWalletCard component */
+  .card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .card-item {
+    margin: 20px;
+  }
+  
+  .card-item img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+  }
+  
+  .card-item h3 {
+    margin-top: 10px;
+    font-size: 20px;
+    text-align: center;
+  }
+  

@@ -1,0 +1,50 @@
+/* NFTWalletCard.module.css */
+
+.NFTWalletCard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .NFTWalletCard_box {
+    width: 250px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .NFTWalletCard_box_img {
+    height: 200px;
+    position: relative;
+  }
+  
+  .NFTWalletCard_box_img_img {
+    object-fit: cover;
+  }
+  
+  .NFTWalletCard_box_info {
+    padding: 10px;
+  }
+  
+  .NFTWalletCard_box_price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .NFTWalletCard_box_price_box {
+    text-align: right;
+  }
+  
+  .NFTWalletCard_box_price_stock {
+    display: flex;
+    align-items: center;
+  }
+  
+  .NFTWalletCard_box_price_stock span {
+    margin-left: 5px;
+  }
+  

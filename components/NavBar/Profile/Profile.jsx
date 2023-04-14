@@ -21,22 +21,22 @@ const Profile = ({
   isLoginAndSignUpOpen,
   setIsLoginAndSignUpOpen,
 }) => {
-  
+
   const { account, library } = useWeb3React();
 
-   const handleProfilePictureChange = async (file) => {
-  try {
-    const url = await uploadProfilePicture(file);
-    setProfileImageSrc(url);
-    setMessage("Profile picture uploaded successfully!");
+  const handleProfilePictureChange = async (file) => {
+    try {
+      const url = await uploadProfilePicture(file);
+      setProfileImageSrc(url);
+      setMessage("Profile picture uploaded successfully!");
 
-    // Update user's profile picture in the Firebase database
-    await updateUser(currentAccount, { profilePicture: url });
-  } catch (error) {
-    console.log(error);
-    setMessage("Failed to upload profile picture!");
-  }
-};
+      // Update user's profile picture in the Firebase database
+      await updateUser(currentAccount, { profilePicture: url });
+    } catch (error) {
+      console.log(error);
+      setMessage("Failed to upload profile picture!");
+    }
+  };
 
   const handleDisconnect = () => {
     disconnectWallet();
@@ -59,7 +59,7 @@ const Profile = ({
     }
   }, [account, library]);
 
- return (
+  return (
     <>
       {isLoginAndSignUpOpen && (
         <LoginAndSignUp
@@ -72,18 +72,31 @@ const Profile = ({
           <div className={styles.profileBox}>
             <div className={styles.profileItems}>
               <div className={styles.profileItem}>
-  
- <Link href="/loginandsignup">
-  <a onClick={() => setIsProfileMenuOpen(false)}>
-    <FaUserAlt />
-    <p>{isWalletConnected ? 'My Profile' : 'Login'}</p>
-  </a>
-</Link>
-</div>
-              <div className={styles.profileItem}>
-                <FaRegImage />
-                <p>My Collections</p>
+
+                <Link href="/loginandsignup">
+                  <a onClick={() => setIsProfileMenuOpen(false)}>
+                    <FaUserAlt />
+                    <p>{isWalletConnected ? 'My Profile' : 'Login'}</p>
+                  </a>
+                </Link>
               </div>
+              <div className={styles.profileItem}>
+                {isWalletConnected ? (
+                  <Link href="/walletNFTs">
+                    <a onClick={() => setIsProfileMenuOpen(false)}>
+                      <FaRegImage />
+                      <p>My Wallet</p>
+                    </a>
+                  </Link>
+                ) : (
+                  <a>
+                    <FaRegImage />
+                    <p>My Wallet</p>
+                  </a>
+                )}
+              </div>
+
+
               <div className={styles.profileItem}>
                 <FaUserEdit />
                 <p>Edit Profile</p>
@@ -107,7 +120,7 @@ const Profile = ({
           </div>
         </div>
       </div>
-      
+
     </>
   );
 };

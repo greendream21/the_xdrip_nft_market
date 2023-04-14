@@ -1,6 +1,12 @@
 import bullet_1 from "./bullet-1.png";
 import bullet_2 from "./bullet-2.png";
 import bullet_3 from "./bullet-3.png";
+import bullet_4 from "./bullet-4.png";
+import bullet_5 from "./bullet-5.png";
+import bullet_6 from "./bullet-6.png";
+import bullet_7 from "./bullet-7.png";
+import bullet_8 from "./bullet-8.png";
+import bullet_9 from "./bullet-9.png";
 import collection from "./collection.png";
 import creatorbackground1 from "./creatorbackground-1.jpeg";
 import creatorbackground2 from "./creatorbackground-2.jpeg";
@@ -32,10 +38,6 @@ import user7 from "./user-7.png";
 import user8 from "./user-8.png";
 import user9 from "./user-9.png";
 import user10 from "./user-10.png";
-import service1 from "./service-1.png";
-import service2 from "./service-2.png";
-import service3 from "./service-3.png";
-import service4 from "./service-4.png";
 import xm from "./xm.png";
 import xm2 from "./xm-circle.png";
 import logo from "./logo.png";
@@ -48,9 +50,6 @@ import youtube from "./youtube.svg";
 import vimeo from "./vimeo.svg";
 import vector from "./VectorHIW.svg";
 import zgcmq from "./zgcmq.svg";
-import hero from "./hero.png";
-import hero3 from "./hero3.png";
-import hero4 from "./hero4.png";
 import nft_image_1 from "./nft-image-1.png";
 import nft_image_2 from "./nft-image-2.png";
 import nft_image_3 from "./nft-image-3.png";
@@ -62,33 +61,32 @@ import earn from "./earn.png";
 import NFTVideo from "./nftvideo.png";
 import hero2 from "./hero2.png";
 import upload from "./upload.png";
-import provider1 from "./provider-1.png";
-import provider2 from "./provider-2.png";
-import provider3 from "./provider-3.png";
-import provider4 from "./provider-4.png";
 import founder1 from "./founder1.jpg";
 import founder2 from "./founder2.jpg";
 import founder3 from "./founder3.jpg";
 import founder4 from "./founder4.jpg";
 import founder5 from "./founder5.jpg"
-import loader from "./loadergif.gif";
-import loader2 from "./loadergif2.gif";
 import errorgif from "./error.gif";
 import transfer from "./transfer.gif";
 import transferEther from "./ethereTransfer.gif";
 
 
 export default {
+  bullet_1,
+  bullet_2,
+  bullet_3,
+  bullet_4,
+  bullet_5,
+  bullet_6,
+  bullet_7,
+  bullet_8,
+  bullet_9,
   hero2,
   founder1,
   founder2,
   founder3,
   founder4,
   founder5,
-  provider1,
-  provider2,
-  provider3,
-  provider4,
   upload,
   NFTVideo,
   earn,
@@ -100,12 +98,7 @@ export default {
   nft_image_3,
   nft_image_4,
   nft_image_5,
-  hero,
-  hero3,
-  hero4,
-  bullet_1,
-  bullet_2,
-  bullet_3,
+  category_logo,
   category_art,
   category_favorites,
   category_gaming,
@@ -114,7 +107,6 @@ export default {
   category_photography,
   category_sports,
   category_videos,
-  category_logo,
   creatorbackground1,
   creatorbackground2,
   creatorbackground3,
@@ -136,10 +128,6 @@ export default {
   user8,
   user9,
   user10,
-  service1,
-  service2,
-  service3,
-  service4,
   logo,
   logo2,
   facebook,
@@ -150,8 +138,6 @@ export default {
   vimeo,
   youtube,
   zgcmq,
-  loader,
-  loader2,
   errorgif,
   transfer,
   transferEther,
