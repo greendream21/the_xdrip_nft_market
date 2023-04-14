@@ -15,11 +15,11 @@
   --icons-bg-color: #e2e6e9;
   --shadow-dark-color: #232627;
   --bg-shadow-dark-color: rgba(43, 47, 49, 0.27);
-  --shadow-light-color: #131516;
+  --shadow-light-color: hwb(200 7% 91%);
   --main-bg-color: #212325;
 
-  --xdrip-light-blue: #7cb4dc;
-  --xdrip-light-gray: #dbd8d3;
+  --xdrip-light-blue: rgb(124, 180, 220);
+  --xdrip-light-gray: rgb(219, 216, 211);
   --xdrip-dark-gray: #1b1c1e;
   --xdrip-gold: #736b5e;
 

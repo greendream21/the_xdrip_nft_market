@@ -9,6 +9,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
+    
 }
 
 .category_box{
@@ -17,24 +18,32 @@
     border-radius: 1rem;
     overflow: hidden;
     cursor: pointer;
+    padding-block: .5rem;
     padding-bottom: 1rem;
+    box-shadow: var(--box-shadow);
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
     
 }
 
 .category_box:hover{
-    box-shadow: var(--box-shadow);
+    box-shadow: 1rem 1rem 1rem rgba(1,122,254,.6);
     
 }
 
 .category_box_img{
     border-radius: 1rem;
+    
+    
 }
 
 .category_box_title{
     
     display: flex;
     align-items: center;
-    padding-left: 0rem;
+    padding-left: 1.5rem;
     gap: 0rem;
    
 }

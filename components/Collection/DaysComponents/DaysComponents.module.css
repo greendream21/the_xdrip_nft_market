@@ -4,11 +4,12 @@
     border-radius: 1rem;
     transition: all .3s ease-in;
     cursor: pointer;
+    box-shadow: var(--box-shadow);
     
 }
 
 .daysComponent:hover{
-    box-shadow: var(--box-shadow);
+    box-shadow: 1rem 1rem 1rem rgba(1,122,254,.6);
 }
 
 

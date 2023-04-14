@@ -17,12 +17,14 @@
     grid-template-columns: 1.5fr 2fr;
     gap: 5rem;
     align-items: center;
+    
 }
 
 .Brand_box_right{
     background-color: #212325c5;
     border-radius: 2.5rem;
     padding: 1rem;
+    box-shadow: var(--box-shadow);
     margin-left: 2rem;
     
 }
