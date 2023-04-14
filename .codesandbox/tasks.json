@@ -31,6 +31,10 @@
     "npm install firebase/auth": {
       "name": "npm install firebase/auth",
       "command": "npm install firebase/auth"
+    },
+    "npm install web3": {
+      "name": "npm install web3",
+      "command": "npm install web3"
     }
   }
 }
