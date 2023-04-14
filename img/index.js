@@ -37,6 +37,7 @@ import service2 from "./service-2.png";
 import service3 from "./service-3.png";
 import service4 from "./service-4.png";
 import xm from "./xm.png";
+import xm2 from "./xm-circle.png";
 import logo from "./logo.png";
 import logo2 from "./logo_2.png";
 import facebook from "./facebook.svg";
@@ -155,4 +156,5 @@ export default {
   transfer,
   transferEther,
   xm,
+  xm2,
 };

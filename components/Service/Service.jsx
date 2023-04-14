@@ -5,6 +5,7 @@ import Link from "next/link";
 //INTERNAL IMPORT
 import Style from "./Service.module.css";
 import images from "../../img";
+import videos from "../../public/videos"
 
 const Service = () => {
   return (
@@ -13,14 +14,9 @@ const Service = () => {
         <Link href="/">
           <a>
             <div className={Style.service_box_item1}>
-              <div className={Style.logo}>
-                <Image
-                  src={images.service1}
-                  alt="Connect Your Wallet"
-                  width={200}
-                  height={200}
-                />
-              </div>
+            <video width="250" height="250" autoPlay loop muted>
+            <source src={videos.coin1} type="video/mp4" />
+          </video>
               <p className={Style.service_box_item_step}>
                 <span>SIGN UP/ IN AND CONNECT</span>
               </p>
@@ -32,12 +28,9 @@ const Service = () => {
         <Link href="#filter">
           <a>
             <div className={Style.service_box_item2}>
-              <Image
-                src={images.service2}
-                alt="Filter & Discover"
-                width={200}
-                height={200}
-              />
+            <video width="250" height="250" autoPlay loop muted>
+            <source src={videos.coin2} type="video/mp4" />
+          </video>
               <p className={Style.service_box_item_step}>
                 <span>SEARCH AND FILTER</span>
               </p>
@@ -52,12 +45,9 @@ const Service = () => {
         <Link href="#creators">
           <a>
             <div className={Style.service_box_item3}>
-              <Image
-                src={images.service3}
-                alt="CREATORS"
-                width={200}
-                height={200}
-              />
+            <video width="250" height="250" autoPlay loop muted>
+            <source src={videos.coin3} type="video/mp4" />
+          </video>
               <p className={Style.service_box_item_step}>
                 <span>XPLORE OUR CREATORS</span>
               </p>
@@ -72,12 +62,9 @@ const Service = () => {
         <Link href="#category">
           <a>
             <div className={Style.service_box_item4}>
-              <Image
-                src={images.service4}
-                alt="Categories"
-                width={200}
-                height={200}
-              />
+            <video width="250" height="250" autoPlay loop muted>
+            <source src={videos.coin5} type="video/mp4" />
+          </video>
               <p className={Style.service_box_item_step}>
                 <span>START TRADING WITH XMARKET</span>
               </p>

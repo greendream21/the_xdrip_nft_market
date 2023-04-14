@@ -7,10 +7,11 @@
     overflow: hidden;
     transition:  all .3s ease-in;
     border-radius: 2rem;
+    box-shadow: var(--box-shadow);
 }
 
 .audioCard_box:hover{
-    box-shadow: var(--box-shadow);
+    box-shadow: 1rem 1rem 1rem rgba(1,122,254,.6);
 }
 
 .audioCard_box_like_time{

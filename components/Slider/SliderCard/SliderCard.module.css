@@ -11,11 +11,13 @@
     border-radius: 2rem;
     margin-left: 3rem;
     width: 100%;
-    gap: 0rem
+    gap: 0rem;
+    box-shadow: var(--box-shadow);
 }
 
 .sliderCard_box:hover{
-    box-shadow: var(--box-shadow);
+   
+    box-shadow: 1rem 1rem 1rem rgba(1,122,254,.6);
 }
 
 .sliderCard_box_img_img{

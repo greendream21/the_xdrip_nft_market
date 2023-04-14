@@ -19,7 +19,7 @@ const LoginAndSignUp = ({ currentAccount, setProfileImageSrc }) => {
   const [password, setPassword] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
   const [message, setMessage] = useState("");
-  
+
 
   const address = useAddress();
 
@@ -107,109 +107,109 @@ const LoginAndSignUp = ({ currentAccount, setProfileImageSrc }) => {
       name: "CONTINUE WITH FACEBOOK",
     },
   ];
-  
-  
-return (
-  <div className={Style.user}>
-    <div className={Style.user_box}>
-      <div className={Style.user_box_social}>
+
+
+  return (
+    <div className={Style.user}>
+      <div className={Style.user_box}>        
+        <div className={Style.form_box}>
+          <form onSubmit={handleSubmit} className={Style.user_box_input}>
+            <div className={Style.user_box_input_box}>
+              <label htmlFor="username">USERNAME</label>
+              <input
+                type="text"
+                placeholder="Enter your username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+
+            <div className={Style.user_box_input_box}>
+              <label htmlFor="email">EMAIL ADDRESS</label>
+              <input
+                type="email"
+                placeholder="example@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div className={Style.user_box_input_box}>
+              <label htmlFor="walletAddress">WALLET ADDRESS</label>
+              <input
+                type="text"
+                placeholder="Enter your wallet address"
+                value={walletAddress}
+                onChange={(e) => setWalletAddress(e.target.value)}
+              />
+            </div>
+
+            <div className={Style.user_box_input_box}>
+              <label
+                htmlFor="password"
+                className={Style.user_box_input_box_label}
+              >
+                <p>Password</p>
+                <p>
+                  <a href="#">Forgot password ?</a>
+                </p>
+              </label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            <div className={Style.user_box_input_box}>
+              <label htmlFor="profilePicture">PROFILE PICTURE</label>
+              <input
+                type="file"
+                accept=".jpg,.jpeg,.png,.gif"
+                onChange={(e) => handleImageUpload(e)}
+              />
+            </div>
+
+            {message && <div className={Style.message}>{message}</div>}
+            <div className={Style.continue_button_box}>
+              <Button btnName="SUBMIT FORM" classStyle={Style.continue_button} />
+            </div>
+          </form>          
+        </div>
+        <p className={Style.user_box_or}>OR</p>
+        <div className={Style.user_box_social}>          
         {socialImage.map((el, i) => (
-          <div
-            key={i}
-            onClick={() => {
-              if (el.name === "CONTINUE WITH TWITTER") {
-                handleSignInWithTwitter();
-              } else if (el.name === "CONTINUE WITH GOOGLE") {
-                handleSignInWithGoogle();
-              } else if (el.name === "CONTINUE WITH FACEBOOK") {
-                handleSignInWithFacebook();
-              }
-            }}
-            className={`${Style.user_box_social_item} ${
-              activeBtn === i + 1 ? Style.active : ""
-            }`}
-          >
-            <Image
-              src={el.social}
-              alt={el.name}
-              width={30}
-              height={30}
-              className={Style.user_box_social_item_img}
-            />
-            <p>
-              <span>{el.name}</span>
-            </p>
-          </div>
-        ))}
+            <div  
+              key={i}
+              onClick={() => {
+                if (el.name === "CONTINUE WITH TWITTER") {
+                  handleSignInWithTwitter();
+                } else if (el.name === "CONTINUE WITH GOOGLE") {
+                  handleSignInWithGoogle();
+                } else if (el.name === "CONTINUE WITH FACEBOOK") {
+                  handleSignInWithFacebook();
+                }
+              }}
+              className={`${Style.user_box_social_item} ${activeBtn === i + 1 ? Style.active : ""
+                }`}
+            >
+              <Image
+                src={el.social}
+                alt={el.name}
+                width={30}
+                height={30}
+                className={Style.user_box_social_item_img}
+              />
+              <p>
+                <span>{el.name}</span>
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
-
-      <p className={Style.user_box_or}>OR</p>
-
-      <form onSubmit={handleSubmit} className={Style.user_box_input}>
-        <div className={Style.user_box_input_box}>
-          <label htmlFor="username">USERNAME</label>
-          <input
-            type="text"
-            placeholder="Enter your username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-
-        <div className={Style.user_box_input_box}>
-          <label htmlFor="email">EMAIL ADDRESS</label>
-          <input
-            type="email"
-            placeholder="example@example.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-
-        <div className={Style.user_box_input_box}>
-          <label htmlFor="walletAddress">WALLET ADDRESS</label>
-          <input
-            type="text"
-            placeholder="Enter your wallet address"
-            value={walletAddress}
-            onChange={(e) => setWalletAddress(e.target.value)}
-          />
-        </div>
-
-        <div className={Style.user_box_input_box}>
-          <label
-            htmlFor="password"
-            className={Style.user_box_input_box_label}
-          >
-            <p>Password</p>
-            <p>
-              <a href="#">Forgot password ?</a>
-            </p>
-          </label>
-          <input
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-
-        <div className={Style.user_box_input_box}>
-          <label htmlFor="profilePicture">PROFILE PICTURE</label>
-          <input
-            type="file"
-            accept=".jpg,.jpeg,.png,.gif"
-            onChange={(e) => handleImageUpload(e)}
-          />
-        </div>
-
-        {message && <div className={Style.message}>{message}</div>}
-
-        <Button btnName="CONTINUE" classStyle={Style.button} />
-      </form>
     </div>
-  </div>
-);
+  );
 };
 
 export default LoginAndSignUp;

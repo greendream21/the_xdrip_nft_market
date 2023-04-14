@@ -71,7 +71,6 @@ const Slider = () => {
           loop={true}
           navigation={true}
           pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
           autoplay={{ delay: 5000 }}
           onSlideChange={() => console.log('slide change')}
           onSwiper={(swiper) => console.log(swiper)}

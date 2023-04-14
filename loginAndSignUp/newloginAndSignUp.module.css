@@ -1,85 +1,136 @@
 .user {
+    width: 100%;
+    margin-top: 0rem;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    padding-top: 10rem;
-    margin-bottom: 18rem;
+
 }
+
 
 .user_box {
-    width: 650px;
-    margin-top: 40px;
-    padding: 20px;
-    
+    display: grid;
+    align-items: center;
+    grid-template-columns: 49% 2% 49%;
+    width: 80%;
+    margin-top: 14rem;
+    margin-bottom: 14rem;
     background: #000000;
-    border: 1px solid  rgba(1, 122, 254, 255);
-    border-radius: 1rem;
+
 }
 
-.user_box_social {
-    display: absolute;
-    margin-top: 2rem;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
 
+.user_box_social {
+    order: 1;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin-top: 0rem;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 
 }
 
 
 .user_box_social_item {
     display: flex;
-    align-items: center;
+    width: 60%;
+    align-content: center;
     justify-content: center;
     font-size: 1.2rem;
     background-color: #0c0c0c;
-    margin: 10px;
-    padding: 10px;
-    border-radius: .5rem;
+    margin: 1.25rem;
+    border-radius: .75rem;
     cursor: pointer;
-    transition: all 0.3s ease;
     gap: .5rem;
+    position: relative;
+    background-color: #7f8c8d;
+    background-image: linear-gradient(to bottom, #bdc3c7, #2c3e50);
+    border: 1px solid #7f8c8d;
+    box-shadow: inset 0 -1px rgba(255, 255, 255, 0.3),
+        0 1px 2px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-weight: bold;
+    line-height: 1;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    transition: background-color 0.2s ease-in-out,
+        color 0.2s ease-in-out,
+        border-color 0.2s ease-in-out;
+
+}
+
+.user_box_social_item:before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    z-index: -1;
+    transform: rotateY(0deg);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
 }
 
 .user_box_social_item:hover {
-    transform: scale(1.1);
-  }
+    transform: scale(1.2);
+
+}
 
 .user_box_or {
+    order: 2;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
     text-align: center;
-    margin-top: 2rem;
+    text-justify: center;
+    font-size: 1.2rem;
     position: relative;
+    justify-content: center;
+    align-items: center;
+
+
+
 }
 
 .user_box_or::before {
     content: "";
-    width: 45%;
+    height: 45%;
     border: 1px solid rgba(1, 122, 254, 255);
-    left: 0;
-    top: .8rem;
+    bottom: .8rem;
     position: absolute;
+
 }
 
 .user_box_or::after {
     content: "";
-    width: 45%;
+    height: 45%;
     border: 1px solid rgba(1, 122, 254, 255);
-    right: 0;
     top: .8rem;
     position: absolute;
 }
 
-.user_box_input {
-    margin-top: 3rem;
+.form_box {
+    order: 3;
+    width: 100%;
+    margin-top: 0rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block: 2rem;
 }
 
-/*.user_box_input_box{
-    display: grid;
-    align-items: center;
-    margin-top: 1rem;
+.user_box_input {
+    margin-top: 0rem;
+    width: 60%;
 }
-*/
+
 
 /* all input boxes */
 .user_box_input_box {
@@ -89,7 +140,7 @@
     font-weight: 600;
     justify-content: space-between;
     width: 100%;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 25px auto;
 }
 
 .user_box_input_box_label {
@@ -98,10 +149,12 @@
     display: flex;
     justify-content: space-between;
     line-height: 0;
+    margin-bottom: -.5rem;
 }
 
 .user_box_input_box_label a {
-    font-size: .75rem;
+    font-size: .7rem;
+
 }
 
 /* all input boxes */
@@ -114,17 +167,20 @@
     background-color: transparent;
 }
 
-
-.button {
-    width: 40%;
-    margin-top: 3rem;
+.continue_button_box {
     display: flex;
-    margin-left: 13rem;
     align-items: center;
     justify-content: center;
-    background-color: #020202;
-    font-size: 1.2rem;
+
 }
+
+.continue_button {
+    display: flex;
+    position: relative;
+    border: 6px double rgba(1, 122, 254, 255);
+}
+
+
 
 @media screen and (max-width: 35em) {
     .user_box_social_item {

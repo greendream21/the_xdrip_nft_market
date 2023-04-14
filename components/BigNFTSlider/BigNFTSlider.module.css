@@ -13,12 +13,13 @@
 .bigNFTSlider_box_left{
     grid-column: 1 / 7;
     grid-row: 1 / -1;
+    margin-top: 1rem;
     background-color: #212325c5;
-    box-shadow: var(--box-shadow-2);
+    box-shadow: var(--box-shadow);
     border-radius: 1rem;
     padding: 2rem;
-    z-index: 1111;
-    height: 80vh;
+    z-index: 111;
+    height: 85vh;
 }
 
 .bigNFTSlider_box_left h2{
@@ -35,7 +36,7 @@
     padding: 1rem;
     background-color: transparent;
     border-radius: 2.5rem;
-    box-shadow: var(--box-shadow-2);
+    box-shadow: var(--box-shadow);
     height: 90vh;
     
 }
@@ -77,6 +78,7 @@
 
 .bigNFTSlider_box_left_creator_collection_icon{
     margin-bottom: 0rem;
+    border-radius: 50%;
 }
 
 .bigNFTSlider_box_left_creator_collection_info{
@@ -163,7 +165,6 @@
 .bigNFTSlider_box_left_sliderBtn{
     display: flex;
     padding-top: 0rem;
-    justify-content: center;
     gap: 35rem;
     font-size: 4rem;
     margin-top: 0rem;
@@ -172,14 +173,15 @@
 
 .bigNFTSlider_box_left_sliderBtn_icon{
     cursor: pointer;
+    position: relative;
     transition:  all .3s ease-in;
     color: rgba(1,122,254,255);
     
 }
 
 .bigNFTSlider_box_left_sliderBtn_icon:hover{
-    border-radius: 50%;
-    padding: 1rem;
+    border-radius: 0%;
+    padding: 0rem;
     
 }
 

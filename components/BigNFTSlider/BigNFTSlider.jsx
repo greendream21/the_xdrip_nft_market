@@ -134,10 +134,10 @@ const BigNFTSlider = () => {
 
             <div className={Style.bigNFTSlider_box_left_creator_collection}>
               <Image
-                src={images.xm}
+                src={images.xm2}
                 alt="Logo"
-                width={75}
-                height={40}
+                width={50}
+                height={50}
 
                 className={Style.bigNFTSlider_box_left_creator_collection_icon}
               />
