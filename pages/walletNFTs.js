@@ -10,4 +10,5 @@ const MyNFTsPage = () => {
   );
 };
 
+
 export default MyNFTsPage;

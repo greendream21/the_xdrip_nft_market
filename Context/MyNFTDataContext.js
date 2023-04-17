@@ -1,16 +1,14 @@
 import React, { createContext, useState, useEffect } from 'react';
 import Web3 from 'web3';
 import { useAddress } from "@thirdweb-dev/react";
-import mohABI from "./mohABI"
-
-
-const BSC_RPC_URL = 'https://data-seed-prebsc-1-s1.binance.org:8545/'; 
+import mohABI from "./mohABI";
 
 export const MyNFTDataContext = createContext();
 
 const MyNFTData = ({ children }) => {
   const address = useAddress();
   const [nfts, setNfts] = useState([]);
+  const BSC_RPC_URL = 'https://data-seed-prebsc-1-s1.binance.org:8545/';
 
   useEffect(() => {
     if (!address) return;
@@ -30,13 +28,16 @@ const MyNFTData = ({ children }) => {
       }
 
       const tokenIds = await Promise.all(nftPromises);
-
       const fetchedNfts = await Promise.all(
         tokenIds.map(async (tokenId) => {
           const tokenURI = await nftContract.methods.tokenURI(tokenId).call();
-          const response = await fetch(tokenURI);
+          const proxyUrl = 'https://api.allorigins.win/raw?url=';
+          const response = await fetch(proxyUrl + tokenURI);
+
           const metadata = await response.json();
-          return { tokenId, metadata };
+          console.log(metadata); //  log metadata in console
+          const mediaUrl = metadata.animation_url || metadata.image;
+          return { tokenId, metadata, mediaUrl };
         })
       );
 
@@ -46,30 +47,24 @@ const MyNFTData = ({ children }) => {
     fetchNFTs();
   }, [address]);
 
-
-
-  const renderMedia = (url) => {
-  if (!url) {
-    return <p>No media found</p>;
-  }
-
-  const fileExtension = url.split('.').pop().toLowerCase();
-
-  if (['mp4', 'webm', 'ogg'].includes(fileExtension)) {
-    return <video src={url} alt="video" width="150" controls />;
-  } else if (['mp3', 'wav', 'ogg'].includes(fileExtension)) {
-    return <audio src={url} controls />;
-  } else {
-    return <img src={url} alt="NFT" width="150" />;
-  }
-};
+  const renderMedia = ( mediaUrl, metadata ) => {
+    if (!metadata || !metadata.animation_url) {
+      return <p>No media found</p>;
+    }
   
-
+    const fileExtension = metadata.animation_url.split('.').pop().toLowerCase();
+  
+    if (['mp4', 'webm', 'ogg'].includes(fileExtension)) {
+      return <video src={metadata.animation_url} alt="video" width="300" controls autoplay muted loop/>;
+    } else if (['gif'].includes(fileExtension)) {
+      return <img src={metadata.animation_url} playsinline autoplay alt="NFT animation" />;
+    } else {
+      return <p>Unsupported file type: {fileExtension}</p>;
+    }
+  };
 
   return (
-    
-        
-    <MyNFTDataContext.Provider value={{ nfts }}>
+    <MyNFTDataContext.Provider value={{ nfts, renderMedia }}>
       {children}
     </MyNFTDataContext.Provider>
   );

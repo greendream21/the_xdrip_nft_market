@@ -1,55 +1,82 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import Style from "./HeroSection.module.css";
 import { Button } from "../componentsindex";
-import images from "../../img";
 import heroVideo from "../../public/videos/hero-video.mp4";
-import videojs from "video.js";
-import "video.js/dist/video-js.css";
-import { FaVolumeMute, FaVolumeUp } from "react-icons/fa";
+import { FaPause, FaPlay, FaVolumeMute, FaVolumeUp } from "react-icons/fa";
 
 const HeroSection = () => {
   const router = useRouter();
   const [isMuted, setIsMuted] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const videoRef = useRef(null);
 
   const handleMuteClick = () => {
     setIsMuted(!isMuted);
   };
 
+  const handlePauseClick = () => {
+    setIsPaused(!isPaused);
+    if (isPaused) {
+      videoRef.current.play();
+    } else {
+      videoRef.current.pause();
+    }
+  };
+
+  useEffect(() => {
+    const options = {
+      rootMargin: "-100px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          videoRef.current.play();
+        } else {
+          setIsVisible(false);
+          videoRef.current.pause();
+        }
+      });
+    }, options);
+
+    observer.observe(videoRef.current);
+
+    return () => {
+      observer.unobserve(videoRef.current);
+    };
+  }, []);
+
   return (
     <div className={Style.heroSection}>
-      <div className={Style.heroSection_box}>
-        <div className={Style.heroSection_box_left}>
-          <h1>DISCOVER,</h1>
-          <h2>COLLECT, </h2>
-          <h3> & SELL NFTS </h3>
-          <p>
-            RAISING THE STANDARD OF XCELLENCE IN DIGITAL ASSETS, ARTWORK, AND COLLECTIVES! 
-          </p>
-          <Button
-            btnName="BEGIN YOUR JOURNEY"
-            handleClick={() => router.push("/searchPage")}
-          />
-        </div>
-        <div className={Style.heroSection_box_right}>
-          <div className={Style.heroSection_box_right_container}>
-            <video
-              src={heroVideo}            
-              loop
-              autoPlay
-              playsInline
-              className={Style.heroSection_box_right_vid}
-              muted={isMuted}
-            />
-            <button
-              onClick={handleMuteClick}
-              className={Style.heroSection_box_right_muteBtn}
-            >
-              {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
-            </button>
+      <video
+        ref={videoRef}
+        src={heroVideo}
+        className={Style.video_background}
+        autoPlay
+        loop
+        muted={isMuted}
+      />
+
+      <div className={Style.mute_button} onClick={handleMuteClick}>
+        {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
+      </div>
+
+      <div className={Style.pause_button} onClick={handlePauseClick}>
+        {isPaused ? <FaPlay /> : <FaPause />}
+      </div>
+
+      {isVisible && (
+        <div className={Style.heroSection_content}>
+          <div className={Style.heroSection_text}>
+            <h1>DISCOVER, COLLECT, & SELL NFTS</h1>
+            <p>RAISING THE STANDARD OF XCELLENCE IN DIGITAL ASSETS, ARTWORK, AND COLLECTIVES!</p>
+            <Button btnName="BEGIN YOUR JOURNEY" handleClick={() => router.push("/searchPage")} />
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

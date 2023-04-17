@@ -146,8 +146,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
     try {
       if (currentAccount) {
       const provider = new ethers.providers.JsonRpcProvider(
-        //--process.env.NEXT_PUBLIC_POLYGON_MUMBAI_RPC
-        "https://polygon-mumbai.g.alchemy.com/v2/0awa485pp03Dww2fTjrSCg7yHlZECw-K"
+        "https://data-seed-prebsc-1-s1.binance.org:8545/"
       );
 
       const contract = fetchContract(provider);
@@ -164,7 +163,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
             } = await axios.get(tokenURI, {});
             const price = ethers.utils.formatUnits(
               unformattedPrice.toString(),
-              "ether"
+              "bnb"
             );
 
             return {
@@ -381,6 +380,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
         disconnectWallet,
       }}
     >
+      
       {children}
       <button onClick={handleConnect}>Connect wallet</button>
     </NFTMarketplaceContext.Provider>

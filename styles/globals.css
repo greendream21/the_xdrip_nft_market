@@ -239,7 +239,7 @@ body {
   margin: 0;
   font-family: 'Good Times', sans-serif;
   font-size: 14px;
-  background-color: var(--main-bg-color);
+  
   color: var(--icons-color);
 }
 

@@ -40,6 +40,7 @@ const collection = () => {
       image: images.nft_image_2,
     },
   ];
+  
   return (
     <div className={Style.collection}>
       <Banner bannerVideo={videos.bannerVideo} />

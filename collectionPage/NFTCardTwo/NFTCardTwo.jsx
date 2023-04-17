@@ -53,7 +53,6 @@ const NFTCardTwo = ({ NFTData }) => {
                 className={Style.NFTCardTwo_box_img_img}
               />
             </div>
-
             <div className={Style.NFTCardTwo_box_info}>
               <div className={Style.NFTCardTwo_box_info_left}>
                 <LikeProfile />
