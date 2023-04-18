@@ -1,47 +1,56 @@
 import React, { createContext, useState, useEffect } from 'react';
 import Web3 from 'web3';
 import { useAddress } from "@thirdweb-dev/react";
-import mohABI from "./mohABI";
+import mohCA_ABI from "./mohCA_ABI.json";
+import marketplaceCA_ABI from "./marketplaceCA_ABI.json";
 
 export const MyNFTDataContext = createContext();
 
 const MyNFTData = ({ children }) => {
   const address = useAddress();
   const [nfts, setNfts] = useState([]);
-  const BSC_RPC_URL = 'https://data-seed-prebsc-1-s1.binance.org:8545/';
+  const bscRpcUrl = 'https://data-seed-prebsc-1-s1.binance.org:8545/';
 
   useEffect(() => {
     if (!address) return;
 
     const fetchNFTs = async () => {
-      const web3 = new Web3(BSC_RPC_URL);
-      const ERC721_ABI = mohABI;
-      const NFT_CONTRACT_ADDRESS = "0x9264115fb1b2ae47199ff529608bcbf8770c83fd";
-      const nftContract = new web3.eth.Contract(ERC721_ABI, NFT_CONTRACT_ADDRESS);
+      const web3 = new Web3(bscRpcUrl);
+      const mohABI = mohCA_ABI.abi;
+      const mohContractAddress = mohCA_ABI.address;
+      const mohnftContract = new web3.eth.Contract(mohABI, mohContractAddress);
 
-      const tokenCount = await nftContract.methods.balanceOf(address).call();
-      const nftPromises = [];
+      const marketplaceContractAddress = marketplaceCA_ABI.address;
+      const marketplaceContract = new web3.eth.Contract(marketplaceCA_ABI.abi, marketplaceContractAddress);
 
-      for (let i = 0; i < tokenCount; i++) {
-        const tokenIdPromise = nftContract.methods.tokenOfOwnerByIndex(address, i).call();
-        nftPromises.push(tokenIdPromise);
-      }
+      const fetchTokensFromContract = async (contract) => {
+        const tokenCount = await contract.methods.balanceOf(address).call();
+        const nftPromises = [];
 
-      const tokenIds = await Promise.all(nftPromises);
-      const fetchedNfts = await Promise.all(
-        tokenIds.map(async (tokenId) => {
-          const tokenURI = await nftContract.methods.tokenURI(tokenId).call();
-          const proxyUrl = 'https://api.allorigins.win/raw?url=';
-          const response = await fetch(proxyUrl + tokenURI);
+        for (let i = 0; i < tokenCount; i++) {
+          const tokenIdPromise = contract.methods.tokenOfOwnerByIndex(address, i).call();
+          nftPromises.push(tokenIdPromise);
+        }
 
-          const metadata = await response.json();
-          console.log(metadata); //  log metadata in console
-          const mediaUrl = metadata.animation_url || metadata.image;
-          return { tokenId, metadata, mediaUrl };
-        })
-      );
+        const tokenIds = await Promise.all(nftPromises);
 
-      setNfts(fetchedNfts);
+        const fetchedNfts = await Promise.all(
+          tokenIds.map(async (tokenId) => {
+            const tokenURI = await contract.methods.tokenURI(tokenId).call();
+
+            const response = await fetch(tokenURI);
+            const metadata = await response.json();
+            return { tokenId, metadata };
+          })
+        );
+
+        return fetchedNfts;
+      };
+
+      const nftsFromMohContract = await fetchTokensFromContract(mohnftContract);
+      const nftsFromMarketplaceContract = await fetchTokensFromContract(marketplaceContract);
+
+      setNfts([...nftsFromMohContract, ...nftsFromMarketplaceContract]);
     };
 
     fetchNFTs();
@@ -51,13 +60,13 @@ const MyNFTData = ({ children }) => {
     if (!metadata || !metadata.animation_url) {
       return <p>No media found</p>;
     }
-  
+
     const fileExtension = metadata.animation_url.split('.').pop().toLowerCase();
-  
+
     if (['mp4', 'webm', 'ogg'].includes(fileExtension)) {
-      return <video src={metadata.animation_url} alt="video" width="300" controls autoplay muted loop/>;
+      return <video src={metadata.animation_url} alt="video" width="300" controls autoplay muted loop />;
     } else if (['gif'].includes(fileExtension)) {
-      return <img src={metadata.animation_url} playsinline autoplay alt="NFT animation" />;
+      return <img src={metadata.animation_url} playsInline autoPlay alt="NFT animation" />;
     } else {
       return <p>Unsupported file type: {fileExtension}</p>;
     }

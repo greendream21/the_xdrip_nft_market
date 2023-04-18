@@ -1,4 +1,14 @@
 import React, { useState, useEffect } from "react";
+import create from "ipfs-http-client";
+
+import mohABI from "./mohABI.json";
+import marketplaceABI from "./marketplaceABI.json";
+
+const NFTMarketplaceAddress = marketplaceABI.address;
+const NFTMarketplaceABI = marketplaceABI.abi;
+const MohAddress = mohABI.address;
+const MohABI = mohABI.abi;
+
 import { useRouter } from "next/router";
 import axios from "axios";
 import { ethers } from "ethers";
@@ -8,25 +18,24 @@ import {
   useAddress,
   useConnectionStatus,
 } from "@thirdweb-dev/react";
-import { ThirdwebSDK } from "@thirdweb-dev/sdk";
+//import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 
 const subdomain = process.env.NEXT_PUBLIC_SUBDOMAIN;
 
-
-import {
-  NFTMarketplaceAddress,
-  NFTMarketplaceABI,
-} from "./constants";
-
-
-
-
-const fetchContract = (signerOrProvider) =>
+const fetchMarketplaceContract = (signerOrProvider) =>
   new ethers.Contract(
     NFTMarketplaceAddress,
     NFTMarketplaceABI,
     signerOrProvider
   );
+
+const fetchMohContract = (signerOrProvider) =>
+  new ethers.Contract(
+    MohAddress,
+    MohABI,
+    signerOrProvider
+  );
+  
 
 export const NFTMarketplaceContext = React.createContext();
 
