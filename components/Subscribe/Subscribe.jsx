@@ -23,7 +23,7 @@ const Subscribe = () => {
           <div className={Style.subscribe_box_left_box}>
             <span>                
               <Image
-                src={images.bullet_3}
+                src={images.bullet_11}
                 alt="Logo"
                 width={50}
                 height={50}
@@ -34,7 +34,7 @@ const Subscribe = () => {
           <div className={Style.subscribe_box_left_box}>
             <span>
             <Image
-                src={images.bullet_3}
+                src={images.bullet_11}
                 alt="Logo"
                 width={50}
                 height={50}
@@ -46,7 +46,7 @@ const Subscribe = () => {
           <div className={Style.subscribe_box_left_box}>
             <span>
             <Image
-                src={images.bullet_3}
+                src={images.bullet_11}
                 alt="Logo"
                 width={50}
                 height={50}

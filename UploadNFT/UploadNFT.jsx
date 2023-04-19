@@ -29,29 +29,34 @@ const UloadNFT = ({ uploadToIPFS, createNFT }) => {
 
   const categoryArry = [
     {
-      image: images.nft_image_1,
-      category: "Sports",
+      image: images.category_art,
+      category: "ART",
     },
     {
-      image: images.nft_image_2,
-      category: "Arts",
+      image: images.category_gaming,
+      category: "GAMING",
     },
     {
-      image: images.nft_image_3,
-      category: "Music",
+      image: images.category_metaverse,
+      category: "METAVERSE",
     },
     {
-      image: images.nft_image_1,
-      category: "Digital",
+      image: images.category_music,
+      category: "MUSIC",
     },
     {
-      image: images.nft_image_2,
-      category: "Time",
+      image: images.category_photography,
+      category: "PHOTOGRAPHY",
     },
     {
-      image: images.nft_image_3,
-      category: "Photography",
+      image: images.category_videos,
+      category: "VIDEOS",
     },
+    {
+      image: images.category_sports,
+      category: "SPORTS",
+    },
+  
   ];
 
   return (
@@ -76,7 +81,7 @@ const UloadNFT = ({ uploadToIPFS, createNFT }) => {
           <label htmlFor="nft">NFT NAME</label>
           <input
             type="text"
-            placeholder="THE XCELLENT NFT"
+            placeholder="ENTER NFT NAME"
             className={formStyle.Form_box_input_userName}
             onChange={(e) => setName(e.target.value)}
           />
@@ -91,7 +96,7 @@ const UloadNFT = ({ uploadToIPFS, createNFT }) => {
 
             <input
               type="text"
-              placeholder="WWW.XDRIP.IO"
+              placeholder="ENTER YOUR WEBSITE"
               onChange={(e) => setWebsite(e.target.value)}
             />
           </div>
@@ -136,8 +141,8 @@ const UloadNFT = ({ uploadToIPFS, createNFT }) => {
                     <Image
                       src={el.image}
                       alt="background image"
-                      width={70}
-                      height={70}
+                      width={50}
+                      height={50}
                       className={Style.upload_box_slider_box_img_img}
                     />
                   </div>
@@ -145,7 +150,7 @@ const UloadNFT = ({ uploadToIPFS, createNFT }) => {
                     <TiTick />
                   </div>
                 </div>
-                <p>MEDALS OF HONOR - {el.category} </p>
+                <p>{el.category} </p>
               </div>
             ))}
           </div>
@@ -179,14 +184,14 @@ const UloadNFT = ({ uploadToIPFS, createNFT }) => {
             </div>
           </div>
           <div className={formStyle.Form_box_input}>
-            <label htmlFor="Propertie">NFT PROPERTIES</label>
+            <label htmlFor="Properties">NFT PROPERTIES</label>
             <div className={formStyle.Form_box_input_box}>
               <div className={formStyle.Form_box_input_box_icon}>
                 <AiTwotonePropertySafety />
               </div>
               <input
                 type="text"
-                placeholder="Propertie"
+                placeholder="Properties"
                 onChange={(e) => setProperties(e.target.value)}
               />
             </div>
@@ -200,7 +205,7 @@ const UloadNFT = ({ uploadToIPFS, createNFT }) => {
               </div>
               <input
                 type="text"
-                placeholder="Price"
+                placeholder="Price in BNB"
                 onChange={(e) => setPrice(e.target.value)}
               />
             </div>

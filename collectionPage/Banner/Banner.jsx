@@ -21,7 +21,7 @@ const Banner = () => {
         <div className={Style.banner_advert_1}>
           <video 
           ref={videoRef1}
-          src={banner2}
+          src={banner3}
           className={Style.banner_advert_vid1}
            width="100%" 
            height="100%" 
@@ -33,7 +33,7 @@ const Banner = () => {
           <video 
           ref={videoRef2}
           src={banner2} 
-          className={Style.banner_advert_vid3}
+          className={Style.banner_advert_vid2}
           width="100%" 
           height="100%" 
           loop 

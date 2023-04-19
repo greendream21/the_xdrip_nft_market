@@ -18,36 +18,48 @@ const HeroSection = () => {
 
   const handlePauseClick = () => {
     setIsPaused(!isPaused);
-    if (isPaused) {
-      videoRef.current.play();
-    } else {
-      videoRef.current.pause();
+    if (videoRef.current) {
+      if (isPaused) {
+        videoRef.current.play();
+      } else {
+        videoRef.current.pause();
+      }
     }
   };
-
+  
   useEffect(() => {
     const options = {
       rootMargin: "-100px",
     };
-
+  
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          videoRef.current.play();
+          if (videoRef.current) {
+            videoRef.current.play();
+          }
         } else {
           setIsVisible(false);
-          videoRef.current.pause();
+          if (videoRef.current) {
+            videoRef.current.pause();
+          }
         }
       });
     }, options);
-
-    observer.observe(videoRef.current);
-
+  
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+  
     return () => {
-      observer.unobserve(videoRef.current);
+      if (videoRef.current) {
+        observer.unobserve(videoRef.current);
+      }
     };
   }, []);
+  
+
 
   return (
     <div className={Style.heroSection}>

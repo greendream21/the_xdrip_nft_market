@@ -1,9 +1,22 @@
-import React, { useState, useEffect } from "react";
-import create from "ipfs-http-client";
+import React, { useState, useEffect, useContext } from "react";
+import { create as ipfsHttpClient } from "ipfs-http-client";
+import Web3Modal from "web3modal";
+
+import { YOUR_PINATA_API_KEY, YOUR_PINATA_API_SECRET,  } from "./pinata.js";
+
+
+const client = ipfsHttpClient({
+  host: "https://api.pinata.cloud/pinning/pinFileToIPFS",
+  port: 443,
+  protocol: "https",
+  headers: {
+    authorization: `Bearer ${YOUR_PINATA_API_KEY}:${YOUR_PINATA_API_SECRET}`,
+  },
+});
 
 import mohABI from "./mohABI.json";
 import marketplaceABI from "./marketplaceABI.json";
-
+ 
 const NFTMarketplaceAddress = marketplaceABI.address;
 const NFTMarketplaceABI = marketplaceABI.abi;
 const MohAddress = mohABI.address;
@@ -30,12 +43,7 @@ const fetchMarketplaceContract = (signerOrProvider) =>
   );
 
 const fetchMohContract = (signerOrProvider) =>
-  new ethers.Contract(
-    MohAddress,
-    MohABI,
-    signerOrProvider
-  );
-  
+  new ethers.Contract(MohAddress, MohABI, signerOrProvider);
 
 export const NFTMarketplaceContext = React.createContext();
 
@@ -50,10 +58,10 @@ export const NFTMarketplaceProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
   const [accountBalance, setAccountBalance] = useState("");
   const router = useRouter();
-  
+
   const disconnectWallet = () => {
-  setCurrentAccount(null);
-};
+    setCurrentAccount(null);
+  };
 
   useEffect(() => {
     if (address) {
@@ -89,12 +97,11 @@ export const NFTMarketplaceProvider = ({ children }) => {
   const handleConnect = async () => {
     await connect();
   };
-  
-  
+
   //---UPLOAD TO IPFS FUNCTION
   const uploadToIPFS = async (file) => {
     try {
-      const added = await client.add({ content: file });
+      const added = await client.add(file);
       const url = `${subdomain}/ipfs/${added.path}`;
       return url;
     } catch (error) {
@@ -105,6 +112,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
 
   //---CREATENFT FUNCTION
   const createNFT = async (name, price, image, description, router) => {
+
     if (!name || !description || !price || !image)
       return setError("Data Is Missing"), setOpenError(true);
 
@@ -158,7 +166,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
         "https://data-seed-prebsc-1-s1.binance.org:8545/"
       );
 
-      const contract = fetchContract(provider);
+      const contract = fetchMarketplaceContract(provider);
 
       const data = await contract.fetchMarketItems();
 

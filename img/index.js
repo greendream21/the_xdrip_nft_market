@@ -7,6 +7,8 @@ import bullet_6 from "./bullet-6.png";
 import bullet_7 from "./bullet-7.png";
 import bullet_8 from "./bullet-8.png";
 import bullet_9 from "./bullet-9.png";
+import bullet_10 from "./bullet-10.png";
+import bullet_11 from "./bullet-11.png";
 import collection from "./collection.png";
 import creatorbackground1 from "./creatorbackground-1.jpeg";
 import creatorbackground2 from "./creatorbackground-2.jpeg";
@@ -81,6 +83,8 @@ export default {
   bullet_7,
   bullet_8,
   bullet_9,
+  bullet_10,
+  bullet_11,
   hero2,
   founder1,
   founder2,
