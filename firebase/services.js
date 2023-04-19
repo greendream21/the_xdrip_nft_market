@@ -1,9 +1,12 @@
 import firebaseApp from "./config";
 import { getFirestore, collection, addDoc, updateDoc, doc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
 const firestore = getFirestore();
 const storage = getStorage();
+//const db = firebase.firestore();
 
 export const addUser = async (username, email, walletAddress, profilePicture) => {
   const userRef = collection(firestore, "users");
@@ -50,5 +53,28 @@ export const updateUser = async (userId, updates) => {
     await updateDoc(userRef, updates);
   } catch (error) {
     console.error("Error updating user: ", error);
+  }
+};
+
+const updateUserProfilePicture = async (userId, profilePictureUrl) => {
+  const db = getFirestore();
+  const userRef = doc(db, "users", userId);
+  await updateDoc(userRef, {
+    profilePictureUrl: profilePictureUrl,
+  });
+};
+
+
+export const getUserProfile = async (account) => {
+  try {
+    const doc = await db.collection('users').doc(account).get();
+    if (doc.exists) {
+      return doc.data();
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('Error getting user profile', error);
+    return null;
   }
 };

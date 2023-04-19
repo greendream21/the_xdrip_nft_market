@@ -7,8 +7,11 @@ import Style from "./newloginAndSignUp.module.css";
 import images from "../img";
 import { Button } from "../components/componentsindex.js";
 
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { addUser, getUser, updateUser } from "../firebase/services";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
 import { signInWithPopup, TwitterAuthProvider, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
 
 const LoginAndSignUp = ({ currentAccount, setProfileImageSrc }) => {
@@ -71,22 +74,38 @@ const LoginAndSignUp = ({ currentAccount, setProfileImageSrc }) => {
       setMessage(`Error: ${error.message}`);
     }
   };
+  
+  
+  
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const auth = getAuth();
-    try {
-      // Sign up new users
-      const { user } = await createUserWithEmailAndPassword(auth, email, password);
-      await addUser(username, email, walletAddress, null); // Assuming profilePicture is not provided in this form
-      setMessage("User added successfully!");
-      if (profileImage) {
-        setProfileImageSrc(URL.createObjectURL(profileImage)); // update the profile picture in the Profile component
-      }
-    } catch (error) {
-      setMessage(`Error: ${error.message}`);
+  e.preventDefault();
+  const auth = getAuth();
+  try {
+    // Sign up new users
+    const { user } = await createUserWithEmailAndPassword(auth, email, password);
+    await addUser(username, email, walletAddress, null); // Assuming profilePicture is not provided in this form
+
+    if (profileImage) {
+      // Upload the profile image to Firebase Storage
+      const storage = getStorage();
+      const fileRef = ref(storage, `profileImages/${profileImage.name}`);
+      await uploadBytes(fileRef, profileImage);
+      const imageUrl = await getDownloadURL(fileRef);
+
+      // Update the user's profile picture in the Firebase Firestore database
+      await updateUser(user.uid, {
+        profilePicture: imageUrl,
+      });
+
+      setProfileImageSrc(URL.createObjectURL(profileImage)); // update the profile picture in the Profile component
     }
-  };
+
+    setMessage("User added successfully!");
+  } catch (error) {
+    setMessage(`Error: ${error.message}`);
+  }
+};
 
   const handleImageUpload = (e) => {
     setProfileImage(e.target.files[0]);
@@ -107,7 +126,6 @@ const LoginAndSignUp = ({ currentAccount, setProfileImageSrc }) => {
       name: "CONTINUE WITH FACEBOOK",
     },
   ];
-
 
   return (
     <div className={Style.user}>
