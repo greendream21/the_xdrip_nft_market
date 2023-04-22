@@ -1,7 +1,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: [],
+    domains: ["ipfs.io"],
     formats: ["image/webp"],
   },
   webpack: (config) => {
@@ -13,6 +13,7 @@ module.exports = {
           name: "[name].[ext]",
           outputPath: "videos/",
           publicPath: "/videos",
+          
         },
       },
     });

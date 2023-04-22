@@ -1,22 +1,25 @@
 import React, { useState, useEffect, useContext } from "react";
 import { create as ipfsHttpClient } from "ipfs-http-client";
 import Web3Modal from "web3modal";
+import { NFTStorage, Blob } from 'nft.storage';
 
-import { YOUR_PINATA_API_KEY, YOUR_PINATA_API_SECRET,  } from "./pinata.js";
 
 
-const client = ipfsHttpClient({
-  host: "https://api.pinata.cloud/pinning/pinFileToIPFS",
+
+const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDYwZWQ4NTM5NDVmOGZDZGZjYTY5QzYxQzZBNDQ5NTBGZjhmMjRFNzgiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY4MjEyODUwNjg1MiwibmFtZSI6IlhNYXJrZXQifQ.C7Axph36rDSHa06J886ND2nS9zng3K7UcB-7YqrQ1Kg';
+const client = new NFTStorage({ token: apiKey });
+
+// create an ipfs-http-client instance
+const ipfs = ipfsHttpClient({
+  host: 'ipfs.nft.storage',
   port: 443,
-  protocol: "https",
-  headers: {
-    authorization: `Bearer ${YOUR_PINATA_API_KEY}:${YOUR_PINATA_API_SECRET}`,
-  },
+  protocol: 'https',
 });
+
 
 import mohABI from "./mohABI.json";
 import marketplaceABI from "./marketplaceABI.json";
- 
+
 const NFTMarketplaceAddress = marketplaceABI.address;
 const NFTMarketplaceABI = marketplaceABI.abi;
 const MohAddress = mohABI.address;
@@ -98,11 +101,12 @@ export const NFTMarketplaceProvider = ({ children }) => {
     await connect();
   };
 
-  //---UPLOAD TO IPFS FUNCTION
+  //---UPLOAD TO NFT.STORAGE FUNCTION
   const uploadToIPFS = async (file) => {
     try {
-      const added = await client.add(file);
-      const url = `${subdomain}/ipfs/${added.path}`;
+      const blob = new Blob([file]);
+      const added = await client.storeBlob(blob);
+      const url = `https://ipfs.io/ipfs/${added.cid}`;
       return url;
     } catch (error) {
       setError("Error Uploading to IPFS");
@@ -110,25 +114,25 @@ export const NFTMarketplaceProvider = ({ children }) => {
     }
   };
 
-  //---CREATENFT FUNCTION
-  const createNFT = async (name, price, image, description, router) => {
+ //---CREATE NFT FUNCTION
+ const createNFT = async (name, price, image, description, router) => {
+  if (!name || !description || !price || !image)
+    return setError("Data Is Missing"), setOpenError(true);
 
-    if (!name || !description || !price || !image)
-      return setError("Data Is Missing"), setOpenError(true);
+  const data = JSON.stringify({ name, description, image });
 
-    const data = JSON.stringify({ name, description, image });
+  try {
+    const cid = await client.storeBlob(new Blob([data]));
+    const url = `https://ipfs.io/ipfs/${cid}`;
 
-    try {
-      const added = await client.add(data);
-      const url = `${subdomain}/ipfs/${added.path}`;
+    await createSale(url, price);
+    router.push("/searchPage");
+  } catch (error) {
+    setError("Error while creating NFT");
+    setOpenError(true);
+  }
+};
 
-      await createSale(url, price);
-      router.push("/searchPage");
-    } catch (error) {
-      setError("Error while creating NFT");
-      setOpenError(true);
-    }
-  };
 
   //--- createSale FUNCTION
   const createSale = async (url, formInputPrice, isReselling, id) => {
@@ -166,7 +170,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
         "https://data-seed-prebsc-1-s1.binance.org:8545/"
       );
 
-      const contract = fetchMarketplaceContract(provider);
+      const contract = fetchContract(provider);
 
       const data = await contract.fetchMarketItems();
 
