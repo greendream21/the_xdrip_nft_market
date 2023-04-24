@@ -4,9 +4,10 @@ import Web3Modal from "web3modal";
 import { NFTStorage, Blob } from 'nft.storage';
 
 
+const apiKey = process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY;
 
 
-const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDYwZWQ4NTM5NDVmOGZDZGZjYTY5QzYxQzZBNDQ5NTBGZjhmMjRFNzgiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY4MjEyODUwNjg1MiwibmFtZSI6IlhNYXJrZXQifQ.C7Axph36rDSHa06J886ND2nS9zng3K7UcB-7YqrQ1Kg';
+
 const client = new NFTStorage({ token: apiKey });
 
 const ipfs = ipfsHttpClient({
@@ -175,7 +176,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
         "https://data-seed-prebsc-1-s1.binance.org:8545/"
       );
 
-      const contract = NFTMarketplaceAddress(provider);
+      const contract = connectingWithSmartContract(provider);
 
       const data = await contract.fetchMarketItems();
 
