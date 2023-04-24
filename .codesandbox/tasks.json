@@ -39,6 +39,10 @@
     "npm install ipfs-http-client": {
       "name": "npm install ipfs-http-client",
       "command": "npm install ipfs-http-client"
+    },
+    "npm list next": {
+      "name": "npm list next",
+      "command": "npm list next"
     }
   }
 }
