@@ -1,4 +1,11 @@
 
+.upload{
+ margin-bottom: 14rem;
+}
+
+.Form_box_input{
+    font-size: 2rem;
+}
 .upload_box_input_para{
    padding: 0 1rem;
 }
@@ -43,12 +50,12 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     margin-block: 4rem;
-    gap: 2rem;
+    gap: 0rem;
+    padding-left: 12rem;
 }
 
 .upload_box_btn_style{
-    width: 100%;
-    display: grid;
+    display: grid;    
     align-self: center;
     font-size: 1.3rem;
 }

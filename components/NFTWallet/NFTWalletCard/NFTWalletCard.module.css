@@ -35,6 +35,8 @@
   backface-visibility: hidden;
   border-radius: 1rem;
   overflow: hidden ;
+  background: linear-gradient(90deg, transparent, #1c1853, #1d39b9, #2527a8, #2729af, transparent);
+  animation: rotation_481 5000ms infinite linear;
 }
 
 .NFTWalletCard_box_img {
@@ -144,6 +146,7 @@
   margin-bottom: 0rem;
   padding-left: .5rem;
   padding-right: .5rem;
+  
 }
 
 .NFTWalletCard_box_back h3 {

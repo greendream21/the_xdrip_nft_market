@@ -14,6 +14,7 @@
     text-align: center;
 }
 
+
 .service_box_item1{
     margin-bottom: 0rem;
     position: relative;
@@ -68,6 +69,7 @@
     transform: scale(1.1);
     z-index: 2;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    
   }
 
 
@@ -77,18 +79,27 @@
 }
 
 .service_box_item_step span{
-    background-color: var(--main-bg-color); /*#3d465c;*/
-    padding: .5rem .75rem;
+    padding: 1rem 1.25rem;
+    border: none;
+    outline: none;
+    border-radius: 0.4rem;
     border: 4px double rgba(1,122,254,255);
-    border-radius: 1rem;
-    font-size: 1.05rem;
-    color: white;
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: rgb(14, 14, 26);
+    color: rgb(234, 234, 234);
     font-family: "Good Times";
     cursor: pointer;
-    transition:  all .3s ease-in;
-    box-shadow: var(--box-shadow);
+    transition: 0.6s;
+    box-shadow: 0px 0px 60px #1f4c65;
     
 }
+
+.service_box_item_step span:hover {
+    background: rgb(2,29,78);
+    background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(1,122,254, 0.873) 60%);
+    color: rgb(4, 4, 38);
+  }
 
 @media screen and (max-width: 35em) {
     .service{

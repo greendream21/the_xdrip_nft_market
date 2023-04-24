@@ -5,6 +5,7 @@ import { AiTwotonePropertySafety } from "react-icons/ai";
 import { TiTick } from "react-icons/ti";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { NFTStorage } from "nft.storage";
 
 //INTERNAL IMPORT
 import Style from "./Upload.module.css";
@@ -13,7 +14,7 @@ import images from "../img";
 import { Button } from "../components/componentsindex.js";
 import { DropZone } from "./uploadNFTIndex.js";
 
-const UloadNFT = ({ uploadToIPFS, createNFT }) => {
+const UloadNFT = ({ createNFT }) => {
   const [price, setPrice] = useState("");
   const [active, setActive] = useState(0);
   const [name, setName] = useState("");
@@ -24,7 +25,11 @@ const UloadNFT = ({ uploadToIPFS, createNFT }) => {
   const [category, setCategory] = useState(0);
   const [properties, setProperties] = useState("");
   const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
+
+
+ 
   const router = useRouter();
 
   const categoryArry = [
@@ -56,8 +61,27 @@ const UloadNFT = ({ uploadToIPFS, createNFT }) => {
       image: images.category_sports,
       category: "SPORTS",
     },
-  
   ];
+
+  const uploadToIPFS = async (file) => {
+    const apiKey = process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY;
+    const client = new NFTStorage({ token: apiKey });
+
+    try {
+      const metadata = await client.store({
+        name: file.name,
+        description: "Your NFT description - need to pull this from the formdata",
+        image: new File([file], file.name, { type: file.type }),
+      });
+
+      setImage(metadata.url);
+      setImagePreview(URL.createObjectURL(file)); // set image preview
+      return metadata.url;
+    } catch (error) {
+      console.error("Error uploading to IPFS:", error);
+    }
+  };
+
 
   return (
     <div className={Style.upload}>
@@ -74,6 +98,8 @@ const UloadNFT = ({ uploadToIPFS, createNFT }) => {
         properties={properties}
         setImage={setImage}
         uploadToIPFS={uploadToIPFS}
+        setImagePreview={setImagePreview}
+        imagePreview={imagePreview}
       />
 
       <div className={Style.upload_box}>
@@ -165,7 +191,7 @@ const UloadNFT = ({ uploadToIPFS, createNFT }) => {
               </div>
               <input
                 type="text"
-                placeholder="20%"
+                placeholder="%"
                 onChange={(e) => setRoyalties(e.target.value)}
               />
             </div>
@@ -178,7 +204,7 @@ const UloadNFT = ({ uploadToIPFS, createNFT }) => {
               </div>
               <input
                 type="text"
-                placeholder="165MB"
+                placeholder="MB"
                 onChange={(e) => setFileSize(e.target.value)}
               />
             </div>
@@ -214,7 +240,7 @@ const UloadNFT = ({ uploadToIPFS, createNFT }) => {
 
         <div className={Style.upload_box_btn}>
           <Button
-            btnName="Upload"
+            btnName="UPLOAD YOUR NFT"
             handleClick={async () =>
               createNFT(
                 name,

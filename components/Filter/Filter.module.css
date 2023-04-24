@@ -21,34 +21,44 @@
 }
 
 .filter_box_left button{
-    background-color: var(--main-bg-color); /*#3d465c;*/
-    padding: 1rem 1rem;
+    padding: 1rem 1.25rem;
+    border-radius: 0.4rem;
     border: 4px double rgba(1,122,254,255);
-    border-radius: 1rem;
-    font-size: 1rem;
-    color: var(--xdrip-light-gray);
+    cursor: pointer;
+    background-color: rgb(14, 14, 26);
+    color: rgb(234, 234, 234);
     font-family: "Good Times";
     cursor: pointer;
-    transition:  all .2s ease-in;
-    box-shadow: var(--box-shadow);
+    transition: 0.6s;
+    box-shadow: 0px 0px 60px #1f4c65;
+    -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
 }
 .filter_box_left button:hover{
-    background-color: var(--xdrip-light-gray);
+    background: rgb(2,29,78);
+    background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+    color: rgb(4, 4, 38);
     
     
 }
 
 .filter_box_right_box{
-    background-color: var(--main-bg-color); /*#3d465c;*/
-    padding: 1rem 1rem;
+    padding: 1rem 1.25rem;
+    border-radius: 0.4rem;
     border: 4px double rgba(1,122,254,255);
-    border-radius: 1rem;
-    font-size: 1.1rem;
-   
+    cursor: pointer;
+    background-color: rgb(14, 14, 26);
+    color: rgb(234, 234, 234);
     font-family: "Good Times";
     cursor: pointer;
-    transition:  all .2s ease-in;
-    box-shadow: var(--box-shadow);
+    transition: 0.6s;
+    box-shadow: 0px 0px 60px #1f4c65;
+    -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+}
+
+.filter_box_right_box:hover{
+    background: rgb(2,29,78);
+    background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+    color: rgb(4, 4, 38);
 }
 
 .filter_box_items{
@@ -64,25 +74,43 @@
 }
 
 .filter_box_items_box_item{
-    background-color: black;
+    padding: 1rem 1.25rem;
+    border-radius: 0.4rem;
     border: 4px double rgba(1,122,254,255);
-    padding: .5rem 1rem;
-    border-radius: .5rem;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: .5rem;
+    background-color: rgb(14, 14, 26);
+    color: rgb(234, 234, 234);
+    font-family: "Good Times";
+    cursor: pointer;
+    transition: 0.6s;
+    box-shadow: 0px 0px 60px #1f4c65;
+    -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
 }
 
 .filter_box_items_box_item_trans{
+    padding: 1rem 1.25rem;
+    border-radius: 0.4rem;
     border: 4px double rgba(1,122,254,255);
-    background-color: var(--main-bg-color);
-    padding: .5rem 1rem;
-    border-radius: .5rem;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: .5rem;
+    background-color: rgb(14, 14, 26);
+    color: rgb(234, 234, 234);
+    font-family: "Good Times";
+    cursor: pointer;
+    transition: 0.6s;
+    box-shadow: 0px 0px 60px #1f4c65;
+    -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+}
+
+.filter_box_items_box_item_trans:hover{
+    background: rgb(2,29,78);
+    background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+    color: rgb(4, 4, 38);
+}
+
+.filter_box_items_box_item:hover{
+    background: rgb(2,29,78);
+    background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+    color: rgb(4, 4, 38);
 }
 
 @media screen and (min-device-width: 320px) and (max-device-width: 375px) {

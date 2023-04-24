@@ -3,13 +3,9 @@ import { create as ipfsHttpClient } from "ipfs-http-client";
 import Web3Modal from "web3modal";
 import { NFTStorage, Blob } from 'nft.storage';
 
-
-
-
-const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDYwZWQ4NTM5NDVmOGZDZGZjYTY5QzYxQzZBNDQ5NTBGZjhmMjRFNzgiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY4MjEyODUwNjg1MiwibmFtZSI6IlhNYXJrZXQifQ.C7Axph36rDSHa06J886ND2nS9zng3K7UcB-7YqrQ1Kg';
+const apiKey = process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY;
 const client = new NFTStorage({ token: apiKey });
 
-// create an ipfs-http-client instance
 const ipfs = ipfsHttpClient({
   host: 'ipfs.nft.storage',
   port: 443,
@@ -101,6 +97,8 @@ export const NFTMarketplaceProvider = ({ children }) => {
     await connect();
   };
 
+
+  
   //---UPLOAD TO NFT.STORAGE FUNCTION
   const uploadToIPFS = async (file) => {
     try {
@@ -113,6 +111,10 @@ export const NFTMarketplaceProvider = ({ children }) => {
       setOpenError(true);
     }
   };
+
+
+
+
 
  //---CREATE NFT FUNCTION
  const createNFT = async (name, price, image, description, router) => {
@@ -170,7 +172,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
         "https://data-seed-prebsc-1-s1.binance.org:8545/"
       );
 
-      const contract = fetchContract(provider);
+      const contract = NFTMarketplaceAddress(provider);
 
       const data = await contract.fetchMarketItems();
 

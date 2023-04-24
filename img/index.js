@@ -1,3 +1,4 @@
+import banner_1 from "./banner-left.png";
 import bullet_1 from "./bullet-1.png";
 import bullet_2 from "./bullet-2.png";
 import bullet_3 from "./bullet-3.png";
@@ -74,6 +75,7 @@ import transferEther from "./ethereTransfer.gif";
 
 
 export default {
+  banner_1,
   bullet_1,
   bullet_2,
   bullet_3,

@@ -29,6 +29,7 @@
     "google-auth-library": "^8.7.0",
     "googleapis": "^114.0.0",
     "googleapis-common": "^6.0.4",
+    "ipfs-core": "^0.18.0",
     "ipfs-http-client": "^58.0.1",
     "isomorphic-fetch": "^3.0.0",
     "jquery": "^3.6.4",

@@ -18,44 +18,34 @@
 
 .DropZone_box_input_img_img{
     border-radius: 1rem;
+    padding-left: 2rem;
+    align-self: center;
     /* filter: invert(); */
 }
 
 .DropZone_box_aside{
-    padding: 2rem;
-    border: 3px dotted rgba(1,122,254,255);
-    margin-top: 3rem;
-    border-radius: 1px;
+    padding: .5rem;
+    border: 4px double rgba(1,122,254,255);
+    margin-top: 2rem;
+    
 }
 
 .DropZone_box_aside_box{
     display: grid;
     grid-template-columns: 1.5fr 4fr;
-    gap: 3rem;
+    gap: 0rem;
 }
 
-.DropZone_box_aside_box_preview p span{
+.DropZone_box_aside_box_preview p {
     font-size: 1.2rem;
     font-weight: 700;
-    margin-inline: 1rem;
-}
-
-.DropZone_box_aside_box_preview_one{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-weight: 700;
-    font-size: 1.2rem;
-}
-
-.DropZone_box_aside_box_preview_three{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    margin-inline: 2rem;
+    line-height: 2rem;
 }
 
 @media screen and (max-width: 35em) {
     .DropZone_box_aside_box_preview_one{
-        display: grid;
+        display: flex;
     }
     .DropZone_box_aside_box{
         grid-template-columns: 1fr;
