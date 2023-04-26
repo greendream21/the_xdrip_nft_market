@@ -14,7 +14,7 @@
     "@thirdweb-dev/auth": "^3.0.12",
     "@thirdweb-dev/chains": "^0.1.10",
     "@thirdweb-dev/react": "^3.11.4",
-    "@thirdweb-dev/sdk": "^3.10.7",
+    "@thirdweb-dev/sdk": "^3.10.11",
     "@walletconnect/web3-provider": "^1.8.0",
     "@web3-react/core": "^6.1.9",
     "@web3modal/react": "^2.2.2",

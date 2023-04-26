@@ -2,11 +2,15 @@ import React, { useState, useEffect, useContext } from "react";
 import { create as ipfsHttpClient } from "ipfs-http-client";
 import Web3Modal from "web3modal";
 import { NFTStorage, Blob } from 'nft.storage';
+import marketplaceCA_ABI from "./marketplaceCA_ABI.json";
+import mohCA_ABI from "./mohCA_ABI.json";
+import { useContract } from "@thirdweb-dev/react";
+import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 
+import Web3 from 'web3';
+const web3 = new Web3(Web3.givenProvider);
 
 const apiKey = process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY;
-
-
 
 const client = new NFTStorage({ token: apiKey });
 
@@ -17,13 +21,13 @@ const ipfs = ipfsHttpClient({
 });
 
 
-import mohABI from "./mohABI.json";
-import marketplaceABI from "./marketplaceABI.json";
+//import mohABI from "./mohABI.json";
+//import marketplaceABI from "./marketplaceABI.json";
 
-const NFTMarketplaceAddress = marketplaceABI.address;
-const NFTMarketplaceABI = marketplaceABI.abi;
-const MohAddress = mohABI.address;
-const MohABI = mohABI.abi;
+const NFTMarketplaceAddress = marketplaceCA_ABI.address;
+const NFTMarketplaceABI = marketplaceCA_ABI.abi;
+const MohAddress = mohCA_ABI.address;
+const MohABI = mohCA_ABI.abi;
 
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -38,12 +42,46 @@ import {
 
 const subdomain = process.env.NEXT_PUBLIC_SUBDOMAIN;
 
+
+/*
+const connectingWithSmartContract = async () => {
+  try {
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+
+    const contract = fetchMarketplaceContract(signer);
+    return contract;
+  } catch (error) {
+    console.log("Something went wrong while connecting with contract", error);
+  }
+};
+*/
+
+
+// we use thirdweb for wallets 
+const connectingWithSmartContract = async () => {
+  try {
+    const sdk = new ThirdwebSDK();
+    await sdk.connect();
+    const signer = sdk.getSigner();
+    const contract = fetchMarketplaceContract(signer);
+    //const { contract } = useContract(NFTMarketplaceAddress, NFTMarketplaceABI);
+    return contract;
+  } catch (error) {
+    console.log("Something went wrong while connecting with contract", error);
+  }
+};
+
+
 const fetchMarketplaceContract = (signerOrProvider) =>
   new ethers.Contract(
     NFTMarketplaceAddress,
     NFTMarketplaceABI,
     signerOrProvider
   );
+
 
 const fetchMohContract = (signerOrProvider) =>
   new ethers.Contract(MohAddress, MohABI, signerOrProvider);
@@ -61,6 +99,8 @@ export const NFTMarketplaceProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
   const [accountBalance, setAccountBalance] = useState("");
   const router = useRouter();
+  const [nfts, setNfts] = useState([]);
+
 
   const disconnectWallet = () => {
     setCurrentAccount(null);
@@ -103,6 +143,8 @@ export const NFTMarketplaceProvider = ({ children }) => {
 
 
   
+  
+  
   //---UPLOAD TO NFT.STORAGE FUNCTION
   const uploadToIPFS = async (file) => {
     try {
@@ -119,7 +161,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
 
 
 
-
+/*
  //---CREATE NFT FUNCTION
  const createNFT = async (name, price, image, description, router) => {
   if (!name || !description || !price || !image)
@@ -138,38 +180,70 @@ export const NFTMarketplaceProvider = ({ children }) => {
     setOpenError(true);
   }
 };
+*/
+
+async function createNFT(name, price, image, description, router) {
+  if (!name || !description || !price || !image)
+    return setError("Data Is Missing"), setOpenError(true);
+
+  const data = JSON.stringify({ name, description, image });
+
+  try {
+    const cid = await client.storeBlob(new Blob([data]));
+    const url = `https://ipfs.io/ipfs/${cid}`;
+
+    await createSale(url, price, currentAccount); // pass currentAccount as msg.sender
+    router.push("/searchPage");
+  } catch (error) {
+    setError("Error while creating NFT");
+    setOpenError(true);
+  }
+}
+
+
+
+
+const initThirdWeb = async () => {
+  const sdk = new ThirdwebSDK({
+    subdomain,
+    walletConnectOptions: {
+      bridge: "https://bridge.walletconnect.org",
+    },
+  });
+  await sdk.connect();
+  return sdk;
+};
+
+
 
 
   //--- createSale FUNCTION
-  const createSale = async (url, formInputPrice, isReselling, id) => {
-    try {
-      console.log(url, formInputPrice, isReselling, id);
-      const price = ethers.utils.parseUnits(formInputPrice, "ether");
+  async function createSale(tokenURI, price) {
+  const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+  const account = accounts[0];
 
-      const contract = await connectingWithSmartContract();
 
-      const listingPrice = await contract.getListingPrice();
-
-      const transaction = !isReselling
-        ? await contract.createToken(url, price, {
-            value: listingPrice.toString(),
-          })
-        : await contract.resellToken(id, price, {
-            value: listingPrice.toString(),
-          });
-
-      await transaction.wait();
-      console.log(transaction);
-    } catch (error) {
-      setError("error while creating sale");
-      setOpenError(true);
-      console.log(error);
-    }
+  //const nftMarketplaceContract = new web3.eth.Contract(NFTMarketplaceABI, NFTMarketplaceAddress);
+  const nftMarketplaceContract = new web3.eth.Contract(NFTMarketplaceABI, NFTMarketplaceAddress);
+  const transactionParameters = {
+    to: NFTMarketplaceAddress,
+    from: account,
+    data: nftMarketplaceContract.methods.createToken(tokenURI, price).encodeABI(),
+    value: web3.utils.toHex(web3.utils.toWei('0.025', 'ether')) // Assuming the listing price is 0.025 ETH
   };
 
-  //--FETCHNFTS FUNCTION
+  const txHash = await window.ethereum.request({
+    method: 'eth_sendTransaction',
+    params: [transactionParameters],
+  });
 
-  const fetchNFTs = async () => {
+  return txHash;
+}
+
+ //--FETCHNFTS FUNCTION
+
+  const loadNFTs = async () => {
+   
     try {
       if (currentAccount) {
       const provider = new ethers.providers.JsonRpcProvider(
@@ -214,7 +288,14 @@ export const NFTMarketplaceProvider = ({ children }) => {
       // setOpenError(true);
       console.log(error);
     }
+     return [];
   };
+  
+  
+  async function fetchNFTs() {
+  const fetchedNFTs = await loadNFTs();
+  setNfts(fetchedNFTs);
+}
 
   useEffect(() => {
     fetchNFTs();
