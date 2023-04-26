@@ -27,9 +27,6 @@ const UloadNFT = ({ createNFT }) => {
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
 
-
-
- 
   const router = useRouter();
 
   const categoryArry = [
@@ -70,7 +67,8 @@ const UloadNFT = ({ createNFT }) => {
     try {
       const metadata = await client.store({
         name: file.name,
-        description: "Your NFT description - need to pull this from the formdata",
+        description:
+          "Your NFT description - need to pull this from the formdata",
         image: new File([file], file.name, { type: file.type }),
       });
 
@@ -81,7 +79,6 @@ const UloadNFT = ({ createNFT }) => {
       console.error("Error uploading to IPFS:", error);
     }
   };
-
 
   return (
     <div className={Style.upload}>
@@ -128,7 +125,8 @@ const UloadNFT = ({ createNFT }) => {
           </div>
 
           <p className={Style.upload_box_input_para}>
-          WE WILL INCLUDE A LINK TO THIS URL ON THIS ITEM'S DETAILS PAGE, ENSURING USERS CAN ACCESS MORE INFORMATION ABOUT YOU AND YOUR NFT. 
+            WE WILL INCLUDE A LINK TO THIS URL ON THIS ITEM'S DETAILS PAGE,
+            ENSURING USERS CAN ACCESS MORE INFORMATION ABOUT YOU AND YOUR NFT.
           </p>
         </div>
 
@@ -143,7 +141,8 @@ const UloadNFT = ({ createNFT }) => {
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
           <p>
-            WE WILL INCLUDE THIS DESCRIPTION ON YOUR NFT CARD, INSIDE THE ITEM'S DETAIL PAGE. MARKDOWN SYNTEX IS SUPPORTED AS WELL.
+            WE WILL INCLUDE THIS DESCRIPTION ON YOUR NFT CARD, INSIDE THE ITEM'S
+            DETAIL PAGE. MARKDOWN SYNTEX IS SUPPORTED AS WELL.
           </p>
         </div>
 
