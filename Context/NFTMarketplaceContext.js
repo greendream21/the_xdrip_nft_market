@@ -4,10 +4,12 @@ import Web3Modal from "web3modal";
 import { NFTStorage, Blob } from 'nft.storage';
 import marketplaceCA_ABI from "./marketplaceCA_ABI.json";
 import mohCA_ABI from "./mohCA_ABI.json";
-import { useContract } from "@thirdweb-dev/react";
+//import { useContract } from "@thirdweb-dev/react";
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
+import {uploadToIPFS } from "../UploadNFT/UploadNFT"
 
 import Web3 from 'web3';
+
 const web3 = new Web3(Web3.givenProvider);
 
 const apiKey = process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY;
@@ -144,7 +146,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
 
   
   
-  
+  /*
   //---UPLOAD TO NFT.STORAGE FUNCTION
   const uploadToIPFS = async (file) => {
     try {
@@ -157,9 +159,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
       setOpenError(true);
     }
   };
-
-
-
+*/
 
 /*
  //---CREATE NFT FUNCTION
