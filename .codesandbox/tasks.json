@@ -43,6 +43,18 @@
     "npm list next": {
       "name": "npm list next",
       "command": "npm list next"
+    },
+    "npm install @thirdweb/sdk": {
+      "name": "npm install @thirdweb/sdk",
+      "command": "npm install @thirdweb/sdk"
+    },
+    "npm install thirdweb/sdk": {
+      "name": "npm install thirdweb/sdk",
+      "command": "npm install thirdweb/sdk"
+    },
+    "npm install @thirdweb-dev/sdk": {
+      "name": "npm install @thirdweb-dev/sdk",
+      "command": "npm install @thirdweb-dev/sdk"
     }
   }
 }
