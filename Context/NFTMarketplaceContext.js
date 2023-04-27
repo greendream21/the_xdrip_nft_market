@@ -192,7 +192,11 @@ async function createNFT(name, price, image, description, router) {
     const cid = await client.storeBlob(new Blob([data]));
     const url = `https://ipfs.io/ipfs/${cid}`;
 
-    await createSale(url, price, currentAccount); // pass currentAccount as msg.sender
+    // Convert the price to gwei before passing it to createSale
+    const priceInGwei = ethers.utils.parseUnits(price.toString(), "gwei");
+
+
+    await createSale(url, priceInGwei, currentAccount); // pass currentAccount as msg.sender
     router.push("/searchPage");
   } catch (error) {
     setError("Error while creating NFT");

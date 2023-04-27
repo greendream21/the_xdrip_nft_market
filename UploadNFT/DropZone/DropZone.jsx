@@ -15,35 +15,60 @@ const DropZone = ({
   description,
   royalties,
   fileSize,
+  setFileSize,
   properties,
+  price,
   uploadToIPFS,
   category,
   setImage,
 }) => {
   const [fileUrl, setFileUrl] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [localFileSize, setLocalFileSize] = useState(null);
 
   const ipfsToHttp = (ipfsUrl) => {
     return ipfsUrl.replace("ipfs://", "https://dweb.link/ipfs/");
   };
 
+
+
   const onDrop = useCallback(
-    async (acceptedFile) => {
-      console.log(acceptedFile);
-      const url = await uploadToIPFS(acceptedFile[0]);
-      setFileUrl(url);
-      setImage(url);
-      setImagePreview(URL.createObjectURL(acceptedFile[0])); // update imagePreview
-      console.log(url);
-    },
-    [setImage, setImagePreview, uploadToIPFS]
-  );
+  async (acceptedFile) => {
+    console.log(acceptedFile);
+    const file = acceptedFile[0];
+    setLocalFileSize(file.size); // Call the setFileSize prop
+    const url = await uploadToIPFS(file);
+    setFileUrl(url);
+    setImage(url);
+    setImagePreview(URL.createObjectURL(file)); // update imagePreview
+    console.log(url);
+  },
+  [setImage, setImagePreview, uploadToIPFS, setFileSize]
+);
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: "image/*",
     maxSize: 5000000,
   });
+  
+  
+  const handleInputValue = (input) => {
+  if (typeof input === "string" && input.endsWith("%")) {
+    return parseFloat(input.slice(0, -1)) / 100;
+  } else {
+    return parseFloat(input);
+  }
+};
+
+const formatFileSize = (size) => {
+  if (!size) return null;
+  if (size < 1024) return `${size} bytes`;
+  if (size < 1024 * 1024) return `${(size / 1024).toFixed(2)} KB`;
+  return `${(size / (1024 * 1024)).toFixed(2)} MB`;
+};
+  
+  
 
   return (
     <div className={Style.DropZone}>
@@ -88,8 +113,9 @@ const DropZone = ({
               </div>
 
               <div className={Style.DropZone_box_aside_box_preview_two}>
-                <p>Royalties : {royalties || ""}</p>
-                <p>FileSize : {fileSize || ""}</p>
+                <p>Royalties : {royalties ? handleInputValue(royalties) : ""}</p>
+                <p>Price : {price ? handleInputValue(price) : ""}</p>
+                <p>FileSize : {formatFileSize(localFileSize)}</p>
                 <p>Properties : {properties || ""}</p>
                 <p>Website : {website || ""}</p>
               </div>
