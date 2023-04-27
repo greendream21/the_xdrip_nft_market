@@ -142,7 +142,7 @@ const UloadNFT = ({ createNFT }) => {
           ></textarea>
           <p>
             WE WILL INCLUDE THIS DESCRIPTION ON YOUR NFT CARD, INSIDE THE ITEM'S
-            DETAIL PAGE. MARKDOWN SYNTEX IS SUPPORTED AS WELL.
+            DETAIL PAGE. MARKDOWN SYNTAX IS SUPPORTED AS WELL.
           </p>
         </div>
 
@@ -195,6 +195,7 @@ const UloadNFT = ({ createNFT }) => {
               />
             </div>
           </div>
+          
           <div className={formStyle.Form_box_input}>
             <label htmlFor="size">FILE SIZE</label>
             <div className={formStyle.Form_box_input_box}>
@@ -229,10 +230,24 @@ const UloadNFT = ({ createNFT }) => {
                 <AiTwotonePropertySafety />
               </div>
               <input
-                type="text"
-                placeholder="Price in BNB"
-                onChange={(e) => setPrice(e.target.value)}
-              />
+  type="text"
+  placeholder="Price in BNB"
+  value={price}
+  onChange={(e) => {
+    const value = e.target.value;
+    // Only allow numeric and decimal point characters
+    const newValue = value.replace(/[^0-9.]/g, "");
+    // Ensure that there is only one decimal point
+    const decimalIndex = newValue.indexOf(".");
+    if (decimalIndex !== -1) {
+      const decimalCount = newValue.slice(decimalIndex + 1).length;
+      if (decimalCount > 3) {
+        return;
+      }
+    }
+    setPrice(newValue);
+  }}
+/>
             </div>
           </div>
         </div>
