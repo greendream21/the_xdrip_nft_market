@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Image from "next/image";
+import Img from "next/image";
 import { BsImage } from "react-icons/bs";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { MdVerified, MdTimer } from "react-icons/md";
@@ -44,8 +44,9 @@ const NFTCardTwo = ({ NFTData }) => {
             </div>
 
             <div className={Style.NFTCardTwo_box_img}>
-              <Image
-                src={el.image}
+              <Img
+                src={`https://ipfs.io/ipfs/${el.image.replace("ipfs://", "")}`}
+
                 alt="NFT"
                 width={500}
                 height={500}
