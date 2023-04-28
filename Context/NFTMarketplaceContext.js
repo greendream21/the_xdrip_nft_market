@@ -205,8 +205,6 @@ async function createNFT(name, price, image, description, router) {
 }
 
 
-
-
 const initThirdWeb = async () => {
   const sdk = new ThirdwebSDK({
     subdomain,
@@ -296,6 +294,8 @@ const initThirdWeb = async () => {
   };
   
   
+  /*
+  
   async function fetchNFTs() {
   const fetchedNFTs = await loadNFTs();
   setNfts(fetchedNFTs);
@@ -304,6 +304,29 @@ const initThirdWeb = async () => {
   useEffect(() => {
     fetchNFTs();
   }, []);
+
+*/
+
+async function fetchNFTs() {
+  const nftMarketplaceContract = new web3.eth.Contract(NFTMarketplaceABI, NFTMarketplaceAddress);
+  const data = await nftMarketplaceContract.methods.fetchMarketItems().call();
+  const items = await Promise.all(data.map(async ({tokenId, seller, owner, price}) => {
+    const tokenURI = await nftMarketplaceContract.methods.tokenURI(tokenId).call();
+    const {data: {name, description, image}} = await axios.get(tokenURI, {});
+    return {
+      tokenId,
+      seller,
+      owner,
+      price: web3.utils.fromWei(price, 'ether'),
+      name,
+      description,
+      image,
+      tokenURI,
+    }
+  }));
+  return items;
+}
+
 
   //--FETCHING MY NFT OR LISTED NFTs
   const fetchMyNFTsOrListedNFTs = async (type) => {
