@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { MdOutlineHttp, MdOutlineAttachFile } from "react-icons/md";
 import { FaPercent } from "react-icons/fa";
@@ -59,7 +60,37 @@ const UloadNFT = ({ createNFT }) => {
       category: "SPORTS",
     },
   ];
+  
+  
+  const uploadToIPFS = async (file) => {
+  const apiKey = process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY;
+  const client = new NFTStorage({ token: apiKey });
 
+  try {
+    console.log("Uploading to nft.storage...");
+    const content = await client.storeBlob(new Blob([file], { type: file.type }));
+    
+    console.log("Upload complete, content:", content);
+    console.log("Content CID:", content);
+    
+    const ipfsMediaUrl = `https://${content}.ipfs.nftstorage.link`;
+
+    console.log("Generated IPFS Media URL:", ipfsMediaUrl);
+    if (ipfsMediaUrl.includes("undefined")) {
+      console.error("Error: IPFS URL contains 'undefined'");
+    } else {
+      setImage(ipfsMediaUrl);
+      setImagePreview(URL.createObjectURL(file)); // set image preview
+      return ipfsMediaUrl;
+    }
+  } catch (error) {
+    console.error("Error uploading Media to nft.storage:", error);
+  }
+};  
+
+
+
+/*
   const uploadToIPFS = async (file) => {
     const apiKey = process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY;
     const client = new NFTStorage({ token: apiKey });
@@ -79,7 +110,9 @@ const UloadNFT = ({ createNFT }) => {
       console.error("Error uploading to IPFS:", error);
     }
   };
-
+*/
+  
+  
   return (
     <div className={Style.upload}>
       <DropZone
