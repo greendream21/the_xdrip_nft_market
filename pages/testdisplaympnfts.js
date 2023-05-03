@@ -24,6 +24,10 @@ useEffect(() => {
 
 // adding comments 
 
+const uniqueNFTs = Array.from(new Set(nfts.map((nft) => nft.tokenId)))
+  .map((tokenId) => nfts.find((nft) => nft.tokenId === tokenId));
+
+
   const onHandleSearch = (value) => {
     const filteredNFTS = nfts.filter(({ name }) =>
       name.toLowerCase().includes(value.toLowerCase())
@@ -54,7 +58,7 @@ useEffect(() => {
       />
       <Filter />
       {nfts.length > 0 ? (
-        <NFTCardTwo NFTData={nfts} />
+        <NFTCardTwo NFTData={uniqueNFTs} />
       ) : (
         <div className={Style.loader}>
           <Loader />
