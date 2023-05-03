@@ -22,7 +22,7 @@ useEffect(() => {
   fetchNFTs().then((items) => setNfts(items.reverse()));
 }, []);
 
-
+// adding comments 
 
   const onHandleSearch = (value) => {
     const filteredNFTS = nfts.filter(({ name }) =>
