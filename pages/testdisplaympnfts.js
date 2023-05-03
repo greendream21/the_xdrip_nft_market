@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
 
+import React, { useEffect, useState, useContext } from "react";
 //INTRNAL IMPORT
 import Style from "../styles/searchPage.module.css";
 import { Slider, Brand, Loader } from "../components/componentsindex";
@@ -9,7 +9,6 @@ import { Filter } from "../components/componentsindex";
 import { NFTCardTwo, Banner } from "../collectionPage/collectionIndex";
 import images from "../img";
 
-//SMART CONTRACT IMPORT
 import { NFTMarketplaceContext } from "../Context/NFTMarketplaceContext";
 
 const searchPage = () => {
@@ -18,18 +17,12 @@ const searchPage = () => {
   );
   const [nfts, setNfts] = useState([]);
 
-  useEffect(() => {
-    try {
-      if (currentAccount) {
-        fetchNFTs().then((items) => {
-          setNfts(items.reverse());
-          console.log(nfts);
-        });
-      }
-    } catch (error) {
-      setError("Please reload the browser", error);
-    }
-  }, []);
+
+useEffect(() => {
+  fetchNFTs().then((items) => setNfts(items.reverse()));
+}, []);
+
+
 
   const onHandleSearch = (value) => {
     const filteredNFTS = nfts.filter(({ name }) =>
@@ -41,11 +34,16 @@ const searchPage = () => {
     } else {
       setNfts(filteredNFTS);
     }
+    console.log("NFTData received:", filteredNFTS);
   };
 
   const onClearSearch = () => {
-    fetchNFTs().then((items) => setNfts(items.reverse()));
-  };
+  fetchNFTs().then((items) => {
+    setNfts(items.reverse());
+  });
+};
+
+
 
   return (
     <div className={Style.searchPage}>

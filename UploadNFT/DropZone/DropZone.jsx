@@ -1,7 +1,7 @@
+
 import React, { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import Image from "next/image";
-
 //INTRNAL IMPORT
 import Style from "./DropZone.module.css";
 import images from "../../img";
@@ -26,25 +26,30 @@ const DropZone = ({
   const [imagePreview, setImagePreview] = useState(null);
   const [localFileSize, setLocalFileSize] = useState(null);
 
+
+/*
   const ipfsToHttp = (ipfsUrl) => {
     return ipfsUrl.replace("ipfs://", "https://dweb.link/ipfs/");
   };
-
+*/
 
 
   const onDrop = useCallback(
   async (acceptedFile) => {
     console.log(acceptedFile);
     const file = acceptedFile[0];
-    setLocalFileSize(file.size); // Call the setFileSize prop
+    setLocalFileSize(file.size); // Call the setFileSize prop  
+    
+  //uploadToIPFS(file).then((url) => {
     const url = await uploadToIPFS(file);
     setFileUrl(url);
     setImage(url);
-    setImagePreview(URL.createObjectURL(file)); // update imagePreview
+    setImagePreview(URL.createObjectURL(file));
     console.log(url);
-  },
-  [setImage, setImagePreview, uploadToIPFS, setFileSize]
-);
+    
+    },
+    [setImage, setImagePreview, uploadToIPFS, setFileSize]
+  );
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,

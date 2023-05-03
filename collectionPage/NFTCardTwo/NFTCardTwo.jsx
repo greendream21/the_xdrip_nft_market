@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import Img from "next/image";
 import { BsImage } from "react-icons/bs";
@@ -23,20 +24,20 @@ const NFTCardTwo = ({ NFTData }) => {
     }
   };
 
-  console.log(NFTData);
-
   return (
     <div className={Style.NFTCardTwo}>
-      {NFTData?.map((el, i) => (
-        <Link href={{ pathname: "/NFT-details", query: el }} key={i + 1}>
-          <div className={Style.NFTCardTwo_box} key={i + 1}>
+      {NFTData.map((el, i) => (
+        <Link
+          href={{ pathname: "/NFT-details", query: el }}
+          key={`${el.tokenId}-${i}`}
+        >
+          <div className={Style.NFTCardTwo_box}>
             <div className={Style.NFTCardTwo_box_like}>
               <div className={Style.NFTCardTwo_box_like_box}>
                 <div className={Style.NFTCardTwo_box_like_box_box}>
                   <BsImage className={Style.NFTCardTwo_box_like_box_box_icon} />
                   <p onClick={() => likeNFT()}>
                     {like ? <AiOutlineHeart /> : <AiFillHeart />}
-                    {""}
                     <span>{likeInc + 1}</span>
                   </p>
                 </div>
@@ -45,12 +46,11 @@ const NFTCardTwo = ({ NFTData }) => {
 
             <div className={Style.NFTCardTwo_box_img}>
               <Img
-                src={`https://ipfs.io/ipfs/${el.image.replace("ipfs://", "")}`}
-
+                src={`https://${NFTData[i].image}.ipfs.nftstorage.link`}
                 alt="NFT"
                 width={500}
                 height={500}
-                style={{objectFit:"cover"}}
+                objectFit="cover"
                 className={Style.NFTCardTwo_box_img_img}
               />
             </div>

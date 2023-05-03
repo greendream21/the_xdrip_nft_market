@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+
+import React, { useState, useEffect } from "react";
 import { create as ipfsHttpClient } from "ipfs-http-client";
 import Web3Modal from "web3modal";
 import { NFTStorage, Blob } from 'nft.storage';
 import marketplaceCA_ABI from "./marketplaceCA_ABI.json";
 import mohCA_ABI from "./mohCA_ABI.json";
-//import { useContract } from "@thirdweb-dev/react";
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import {uploadToIPFS } from "../UploadNFT/UploadNFT"
 
@@ -23,9 +23,6 @@ const ipfs = ipfsHttpClient({
 });
 
 
-//import mohABI from "./mohABI.json";
-//import marketplaceABI from "./marketplaceABI.json";
-
 const NFTMarketplaceAddress = marketplaceCA_ABI.address;
 const NFTMarketplaceABI = marketplaceCA_ABI.abi;
 const MohAddress = mohCA_ABI.address;
@@ -40,27 +37,6 @@ import {
   useAddress,
   useConnectionStatus,
 } from "@thirdweb-dev/react";
-//import { ThirdwebSDK } from "@thirdweb-dev/sdk";
-
-const subdomain = process.env.NEXT_PUBLIC_SUBDOMAIN;
-
-
-/*
-const connectingWithSmartContract = async () => {
-  try {
-    const web3Modal = new Web3Modal();
-    const connection = await web3Modal.connect();
-    const provider = new ethers.providers.Web3Provider(connection);
-    const signer = provider.getSigner();
-
-    const contract = fetchMarketplaceContract(signer);
-    return contract;
-  } catch (error) {
-    console.log("Something went wrong while connecting with contract", error);
-  }
-};
-*/
-
 
 // we use thirdweb for wallets 
 const connectingWithSmartContract = async () => {
@@ -69,7 +45,6 @@ const connectingWithSmartContract = async () => {
     await sdk.connect();
     const signer = sdk.getSigner();
     const contract = fetchMarketplaceContract(signer);
-    //const { contract } = useContract(NFTMarketplaceAddress, NFTMarketplaceABI);
     return contract;
   } catch (error) {
     console.log("Something went wrong while connecting with contract", error);
@@ -144,59 +119,19 @@ export const NFTMarketplaceProvider = ({ children }) => {
   };
 
 
-  
-  
-  /*
-  //---UPLOAD TO NFT.STORAGE FUNCTION
-  const uploadToIPFS = async (file) => {
-    try {
-      const blob = new Blob([file]);
-      const added = await client.storeBlob(blob);
-      const url = `https://ipfs.io/ipfs/${added.cid}`;
-      return url;
-    } catch (error) {
-      setError("Error Uploading to IPFS");
-      setOpenError(true);
-    }
-  };
-*/
-
-/*
- //---CREATE NFT FUNCTION
- const createNFT = async (name, price, image, description, router) => {
-  if (!name || !description || !price || !image)
-    return setError("Data Is Missing"), setOpenError(true);
-
-  const data = JSON.stringify({ name, description, image });
-
-  try {
-    const cid = await client.storeBlob(new Blob([data]));
-    const url = `https://ipfs.io/ipfs/${cid}`;
-
-    await createSale(url, price);
-    router.push("/searchPage");
-  } catch (error) {
-    setError("Error while creating NFT");
-    setOpenError(true);
-  }
-};
-*/
-
 async function createNFT(name, price, image, description, router) {
   if (!name || !description || !price || !image)
     return setError("Data Is Missing"), setOpenError(true);
-
-  const data = JSON.stringify({ name, description, image });
+    const data = JSON.stringify({ name, description, image });
 
   try {
     const cid = await client.storeBlob(new Blob([data]));
-    const url = `https://ipfs.io/ipfs/${cid}`;
+    const url = `https://${cid}.ipfs.nftstorage.link`; // Updated base URL
 
-    // Convert the price to gwei before passing it to createSale
+    // convert the price to gwei before passing it to createSale
     const priceInGwei = ethers.utils.parseUnits(price.toString(), "gwei");
 
-
-    await createSale(url, priceInGwei, currentAccount); // pass currentAccount as msg.sender
+    await createSale(url, priceInGwei, currentAccount); 
     router.push("/searchPage");
   } catch (error) {
     setError("Error while creating NFT");
@@ -204,33 +139,18 @@ async function createNFT(name, price, image, description, router) {
   }
 }
 
-
-const initThirdWeb = async () => {
-  const sdk = new ThirdwebSDK({
-    subdomain,
-    walletConnectOptions: {
-      bridge: "https://bridge.walletconnect.org",
-    },
-  });
-  await sdk.connect();
-  return sdk;
-};
-
-
-
-
   //--- createSale FUNCTION
   async function createSale(tokenURI, price) {
   const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
   const account = accounts[0];
 
-
-  //const nftMarketplaceContract = new web3.eth.Contract(NFTMarketplaceABI, NFTMarketplaceAddress);
   const nftMarketplaceContract = new web3.eth.Contract(NFTMarketplaceABI, NFTMarketplaceAddress);
   const transactionParameters = {
     to: NFTMarketplaceAddress,
     from: account,
     data: nftMarketplaceContract.methods.createToken(tokenURI, price).encodeABI(),
+    
+    //Hardcoded price - needs to be updated to form input price (gas issues below .025)
     value: web3.utils.toHex(web3.utils.toWei('0.025', 'ether')) // Assuming the listing price is 0.025 ETH
   };
 
@@ -249,18 +169,14 @@ const initThirdWeb = async () => {
     try {
       if (currentAccount) {
       const provider = new ethers.providers.JsonRpcProvider(
-        "https://data-seed-prebsc-1-s1.binance.org:8545/"
+        "https://binance-testnet.rpc.thirdweb.com/"
       );
-
       const contract = connectingWithSmartContract(provider);
-
       const data = await contract.fetchMarketItems();
-
       const items = await Promise.all(
         data.map(
           async ({ tokenId, seller, owner, price: unformattedPrice }) => {
             const tokenURI = await contract.tokenURI(tokenId);
-
             const {
               data: { image, name, description },
             } = await axios.get(tokenURI, {});
@@ -286,45 +202,46 @@ const initThirdWeb = async () => {
 
       }
     } catch (error) {
-      // setError("Error while fetching NFTS");
-      // setOpenError(true);
+      
+      setError("Error while fetching NFTS");
+      setOpenError(true);
+      
       console.log(error);
     }
      return [];
   };
   
-  
-  /*
-  
-  async function fetchNFTs() {
-  const fetchedNFTs = await loadNFTs();
-  setNfts(fetchedNFTs);
-}
 
-  useEffect(() => {
-    fetchNFTs();
-  }, []);
-
-*/
 
 async function fetchNFTs() {
-  const nftMarketplaceContract = new web3.eth.Contract(NFTMarketplaceABI, NFTMarketplaceAddress);
-  const data = await nftMarketplaceContract.methods.fetchMarketItems().call();
-  const items = await Promise.all(data.map(async ({tokenId, seller, owner, price}) => {
-    const tokenURI = await nftMarketplaceContract.methods.tokenURI(tokenId).call();
-    const {data: {name, description, image}} = await axios.get(tokenURI, {});
-    return {
-      tokenId,
-      seller,
-      owner,
-      price: web3.utils.fromWei(price, 'ether'),
-      name,
-      description,
-      image,
-      tokenURI,
-    }
-  }));
-  return items;
+  try {
+    const nftMarketplaceContract = new web3.eth.Contract(NFTMarketplaceABI, NFTMarketplaceAddress);
+    const data = await nftMarketplaceContract.methods.fetchMarketItems().call();
+
+    console.log("Data fetched from smart contract:", data);
+
+    const items = await Promise.all(data.map(async ({ tokenId, seller, owner, price }) => {
+      const tokenURI = await nftMarketplaceContract.methods.tokenURI(tokenId).call();
+      console.log("Token URI:", tokenURI);
+      const { data: { name, description, image } } = await axios.get(tokenURI, {});
+      console.log("NFT Item:", { tokenId, seller, owner, price, name, description, image, tokenURI });
+      return {
+        tokenId,
+        
+        seller,
+        owner,
+        price: web3.utils.fromWei(price, 'ether'),
+        name,
+        description,
+        image,
+        tokenURI,
+      }
+    }));
+    return items;
+  } catch (error) {
+    console.error("Error fetching NFTs:", error);
+    return [];
+  }
 }
 
 
@@ -375,7 +292,20 @@ async function fetchNFTs() {
   useEffect(() => {
     fetchMyNFTsOrListedNFTs();
   }, []);
-
+  
+    
+  /*
+  
+  async function fetchNFTs() {
+  const fetchedNFTs = await loadNFTs();
+  setNfts(fetchedNFTs);
+}
+  useEffect(() => {
+    fetchNFTs();
+  }, []);
+*/
+  
+  
   //---BUY NFTs FUNCTION
   const buyNFT = async (nft) => {
     try {
@@ -394,7 +324,6 @@ async function fetchNFTs() {
     }
   };
 
-  //------------------------------------------------------------------
 
   //----TRANSFER FUNDS
 
@@ -493,6 +422,7 @@ async function fetchNFTs() {
   return (
     <NFTMarketplaceContext.Provider
       value={{
+        nfts,
         handleConnect,
         checkIfWalletConnected,
         uploadToIPFS,
@@ -517,7 +447,6 @@ async function fetchNFTs() {
     >
       
       {children}
-      <button onClick={handleConnect}>Connect wallet</button>
     </NFTMarketplaceContext.Provider>
   );
 };
