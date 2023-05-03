@@ -61,6 +61,7 @@ const UloadNFT = ({ createNFT }) => {
     },
   ];
   
+  // this process is logged for visibility in console 
   
   const uploadToIPFS = async (file) => {
   const apiKey = process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY;

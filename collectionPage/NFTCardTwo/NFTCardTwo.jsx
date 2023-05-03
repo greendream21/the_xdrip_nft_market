@@ -46,7 +46,7 @@ const NFTCardTwo = ({ NFTData }) => {
 
             <div className={Style.NFTCardTwo_box_img}>
               <Img
-                src={`https://${NFTData[i].image}.ipfs.nftstorage.link`}
+                 src={`https://${NFTData[i].image}.ipfs.dweb.link`}
                 alt="NFT"
                 width={500}
                 height={500}

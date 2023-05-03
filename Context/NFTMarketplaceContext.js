@@ -16,6 +16,8 @@ const apiKey = process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY;
 
 const client = new NFTStorage({ token: apiKey });
 
+//not actually using this http client but keeping code and web3 provider  wrapper for now
+
 const ipfs = ipfsHttpClient({
   host: 'ipfs.nft.storage',
   port: 443,
