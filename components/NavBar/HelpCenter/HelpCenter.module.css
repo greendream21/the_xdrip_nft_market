@@ -1,10 +1,11 @@
 .helpCenter{
     padding: .5rem 1rem;
     transition: all .3s ease-in;
+    font-family: 'Aldrich', sans-serif;
 }
 
 .helpCenter:hover{
-    background-color: var(--icons-color);
+    background-color: rgb(37, 37, 37);
     /*color: var(--shadow-dark-color);*/
-    border-radius: .3rem;
+    border-radius: .2rem;
 }

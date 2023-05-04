@@ -18,11 +18,12 @@
 }
 
 .Video_box_frame_right{
-    background-color: #212325c5;
-    border-radius: 1rem;
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
+    border-radius: .5rem;
+    border: 6px solid #00000088;
     padding: 1rem;
     margin-left: 0rem;
-    box-shadow: var(--box-shadow);
+    
 }
 
 .Video_box_frame_right_img{

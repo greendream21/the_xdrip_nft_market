@@ -17,9 +17,9 @@ const Service = () => {
             <video width="250" height="250" autoPlay loop muted>
             <source src={videos.coin1} type="video/mp4" />
           </video>
-              <p className={Style.service_box_item_step}>
+              <h1 className={Style.service_box_item_step}>
                 <span>SIGN UP/ IN AND CONNECT</span>
-              </p>
+              </h1>
               <p>CREATE YOUR ACCOUNT, LOG IN, AND CONNECT YOUR WALLET.</p>
             </div>
           </a>
@@ -31,9 +31,9 @@ const Service = () => {
             <video width="250" height="250" autoPlay loop muted>
             <source src={videos.coin2} type="video/mp4" />
           </video>
-              <p className={Style.service_box_item_step}>
+              <h1 className={Style.service_box_item_step}>
                 <span>SEARCH AND FILTER</span>
-              </p>
+              </h1>
 
               <p>
                 ENTER IN YOUR DESIRED FILTERS AND SEARCH OUR NFT DATABASE.
@@ -48,9 +48,9 @@ const Service = () => {
             <video width="250" height="250" autoPlay loop muted>
             <source src={videos.coin3} type="video/mp4" />
           </video>
-              <p className={Style.service_box_item_step}>
+              <h1 className={Style.service_box_item_step}>
                 <span>XPLORE OUR CREATORS</span>
-              </p>
+              </h1>
 
               <p>
                 XPLORE OUR GROWING DATABASE OF VERIFIED NFT CREATORS.
@@ -65,9 +65,9 @@ const Service = () => {
             <video width="250" height="250" autoPlay loop muted>
             <source src={videos.coin5} type="video/mp4" />
           </video>
-              <p className={Style.service_box_item_step}>
+              <h1 className={Style.service_box_item_step}>
                 <span>START TRADING WITH XMARKET</span>
-              </p>
+              </h1>
 
               <p>
                 BEGIN YOUR TRADING XPERIENCE WITH THE XMARKET FAMILY.

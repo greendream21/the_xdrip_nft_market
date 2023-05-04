@@ -16,7 +16,8 @@
 }
 
 .subscribe_box_right_img{
-    border-radius: 2rem;
+    border-radius: .5rem;
+    width: 100%;
 }
 
 
@@ -30,11 +31,13 @@
 }
 
 .subscribe_box_right{
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
+    border-radius: .5rem;
+    border: 6px solid #00000088;
     background-color: #212325c5;
-    border-radius: 2.5rem;
     padding: 1rem;
     margin-left: 2rem;
-    box-shadow: var(--box-shadow);
+    
     
 }
 

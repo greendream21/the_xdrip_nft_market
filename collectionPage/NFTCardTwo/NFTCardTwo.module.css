@@ -1,16 +1,23 @@
+.NFTCardTwo_container{
+    display: grid;
+    justify-items: center;
+}
+
 .NFTCardTwo{
-    width: 80%;
-    margin:  0 auto;
+    width: 90%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
-    margin-bottom: 14rem;
+    margin-bottom: 4rem;
+    margin-right: 4rem;
+    
 }
 
 
 .NFTCardTwo_box{
     display: grid;
     cursor: pointer;
+    width: 305px;
     transition: all .3s ease-in;
     border-radius: 1rem;
     box-shadow: var(--box-shadow);
@@ -108,6 +115,30 @@
     gap: .5rem;
     font-size: 1.1rem;
 }
+
+.pagination {
+    margin-left: 0rem;
+    align-items: center;
+    margin-top: 0rem;
+    margin-bottom: 14rem;
+    height: 50px;
+    overflow: auto;
+  }
+  
+  .pagination button {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .pagination button:hover {
+    background-color: #ddd;
+  }
+  
 
 @media screen and (max-width: 35em) {
     .NFTCardTwo{

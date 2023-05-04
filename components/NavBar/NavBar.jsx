@@ -207,7 +207,7 @@ return (
             onMouseLeave={handleMouseLeave}
           >
             {/* DISCOVER MENU */}
-            <p onClick={(e) => openMenu(e)}>XPLORE XM</p>
+            <h1 onClick={(e) => openMenu(e)}>XPLORE XM</h1>
             {discover && (
               <div className={Style.navbar_container_right_discover_box}>
                 <Discover />
@@ -221,7 +221,7 @@ return (
   onMouseEnter={handleMouseEnter}
   onMouseLeave={handleMouseLeave}
 >
-  <p onClick={(e) => openMenu(e)}>Help Center</p>
+  <h1 onClick={(e) => openMenu(e)}>Help Center</h1>
   {help && (
     <div className={Style.navbar_container_right_help_box}>
       <HelpCenter />

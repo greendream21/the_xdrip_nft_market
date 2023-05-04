@@ -7,6 +7,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Aldrich';
+  src: url('../font/aldrich_regular.woff2') format('woff2'),
+       url('../font/aldrich_regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 /* //THEME 1 */
  :root{
@@ -23,7 +31,7 @@
   --xdrip-dark-gray: #1b1c1e;
   --xdrip-gold: #736b5e;
 
-  --box-shadow: 1rem 1rem 1rem var(--shadow-dark-color),
+  --box-shadow: 0rem 0rem 0rem var(--shadow-dark-color),
   -1rem -1rem 1rem var(--shadow-light-color);
 
   --box-shadow-2: 0rem 0rem 0rem var(--shadow-dark-color),
@@ -240,23 +248,37 @@ body {
   font-family: 'Good Times', sans-serif;
   font-size: 14px;
   
-  color: var(--icons-color);
+  
+}
+
+h1 {
+  font-family: 'Good Times';
+  font-size: 14px;
+  font-weight: 500;
+}
+
+p {
+  font-family: 'Aldrich', sans-serif;
 }
 
 input{
   color: var(--xdrip-light-gray);
+  font-family: 'Aldrich', sans-serif;
 }
 
 input::placeholder{
   color: var(--xdrip-light-gray) !important;
+  font-family: 'Aldrich', sans-serif;
 }
 
 textarea{
   color: var(--icons-color);
+  
 }
 
 textarea::placeholder{
   color: var(--icons-color);
+  
 }
 
 a {
