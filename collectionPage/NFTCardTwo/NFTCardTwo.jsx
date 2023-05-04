@@ -10,6 +10,9 @@ import Link from "next/link";
 import Style from "./NFTCardTwo.module.css";
 import { LikeProfile } from "../../components/componentsindex";
 
+
+
+
 const NFTCardTwo = ({ NFTData }) => {
   const [like, setLike] = useState(false);
   const [likeInc, setLikeInc] = useState(0);
@@ -45,8 +48,8 @@ const NFTCardTwo = ({ NFTData }) => {
             </div>
 
             <div className={Style.NFTCardTwo_box_img}>
-              <Img
-                 src={`https://${NFTData[i].image}.ipfs.dweb.link`}
+              <img
+                src={el.image}
                 alt="NFT"
                 width={500}
                 height={500}
