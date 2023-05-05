@@ -1,17 +1,14 @@
-
 import React, { useState } from "react";
 import Img from "next/image";
 import { BsImage } from "react-icons/bs";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { MdVerified, MdTimer } from "react-icons/md";
 import Link from "next/link";
+import BigNumber from "bignumber.js";
 
 //INTERNAL IMPORT
 import Style from "./NFTCardTwo.module.css";
 import { LikeProfile } from "../../components/componentsindex";
-
-
-
 
 const NFTCardTwo = ({ NFTData }) => {
   const [like, setLike] = useState(false);
@@ -68,7 +65,10 @@ const NFTCardTwo = ({ NFTData }) => {
             <div className={Style.NFTCardTwo_box_price}>
               <div className={Style.NFTCardTwo_box_price_box}>
                 <small>CURRENT PRICE</small>
-                <p>{el.price} BNB</p>
+                {/*}
+                <p>{new BigNumber(el.price).dividedBy(new BigNumber(10).pow(18)).toString()} BNB</p>
+                */}
+                <p>{parseFloat(el.price) * 10**9} BNB</p>
               </div>
               <p className={Style.NFTCardTwo_box_price_stock}>
                 <MdTimer /> <span>{i + 1} HOURS LEFT</span>
