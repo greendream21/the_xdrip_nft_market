@@ -1,117 +1,121 @@
 import React, { useState } from "react";
+import Img from "next/image";
+import { BsImage } from "react-icons/bs";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { BsImages } from "react-icons/bs";
-import Image from "next/image";
+import { MdVerified, MdTimer } from "react-icons/md";
 import Link from "next/link";
+import BigNumber from "bignumber.js";
 
 //INTERNAL IMPORT
 import Style from "./NFTCard.module.css";
-import images from "../../img";
+import { LikeProfile } from "../../components/componentsindex";
 
 const NFTCard = ({ NFTData }) => {
-  const CardArray = [
-    images.nft_image_1,
-    images.nft_image_2,
-    images.nft_image_3,
-    images.nft_image_4,
-    images.nft_image_5,
-    images.nft_image_1,
-    images.nft_image_2,
-    images.nft_image_3,
-    images.nft_image_4,
-    images.nft_image_5,
-    images.nft_image_1,
-    images.nft_image_2,
-    images.nft_image_3,
-    images.nft_image_4,
-    images.nft_image_5,
-   
-   ];
-  const [like, setLike] = useState(true);
+  const [like, setLike] = useState(false);
+  const [likeInc, setLikeInc] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 12;
 
-  const likeNft = () => {
+  const likeNFT = () => {
     if (!like) {
       setLike(true);
+      setLikeInc(23);
     } else {
       setLike(false);
+      setLikeInc(23 + 1);
     }
   };
 
-  // console.log(NFTData);
+  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
+  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
+  const currentItems = NFTData.slice(indexOfFirstItem, indexOfLastItem);
+
   return (
-    <div className={Style.NFTCard}>
-      {NFTData.map((el, i) => (
-        <Link href={{ pathname: "/NFT-details", query: el }}>
-          <div className={Style.NFTCard_box} key={i + 1}>
-            <div className={Style.NFTCard_box_img}>
-              <Image
-                src={el.image}
-                alt="NFT images"
-                width={600}
-                height={600}
-                className={Style.NFTCard_box_img_img}
-              />
-            </div>
-
-            <div className={Style.NFTCard_box_update}>
-              <div className={Style.NFTCard_box_update_left}>
-                <div
-                  className={Style.NFTCard_box_update_left_like}
-                  onClick={() => likeNft()}
-                >
-                  {like ? (
-                    <AiOutlineHeart />
-                  ) : (
-                    <AiFillHeart
-                      className={Style.NFTCard_box_update_left_like_icon}
-                    />
-                  )}
-                  {""} 22
-                </div>
-              </div>
-
-              <div className={Style.NFTCard_box_update_right}>
-                <div className={Style.NFTCard_box_update_right_info}>
-                  <small>TIME REMAINING</small>
-                  <p>3h : 6m : 9s</p>
-                </div>
-              </div>
-            </div>
-
-            <div className={Style.NFTCard_box_update_details}>
-              <div className={Style.NFTCard_box_update_details_price}>
-                <div className={Style.NFTCard_box_update_details_price_box}>
-                  <h4>
-                    {el.name} #{el.tokenId}
-                  </h4>
-
-                  <div
-                    className={Style.NFTCard_box_update_details_price_box_box}
-                  >
-                    <div
-                      className={Style.NFTCard_box_update_details_price_box_bid}
-                    >
-                      <small>CURRENT PRICE</small>
-                      <p>{el.price}BNB</p>
-                    </div>
-                    <div
-                      className={
-                        Style.NFTCard_box_update_details_price_box_stock
-                      }
-                    >
-                      <small>100 IN STOCK</small>
-                    </div>
+    <div className={Style.NFTCard_container}>
+      <div className={Style.NFTCard}>
+        {currentItems.map((el, i) => (
+          <Link
+            href={{ pathname: "/NFT-details", query: el }}
+            key={`${el.tokenId}-${i}`}
+          >
+            <div className={Style.NFTCard_box}>
+              <div className={Style.NFTCard_box_like}>
+                <div className={Style.NFTCard_box_like_box}>
+                  <div className={Style.NFTCard_box_like_box_box}>
+                    <div className={Style.NFTCard_box_like_box_box_icon} />
+                    <p onClick={() => likeNFT()}>
+                      {like ? <AiOutlineHeart /> : <AiFillHeart />}
+                      <span>{likeInc + 1}</span>
+                    </p>
                   </div>
                 </div>
               </div>
-              <div className={Style.NFTCard_box_update_details_category}>
-                <BsImages />
+
+              <div className={Style.NFTCard_box_img}>
+                <img
+                  src={el.image}
+                  alt="NFT"
+                  width={270}
+                  height={270}
+                  objectFit="cover"
+                  className={Style.NFTCard_box_img_img}
+                />
+              </div>
+              <div className={Style.NFTCard_box_info}>
+                <div className={Style.NFTCard_box_info_left}>
+                  <p>{el.name}</p>
+                </div>
+
+                <small> # {i + 1}</small>
+              </div>
+
+              <div className={Style.NFTCard_box_price}>
+                <div className={Style.NFTCard_box_price_box}>
+                  <small>CURRENT PRICE</small>
+                                  {/*}
+                <p>{new BigNumber(el.price).dividedBy(new BigNumber(10).pow(18)).toString()} BNB</p>
+                */}
+                <p>{parseFloat(el.price) * 10**9} BNB</p>
+                </div>
+                <p className={Style.NFTCard_box_price_stock}>
+                  <MdTimer /> <span>{i + 1} HOURS LEFT</span>
+                </p>
               </div>
             </div>
-          </div>
-        </Link>
-      ))}
-    </div>
+          </Link>
+        ))}
+      </div>
+      <div className={Style.pagination}>
+        <button
+          disabled={currentPage === 1}
+          onClick={() => setCurrentPage(currentPage - 1)}
+        >
+          Prev
+        </button>
+        {Array.from(
+          { length: Math.ceil(NFTData.length / ITEMS_PER_PAGE) },
+          (_, i) => (
+            <button
+              key={`page-${i}`}
+              onClick={() => setCurrentPage(i + 1)}
+              className={currentPage === i + 1 ? Style.active : ""}
+            >
+              {i + 1}
+            </button>
+          )
+        )}
+        <button
+          disabled={
+            currentPage === Math.ceil(NFTData.length / ITEMS_PER_PAGE)
+          }
+          onClick={() => setCurrentPage(currentPage + 1)}
+        >
+          Next
+        </button>
+      </div>
+
+
+    </div >
   );
 };
 

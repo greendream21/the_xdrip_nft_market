@@ -303,7 +303,7 @@ async function fetchNFTs() {
     fetchMyNFTsOrListedNFTs();
   }, []);
   
-    
+  
   /*
   
   async function fetchNFTs() {
