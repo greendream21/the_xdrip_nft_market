@@ -16,11 +16,14 @@ import { TiTick } from "react-icons/ti";
 //INTERNAL IMPORT
 import Style from "./Filter.module.css";
 
+
+
 const Filter = () => {
   const [filter, setFilter] = useState(true);
   const [image, setImage] = useState(true);
   const [video, setVideo] = useState(true);
   const [music, setMusic] = useState(true);
+  const [category, setCategory] = useState("");
 
   //FUNCTION SECTION
   const openFilter = () => {
@@ -59,11 +62,12 @@ const Filter = () => {
     <div className={Style.filter}>
       <div className={Style.filter_box}>
         <div className={Style.filter_box_left}>
-          <button onClick={() => {}}>NFTS</button>
-          <button onClick={() => {}}>ARTS</button>
-          <button onClick={() => {}}>MUSIC</button>
-          <button onClick={() => {}}>SPORTS</button>
-          <button onClick={() => {}}>PHOTOGRAPHY</button>
+          <button onClick={() => setCategory("nfts")}>ALL NFTs</button>
+          <button onClick={() => setCategory("art")}>ART</button>
+          <button onClick={() => setCategory("gaming")}>GAMING</button>
+          <button onClick={() => setCategory("sports")}>SPORTS</button>
+          <button onClick={() => setCategory("metaverse")}>METAVERSE</button>
+          <button onClick={() => setCategory("photography")}>PHOTOGRAPHY</button>
         </div>
 
         <div className={Style.filter_box_right}>
