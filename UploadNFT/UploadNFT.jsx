@@ -121,16 +121,17 @@ const UloadNFT = ({ createNFT }) => {
         heading="SIMPLY DRAG AND DROP YOUR FILE HERE OR"
         subHeading="BROWSE FOR A FILE ON YOUR DEVICE"
         name={name}
-        website={website}
+        price={price}
         description={description}
-        royalties={royalties}
-        fileSize={fileSize}
         category={category}
-        properties={properties}
+        website={website}
+        royalties={royalties}
+        properties={properties}               
         setImage={setImage}
         uploadToIPFS={uploadToIPFS}
         setImagePreview={setImagePreview}
         imagePreview={imagePreview}
+        fileSize={fileSize}
       />
 
       <div className={Style.upload_box}>
@@ -293,14 +294,14 @@ const UloadNFT = ({ createNFT }) => {
               createNFT(
                 name,
                 price,
-                image,
                 description,
-                router,
+                category,
                 website,
                 royalties,
-                fileSize,
-                category,
-                properties
+                properties,
+                image,
+                fileSize
+                               
               )
             }
             classStyle={Style.upload_box_btn_style}
