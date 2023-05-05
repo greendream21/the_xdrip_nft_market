@@ -121,10 +121,18 @@ export const NFTMarketplaceProvider = ({ children }) => {
   };
 
 
-async function createNFT(name, price, image, description, router) {
+
+useEffect(() => {
+  if (router.query.category) {
+    setCategory(router.query.category);
+  }
+}, [router.query.category]);
+
+
+async function createNFT(name, price, description, category, website, royalties, properties, image ) {
   if (!name || !description || !price || !image)
     return setError("Data Is Missing"), setOpenError(true);
-    const data = JSON.stringify({ name, description, image });
+    const data = JSON.stringify({ name, price, description, category, website, royalties, properties, image });
 
   try {
     const cid = await client.storeBlob(new Blob([data]));

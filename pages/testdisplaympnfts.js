@@ -49,6 +49,7 @@ const uniqueNFTs = Array.from(new Set(nfts.map((nft) => nft.tokenId)))
 
 
 
+
   return (
     <div className={Style.searchPage}>
       <Banner bannerImage={images.creatorbackground2} />
@@ -58,7 +59,7 @@ const uniqueNFTs = Array.from(new Set(nfts.map((nft) => nft.tokenId)))
       />
       <Filter />
       {nfts.length > 0 ? (
-        <NFTCardTwo NFTData={uniqueNFTs} />
+        <NFTCardTwo NFTData={nfts} />
       ) : (
         <div className={Style.loader}>
           <Loader />
