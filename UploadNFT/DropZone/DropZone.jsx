@@ -27,23 +27,17 @@ const DropZone = ({
   const [localFileSize, setLocalFileSize] = useState(null);
 
 
-/*
-  const ipfsToHttp = (ipfsUrl) => {
-    return ipfsUrl.replace("ipfs://", "https://dweb.link/ipfs/");
-  };
-*/
 
 
   const onDrop = useCallback(
   async (acceptedFile) => {
     console.log(acceptedFile);
     const file = acceptedFile[0];
-    setLocalFileSize(file.size); // Call the setFileSize prop  
+    setLocalFileSize(file.size); 
     
-  //uploadToIPFS(file).then((url) => {
     const url = await uploadToIPFS(file);
-    setFileUrl(url);
-    setImage(url);
+    //setFileUrl(url);
+    setImage(url, file.type);
     setImagePreview(URL.createObjectURL(file));
     console.log(url);
     
@@ -73,6 +67,63 @@ const formatFileSize = (size) => {
   if (size < 1024 * 1024) return `${(size / 1024).toFixed(2)} KB`;
   return `${(size / (1024 * 1024)).toFixed(2)} MB`;
 };
+  
+  
+  
+  const renderMediaPreview = () => {
+  if (!fileUrl) {
+    return null;
+  }
+
+  if (fileUrl.startsWith("image")) {
+    return (
+      <img
+        src={imagePreview}
+        alt="nft preview"
+        style={{
+          maxWidth: "400px",
+          maxHeight: "400px",
+          width: "auto",
+          height: "auto",
+        }}
+        className={Style.DropZone_box_input_img_img}
+      />
+    );
+  } else if (fileUrl.startsWith("video")) {
+    return (
+      <video
+        src={imagePreview}
+        controls
+        style={{
+          maxWidth: "400px",
+          maxHeight: "400px",
+          width: "auto",
+          height: "auto",
+        }}
+        className={Style.DropZone_box_input_img_img}
+      />
+    );
+  } else if (fileUrl.startsWith("audio")) {
+    return (
+      <audio
+        src={imagePreview}
+        controls
+        style={{
+          maxWidth: "400px",
+          maxHeight: "400px",
+          width: "auto",
+          height: "auto",
+        }}
+        className={Style.DropZone_box_input_img_img}
+      />
+    );
+  } else {
+    return <div>Invalid file type</div>;
+  }
+};
+
+  
+  
   
   
 
