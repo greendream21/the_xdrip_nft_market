@@ -46,53 +46,6 @@ const NFTCardTwo = ({ NFTData }) => {
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
   const currentItems = NFTData.slice(indexOfFirstItem, indexOfLastItem);
-  
-  
- const renderFilePreview = (el) => {
-  const [fileType, setFileType] = useState(null);
-
-  useEffect(() => {
-    const getFileType = async () => {
-      try {
-        const response = await fetch(el.image);
-        const contentType = response.headers.get("content-type");
-        setFileType(contentType);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getFileType();
-  }, [el.image]);
-
-  if (fileType && fileType.includes("image")) {
-    return (
-      <img
-        src={el.image}
-        alt="NFT"
-        width={350}
-        height={300}
-        objectFit="cover"
-        className={Style.NFTCardTwo_box_img_img}
-      />
-    );
-  } else if (fileType && fileType.includes("video")) {
-    return (
-      <video
-        src={el.image}
-        alt="NFT"
-        width={350}
-        height={300}
-        objectFit="cover"
-        className={Style.NFTCardTwo_box_img_vid}
-        controls
-      />
-    );
-  } else {
-    return <div>Invalid file type</div>;
-  }
-};
-
-  
 
   return (
   <div className={Style.NFTCardTwo_container}>
