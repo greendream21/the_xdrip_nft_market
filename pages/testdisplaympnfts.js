@@ -1,5 +1,5 @@
-
 import React, { useEffect, useState, useContext } from "react";
+
 
 import Style from "../styles/searchPage.module.css";
 import { Slider, Brand, Loader } from "../components/componentsindex";
@@ -8,6 +8,7 @@ import { Filter } from "../components/componentsindex";
 
 import { NFTCardTwo, Banner } from "../collectionPage/collectionIndex";
 import images from "../img";
+
 
 import { NFTMarketplaceContext } from "../Context/NFTMarketplaceContext";
 
@@ -40,6 +41,7 @@ const uniqueNFTs = Array.from(new Set(nfts.map((nft) => nft.tokenId)))
     }
     console.log("NFTData received:", filteredNFTS);
   };
+
 
   const onClearSearch = () => {
   fetchNFTs().then((items) => {
