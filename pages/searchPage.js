@@ -45,11 +45,22 @@ const searchPage = () => {
     }
   };
 
+/*
   const onClearSearch = () => {
     if (nfts.length && nftsCopy.length) {
       setNfts(nftsCopy);
     }
   };
+*/
+
+
+  const onClearSearch = () => {
+  fetchNFTs().then((items) => {
+    setNfts(items.reverse());
+  });
+};
+
+
 
 
    return (
