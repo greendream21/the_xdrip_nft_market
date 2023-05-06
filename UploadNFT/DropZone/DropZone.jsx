@@ -50,11 +50,12 @@ const DropZone = ({
     },
     [setImage, setImagePreview, uploadToIPFS, setFileSize]
   );
-
+ 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: "image/*",
-    maxSize: 5000000,
+    accept: "image/*,video/mp4,video/webm,video/ogg,audio/*",
+
+    maxSize: 25000000,
   });
   
   

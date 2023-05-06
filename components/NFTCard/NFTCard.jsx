@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Img from "next/image";
 import { BsImage } from "react-icons/bs";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
@@ -15,6 +15,7 @@ const NFTCard = ({ NFTData }) => {
   const [likeInc, setLikeInc] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const ITEMS_PER_PAGE = 12;
+  //  const [fileType, setFileType] = useState(null);
 
   const likeNFT = () => {
     if (!like) {
@@ -26,9 +27,72 @@ const NFTCard = ({ NFTData }) => {
     }
   };
 
+  useEffect(() => {
+    const getFileType = async () => {
+      try {
+        const response = await fetch(NFTData[0].image);
+        const blob = await response.blob();
+        setFileType(blob.type);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getFileType();
+  }, [NFTData]);
+
+
+
+
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
   const currentItems = NFTData.slice(indexOfFirstItem, indexOfLastItem);
+
+
+  const renderFilePreview = (el) => {
+    const [fileType, setFileType] = useState(null);
+  
+    useEffect(() => {
+      const getFileType = async () => {
+        try {
+          const response = await fetch(el.image);
+          const contentType = response.headers.get("content-type");
+          setFileType(contentType);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      getFileType();
+    }, [el.image]);
+  
+    if (fileType && fileType.includes("image")) {
+      return (
+        <img
+          src={el.image}
+          alt="NFT"
+          width={350}
+          height={300}
+          objectFit="cover"
+          className={Style.NFTCard_box_img_img}
+        />
+      );
+    } else if (fileType && fileType.includes("video")) {
+      return (
+        <video
+          src={el.image}
+          alt="NFT"
+          width={350}
+          height={300}
+          objectFit="cover"
+          className={Style.NFTCard_box_img_vid}
+          
+        />
+      );
+    } else {
+      return <div>Invalid file type</div>;
+    }
+  };
+
+  
 
   return (
     <div className={Style.NFTCard_container}>
@@ -52,14 +116,7 @@ const NFTCard = ({ NFTData }) => {
               </div>
 
               <div className={Style.NFTCard_box_img}>
-                <img
-                  src={el.image}
-                  alt="NFT"
-                  width={270}
-                  height={270}
-                  objectFit="cover"
-                  className={Style.NFTCard_box_img_img}
-                />
+              {renderFilePreview(el)}
               </div>
               <div className={Style.NFTCard_box_info}>
                 <div className={Style.NFTCard_box_info_left}>

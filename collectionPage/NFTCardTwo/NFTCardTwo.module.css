@@ -36,7 +36,7 @@
     padding: .75rem;
     grid-column: 1 / -1;
     grid-row: 1 / -1;
-    z-index: 11;
+    
 }
 
 .NFTCardTwo_box_like_box_box{
@@ -59,17 +59,26 @@
     color: var(--main-bg-color);
     border-radius: .25rem;
     padding: 0 .5rem;
+    z-index: 2;
 }
 
 .NFTCardTwo_box_img{
     grid-column: 1 / -1;
     grid-row: 1 / -1;
     justify-self: center;
+    z-index: 1;
 }
 
 .NFTCardTwo_box_img_img{
     border-radius: .25rem;
     margin-top: .5rem;
+    
+}
+
+.NFTCardTwo_box_img_vid{
+    border-radius: .25rem;
+    margin-top: .5rem;
+    
     
 }
 
