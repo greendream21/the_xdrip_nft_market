@@ -1,0 +1,76 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  display: grid;
+  cursor: pointer;
+  width: 30%;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 5px #181717, 0 0 10px #1a1919, 0 0 16px;
+  padding: 20px;
+  background-image: url(../img/card-background-2.png);
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.preview_content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  justify-items: center;
+}
+
+.preview_image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 20px;
+  object-fit: contain;
+  border-radius: 5px;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  justify-self: center;
+  z-index: 1;
+}
+
+.preview_name {
+  font-size: 24px;
+  margin-bottom: 5px;
+  line-height: 0rem;
+  text-transform: uppercase;
+}
+
+.preview_category,
+.preview_royalties,
+.preview_price,
+.preview_fileSize,
+.preview_properties,
+.preview_website,
+.preview_description {
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  padding-top: 0.25rem;
+  align-items: center;
+}

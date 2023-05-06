@@ -15,6 +15,8 @@ import images from "../img";
 import { Button } from "../components/componentsindex.js";
 import { DropZone } from "./uploadNFTIndex.js";
 
+import NFTPreview from "./NFTPreview"
+
 const UloadNFT = ({ createNFT }) => {
   const [price, setPrice] = useState("");
   const [active, setActive] = useState(0);
@@ -27,6 +29,11 @@ const UloadNFT = ({ createNFT }) => {
   const [properties, setProperties] = useState("");
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [showPreview, setShowPreview] = useState(false);
+
+const togglePreview = () => {
+    setShowPreview(!showPreview);
+  };
 
   const router = useRouter();
 
@@ -308,10 +315,26 @@ const UloadNFT = ({ createNFT }) => {
           />
           <Button
             btnName="PREVIEW YOUR NFT"
-            handleClick={() => {}}
+            handleClick={togglePreview}
             classStyle={Style.upload_box_btn_style}
           />
         </div>
+        
+          <NFTPreview
+        show={showPreview}
+        onClose={togglePreview}
+        imagePreview={imagePreview}
+        name={name}
+        category={category}
+        royalties={royalties}
+        price={price}
+        fileSize={fileSize}
+        properties={properties}
+        website={website}
+        description={description}
+      />
+        
+        
       </div>
     </div>
   );
