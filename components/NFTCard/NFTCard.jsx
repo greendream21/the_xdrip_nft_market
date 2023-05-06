@@ -84,7 +84,7 @@ const NFTCard = ({ NFTData }) => {
           height={300}
           objectFit="cover"
           className={Style.NFTCard_box_img_vid}
-          
+          controls
         />
       );
     } else {

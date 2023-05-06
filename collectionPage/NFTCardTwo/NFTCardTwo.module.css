@@ -59,7 +59,7 @@
     color: var(--main-bg-color);
     border-radius: .25rem;
     padding: 0 .5rem;
-    z-index: 2;
+    z-index: 222;
 }
 
 .NFTCardTwo_box_img{
