@@ -10,11 +10,20 @@ import images from "../../img";
 import videos from "../../public/videos"
 import Button from "../Button/Button";
 
+
+import { ethers } from "ethers";
+import mohCA_ABI from "../../Context/mohCA_ABI.json";
+const MohAddress = mohCA_ABI.address;
+const MohABI = mohCA_ABI.abi;
+import ipfsHashes from "../../Context/ipfsHashes";
+
+const fetchMohContract = (signerOrProvider) =>
+  new ethers.Contract(MohAddress, MohABI, signerOrProvider);
+
 const BigNFTSlider = () => {
   const [idNumber, setIdNumber] = useState(0);
 
   
-
   const sliderData = [
     {
       title: "COMMON",
@@ -26,6 +35,7 @@ const BigNFTSlider = () => {
       image: images.user1,
       nftVideo: videos.common,
       description:"Common Medal, forged in the fires of battle, this medal represents the courage and determination of the XdRiP warrior.",
+      ipfsHash: ipfsHashes.find((hash) => hash.title === "COMMON").url,
       inventory: {
         forged: 0,
         available: 100,
@@ -41,6 +51,7 @@ const BigNFTSlider = () => {
       image: images.user1,
       nftVideo: videos.uncommon,
       description:"Uncommon Medal, crafted by the most skilled, this medal is a symbol of the exceptional strength and valor possessed by those who rise above the rest.",
+      ipfsHash: ipfsHashes.find((hash) => hash.title === "UNCOMMON").url,
       inventory: {
         forged: 0,
         available: 80,
@@ -56,6 +67,7 @@ const BigNFTSlider = () => {
       image: images.user1,
       nftVideo: videos.rare,
       description:"Rare Medal, forged from rare and precious metals, this medal is a testament to the elite few who have demonstrated unparalleled bravery and honor.",
+      ipfsHash: ipfsHashes.find((hash) => hash.title === "RARE").url,
       inventory: {
         forged: 0,
         available: 60,
@@ -71,6 +83,7 @@ const BigNFTSlider = () => {
       image: images.user1,
       nftVideo: videos.epic,
       description:"Epic Medal, wrought with mystical powers, this medal is a sign of the legendary feats accomplished by only the most heroic and mighty of warriors.",
+      ipfsHash: ipfsHashes.find((hash) => hash.title === "EPIC").url,
       inventory: {
         forged: 0,
         available: 40,
@@ -86,9 +99,10 @@ const BigNFTSlider = () => {
       image: images.user1,
       nftVideo: videos.legendary,
       description:"Legendary Medal, forged by the XdRiP Gods, this medal is a symbol of the ultimate achievement in battle, an honor bestowed only upon the greatest of heroes. ",
+      ipfsHash: ipfsHashes.find((hash) => hash.title === "LEGENDARY").url,
       inventory: {
         forged: 0,
-        available: 20,
+        available: 40,
        },
     },
   ];
@@ -106,6 +120,49 @@ const BigNFTSlider = () => {
       setIdNumber(idNumber - 1);
     }
   }, [idNumber]);
+
+
+const mint = async (medalType, ipfsHash) => {
+  try {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = fetchMohContract(signer);
+
+    let mintFunction;
+    switch (medalType) {
+      case "COMMON":
+        mintFunction = contract.mintCommon;
+        break;
+      case "UNCOMMON":
+        mintFunction = contract.mintUncommon;
+        break;
+      case "RARE":
+        mintFunction = contract.mintRare;
+        break;
+      case "EPIC":
+        mintFunction = contract.mintEpic;
+        break;
+      case "LEGENDARY":
+        mintFunction = contract.mintLegendary;
+        break;
+      default:
+        throw new Error("Invalid medal type");
+    }
+
+    const price = ethers.utils.parseUnits(sliderData[idNumber].price.split(" ")[0], "ether");
+    const transaction = await mintFunction(ipfsHash, { value: price, gasLimit: 500000 });
+    await transaction.wait();
+    alert("Your Medal Of Honor was minted successfully!");
+  } catch (error) {
+    console.error("Error minting medal:", error);
+    alert("Minting failed. Please check console for details.");
+  }
+};
+
+
+
+
+
 
   return (
     <div className={Style.bigNFTSlider}>
@@ -185,7 +242,10 @@ const BigNFTSlider = () => {
             </div>
 
             <div className={Style.bigNFTSlider_box_left_button}>
-              <Button btnName="FORGE YOUR MEDAL" handleClick={() => { }} />
+              <Button
+  btnName="FORGE YOUR MEDAL"
+  handleClick={() => mint(sliderData[idNumber].title, sliderData[idNumber].ipfsHash)}
+/>
               <Button btnName="DETAILS" handleClick={() => { }} />
             </div>
           </div>
