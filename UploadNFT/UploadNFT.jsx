@@ -89,6 +89,7 @@ const togglePreview = () => {
     } else {
       setImage(ipfsMediaUrl);
       setImagePreview(URL.createObjectURL(file)); // set image preview
+
       return ipfsMediaUrl;
     }
   } catch (error) {
@@ -96,31 +97,7 @@ const togglePreview = () => {
   }
 };  
 
-
-
-/*
-  const uploadToIPFS = async (file) => {
-    const apiKey = process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY;
-    const client = new NFTStorage({ token: apiKey });
-
-    try {
-      const metadata = await client.store({
-        name: file.name,
-        description:
-          "Your NFT description - need to pull this from the formdata",
-        image: new File([file], file.name, { type: file.type }),
-      });
-
-      setImage(metadata.url);
-      setImagePreview(URL.createObjectURL(file)); // set image preview
-      return metadata.url;
-    } catch (error) {
-      console.error("Error uploading to IPFS:", error);
-    }
-  };
-*/
-  
-  
+ 
   return (
     <div className={Style.upload}>
       <DropZone
@@ -167,7 +144,7 @@ const togglePreview = () => {
           </div>
 
           <p className={Style.upload_box_input_para}>
-            WE WILL INCLUDE A LINK TO THIS URL ON THIS ITEM'S DETAILS PAGE,
+            A LINK TO THIS URL WILL BE INCLUDED ON THIS ITEM'S DETAIL PAGE,
             ENSURING USERS CAN ACCESS MORE INFORMATION ABOUT YOU AND YOUR NFT.
           </p>
         </div>
@@ -332,6 +309,7 @@ const togglePreview = () => {
         properties={properties}
         website={website}
         description={description}
+        
       />
         
         
