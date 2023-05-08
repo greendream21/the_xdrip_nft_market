@@ -5,6 +5,7 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { MdVerified, MdTimer } from "react-icons/md";
 import Link from "next/link";
 import BigNumber from "bignumber.js";
+import { Loader } from "../../components/componentsindex";
 
 //INTERNAL IMPORT
 import Style from "./NFTCardTwo.module.css";
@@ -91,7 +92,7 @@ const NFTCardTwo = ({ NFTData }) => {
   return (
   <div className={Style.NFTCardTwo_container}>
     {loading ? (
-      <div>Loading...</div>
+      <div><Loader /></div>
     ) : (
       <>
         <div className={Style.NFTCardTwo}>
@@ -120,7 +121,7 @@ const NFTCardTwo = ({ NFTData }) => {
                   <div className={Style.NFTCardTwo_box_info_left}>
                     <p>{el.name}</p>
                   </div>
-                  <small> # {i + 1}</small>
+                  <small> # {el.tokenId}</small>
                 </div>
 
                 <div className={Style.NFTCardTwo_box_price}>

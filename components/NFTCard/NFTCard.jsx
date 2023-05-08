@@ -5,6 +5,7 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { MdVerified, MdTimer } from "react-icons/md";
 import Link from "next/link";
 import BigNumber from "bignumber.js";
+import { Loader } from "../../components/componentsindex";
 
 //INTERNAL IMPORT
 import Style from "./NFTCard.module.css";
@@ -15,7 +16,9 @@ const NFTCard = ({ NFTData }) => {
   const [likeInc, setLikeInc] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const ITEMS_PER_PAGE = 12;
-  //  const [fileType, setFileType] = useState(null);
+  const [fileTypes, setFileTypes] = useState({});
+  const [loading, setLoading] = useState(true);
+
 
   const likeNFT = () => {
     if (!like) {
@@ -27,75 +30,71 @@ const NFTCard = ({ NFTData }) => {
     }
   };
 
+
+
   useEffect(() => {
-    const getFileType = async () => {
-      try {
-        const response = await fetch(NFTData[0].image);
-        const blob = await response.blob();
-        setFileType(blob.type);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getFileType();
-  }, [NFTData]);
+    const fetchFileTypes = async () => {
+      const fileTypesObj = {};
 
-
-
-
-  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
-  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
-  const currentItems = NFTData.slice(indexOfFirstItem, indexOfLastItem);
-
-
-  const renderFilePreview = (el) => {
-    const [fileType, setFileType] = useState(null);
-  
-    useEffect(() => {
-      const getFileType = async () => {
+      for (const el of NFTData) {
         try {
           const response = await fetch(el.image);
           const contentType = response.headers.get("content-type");
-          setFileType(contentType);
+          fileTypesObj[el.image] = contentType;
         } catch (error) {
           console.log(error);
         }
-      };
-      getFileType();
-    }, [el.image]);
-  
-    if (fileType && fileType.includes("image")) {
-      return (
-        <img
-          src={el.image}
-          alt="NFT"
-          width={350}
-          height={300}
-          objectFit="cover"
-          className={Style.NFTCard_box_img_img}
-        />
-      );
-    } else if (fileType && fileType.includes("video")) {
-      return (
-        <video
-          src={el.image}
-          alt="NFT"
-          width={350}
-          height={300}
-          objectFit="cover"
-          className={Style.NFTCard_box_img_vid}
-          controls
-        />
-      );
-    } else {
-      return <div>Invalid file type</div>;
-    }
-  };
+      }
 
+      setFileTypes(fileTypesObj);
+      setLoading(false);
+    };
+
+    fetchFileTypes();
+  }, [NFTData]);
+
+    const renderFilePreview = (el) => {
+      const fileType = fileTypes[el.image];
+  
+      if (fileType && fileType.includes("image")) {
+        return (
+          <img
+            src={el.image}
+            alt="NFT"
+            width={350}
+            height={300}
+            objectFit="cover"
+            className={Style.NFTCardTwo_box_img_img}
+          />
+        );
+      } else if (fileType && fileType.includes("video")) {
+        return (
+          <video
+            src={el.image}
+            alt="NFT"
+            width={350}
+            height={300}
+            objectFit="cover"
+            className={Style.NFTCardTwo_box_img_img}
+            controls
+          />
+        );
+      } else {
+        return <div>Invalid file type</div>;
+      }
+    };
+  
+    const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
+    const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
+    const currentItems = NFTData.slice(indexOfFirstItem, indexOfLastItem);
   
 
-  return (
+    return (
     <div className={Style.NFTCard_container}>
+    {loading ? (
+      <div><Loader /></div>
+    ) : (
+      <>    
       <div className={Style.NFTCard}>
         {currentItems.map((el, i) => (
           <Link
@@ -122,17 +121,13 @@ const NFTCard = ({ NFTData }) => {
                 <div className={Style.NFTCard_box_info_left}>
                   <p>{el.name}</p>
                 </div>
-
-                <small> # {i + 1}</small>
+                <small> # {el.tokenId}</small>
               </div>
 
               <div className={Style.NFTCard_box_price}>
                 <div className={Style.NFTCard_box_price_box}>
                   <small>CURRENT PRICE</small>
-                                  {/*}
-                <p>{new BigNumber(el.price).dividedBy(new BigNumber(10).pow(18)).toString()} BNB</p>
-                */}
-                <p>{parseFloat(el.price) * 10**9} BNB</p>
+                  <p>{parseFloat(el.price) * 10**9} BNB</p>
                 </div>
                 <p className={Style.NFTCard_box_price_stock}>
                   <MdTimer /> <span>{i + 1} HOURS LEFT</span>
@@ -147,7 +142,7 @@ const NFTCard = ({ NFTData }) => {
           disabled={currentPage === 1}
           onClick={() => setCurrentPage(currentPage - 1)}
         >
-          Prev
+        Prev
         </button>
         {Array.from(
           { length: Math.ceil(NFTData.length / ITEMS_PER_PAGE) },
@@ -170,10 +165,10 @@ const NFTCard = ({ NFTData }) => {
           Next
         </button>
       </div>
-
-
-    </div >
-  );
+    </>
+  )}
+</div>
+);
 };
 
 export default NFTCard;

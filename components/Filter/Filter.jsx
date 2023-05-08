@@ -63,11 +63,11 @@ const Filter = () => {
       <div className={Style.filter_box}>
         <div className={Style.filter_box_left}>
           <button onClick={() => setCategory("nfts")}>ALL NFTs</button>
-          <button onClick={() => setCategory("art")}>ART</button>
-          <button onClick={() => setCategory("gaming")}>GAMING</button>
-          <button onClick={() => setCategory("sports")}>SPORTS</button>
-          <button onClick={() => setCategory("metaverse")}>METAVERSE</button>
-          <button onClick={() => setCategory("photography")}>PHOTOGRAPHY</button>
+          <button onClick={() => setCategory("ART")}>ART</button>
+          <button onClick={() => setCategory("GAMING")}>GAMING</button>
+          <button onClick={() => setCategory("SPORTS")}>SPORTS</button>
+          <button onClick={() => setCategory("METAVERSE")}>METAVERSE</button>
+          <button onClick={() => setCategory("PHOTOGRAPHY")}>PHOTOGRAPHY</button>
         </div>
 
         <div className={Style.filter_box_right}>

@@ -6,16 +6,16 @@
     gap: 1.3rem;
     line-height: 0;
     background-color:  var(--bg-shadow-dark-color);
-    box-shadow: var(--box-shadow);
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
     padding: .5rem 1rem;
-    border-radius: 1rem;
+    border-radius: .5rem;
     height: 8rem;
     transition: all .3s ease-in;
     cursor: pointer;
 }
 
 .audioPlayer_box:hover{
-    box-shadow: 1rem 1rem 1rem rgba(1,122,254,.6);
+    box-shadow: 0 0 5px #017afe99, 0 0 10px #017afe99, 0 0 20px;
 }
 
 .audioPlayer_box_info_box{

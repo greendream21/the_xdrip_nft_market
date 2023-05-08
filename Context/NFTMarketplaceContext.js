@@ -204,6 +204,7 @@ async function createNFT(name, price, description, category, website, royalties,
               name,
               description,
               tokenURI,
+              category,
             };
           }        
         )
@@ -233,8 +234,8 @@ async function fetchNFTs() {
     const items = await Promise.all(data.map(async ({ tokenId, seller, owner, price }) => {
       const tokenURI = await nftMarketplaceContract.methods.tokenURI(tokenId).call();
       console.log("Token URI:", tokenURI);
-      const { data: { name, description, image } } = await axios.get(tokenURI, {});
-      console.log("NFT Item:", { tokenId, seller, owner, price, name, description, image, tokenURI });
+      const { data: { name, description, image, category } } = await axios.get(tokenURI, {});
+      console.log("NFT Item:", { tokenId, seller, owner, price, name, description, image, tokenURI, category });
       return {
         tokenId,
         
@@ -245,6 +246,7 @@ async function fetchNFTs() {
         description,
         image,
         tokenURI,
+        category,
       }
     }));
     return items;
@@ -271,7 +273,7 @@ async function fetchNFTs() {
             async ({ tokenId, seller, owner, price: unformattedPrice }) => {
               const tokenURI = await contract.tokenURI(tokenId);
               const {
-                data: { image, name, description },
+                data: { image, name, description, category },
               } = await axios.get(tokenURI);
               const price = ethers.utils.formatUnits(
                 unformattedPrice.toString(),
@@ -287,6 +289,7 @@ async function fetchNFTs() {
                 name,
                 description,
                 tokenURI,
+                category,
               };
             }
           )

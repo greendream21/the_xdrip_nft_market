@@ -15,7 +15,7 @@
 .category_box{
     line-height: 0;
     transition: all .3s ease-in;
-    border-radius: 1rem;
+    border-radius: .5rem;
     overflow: hidden;
     cursor: pointer;
     padding-block: .5rem;
@@ -34,7 +34,7 @@
 }
 
 .category_box_img{
-    border-radius: 1rem;
+    border-radius: .5rem;
     
     
 }
