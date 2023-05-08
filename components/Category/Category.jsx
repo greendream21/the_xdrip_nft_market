@@ -47,7 +47,7 @@ const Category = () => {
     {
       images: images.category_favorites,
       name: "COLLECTIBLES",
-      path: "/collectiblesCategory",
+      path: "/collectibleCategory",
     },
   ];
 
