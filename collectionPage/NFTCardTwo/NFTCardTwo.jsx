@@ -4,12 +4,13 @@ import { BsImage } from "react-icons/bs";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { MdVerified, MdTimer } from "react-icons/md";
 import Link from "next/link";
-import BigNumber from "bignumber.js";
 import { Loader } from "../../components/componentsindex";
 
 //INTERNAL IMPORT
 import Style from "./NFTCardTwo.module.css";
-import { LikeProfile } from "../../components/componentsindex";
+//import { LikeProfile } from "../../components/componentsindex";
+
+const mp3Image = "/mp3.jpg";
 
 const NFTCardTwo = ({ NFTData }) => {
   const [like, setLike] = useState(false);
@@ -53,6 +54,9 @@ const NFTCardTwo = ({ NFTData }) => {
     fetchFileTypes();
   }, [NFTData]);
 
+
+
+/*
   const renderFilePreview = (el) => {
     const fileType = fileTypes[el.image];
 
@@ -83,6 +87,59 @@ const NFTCardTwo = ({ NFTData }) => {
       return <div>Invalid file type</div>;
     }
   };
+*/
+
+const renderFilePreview = (el) => {
+  const fileType = fileTypes[el.image];
+
+  if (fileType && fileType.includes("image")) {
+    return (
+      <img
+        src={el.image}
+        alt="NFT"
+        width={350}
+        height={300}
+        objectFit="cover"
+        className={Style.NFTCardTwo_box_img_img}
+      />
+    );
+  } else if (fileType && fileType.includes("video")) {
+    return (
+      <video
+        src={el.image}
+        alt="NFT"
+        width={350}
+        height={300}
+        objectFit="cover"
+        className={Style.NFTCardTwo_box_img_img}
+        controls
+      />
+    );
+  } else if (fileType && fileType.includes("audio")) {
+    return (
+      <div className={Style.NFTCardTwo_box_audio}>
+        <img
+          src={mp3Image}
+          alt="Default"
+          width={350}
+          height={300}
+          objectFit="cover"
+          className={Style.NFTCardTwo_box_img_img}
+        />
+        <audio
+          src={el.image}
+          controls
+          className={Style.NFTCardTwo_box_audio_controls}
+        />
+      </div>
+    );
+  } else {
+    return <div>Invalid file type</div>;
+  }
+};
+
+
+
 
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
