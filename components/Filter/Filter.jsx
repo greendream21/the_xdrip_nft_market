@@ -162,13 +162,13 @@ const Filter = () => {
           selectedCategoryData.length === 0 ? (
             <Loader />
           ) : (
-            <NFTCardTwo NFTData={selectedCategoryData} />
+            <NFTCard NFTData={selectedCategoryData} />
           )
         ) : (
           selectedCategoryData.length === 0 ? (
             <p>NO {category} NFT'S CURRENTLY AVAILABLE</p>
           ) : (
-            <NFTCardTwo NFTData={selectedCategoryData} />
+            <NFTCard NFTData={selectedCategoryData} />
           )
         )}
       </div>

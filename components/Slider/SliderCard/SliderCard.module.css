@@ -8,20 +8,20 @@
 
 .sliderCard_box{
     transition: all .3s ease-in;
-    border-radius: 2rem;
+    border-radius: .5rem;
     margin-left: 3rem;
     width: 100%;
     gap: 0rem;
-    box-shadow: var(--box-shadow);
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
 }
 
 .sliderCard_box:hover{
-   
-    box-shadow: 1rem 1rem 1rem rgba(1,122,254,.6);
+    box-shadow: 0 0 5px #017afe99, 0 0 10px #017afe99, 0 0 20px;
+    
 }
 
 .sliderCard_box_img_img{
-    border-radius: 2rem;
+    border-radius: .5rem;
 }
 
 .sliderCard_box_title{

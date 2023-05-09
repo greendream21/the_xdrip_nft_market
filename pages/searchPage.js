@@ -57,7 +57,7 @@ const searchPage = () => {
 
    return (
     <div className={Style.searchPage}>
-      <Banner bannerImage={images.creatorbackground2} />
+      <Banner />
       <Filter2 />
       <Slider />
       <Brand />
