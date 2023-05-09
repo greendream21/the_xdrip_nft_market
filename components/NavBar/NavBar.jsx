@@ -2,13 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import { useWeb3React } from "@web3-react/core";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-import LoginAndSignUp from "../../loginAndSignUp/LoginAndSignUp";
 
 import { MdNotifications } from "react-icons/md";
 import { BsSearch } from "react-icons/bs";
 import { CgMenuRight } from "react-icons/cg";
-import { useRouter } from "next/router";
 import { ConnectWallet } from "@thirdweb-dev/react";
 import { useDisconnect } from "@thirdweb-dev/react";
 
@@ -35,7 +34,7 @@ const NavBar = () => {
   const [profileImageSrc, setProfileImageSrc] = useState("/default-user.png");
   const [isLoginAndSignUpOpen, setIsLoginAndSignUpOpen] = useState(false);
   const [showLoginAndSignUp, setShowLoginAndSignUp] = useState(false);
-
+  
   
 
   const { currentAccount, connectWallet, openError } = useContext(
@@ -180,6 +179,12 @@ useEffect(() => {
 
   
 
+const [searchValue, setSearchValue] = useState("");
+
+const onHandleSearch = () => {
+  router.push(`/searchPage?query=${encodeURIComponent(searchValue)}`);
+};
+
 return (
   <div className={`${Style.navbar} ${isNavbarDocked ? "" : Style["navbar-undocked"]}`}>
     <div className={Style.navbar_container}>
@@ -192,10 +197,15 @@ return (
             </a>
           </Link>
           <div className={Style.navbar_container_left_box_input}>
-            <div className={Style.navbar_container_left_box_input_box}>
-              <input type="text" placeholder="XPLORE NFTs" />
-              <BsSearch onClick={() => {}} className={Style.search_icon} />
-            </div>
+          <div className={Style.navbar_container_left_box_input_box}>
+            <input
+              type="text"
+              placeholder="XPLORE NFTs"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+            <BsSearch onClick={onHandleSearch} className={Style.search_icon} />
+          </div>
           </div>
         </div>
 

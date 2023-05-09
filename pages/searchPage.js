@@ -4,7 +4,7 @@ import React, { useEffect, useState, useContext } from "react";
 import Style from "../styles/searchPage.module.css";
 import { Slider, Brand, Loader } from "../components/componentsindex";
 import { SearchBar } from "../SearchPage/searchBarIndex";
-import { Filter } from "../components/componentsindex";
+import { Filter2 } from "../components/componentsindex";
 
 import { NFTCardTwo, Banner } from "../collectionPage/collectionIndex";
 import images from "../img";
@@ -58,12 +58,7 @@ const searchPage = () => {
    return (
     <div className={Style.searchPage}>
       <Banner bannerImage={images.creatorbackground2} />
-      <SearchBar
-        onHandleSearch={onHandleSearch}
-        onClearSearch={onClearSearch}
-      />
-      <Filter />
-      {<NFTCardTwo NFTData={nfts} />}
+      <Filter2 />
       <Slider />
       <Brand />
     </div>

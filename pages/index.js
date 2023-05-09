@@ -108,12 +108,7 @@ const Home = () => {
           heading="XPLORE THE XMARKET"
           paragraph="THE MOST XCELLENT NFTS FEATURED JUST FOR YOU."
         />
-        <Filter
-          selectedCategoryData={selectedCategoryData}
-          setSelectedCategoryData={setSelectedCategoryData}
-          nfts={nfts}
-          nftsCopy={nftsCopy}
-        />
+        <Filter/>
       </div>
 
       <div id="category" className={Style.section}>

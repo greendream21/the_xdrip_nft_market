@@ -8,6 +8,7 @@ import Subscribe from "./Subscribe/Subscribe";
 import Title from "./Title/Title";
 import Category from "./Category/Category";
 import Filter from "./Filter/Filter";
+import Filter2 from "./Filter2/Filter2";
 import NFTCard from "./NFTCard/NFTCard";
 import Collection from "./Collection/Collection";
 import AudioLive from "./AudioLive/AudioLive";
@@ -33,6 +34,7 @@ export {
   Title,
   Category,
   Filter,
+  Filter2,
   NFTCard,
   Collection,
   AudioLive,
