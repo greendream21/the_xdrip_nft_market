@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+
 import {
   FaFilter,
   FaAngleDown,
@@ -15,48 +16,80 @@ import { TiTick } from "react-icons/ti";
 
 //INTERNAL IMPORT
 import Style from "./Filter.module.css";
-
-
+import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
+import Loader from "../Loader/Loader";
+import NFTCardTwo from "../../collectionPage/NFTCardTwo/NFTCardTwo";
+import NFTCard from "../NFTCard/NFTCard";
 
 const Filter = () => {
   const [filter, setFilter] = useState(true);
   const [image, setImage] = useState(true);
   const [video, setVideo] = useState(true);
   const [music, setMusic] = useState(true);
-  const [category, setCategory] = useState("");
 
   //FUNCTION SECTION
   const openFilter = () => {
-    if (!filter) {
-      setFilter(true);
-    } else {
-      setFilter(false);
-    }
+    setFilter(!filter);
   };
 
   const openImage = () => {
-    if (!image) {
-      setImage(true);
-    } else {
-      setImage(false);
-    }
+    setImage(!image);
   };
 
   const openVideo = () => {
-    if (!video) {
-      setVideo(true);
-    } else {
-      setVideo(false);
-    }
+    setVideo(!video);
   };
 
   const openMusic = () => {
-    if (!music) {
-      setMusic(true);
-    } else {
-      setMusic(false);
-    }
+    setMusic(!music);
   };
+
+  const { fetchNFTs, setError, currentAccount } = useContext(
+    NFTMarketplaceContext
+  );
+  const [nfts, setNfts] = useState([]);
+  const [nftsCopy, setNftsCopy] = useState([]);
+
+  useEffect(() => {
+    try {
+      if (currentAccount) {
+        fetchNFTs().then((items) => {
+          setNfts(items.reverse());
+          setNftsCopy(items);
+        });
+      }
+    } catch (error) {
+      setError("Please reload the browser", error);
+    }
+  }, []);
+
+  const [category, setCategory] = useState("nfts");
+  const [selectedCategoryData, setSelectedCategoryData] = useState(nfts);
+
+  useEffect(() => {
+    switch (category) {
+      case "nfts":
+        setSelectedCategoryData(nftsCopy);
+        break;
+      case "ART":
+        setSelectedCategoryData(nfts.filter((nft) => nft.category === "ART"));
+        break;
+      case "GAMING":
+        setSelectedCategoryData(nfts.filter((nft) => nft.category === "GAMING"));
+        break;
+      case "SPORTS":
+        setSelectedCategoryData(nfts.filter((nft) => nft.category === "SPORTS"));
+        break;
+      case "METAVERSE":
+        setSelectedCategoryData(nfts.filter((nft) => nft.category === "METAVERSE"));
+        break;
+      case "PHOTOGRAPHY":
+        setSelectedCategoryData(nfts.filter((nft) => nft.category === "PHOTOGRAPHY"));
+        break;
+      default:
+        setSelectedCategoryData(nftsCopy);
+    }
+  }, [category]);
 
   return (
     <div className={Style.filter}>
@@ -71,10 +104,7 @@ const Filter = () => {
         </div>
 
         <div className={Style.filter_box_right}>
-          <div
-            className={Style.filter_box_right_box}
-            onClick={() => openFilter()}
-          >
+          <div className={Style.filter_box_right_box} onClick={() => openFilter()}>
             <FaFilter />
             <span>FILTER</span> {filter ? <FaAngleDown /> : <FaAngleUp />}
           </div>
@@ -128,8 +158,26 @@ const Filter = () => {
           </div>
         </div>
       )}
+
+      <div className={Style.category_section}>
+        {category === "nfts" ? (
+          selectedCategoryData.length === 0 ? (
+            <Loader />
+          ) : (
+            <NFTCard NFTData={selectedCategoryData} />
+          )
+        ) : (
+          selectedCategoryData.length === 0 ? (
+            <p>NO {category} NFT'S CURRENTLY AVAILABLE</p>
+          ) : (
+            <NFTCard NFTData={selectedCategoryData} />
+          )
+        )}
+      </div>
     </div>
   );
 };
 
 export default Filter;
+
+
