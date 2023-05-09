@@ -269,7 +269,7 @@ const togglePreview = () => {
     const decimalIndex = newValue.indexOf(".");
     if (decimalIndex !== -1) {
       const decimalCount = newValue.slice(decimalIndex + 1).length;
-      if (decimalCount > 3) {
+      if (decimalCount > 4) {
         return;
       }
     }
