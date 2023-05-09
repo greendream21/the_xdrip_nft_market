@@ -6,6 +6,8 @@ import Image from "next/image";
 import Style from "./DropZone.module.css";
 import images from "../../img";
 
+
+
 const DropZone = ({
   title,
   heading,
@@ -21,10 +23,12 @@ const DropZone = ({
   uploadToIPFS,
   category,
   setImage,
+  setFileType,
 }) => {
   const [fileUrl, setFileUrl] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [localFileSize, setLocalFileSize] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
 
 
@@ -33,17 +37,18 @@ const DropZone = ({
   async (acceptedFile) => {
     console.log(acceptedFile);
     const file = acceptedFile[0];
-    setLocalFileSize(file.size); 
-    
+    setIsLoading(true);
+    setLocalFileSize(file.size);
+
     const url = await uploadToIPFS(file);
-    //setFileUrl(url);
+    setFileUrl(url); // Change this line
     setImage(url, file.type);
     setImagePreview(URL.createObjectURL(file));
     console.log(url);
-    
-    },
-    [setImage, setImagePreview, uploadToIPFS, setFileSize]
-  );
+    setIsLoading(false);
+  },
+  [setImage, setImagePreview, uploadToIPFS, setFileSize]
+);
  
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
@@ -123,69 +128,97 @@ const formatFileSize = (size) => {
 };
 
   
-  
-  
-  
 
   return (
-    <div className={Style.DropZone}>
-      <div className={Style.DropZone_box} {...getRootProps()}>
-        <input {...getInputProps()} />
-        <div className={Style.DropZone_box_input}>
-          <p>{title}</p>
-          <div className={Style.DropZone_box_input_img}>
-            <Image
-              src={images.upload}
-              alt="upload"
-              width={100}
-              height={100}
-              style={{ objectFit: "cover" }}
-              className={Style.DropZone_box_input_img_img}
-            />
-          </div>
-          <p>{heading}</p>
-          <p>{subHeading}</p>
+  <div className={Style.DropZone}>
+    <div className={Style.DropZone_box} {...getRootProps()}>
+      <input {...getInputProps()} />
+      <div className={Style.DropZone_box_input}>
+        <p>{title}</p>
+        <div className={Style.DropZone_box_input_img}>
+          <Image
+            src={images.upload}
+            alt="upload"
+            width={100}
+            height={100}
+            style={{ objectFit: "cover" }}
+            className={Style.DropZone_box_input_img_img}
+          />
         </div>
+        <p>{heading}</p>
+        <p>{subHeading}</p>
       </div>
+    </div>
 
-      {imagePreview && (
-        <aside className={Style.DropZone_box_aside}>
-          <div className={Style.DropZone_box_aside_box}>
-            <img
-              src={imagePreview}
-              alt="nft preview"
-              style={{
-                maxWidth: "400px",
-                maxHeight: "400px",
-                width: "auto",
-                height: "auto",
-              }}
-              className={Style.DropZone_box_input_img_img}
-            />
+{/*
+{isLoading && (
+  <div >
+    Loading...
+  </div>
+)}
+*/}
 
-            <div className={Style.DropZone_box_aside_box_preview}>
-              <div className={Style.DropZone_box_aside_box_preview_one}>
-                <p>NFT Name : {name || ""}</p>
-                <p>CATEGORY : {category || ""}</p>
-              </div>
 
-              <div className={Style.DropZone_box_aside_box_preview_two}>
-                <p>Royalties : {royalties ? handleInputValue(royalties) : ""}</p>
-                <p>Price : {price ? handleInputValue(price) : ""}</p>
-                <p>FileSize : {formatFileSize(localFileSize)}</p>
-                <p>Properties : {properties || ""}</p>
-                <p>Website : {website || ""}</p>
-              </div>
 
-              <div className={Style.DropZone_box_aside_box_preview_three}>
-                <p>Description : {description || ""}</p>
-              </div>
+ {isLoading && (
+  <div className={Style.loadingContainer}>
+    <img
+      src="/loading-spinner.gif"
+      alt="Loading..."
+      className={Style.loadingSpinner}
+    />
+    <p className={Style.loadingText}>Loading...</p>
+  </div>
+)}
+
+
+
+    {imagePreview && (
+      <aside className={Style.DropZone_box_aside}>
+        <div className={Style.DropZone_box_aside_box}>
+          
+        
+          <img
+            src={imagePreview}
+            alt="nft preview"
+            style={{
+              maxWidth: "400px",
+              maxHeight: "400px",
+              width: "auto",
+              height: "auto",
+            }}
+            className={Style.DropZone_box_input_img_img}
+          />
+        
+          
+          {/*}
+          {renderMediaPreview()}         
+          */}
+
+          <div className={Style.DropZone_box_aside_box_preview}>
+            <div className={Style.DropZone_box_aside_box_preview_one}>
+              <p>NFT Name : {name || ""}</p>
+              <p>CATEGORY : {category || ""}</p>
+            </div>
+
+            <div className={Style.DropZone_box_aside_box_preview_two}>
+              <p>Royalties : {royalties ? handleInputValue(royalties) : ""}</p>
+              <p>Price : {price ? handleInputValue(price) : ""}</p>
+              <p>FileSize : {formatFileSize(localFileSize)}</p>
+              <p>Properties : {properties || ""}</p>
+              <p>Website : {website || ""}</p>
+            </div>
+
+            <div className={Style.DropZone_box_aside_box_preview_three}>
+              <p>Description : {description || ""}</p>
             </div>
           </div>
-        </aside>
-      )}
-    </div>
-  );
+        </div>
+      </aside>
+    )}
+  </div>
+);
+
 };
 
 export default DropZone;
