@@ -177,7 +177,7 @@ const formatFileSize = (size) => {
       <aside className={Style.DropZone_box_aside}>
         <div className={Style.DropZone_box_aside_box}>
           
-          {/*}
+        
           <img
             src={imagePreview}
             alt="nft preview"
@@ -189,10 +189,11 @@ const formatFileSize = (size) => {
             }}
             className={Style.DropZone_box_input_img_img}
           />
-          */}
+        
           
+          {/*}
           {renderMediaPreview()}         
-          
+          */}
 
           <div className={Style.DropZone_box_aside_box_preview}>
             <div className={Style.DropZone_box_aside_box_preview_one}>
