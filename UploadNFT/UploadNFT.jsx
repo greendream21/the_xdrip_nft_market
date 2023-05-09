@@ -8,6 +8,8 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { NFTStorage } from "nft.storage";
 
+
+
 //INTERNAL IMPORT
 import Style from "./Upload.module.css";
 import formStyle from "../AccountPage/Form/Form.module.css";
@@ -15,7 +17,7 @@ import images from "../img";
 import { Button } from "../components/componentsindex.js";
 import { DropZone } from "./uploadNFTIndex.js";
 
-import NFTPreview from "./NFTPreview"
+import NFTPreview from "./NFTPreview";
 
 const UloadNFT = ({ createNFT }) => {
   const [price, setPrice] = useState("");
@@ -30,6 +32,7 @@ const UloadNFT = ({ createNFT }) => {
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [showPreview, setShowPreview] = useState(false);
+  const [fileType, setFileType] = useState(null);
 
 const togglePreview = () => {
     setShowPreview(!showPreview);
@@ -70,6 +73,8 @@ const togglePreview = () => {
   
   // this process is logged for visibility in console 
   
+  const [isLoading, setIsLoading] = useState(false);
+  
   const uploadToIPFS = async (file) => {
   const apiKey = process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY;
   const client = new NFTStorage({ token: apiKey });
@@ -101,9 +106,9 @@ const togglePreview = () => {
   return (
     <div className={Style.upload}>
       <DropZone
-        title="JPG, PNG, WEBM , MAX 100MB"
-        heading="SIMPLY DRAG AND DROP YOUR FILE HERE OR"
-        subHeading="BROWSE FOR A FILE ON YOUR DEVICE"
+        title="JPG, GIF, PNG, MP4, MP3, WEBM, MAX 100MB"
+        heading="DRAG AND DROP VIDEO / AUDIO MEDIA FILE OR"
+        subHeading="CLICK TO BROWSE YOUR DEVICE"
         name={name}
         price={price}
         description={description}
@@ -116,6 +121,10 @@ const togglePreview = () => {
         setImagePreview={setImagePreview}
         imagePreview={imagePreview}
         fileSize={fileSize}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+        
+        setFileType={setFileType}
       />
 
       <div className={Style.upload_box}>
