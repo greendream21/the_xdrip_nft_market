@@ -1,14 +1,10 @@
-
 import React, { useState } from "react";
 import { MdOutlineHttp, MdOutlineAttachFile } from "react-icons/md";
 import { FaPercent } from "react-icons/fa";
 import { AiTwotonePropertySafety } from "react-icons/ai";
 import { TiTick } from "react-icons/ti";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { NFTStorage } from "nft.storage";
-
-
 
 //INTERNAL IMPORT
 import Style from "./Upload.module.css";
@@ -34,11 +30,11 @@ const UloadNFT = ({ createNFT }) => {
   const [showPreview, setShowPreview] = useState(false);
   const [fileType, setFileType] = useState(null);
 
-const togglePreview = () => {
+  const togglePreview = () => {
     setShowPreview(!showPreview);
   };
 
-  const router = useRouter();
+  //const router = useRouter();
 
   const categoryArry = [
     {
@@ -70,43 +66,44 @@ const togglePreview = () => {
       category: "SPORTS",
     },
   ];
-  
-  // this process is logged for visibility in console 
-  
+
+  // this process is logged for visibility in console
+
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const uploadToIPFS = async (file) => {
-  const apiKey = process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY;
-  const client = new NFTStorage({ token: apiKey });
+    const apiKey = process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY;
+    const client = new NFTStorage({ token: apiKey });
 
-  try {
-    console.log("Uploading to nft.storage...");
-    const content = await client.storeBlob(new Blob([file], { type: file.type }));
-    
-    console.log("Upload complete, content:", content);
-    console.log("Content CID:", content);
-    
-    const ipfsMediaUrl = `https://${content}.ipfs.nftstorage.link`;
+    try {
+      console.log("Uploading to nft.storage...");
+      const content = await client.storeBlob(
+        new Blob([file], { type: file.type })
+      );
 
-    console.log("Generated IPFS Media URL:", ipfsMediaUrl);
-    if (ipfsMediaUrl.includes("undefined")) {
-      console.error("Error: IPFS URL contains 'undefined'");
-    } else {
-      setImage(ipfsMediaUrl);
-      setImagePreview(URL.createObjectURL(file)); // set image preview
+      console.log("Upload complete, content:", content);
+      console.log("Content CID:", content);
 
-      return ipfsMediaUrl;
+      const ipfsMediaUrl = `https://${content}.ipfs.nftstorage.link`;
+
+      console.log("Generated IPFS Media URL:", ipfsMediaUrl);
+      if (ipfsMediaUrl.includes("undefined")) {
+        console.error("Error: IPFS URL contains 'undefined'");
+      } else {
+        setImage(ipfsMediaUrl);
+        setImagePreview(URL.createObjectURL(file)); // set image preview
+
+        return ipfsMediaUrl;
+      }
+    } catch (error) {
+      console.error("Error uploading Media to nft.storage:", error);
     }
-  } catch (error) {
-    console.error("Error uploading Media to nft.storage:", error);
-  }
-};  
+  };
 
- 
   return (
     <div className={Style.upload}>
       <DropZone
-        title="JPG, GIF, PNG, MP4, MP3, WEBM, MAX 100MB"
+        title="JPG, GIF, PNG, MP4, MP3, WEBM, MAX 250MB"
         heading="DRAG AND DROP VIDEO / AUDIO MEDIA FILE OR"
         subHeading="CLICK TO BROWSE YOUR DEVICE"
         name={name}
@@ -115,7 +112,7 @@ const togglePreview = () => {
         category={category}
         website={website}
         royalties={royalties}
-        properties={properties}               
+        properties={properties}
         setImage={setImage}
         uploadToIPFS={uploadToIPFS}
         setImagePreview={setImagePreview}
@@ -123,8 +120,8 @@ const togglePreview = () => {
         fileSize={fileSize}
         isLoading={isLoading}
         setIsLoading={setIsLoading}
-        
         setFileType={setFileType}
+        fileType={fileType}
       />
 
       <div className={Style.upload_box}>
@@ -223,7 +220,7 @@ const togglePreview = () => {
               />
             </div>
           </div>
-          
+
           <div className={formStyle.Form_box_input}>
             <label htmlFor="size">FILE SIZE</label>
             <div className={formStyle.Form_box_input_box}>
@@ -258,24 +255,26 @@ const togglePreview = () => {
                 <AiTwotonePropertySafety />
               </div>
               <input
-  type="text"
-  placeholder="Price in BNB"
-  value={price}
-  onChange={(e) => {
-    const value = e.target.value;
-    // Only allow numeric and decimal point characters
-    const newValue = value.replace(/[^0-9.]/g, "");
-    // Ensure that there is only one decimal point
-    const decimalIndex = newValue.indexOf(".");
-    if (decimalIndex !== -1) {
-      const decimalCount = newValue.slice(decimalIndex + 1).length;
-      if (decimalCount > 4) {
-        return;
-      }
-    }
-    setPrice(newValue);
-  }}
-/>
+                type="text"
+                placeholder="Price in BNB"
+                value={price}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  // Only allow numeric and decimal point characters
+                  const newValue = value.replace(/[^0-9.]/g, "");
+                  // Ensure that there is only one decimal point
+                  const decimalIndex = newValue.indexOf(".");
+                  if (decimalIndex !== -1) {
+                    const decimalCount = newValue.slice(
+                      decimalIndex + 1
+                    ).length;
+                    if (decimalCount > 4) {
+                      return;
+                    }
+                  }
+                  setPrice(newValue);
+                }}
+              />
             </div>
           </div>
         </div>
@@ -294,7 +293,6 @@ const togglePreview = () => {
                 properties,
                 image,
                 fileSize
-                               
               )
             }
             classStyle={Style.upload_box_btn_style}
@@ -305,23 +303,22 @@ const togglePreview = () => {
             classStyle={Style.upload_box_btn_style}
           />
         </div>
-        
-          <NFTPreview
-        show={showPreview}
-        onClose={togglePreview}
-        imagePreview={imagePreview}
-        name={name}
-        category={category}
-        royalties={royalties}
-        price={price}
-        fileSize={fileSize}
-        properties={properties}
-        website={website}
-        description={description}
-        
-      />
-        
-        
+
+        <NFTPreview
+          show={showPreview}
+          onClose={togglePreview}
+          imagePreview={imagePreview}
+          name={name}
+          category={category}
+          royalties={royalties}
+          price={price}
+          fileSize={fileSize}
+          properties={properties}
+          website={website}
+          description={description}
+          mediaPreview={imagePreview}
+          fileType={fileType}
+        />
       </div>
     </div>
   );

@@ -24,6 +24,9 @@ const DropZone = ({
   category,
   setImage,
   setFileType,
+  fileType,
+  setPreviewMedia, 
+  setPreviewFileType,
 }) => {
   const [fileUrl, setFileUrl] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
@@ -41,14 +44,23 @@ const DropZone = ({
     setLocalFileSize(file.size);
 
     const url = await uploadToIPFS(file);
-    setFileUrl(url); // Change this line
+    setFileUrl(url);
     setImage(url, file.type);
     setImagePreview(URL.createObjectURL(file));
+    setFileType(file.type);   
+   
     console.log(url);
     setIsLoading(false);
   },
-  [setImage, setImagePreview, uploadToIPFS, setFileSize]
+  [setImage, 
+  setImagePreview, 
+  uploadToIPFS, 
+  setFileType, 
+  setFileSize, 
+  setPreviewMedia, 
+  setPreviewFileType]
 );
+
  
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
@@ -76,11 +88,11 @@ const formatFileSize = (size) => {
   
   
   const renderMediaPreview = () => {
-  if (!fileUrl) {
+  if (!fileType) {
     return null;
   }
 
-  if (fileUrl.startsWith("image")) {
+  if (fileType.startsWith("image")) {
     return (
       <img
         src={imagePreview}
@@ -94,7 +106,7 @@ const formatFileSize = (size) => {
         className={Style.DropZone_box_input_img_img}
       />
     );
-  } else if (fileUrl.startsWith("video")) {
+  } else if (fileType.startsWith("video")) {
     return (
       <video
         src={imagePreview}
@@ -108,26 +120,39 @@ const formatFileSize = (size) => {
         className={Style.DropZone_box_input_img_img}
       />
     );
-  } else if (fileUrl.startsWith("audio")) {
+  } else if (fileType.startsWith("audio")) {
     return (
-      <audio
-        src={imagePreview}
-        controls
-        style={{
-          maxWidth: "400px",
-          maxHeight: "400px",
-          width: "auto",
-          height: "auto",
-        }}
-        className={Style.DropZone_box_input_img_img}
-      />
+      <>
+        <img
+          src="/mp3.jpg"
+          alt="mp3 preview"
+          style={{
+            maxWidth: "400px",
+            maxHeight: "400px",
+            width: "auto",
+            height: "auto",
+          }}
+          className={Style.DropZone_box_input_img_img}
+        />
+        <audio
+          src={imagePreview}
+          controls
+          
+          style={{
+            maxWidth: "400px",
+            maxHeight: "400px",
+            width: "auto",
+            height: "auto",
+          }}
+          className={Style.DropZone_box_input_img_img}
+        />
+      </>
     );
   } else {
     return <div>Invalid file type</div>;
   }
 };
 
-  
 
   return (
   <div className={Style.DropZone}>
@@ -177,7 +202,7 @@ const formatFileSize = (size) => {
       <aside className={Style.DropZone_box_aside}>
         <div className={Style.DropZone_box_aside_box}>
           
-        
+        {/*}
           <img
             src={imagePreview}
             alt="nft preview"
@@ -189,11 +214,11 @@ const formatFileSize = (size) => {
             }}
             className={Style.DropZone_box_input_img_img}
           />
-        
+        */}
           
-          {/*}
+          
           {renderMediaPreview()}         
-          */}
+          
 
           <div className={Style.DropZone_box_aside_box_preview}>
             <div className={Style.DropZone_box_aside_box_preview_one}>
