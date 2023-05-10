@@ -18,23 +18,26 @@
     border-radius: .5rem;
     overflow: hidden;
     cursor: pointer;
-    padding-block: .5rem;
+    padding-block: 0rem;
     padding-bottom: 1rem;
-    box-shadow: var(--box-shadow);
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
     align-items: center;
-    justify-content: center;
     justify-items: center;
-    align-content: center;
+    
+    
     
 }
 
+
+
 .category_box:hover{
-    box-shadow: 1rem 1rem 1rem rgba(1,122,254,.6);
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
     
 }
 
 .category_box_img{
     border-radius: .5rem;
+    padding-left: 2rem;
     
     
 }

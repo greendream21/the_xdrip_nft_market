@@ -10,7 +10,7 @@ const NFTTabs = ({ dataTab, icon }) => {
       {dataTab.map((el, i) => (
         <div className={Style.NFTTabs_box} key={i + 1}>
           <Image
-            src={el}
+            src={el.image}
             alt="profile image"
             width={40}
             height={40}

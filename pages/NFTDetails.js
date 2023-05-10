@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 //INTERNAL IMPORT
 import { Button, Category, Brand } from "../components/componentsindex";
 import NFTDetailsPage from "../NFTDetailsPage/NFTDetailsPage";
-
+import Style from "../styles/NFTDetails.module.css";
 
 //IMPORT SMART CONTRACT DATA
 import { NFTMarketplaceContext } from "../Context/NFTMarketplaceContext";
@@ -27,7 +27,7 @@ const NFTDetails = () => {
   }, [router.isReady]);
 
   return (
-    <div className={StyleSheet.NFTDetails}>
+    <div className={Style.NFTDetails}>
       <NFTDetailsPage nft={nft} />
       <Category />
       <Brand />

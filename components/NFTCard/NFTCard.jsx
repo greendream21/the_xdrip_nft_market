@@ -11,6 +11,8 @@ import { Loader } from "../../components/componentsindex";
 import Style from "./NFTCard.module.css";
 import { LikeProfile } from "../../components/componentsindex";
 
+const mp3Image = "/mp3.jpg";
+
 const NFTCard = ({ NFTData }) => {
   const [like, setLike] = useState(false);
   const [likeInc, setLikeInc] = useState(0);
@@ -50,39 +52,58 @@ const NFTCard = ({ NFTData }) => {
       setLoading(false);
     };
 
+
     fetchFileTypes();
   }, [NFTData]);
 
     const renderFilePreview = (el) => {
-      const fileType = fileTypes[el.image];
-  
-      if (fileType && fileType.includes("image")) {
-        return (
-          <img
-            src={el.image}
-            alt="NFT"
-            width={350}
-            height={300}
-            objectFit="cover"
-            className={Style.NFTCardTwo_box_img_img}
-          />
-        );
-      } else if (fileType && fileType.includes("video")) {
-        return (
-          <video
-            src={el.image}
-            alt="NFT"
-            width={350}
-            height={300}
-            objectFit="cover"
-            className={Style.NFTCardTwo_box_img_img}
-            controls
-          />
-        );
-      } else {
-        return <div>Invalid file type</div>;
-      }
-    };
+  const fileType = fileTypes[el.image];
+
+  if (fileType && fileType.includes("image")) {
+    return (
+      <img
+        src={el.image}
+        alt="NFT"
+        width={350}
+        height={300}
+        objectFit="cover"
+        className={Style.NFTCardTwo_box_img_img}
+      />
+    );
+  } else if (fileType && fileType.includes("video")) {
+    return (
+      <video
+        src={el.image}
+        alt="NFT"
+        width={350}
+        height={300}
+        objectFit="cover"
+        className={Style.NFTCardTwo_box_img_img}
+        controls
+      />
+    );
+  } else if (fileType && fileType.includes("audio")) {
+    return (
+      <div className={Style.NFTCardTwo_box_audio}>
+        <img
+          src={mp3Image}
+          alt="Default"
+          width={350}
+          height={300}
+          objectFit="cover"
+          className={Style.NFTCardTwo_box_img_img}
+        />
+        <audio
+          src={el.image}
+          controls
+          className={Style.NFTCardTwo_box_audio_controls}
+        />
+      </div>
+    );
+  } else {
+    return <div>Invalid file type</div>;
+  }
+};
   
     const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
     const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
@@ -98,7 +119,7 @@ const NFTCard = ({ NFTData }) => {
       <div className={Style.NFTCard}>
         {currentItems.map((el, i) => (
           <Link
-            href={{ pathname: "/NFT-details", query: el }}
+            href={{ pathname: "/NFTDetails", query: el }}
             key={`${el.tokenId}-${i}`}
           >
             <div className={Style.NFTCard_box}>

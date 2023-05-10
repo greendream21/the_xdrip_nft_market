@@ -8,9 +8,11 @@ import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import Style from "./NFTDetailsImg.module.css";
 import images from "../../img";
 
-const NFTDetailsImg = ({ nft }) => {
+
+const NFTDetailsImg = ({ el }) => {
   const [description, setDescription] = useState(true);
   const [details, setDetails] = useState(true);
+  const [fileTypes, setFileTypes] = useState({});
   const [like, setLike] = useState(false);
 
   const openDescription = () => {
@@ -37,6 +39,77 @@ const NFTDetailsImg = ({ nft }) => {
     }
   };
 
+  useEffect(() => {
+    const fetchFileTypes = async () => {
+      const fileTypesObj = {};
+
+      for (const el of NFTData) {
+        try {
+          const response = await fetch(el.image);
+          const contentType = response.headers.get("content-type");
+          fileTypesObj[el.image] = contentType;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      setFileTypes(fileTypesObj);
+      setLoading(false);
+    };
+
+
+    fetchFileTypes();
+  }, [NFTData]);
+
+    const renderFilePreview = (el) => {
+  const fileType = fileTypes[el.image];
+
+  if (fileType && fileType.includes("image")) {
+    return (
+      <img
+        src={el.image}
+        alt="NFT"
+        width={350}
+        height={300}
+        objectFit="cover"
+        className={Style.NFTCardTwo_box_img_img}
+      />
+    );
+  } else if (fileType && fileType.includes("video")) {
+    return (
+      <video
+        src={el.image}
+        alt="NFT"
+        width={350}
+        height={300}
+        objectFit="cover"
+        className={Style.NFTCardTwo_box_img_img}
+        controls
+      />
+    );
+  } else if (fileType && fileType.includes("audio")) {
+    return (
+      <div className={Style.NFTCardTwo_box_audio}>
+        <img
+          src={mp3Image}
+          alt="Default"
+          width={350}
+          height={300}
+          objectFit="cover"
+          className={Style.NFTCardTwo_box_img_img}
+        />
+        <audio
+          src={el.image}
+          controls
+          className={Style.NFTCardTwo_box_audio_controls}
+        />
+      </div>
+    );
+  } else {
+    return <div>Invalid file type</div>;
+  }
+};
+
   return (
     <div className={Style.NFTDetailsImg}>
       <div className={Style.NFTDetailsImg_box}>
@@ -58,8 +131,8 @@ const NFTDetailsImg = ({ nft }) => {
           </div>
 
           <div className={Style.NFTDetailsImg_box_NFT_img}>
-            <Image
-              src={images.nft_image_1}
+            <img
+              src={el.image}
               className={Style.NFTDetailsImg_box_NFT_img_img}
               alt="NFT image"
               width={700}

@@ -210,7 +210,7 @@ const NFTDescription = ({ nft }) => {
 
             <div className={Style.NFTDescription_box_profile_box_right}>
               <Image
-                src={images.nft_image_5}
+                src={el.image}
                 alt="profile"
                 width={40}
                 height={40}

@@ -4,14 +4,15 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     background-color: black;
-    border-radius: 2rem;
+    border-radius: .5rem;
     transition: all .2s ease-in;
     cursor: pointer;
     position: relative;
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
 }
 
 .FollowerTabCard_box:hover{
-    box-shadow: var(--box-shadow);
+    box-shadow: 0 0 5px #017afe99, 0 0 10px #017afe99, 0 0 20px;
 }
 
 .FollowerTabCard_rank{
@@ -23,7 +24,7 @@
     margin:  1rem;
     font-size: .8rem;
     padding: .1rem .5rem;
-    border-radius: 2rem;
+    border-radius: .5rem;
     border: 1px solid var(--icons-color);
     transition: all .3s ease-in;
 }
@@ -38,7 +39,7 @@
 }
 
 .FollowerTabCard_box_img_img{
-    border-radius: 2rem;
+    border-radius: .5rem;
 }
 
 .FollowerTabCard_box_profile{

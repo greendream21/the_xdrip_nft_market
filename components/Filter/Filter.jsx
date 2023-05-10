@@ -15,7 +15,6 @@ import { TiTick } from "react-icons/ti";
 import Style from "./Filter.module.css";
 import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
 import Loader from "../Loader/Loader";
-import NFTCardTwo from "../../collectionPage/NFTCardTwo/NFTCardTwo";
 import NFTCard from "../NFTCard/NFTCard";
 
 const Filter = () => {

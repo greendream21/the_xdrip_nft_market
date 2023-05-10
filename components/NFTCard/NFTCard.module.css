@@ -23,7 +23,7 @@
     width: 90%;
     transition: all .3s ease-in;
     border-radius: .5rem;
-    box-shadow: 0 0 5px #181717, 0 0 10px #1a1919, 0 0 16px;
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
     
 }
 
