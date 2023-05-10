@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   FaFilter,
   FaAngleDown,
@@ -13,18 +13,16 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { MdVerified } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
 import Style from "./Filter.module.css";
-import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
 import Loader from "../Loader/Loader";
 import NFTCard from "../NFTCard/NFTCard";
+import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
 
 const Filter = () => {
   const [filter, setFilter] = useState(true);
   const [image, setImage] = useState(true);
   const [video, setVideo] = useState(true);
   const [music, setMusic] = useState(true);
-  const { fetchNFTs, setError, currentAccount } = useContext(
-    NFTMarketplaceContext
-  );
+  const { fetchNFTs, setError, currentAccount } = useContext(NFTMarketplaceContext);
   const [nfts, setNfts] = useState([]);
   const [nftsCopy, setNftsCopy] = useState([]);
   const [category, setCategory] = useState("nfts");
@@ -33,12 +31,11 @@ const Filter = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (currentAccount) {
-          const items = await fetchNFTs();
-          setNfts(items.reverse());
-          setNftsCopy(items);
-          setSelectedCategoryData(items);
-        }
+        /*if (currentAccount) {*/
+        const items = await fetchNFTs();
+        setNfts(items.reverse());
+        setNftsCopy(items);
+        setSelectedCategoryData(items);
       } catch (error) {
         setError("Please reload the browser", error);
       }
@@ -176,4 +173,3 @@ const Filter = () => {
 };
 
 export default Filter;
-
