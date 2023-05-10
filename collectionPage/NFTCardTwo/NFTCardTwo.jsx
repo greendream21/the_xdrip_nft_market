@@ -10,7 +10,7 @@ import { Loader } from "../../components/componentsindex";
 import Style from "./NFTCardTwo.module.css";
 //import { LikeProfile } from "../../components/componentsindex";
 
-const mp3Image = "/mp3.jpg";
+const mp3Image = "mp3.jpg";
 
 const NFTCardTwo = ({ NFTData }) => {
   const [like, setLike] = useState(false);
