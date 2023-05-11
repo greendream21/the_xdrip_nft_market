@@ -107,7 +107,7 @@ const Filter2 = () => {
 
       {filter && (
         <div className={Style.filter2_box_items}>
-          <div className={Style.filte2r_box_items_box}>
+          <div className={Style.filter2_box_items_box}>
             <div className={Style.filter2_box_items_box_item}>
               <FaWallet /> <span>.01 BNB - 10 BNB</span>
               <AiFillCloseCircle />

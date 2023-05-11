@@ -4,6 +4,48 @@
     background-image: url(../../img/card-background-2.png);
 }
 
+
+.likesContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+
+.ReactRating {
+  position: absolute;
+  left: 0;
+  top: -26px;
+  display: flex;
+  align-items: center;
+}
+
+.loading-message {
+  font-size: 36px;
+}
+
+
+.loading-message-animate {
+  animation-name: loading-message-color;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes loading-message-color {
+  0% {
+    color: rgb(243, 244, 250);
+  }
+  50% {
+    color: rgb(91, 142, 230);
+  }
+  100% {
+    color: rgb(21, 46, 128);
+  }
+}
+
+
+
 .NFTCardTwo{
     width: 90%;
     display: grid;
@@ -109,8 +151,12 @@
 
 .NFTCardTwo_box_price{
     display: flex;
+    margin-top: auto;
     justify-content: space-between;
+    /*
     align-items: flex-end;
+    */
+    align-items: center;
     line-height: 0;
     padding-left: 1rem;
     padding-right: 1rem;
