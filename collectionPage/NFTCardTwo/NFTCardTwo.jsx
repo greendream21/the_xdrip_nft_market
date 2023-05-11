@@ -111,6 +111,7 @@ const NFTCardTwo = ({ NFTData }) => {
   };
 
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
+
 const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
 const currentItems = NFTData.slice(indexOfFirstItem, indexOfLastItem);
 
@@ -136,6 +137,42 @@ return (
                 <div className={Style.NFTCardTwo_box_info}>
                   <div className={Style.NFTCardTwo_box_info_left}>
                     <p>{el.name}</p>
+
+  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
+  const currentItems = NFTData.slice(indexOfFirstItem, indexOfLastItem);
+
+  return (
+    <div className={Style.NFTCardTwo_container}>
+ {loading ? (
+      <div><Loader /></div>
+    ) : (
+      <>    
+      <div className={Style.NFTCardTwo}>
+        {currentItems.map((el, i) => (
+          <Link
+            href={{ pathname: "/NFTDetails", query: el }}
+            key={`${el.tokenId}-${i}`}
+          >
+                <div className={Style.NFTCardTwo_box}>
+                  <div className={Style.NFTCardTwo_box_like}>
+                    <div className={Style.NFTCardTwo_box_like_box}>
+                      <div className={Style.NFTCardTwo_box_like_box_box}>
+                        <div
+                          className={Style.NFTCardTwo_box_like_box_box_icon}
+                        />
+                        <p onClick={() => likeNFT(el.tokenId)}>
+                          {likes[el.tokenId] && likes[el.tokenId].liked ? (
+                            <AiFillHeart />
+                          ) : (
+                            <AiOutlineHeart />
+                          )}
+                          <span>
+                            {likes[el.tokenId] ? likes[el.tokenId].count : 0}
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+
                   </div>
                   <small> # {el.tokenId}</small>
                 </div>

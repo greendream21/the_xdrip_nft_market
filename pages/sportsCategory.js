@@ -54,7 +54,7 @@ const sportsCategory = () => {
 
   return (
     <div className={Style.searchPage}>
-      <Banner bannerImage={images.creatorbackground2} />
+      <Banner  />
       <SearchBar
         onHandleSearch={onHandleSearch}
         onClearSearch={onClearSearch}

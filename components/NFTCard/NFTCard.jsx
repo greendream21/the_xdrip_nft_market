@@ -1,38 +1,41 @@
 import React, { useState, useEffect } from "react";
-import Img from "next/image";
-import { BsImage } from "react-icons/bs";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { MdVerified, MdTimer } from "react-icons/md";
 import Link from "next/link";
-import BigNumber from "bignumber.js";
+import { MdTimer } from "react-icons/md";
 import { Loader } from "../../components/componentsindex";
 
 //INTERNAL IMPORT
 import Style from "./NFTCard.module.css";
-import { LikeProfile } from "../../components/componentsindex";
 
 const mp3Image = "/mp3.jpg";
 
 const NFTCard = ({ NFTData }) => {
-  const [like, setLike] = useState(false);
-  const [likeInc, setLikeInc] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const ITEMS_PER_PAGE = 12;
   const [fileTypes, setFileTypes] = useState({});
   const [loading, setLoading] = useState(true);
 
+  const [likes, setLikes] = useState(() => {
+    const savedLikes = localStorage.getItem("nftLikes");
+    return savedLikes ? JSON.parse(savedLikes) : {};
+  });
 
-  const likeNFT = () => {
-    if (!like) {
-      setLike(true);
-      setLikeInc(23);
-    } else {
-      setLike(false);
-      setLikeInc(23 + 1);
-    }
+  const likeNFT = (tokenId) => {
+    setLikes((prevState) => {
+      const newLikes = { ...prevState };
+      if (!newLikes[tokenId]) {
+        newLikes[tokenId] = { count: 0, liked: false };
+      }
+      newLikes[tokenId].liked = !newLikes[tokenId].liked;
+      if (newLikes[tokenId].liked) {
+        newLikes[tokenId].count++;
+      } else {
+        newLikes[tokenId].count--;
+      }
+      localStorage.setItem("nftLikes", JSON.stringify(newLikes));
+      return newLikes;
+    });
   };
-
-
 
   useEffect(() => {
     const fetchFileTypes = async () => {
@@ -127,10 +130,16 @@ const NFTCard = ({ NFTData }) => {
                 <div className={Style.NFTCard_box_like_box}>
                   <div className={Style.NFTCard_box_like_box_box}>
                     <div className={Style.NFTCard_box_like_box_box_icon} />
-                    <p onClick={() => likeNFT()}>
-                      {like ? <AiOutlineHeart /> : <AiFillHeart />}
-                      <span>{likeInc + 1}</span>
-                    </p>
+                    <p onClick={() => likeNFT(el.tokenId)}>
+                    {likes[el.tokenId] && likes[el.tokenId].liked ? (
+                            <AiFillHeart />
+                          ) : (
+                            <AiOutlineHeart />
+                          )}
+                          <span>
+                            {likes[el.tokenId] ? likes[el.tokenId].count : 0}
+                          </span>
+                        </p>
                   </div>
                 </div>
               </div>

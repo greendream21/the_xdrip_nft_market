@@ -130,7 +130,7 @@ const NFTDescription = ({ nft }) => {
       <div className={Style.NFTDescription_box}>
         {/* //Part ONE */}
         <div className={Style.NFTDescription_box_share}>
-          <p>XDRIP WORLDS</p>
+          <p>{nft.category}</p>
           <div className={Style.NFTDescription_box_share_box}  
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}>
@@ -210,7 +210,7 @@ const NFTDescription = ({ nft }) => {
 
             <div className={Style.NFTDescription_box_profile_box_right}>
               <Image
-                src={el.image}
+                src={images.nft_image_5}
                 alt="profile"
                 width={40}
                 height={40}
@@ -274,7 +274,7 @@ const NFTDescription = ({ nft }) => {
               >
                 <small>CURRENT PRICE</small>
                 <p>
-                  {nft.price} BNB <span>( ≈ $221.22)</span>
+                {parseFloat(nft.price) * 10**9} BNB <span>( ≈ $221.22)</span>
                 </p>
               </div>
 
