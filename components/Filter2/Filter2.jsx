@@ -14,7 +14,7 @@ import { MdVerified } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
 import Style from "./Filter2.module.css";
 import Loader from "../Loader/Loader";
-import NFTCardTwo from "../NFTCard/NFTCard";
+import NFTCardTwo from "../../collectionPage/NFTCardTwo/NFTCardTwo";
 import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
 
 const Filter2 = () => {
@@ -107,7 +107,7 @@ const Filter2 = () => {
 
       {filter && (
         <div className={Style.filter2_box_items}>
-          <div className={Style.filte2r_box_items_box}>
+          <div className={Style.filter2_box_items_box}>
             <div className={Style.filter2_box_items_box_item}>
               <FaWallet /> <span>.01 BNB - 10 BNB</span>
               <AiFillCloseCircle />

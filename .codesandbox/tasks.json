@@ -55,6 +55,14 @@
     "npm install @thirdweb-dev/sdk": {
       "name": "npm install @thirdweb-dev/sdk",
       "command": "npm install @thirdweb-dev/sdk"
+    },
+    "npm install react-like-button": {
+      "name": "npm install react-like-button",
+      "command": "npm install react-like-button"
+    },
+    "npm install react-rating": {
+      "name": "npm install react-rating",
+      "command": "npm install react-rating"
     }
   }
 }

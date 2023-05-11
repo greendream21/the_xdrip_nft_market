@@ -103,7 +103,7 @@ const UloadNFT = ({ createNFT }) => {
   return (
     <div className={Style.upload}>
       <DropZone
-        title="JPG, GIF, PNG, MP4, MP3, WEBM, MAX 250MB"
+        title="JPG, GIF, PNG, MP4, MP3, MOV, WMV, MPEG, WEBM, MAX 250MB"
         heading="DRAG AND DROP VIDEO / AUDIO MEDIA FILE OR"
         subHeading="CLICK TO BROWSE YOUR DEVICE"
         name={name}

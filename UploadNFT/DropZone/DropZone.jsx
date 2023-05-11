@@ -2,6 +2,7 @@
 import React, { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import Image from "next/image";
+import Img from "next/image";
 //INTRNAL IMPORT
 import Style from "./DropZone.module.css";
 import images from "../../img";
@@ -64,7 +65,7 @@ const DropZone = ({
  
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: "image/*,video/mp4,video/webm,video/ogg,audio/*",
+     accept: "image/*,video/mp4,video/webm,video/mpeg,video/mpg,video/x-ms-wmv,video/quicktime,video/ogg,audio/*",
 
     maxSize: 25000000,
   });
