@@ -110,10 +110,11 @@ const NFTCardTwo = ({ NFTData }) => {
     }
   };
 
-  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
-
+const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
 const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
 const currentItems = NFTData.slice(indexOfFirstItem, indexOfLastItem);
+
+
 
 return (
   <div className={Style.NFTCardTwo_container}>
@@ -127,7 +128,7 @@ return (
         <div className={Style.NFTCardTwo}>
           {currentItems.map((el, i) => (
             <Link
-              href={{ pathname: "/NFT-details", query: el }}
+              href={{ pathname: "/NFTDetails", query: el }}
               key={`${el.tokenId}-${i}`}
             >
               <div className={Style.NFTCardTwo_box}>
@@ -137,73 +138,20 @@ return (
                 <div className={Style.NFTCardTwo_box_info}>
                   <div className={Style.NFTCardTwo_box_info_left}>
                     <p>{el.name}</p>
-
-  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
-  const currentItems = NFTData.slice(indexOfFirstItem, indexOfLastItem);
-
-  return (
-    <div className={Style.NFTCardTwo_container}>
- {loading ? (
-      <div><Loader /></div>
-    ) : (
-      <>    
-      <div className={Style.NFTCardTwo}>
-        {currentItems.map((el, i) => (
-          <Link
-            href={{ pathname: "/NFTDetails", query: el }}
-            key={`${el.tokenId}-${i}`}
-          >
-                <div className={Style.NFTCardTwo_box}>
-                  <div className={Style.NFTCardTwo_box_like}>
-                    <div className={Style.NFTCardTwo_box_like_box}>
-                      <div className={Style.NFTCardTwo_box_like_box_box}>
-                        <div
-                          className={Style.NFTCardTwo_box_like_box_box_icon}
-                        />
-                        <p onClick={() => likeNFT(el.tokenId)}>
-                          {likes[el.tokenId] && likes[el.tokenId].liked ? (
-                            <AiFillHeart />
-                          ) : (
-                            <AiOutlineHeart />
-                          )}
-                          <span>
-                            {likes[el.tokenId] ? likes[el.tokenId].count : 0}
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-
-                  </div>
-                  <small> # {el.tokenId}</small>
-                </div>
-
-                <div className={Style.NFTCardTwo_box_price}>
-                  <div className={Style.likesContainer}>
-                    <div className={Style.NFTCardTwo_box_like_box}>
- 
-                      
-                    </div>
-                  </div>
-                  <div className={Style.NFTCardTwo_box_price_box}>
-                    <small>CURRENT PRICE</small>
+                    <small>#{el.tokenId}</small>
                     <p>{parseFloat(el.price) * 10 ** 9} BNB</p>
                   </div>
-                  
-<Rating
-  emptySymbol={<FaRegStar />}
-  fullSymbol={<FaStar />}
-  onClick={(value) => likeNFT(el.tokenId, value)}
-  initialRating={likes[el.tokenId] ? likes[el.tokenId].rating : 0}
-/>
-  <span>
-                        {likes[el.tokenId] ? likes[el.tokenId].count : 0}
-                      </span>                
-                  <p className={Style.NFTCardTwo_box_price_stock}>
-                    
-                    {/* future auciton functionality)
-                    <MdTimer /> <span>{i + 1} HOURS LEFT</span>
-                    */}
-                  </p>
+                  <div className={Style.NFTCardTwo_box_info_right}>
+                    <Rating
+                      emptySymbol={<FaRegStar />}
+                      fullSymbol={<FaStar />}
+                      onClick={(value) => likeNFT(el.tokenId, value)}
+                      initialRating={likes[el.tokenId] ? likes[el.tokenId].rating : 0}
+                    />
+                    <span>
+                      {likes[el.tokenId] ? likes[el.tokenId].count : 0}
+                    </span>
+                  </div>
                 </div>
               </div>
             </Link>
@@ -229,9 +177,7 @@ return (
             )
           )}
           <button
-            disabled={
-              currentPage === Math.ceil(NFTData.length / ITEMS_PER_PAGE)
-            }
+            disabled={currentPage === Math.ceil(NFTData.length / ITEMS_PER_PAGE)}
             onClick={() => setCurrentPage(currentPage + 1)}
           >
             Next
