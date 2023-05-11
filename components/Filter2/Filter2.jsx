@@ -14,7 +14,7 @@ import { MdVerified } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
 import Style from "./Filter2.module.css";
 import Loader from "../Loader/Loader";
-import NFTCardTwo from "../NFTCard/NFTCard";
+import NFTCardTwo from "../../collectionPage/NFTCardTwo/NFTCardTwo";
 import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
 
 const Filter2 = () => {

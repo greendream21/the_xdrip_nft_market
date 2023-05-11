@@ -50,17 +50,17 @@ const metaverseCategory = () => {
     });
   };
 
-  const metsverseNFTs = nfts.filter((nft) => nft.category === 'METAVERSE');
+  const metaverseNFTs = nfts.filter((nft) => nft.category === 'METAVERSE');
 
   return (
     <div className={Style.searchPage}>
-      <Banner bannerImage={images.creatorbackground2} />
+      <Banner />
       <SearchBar
         onHandleSearch={onHandleSearch}
         onClearSearch={onClearSearch}
       />
       <Title
-        heading="XMARKET'S METSVERSE CATEGORY"
+        heading="XMARKET'S METAVERSE CATEGORY"
         paragraph="XCELLENT METAVERSE NFTS"
       />
       {metaverseNFTs.length === 0 ? <Loader /> : <NFTCardTwo NFTData={metaverseNFTs} />}

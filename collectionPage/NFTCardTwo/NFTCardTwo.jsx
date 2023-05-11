@@ -112,18 +112,16 @@ const NFTCardTwo = ({ NFTData }) => {
 
   return (
     <div className={Style.NFTCardTwo_container}>
-      {loading ? (
-        <div>
-          <Loader />
-        </div>
-      ) : (
-        <>
-          <div className={Style.NFTCardTwo}>
-            {currentItems.map((el, i) => (
-              <Link
-                href={{ pathname: "/NFT-details", query: el }}
-                key={`${el.tokenId}-${i}`}
-              >
+ {loading ? (
+      <div><Loader /></div>
+    ) : (
+      <>    
+      <div className={Style.NFTCardTwo}>
+        {currentItems.map((el, i) => (
+          <Link
+            href={{ pathname: "/NFTDetails", query: el }}
+            key={`${el.tokenId}-${i}`}
+          >
                 <div className={Style.NFTCardTwo_box}>
                   <div className={Style.NFTCardTwo_box_like}>
                     <div className={Style.NFTCardTwo_box_like_box}>

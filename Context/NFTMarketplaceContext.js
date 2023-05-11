@@ -122,11 +122,6 @@ export const NFTMarketplaceProvider = ({ children }) => {
 
 
 
-useEffect(() => {
-  if (router.query.category) {
-    setCategory(router.query.category);
-  }
-}, [router.query.category]);
 
 
 async function createNFT(name, price, description, category, website, royalties, properties, image ) {
