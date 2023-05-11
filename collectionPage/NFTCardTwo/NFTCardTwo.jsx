@@ -3,7 +3,7 @@ import { MdTimer } from "react-icons/md";
 import { Loader } from "../../components/componentsindex";
 import Style from "./NFTCardTwo.module.css";
 import Rating from "react-rating";
-import { FaRegStar, FaStar } from 'react-icons/fa';
+import { FaRegStar, FaStar } from "react-icons/fa";
 
 //import { AiOutlineHeart, AiFillHeart } from "react-icons/ai"; Can use hearts insetad of stars
 import Link from "next/link";
@@ -110,83 +110,107 @@ const NFTCardTwo = ({ NFTData }) => {
     }
   };
 
-const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
-const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
-const currentItems = NFTData.slice(indexOfFirstItem, indexOfLastItem);
+  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
+  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
+  const currentItems = NFTData.slice(indexOfFirstItem, indexOfLastItem);
 
-
-
-return (
-  <div className={Style.NFTCardTwo_container}>
-    {loading ? (
-      <div className={Style.loading}>
-        <Loader />
-        <p className={`${Style["loading-message"]} ${Style["loading-message-animate"]}`}>Loading NFTs...</p>
-      </div>
-    ) : (
-      <>
-        <div className={Style.NFTCardTwo}>
-          {currentItems.map((el, i) => (
-            <Link
-              href={{ pathname: "/NFTDetails", query: el }}
-              key={`${el.tokenId}-${i}`}
-            >
-              <div className={Style.NFTCardTwo_box}>
-                <div className={Style.NFTCardTwo_box_img}>
-                  {renderFilePreview(el)}
-                </div>
-                <div className={Style.NFTCardTwo_box_info}>
-                  <div className={Style.NFTCardTwo_box_info_left}>
-                    <p>{el.name}</p>
-                    <small>#{el.tokenId}</small>
-                    <p>{parseFloat(el.price) * 10 ** 9} BNB</p>
-                  </div>
-                  <div className={Style.NFTCardTwo_box_info_right}>
-                    <Rating
-                      emptySymbol={<FaRegStar />}
-                      fullSymbol={<FaStar />}
-                      onClick={(value) => likeNFT(el.tokenId, value)}
-                      initialRating={likes[el.tokenId] ? likes[el.tokenId].rating : 0}
-                    />
-                    <span>
-                      {likes[el.tokenId] ? likes[el.tokenId].count : 0}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-        <div className={Style.pagination}>
-          <button
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage(currentPage - 1)}
+  return (
+    <div className={Style.NFTCardTwo_container}>
+      {loading ? (
+        <div className={Style.loading}>
+          <Loader />
+          <p
+            className={`${Style["loading-message"]} ${Style["loading-message-animate"]}`}
           >
-            Prev
-          </button>
-          {Array.from(
-            { length: Math.ceil(NFTData.length / ITEMS_PER_PAGE) },
-            (_, i) => (
-              <button
-                key={`page-${i}`}
-                onClick={() => setCurrentPage(i + 1)}
-                className={currentPage === i + 1 ? Style.active : ""}
+            Loading NFTs...
+          </p>
+        </div>
+      ) : (
+        <>
+          <div className={Style.NFTCardTwo}>
+            {currentItems.map((el, i) => (
+              <Link
+                href={{ pathname: "/NFT-details", query: el }}
+                key={`${el.tokenId}-${i}`}
               >
-                {i + 1}
-              </button>
-            )
-          )}
-          <button
-            disabled={currentPage === Math.ceil(NFTData.length / ITEMS_PER_PAGE)}
-            onClick={() => setCurrentPage(currentPage + 1)}
-          >
-            Next
-          </button>
-        </div>
-      </>
-    )}
-  </div>
-);
+                <div className={Style.NFTCardTwo_box}>
+                  <div className={Style.NFTCardTwo_box_img}>
+                    {renderFilePreview(el)}
+                  </div>
+                  <div className={Style.NFTCardTwo_box_info}>
+                    <div className={Style.NFTCardTwo_box_info_left}>
+                      <p>{el.name}</p>
+                    </div>
+                    <small> # {el.tokenId}</small>
+                  </div>
+
+                  <div className={Style.NFTCardTwo_box_price}>
+                    <div className={Style.likesContainer}>
+                      <div className={Style.NFTCardTwo_box_like_box}></div>
+                    </div>
+                    <div className={Style.NFTCardTwo_box_price_box}>
+                      <small>CURRENT PRICE</small>
+                      <p>{parseFloat(el.price) * 10 ** 9} BNB</p>
+                    </div>
+                    <p className={Style.NFTCardTwo_box_price_stock}>
+                      {/* future auciton functionality 
+                    <MdTimer /> <span>{i + 1} HOURS LEFT</span>
+                    */}
+
+                      <Rating
+                        emptySymbol={
+                          <FaRegStar style={{ marginRight: "5px" }} />
+                        }
+                        fullSymbol={<FaStar style={{ marginRight: "5px" }} />}
+                        onClick={(value) => likeNFT(el.tokenId, value)}
+                        initialRating={
+                          likes[el.tokenId] ? likes[el.tokenId].rating : 0
+                        }
+                      />
+
+                      <div className={Style.likesNumber}>
+                        <span>
+                          {likes[el.tokenId] ? likes[el.tokenId].count : 0}
+                        </span>
+                      </div>
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className={Style.pagination}>
+            <button
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(currentPage - 1)}
+            >
+              Prev
+            </button>
+            {Array.from(
+              { length: Math.ceil(NFTData.length / ITEMS_PER_PAGE) },
+              (_, i) => (
+                <button
+                  key={`page-${i}`}
+                  onClick={() => setCurrentPage(i + 1)}
+                  className={currentPage === i + 1 ? Style.active : ""}
+                >
+                  {i + 1}
+                </button>
+              )
+            )}
+            <button
+              disabled={
+                currentPage === Math.ceil(NFTData.length / ITEMS_PER_PAGE)
+              }
+              onClick={() => setCurrentPage(currentPage + 1)}
+            >
+              Next
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
 };
 
 export default NFTCardTwo;
