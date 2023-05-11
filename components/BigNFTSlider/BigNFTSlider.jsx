@@ -23,7 +23,7 @@ const fetchMohContract = (signerOrProvider) =>
 const BigNFTSlider = () => {
   const [idNumber, setIdNumber] = useState(0);
 
-  
+
   const sliderData = [
     {
       title: "COMMON",
@@ -34,12 +34,12 @@ const BigNFTSlider = () => {
       like: 1,
       image: images.user1,
       nftVideo: videos.common,
-      description:"Common Medal, forged in the fires of battle, this medal represents the courage and determination of the XdRiP warrior.",
+      description: "Common Medal, forged in the fires of battle, this medal represents the courage and determination of the XdRiP warrior.",
       ipfsHash: ipfsHashes.find((hash) => hash.title === "COMMON").url,
       inventory: {
         forged: 0,
         available: 100,
-       },
+      },
     },
     {
       title: "UNCOMMON",
@@ -50,12 +50,12 @@ const BigNFTSlider = () => {
       like: 369,
       image: images.user1,
       nftVideo: videos.uncommon,
-      description:"Uncommon Medal, crafted by the most skilled, this medal is a symbol of the exceptional strength and valor possessed by those who rise above the rest.",
+      description: "Uncommon Medal, crafted by the most skilled, this medal is a symbol of the exceptional strength and valor possessed by those who rise above the rest.",
       ipfsHash: ipfsHashes.find((hash) => hash.title === "UNCOMMON").url,
       inventory: {
         forged: 0,
         available: 80,
-       },
+      },
     },
     {
       title: "RARE ",
@@ -66,12 +66,12 @@ const BigNFTSlider = () => {
       like: 1,
       image: images.user1,
       nftVideo: videos.rare,
-      description:"Rare Medal, forged from rare and precious metals, this medal is a testament to the elite few who have demonstrated unparalleled bravery and honor.",
+      description: "Rare Medal, forged from rare and precious metals, this medal is a testament to the elite few who have demonstrated unparalleled bravery and honor.",
       ipfsHash: ipfsHashes.find((hash) => hash.title === "RARE").url,
       inventory: {
         forged: 0,
         available: 60,
-       },
+      },
     },
     {
       title: "EPIC ",
@@ -82,12 +82,12 @@ const BigNFTSlider = () => {
       like: 1,
       image: images.user1,
       nftVideo: videos.epic,
-      description:"Epic Medal, wrought with mystical powers, this medal is a sign of the legendary feats accomplished by only the most heroic and mighty of warriors.",
+      description: "Epic Medal, wrought with mystical powers, this medal is a sign of the legendary feats accomplished by only the most heroic and mighty of warriors.",
       ipfsHash: ipfsHashes.find((hash) => hash.title === "EPIC").url,
       inventory: {
         forged: 0,
         available: 40,
-       },
+      },
     },
     {
       title: "LEGENDARY ",
@@ -98,12 +98,12 @@ const BigNFTSlider = () => {
       like: 1,
       image: images.user1,
       nftVideo: videos.legendary,
-      description:"Legendary Medal, forged by the XdRiP Gods, this medal is a symbol of the ultimate achievement in battle, an honor bestowed only upon the greatest of heroes. ",
+      description: "Legendary Medal, forged by the XdRiP Gods, this medal is a symbol of the ultimate achievement in battle, an honor bestowed only upon the greatest of heroes. ",
       ipfsHash: ipfsHashes.find((hash) => hash.title === "LEGENDARY").url,
       inventory: {
         forged: 0,
         available: 40,
-       },
+      },
     },
   ];
 
@@ -122,42 +122,42 @@ const BigNFTSlider = () => {
   }, [idNumber]);
 
 
-const mint = async (medalType, ipfsHash) => {
-  try {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = fetchMohContract(signer);
+  const mint = async (medalType, ipfsHash) => {
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = fetchMohContract(signer);
 
-    let mintFunction;
-    switch (medalType) {
-      case "COMMON":
-        mintFunction = contract.mintCommon;
-        break;
-      case "UNCOMMON":
-        mintFunction = contract.mintUncommon;
-        break;
-      case "RARE":
-        mintFunction = contract.mintRare;
-        break;
-      case "EPIC":
-        mintFunction = contract.mintEpic;
-        break;
-      case "LEGENDARY":
-        mintFunction = contract.mintLegendary;
-        break;
-      default:
-        throw new Error("Invalid medal type");
+      let mintFunction;
+      switch (medalType) {
+        case "COMMON":
+          mintFunction = contract.mintCommon;
+          break;
+        case "UNCOMMON":
+          mintFunction = contract.mintUncommon;
+          break;
+        case "RARE":
+          mintFunction = contract.mintRare;
+          break;
+        case "EPIC":
+          mintFunction = contract.mintEpic;
+          break;
+        case "LEGENDARY":
+          mintFunction = contract.mintLegendary;
+          break;
+        default:
+          throw new Error("Invalid medal type");
+      }
+
+      const price = ethers.utils.parseUnits(sliderData[idNumber].price.split(" ")[0], "ether");
+      const transaction = await mintFunction(ipfsHash, { value: price, gasLimit: 500000 });
+      await transaction.wait();
+      alert("Your Medal Of Honor was minted successfully!");
+    } catch (error) {
+      console.error("Error minting medal:", error);
+      alert("Minting failed. Please check console for details.");
     }
-
-    const price = ethers.utils.parseUnits(sliderData[idNumber].price.split(" ")[0], "ether");
-    const transaction = await mintFunction(ipfsHash, { value: price, gasLimit: 500000 });
-    await transaction.wait();
-    alert("Your Medal Of Honor was minted successfully!");
-  } catch (error) {
-    console.error("Error minting medal:", error);
-    alert("Minting failed. Please check console for details.");
-  }
-};
+  };
 
 
 
@@ -212,16 +212,16 @@ const mint = async (medalType, ipfsHash) => {
             <div className={Style.bigNFTSlider_box_left_bidding_box}>
               <small>CURRENT PRICE</small>
               <p>
-                {sliderData[idNumber].price} 
+                {sliderData[idNumber].price}
               </p>
             </div>
 
-            <div className={Style.bigNFTSlider_box_left_origin}> 
-                <h3>ORIGIN:</h3>
+            <div className={Style.bigNFTSlider_box_left_origin}>
+              <h3>ORIGIN:</h3>
             </div>
 
             <p className={Style.bigNFTSlider_box_left_bidding_box_auction}>
-            {sliderData[idNumber].description}
+              {sliderData[idNumber].description}
             </p>
 
             <div className={Style.bigNFTSlider_box_left_bidding_box_timer}>
@@ -243,10 +243,10 @@ const mint = async (medalType, ipfsHash) => {
 
             <div className={Style.bigNFTSlider_box_left_button}>
               <Button
-  btnName="FORGE YOUR MEDAL"
-  handleClick={() => mint(sliderData[idNumber].title, sliderData[idNumber].ipfsHash)}
-/>
-              <Button btnName="DETAILS" handleClick={() => { }} />
+                btnName="FORGE YOUR MEDAL"
+                handleClick={() => mint(sliderData[idNumber].title, sliderData[idNumber].ipfsHash)}
+              />
+              <Button btnName="COLLECTION" handleClick={() => { }} />
             </div>
           </div>
 

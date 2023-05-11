@@ -274,7 +274,7 @@ const NFTDescription = ({ nft }) => {
               >
                 <small>CURRENT PRICE</small>
                 <p>
-                {parseFloat(nft.price) * 10**9} BNB <span>( ≈ $221.22)</span>
+                {parseFloat(nft.price) * 10**9} BNB 
                 </p>
               </div>
 
