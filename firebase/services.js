@@ -13,6 +13,7 @@ export const addUser = async (username, email, walletAddress, profilePicture) =>
   const newUser = {
     email,
     username,
+    walletAddress,
     profilePictureUrl: "",
     isCreator: false,
     creatorPage: "",
