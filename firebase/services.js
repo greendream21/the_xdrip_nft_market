@@ -11,10 +11,13 @@ const storage = getStorage();
 export const addUser = async (username, email, walletAddress, profilePicture) => {
   const userRef = collection(firestore, "users");
   const newUser = {
-    username,
     email,
-    walletAddress,
-    profilePictureUrl: ""
+    username,
+    profilePictureUrl: "",
+    isCreator: false,
+    creatorPage: "",
+    nftsListed: [],
+    nftsSold: [],
   };
 
   try {
@@ -27,6 +30,53 @@ export const addUser = async (username, email, walletAddress, profilePicture) =>
     console.error("Error adding user: ", error);
   }
 };
+
+export const addNft = async (userId, tokenURI) => {
+  const userRef = doc(firestore, "users", userId);
+
+  try {
+    const userSnapshot = await getDoc(userRef);
+
+    if (userSnapshot.exists()) {
+      const userData = userSnapshot.data();
+      const nft = {
+        tokenURI,
+        likes: 0,
+      };
+      userData.nftsListed.push(nft);
+      await updateDoc(userRef, { nftsListed: userData.nftsListed });
+    } else {
+      console.error("User does not exist");
+    }
+  } catch (error) {
+    console.error("Error adding NFT: ", error);
+  }
+};
+
+export const updateNftLikes = async (userId, nftIndex, likes) => {
+  const userRef = doc(firestore, "users", userId);
+
+  try {
+    const userSnapshot = await getDoc(userRef);
+
+    if (userSnapshot.exists()) {
+      const userData = userSnapshot.data();
+      if (nftIndex >= 0 && nftIndex < userData.nftsListed.length) {
+        userData.nftsListed[nftIndex].likes = likes;
+        await updateDoc(userRef, { nftsListed: userData.nftsListed });
+      } else {
+        console.error("Invalid NFT index");
+      }
+    } else {
+      console.error("User does not exist");
+    }
+  } catch (error) {
+    console.error("Error updating NFT likes: ", error);
+  }
+};
+
+
+
 
 export const getUser = async (userId) => {
   const userRef = doc(firestore, "users", userId);
