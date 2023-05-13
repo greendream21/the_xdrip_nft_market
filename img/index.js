@@ -72,7 +72,7 @@ import founder5 from "./founder5.jpg"
 import errorgif from "./error.gif";
 import transfer from "./transfer.gif";
 import transferEther from "./ethereTransfer.gif";
-
+import invalidImage from "./invalidImage.png";
 
 export default {
   banner_1,
@@ -149,4 +149,5 @@ export default {
   transferEther,
   xm,
   xm2,
+  invalidImage,
 };

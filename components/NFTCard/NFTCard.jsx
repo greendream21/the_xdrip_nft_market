@@ -4,6 +4,8 @@ import { Loader } from "../../components/componentsindex";
 import Style from "./NFTCard.module.css";
 import Rating from "react-rating";
 import { FaRegStar, FaStar } from "react-icons/fa";
+import images from "../../img";
+import Image from "next/image";
 
 //import { AiOutlineHeart, AiFillHeart } from "react-icons/ai"; Can use hearts insetad of stars
 import Link from "next/link";
@@ -106,7 +108,18 @@ const NFTCard = ({ NFTData }) => {
         </div>
       );
     } else {
-      return <div>Invalid file type</div>;
+      return (
+        <Image
+          src={images.invalidImage}
+          alt="NFT"
+          width={350}
+          height={300}
+          objectFit="cover"
+          className={Style.NFTCard_box_img_img}
+          controls
+        />
+       
+      );
     }
   };
 
