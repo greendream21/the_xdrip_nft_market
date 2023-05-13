@@ -1,7 +1,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['ipfs.io', 'ipfs.nftstorage.link', 'nft.storage'],
+    domains: ['ipfs.io', 'ipfs.nftstorage.link', 'nft.storage', 'firebasestorage.googleapis.com'],
     formats: ["image/webp"],
   },
   webpack: (config) => {

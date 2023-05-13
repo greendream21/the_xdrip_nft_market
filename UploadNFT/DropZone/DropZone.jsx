@@ -36,7 +36,6 @@ const DropZone = ({
 
 
 
-
   const onDrop = useCallback(
   async (acceptedFile) => {
     console.log(acceptedFile);
@@ -65,9 +64,9 @@ const DropZone = ({
  
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-     accept: "image/*,video/mp4,video/webm,video/mpeg,video/mpg,video/x-ms-wmv,video/quicktime,video/ogg,audio/*",
+     accept: "image/*,video/mp4,video/webm,video/mpeg,video/mpg,video/wmv,video/quicktime,video/ogg,audio/*",
 
-    maxSize: 25000000,
+    maxSize: 250000000,
   });
   
   
@@ -111,6 +110,7 @@ const formatFileSize = (size) => {
     return (
       <video
         src={imagePreview}
+        type={fileType}
         controls
         style={{
           maxWidth: "400px",
