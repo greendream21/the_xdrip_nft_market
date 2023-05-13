@@ -137,6 +137,7 @@ const NFTCard = ({ NFTData }) => {
                   <div className={Style.NFTCard_box_img}>
                     {renderFilePreview(el)}
                   </div>
+                  <div className={Style.NFTCard_box_box_info}>
                   <div className={Style.NFTCard_box_info}>
                     <div className={Style.NFTCard_box_info_left}>
                       <p>{el.name}</p>
@@ -177,6 +178,7 @@ const NFTCard = ({ NFTData }) => {
                         </span>
                       </div>
                     </p>
+                  </div>
                   </div>
                 </div>
               </Link>

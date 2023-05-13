@@ -9,15 +9,15 @@ import Style from "./NFTDetailsImg.module.css";
 import images from "../../img";
 
 const NFTDetailsImg = ({ nft }) => {
-  const [description, setDescription] = useState(true);
+  const [information, setInformation] = useState(true);
   const [details, setDetails] = useState(true);
   const [like, setLike] = useState(false);
 
-  const openDescription = () => {
-    if (!description) {
-      setDescription(true);
+  const openInformation = () => {
+    if (!information) {
+      setInformation(true);
     } else {
-      setDescription(false);
+      setInformation(false);
     }
   };
 
@@ -29,13 +29,6 @@ const NFTDetailsImg = ({ nft }) => {
     }
   };
 
-  const likeNFT = () => {
-    if (!like) {
-      setLike(true);
-    } else {
-      setLike(false);
-    }
-  };
 
   return (
     <div className={Style.NFTDetailsImg}>
@@ -55,15 +48,15 @@ const NFTDetailsImg = ({ nft }) => {
 
         <div
           className={Style.NFTDetailsImg_box_description}
-          onClick={() => openDescription()}
+          onClick={() => openInformation()}
         >
-          <p>DESCRIPTION</p>
-          {description ? <FaArrowUp /> : <FaArrowDown />}
+          <p>Owner Information</p>
+          {information ? <FaArrowUp /> : <FaArrowDown />}
         </div>
 
-        {description && (
+        {information && (
           <div className={Style.NFTDetailsImg_box_description_box}>
-            <p>{nft.description}</p>
+            <p>{nft.owner}</p>
           </div>
         )}
 
