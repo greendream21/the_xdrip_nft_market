@@ -1,5 +1,5 @@
 import firebaseApp from "./config";
-import { getFirestore, collection, addDoc, updateDoc, doc } from "firebase/firestore";
+import { getFirestore, collection, query, where, addDoc, updateDoc, doc, getDocs } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -75,9 +75,6 @@ export const updateNftLikes = async (userId, nftIndex, likes) => {
     console.error("Error updating NFT likes: ", error);
   }
 };
-
-
-
 
 export const getUser = async (userId) => {
   const userRef = doc(firestore, "users", userId);
