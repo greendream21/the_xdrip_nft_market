@@ -4,7 +4,8 @@ import { useAddress } from "@thirdweb-dev/react";
 
 import { getUserProfile } from "../../firebase/services";
 
-import Image from "next/image";
+import Img from "next/image";
+
 import {
   MdVerified,
   MdCloudUpload,
@@ -19,7 +20,7 @@ import {
 import { BsThreeDots } from "react-icons/bs";
 
 import Style from "./AuthorProfileCard.module.css";
-import images from "../../img";
+
 import { Button } from "../../components/componentsindex.js";
 
 const AuthorProfileCard = ({ currentAccount }) => {
@@ -30,8 +31,8 @@ const AuthorProfileCard = ({ currentAccount }) => {
 
    useEffect(() => {
     const fetchUserData = async () => {
-      if (address) { // Ensure address exists before fetching data
-        const userData = await getUserProfile(address); // Fetch data for the connected wallet address
+      if (address) { 
+        const userData = await getUserProfile(address); 
         setUser(userData);
       }
     }
@@ -72,7 +73,7 @@ const AuthorProfileCard = ({ currentAccount }) => {
       <div className={Style.AuthorProfileCard_box}>
         <div className={Style.AuthorProfileCard_box_img}>
           {user && (
-            <Image
+            <Img
               src={user.profilePictureUrl}
               className={Style.AuthorProfileCard_box_img_img}
               alt="User Profile"
