@@ -17,6 +17,33 @@ import { Error } from "../componentsindex";
 import images from "../../img";
 import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
 
+
+
+import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
+
+export const getUserProfileImageByWallet = async (walletAddress) => {
+  const firestore = getFirestore();
+  const q = query(collection(firestore, "users"), 
+    where("walletAddress", "==", walletAddress));
+
+  const querySnapshot = await getDocs(q);
+
+  if (!querySnapshot.empty) {
+    let profilePictureUrl = null;
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      let userData = doc.data();
+      profilePictureUrl = userData.profilePictureUrl;
+    });
+    return profilePictureUrl;
+  } else {
+    console.error("No user found with the given wallet address");
+    return null;
+  }
+};
+
+
+
 const NavBar = () => {
    //const { currentAccount } = useContext(NFTMarketplaceContext);
   const [discover, setDiscover] = useState(false);
@@ -48,12 +75,36 @@ const closeNotificationMenu = () => {
 
 
 useEffect(() => {
+  const fetchProfileImage = async () => {
+  if (currentAccount) {
+    const profileImageUrl = await getUserProfileImageByWallet(currentAccount);
+    console.log('Profile Image URL: ', profileImageUrl); // Log the retrieved URL
+    if (profileImageUrl) {
+      setProfileImageSrc(profileImageUrl);
+    } else {
+      setProfileImageSrc("/default-user.png");
+    }
+  } else {
+    setProfileImageSrc("/default-user.png");
+  }
+};
+
+  fetchProfileImage();
+}, [currentAccount]);
+
+
+
+/*
+useEffect(() => {
   if (isWalletConnected) {
     setProfileImageSrc("/pfp.jpg");
   } else {
     setProfileImageSrc("/default-user.png");
   }
 }, [isWalletConnected]);
+*/
+
+
 
   useEffect(() => {
     if (account && library) {
@@ -79,6 +130,9 @@ useEffect(() => {
     setProfile(false);
     setIsProfileMenuOpen(false);
   };
+  
+  
+  
   
   
 
@@ -157,10 +211,11 @@ useEffect(() => {
 
 
 const handleConnectWallet = async (account) => {
-  // Fetch the user profile picture and set it
-  const profileData = await getUserProfile(account);
-  if (profileData && profileData.profilePicture) {
-    setProfileImageSrc(profileData.profilePicture);
+
+  const profileImageUrl = await getUserProfileImageByWallet(account);
+  if (profileImageUrl) {
+    setProfileImageSrc(profileImageUrl);
+    console.log("IMAGE URL: ",profileImageUrl);
   }
 };
 
@@ -276,7 +331,7 @@ return (
     className={Style.navbar_container_right_profile}
     onClick={() => openProfile()}
   >
-    <Image
+    <img
       src={profileImageSrc}
       alt="Profile"
       width={40}

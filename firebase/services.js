@@ -116,16 +116,22 @@ const updateUserProfilePicture = async (userId, profilePictureUrl) => {
 };
 
 
-export const getUserProfile = async (account) => {
-  try {
-    const doc = await db.collection('users').doc(account).get();
-    if (doc.exists) {
-      return doc.data();
-    } else {
-      return null;
-    }
-  } catch (error) {
-    console.error('Error getting user profile', error);
+export const getUserProfile = async (walletAddress) => {
+  const firestore = getFirestore();
+  const q = query(collection(firestore, "users"), 
+    where("walletAddress", "==", walletAddress));
+
+  const querySnapshot = await getDocs(q);
+
+  if (!querySnapshot.empty) {
+    let userProfile = null;
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      userProfile = {id: doc.id, ...doc.data()};
+    });
+    return userProfile;
+  } else {
+    console.error("No user found with the given wallet address");
     return null;
   }
 };
