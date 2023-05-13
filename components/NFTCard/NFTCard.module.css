@@ -68,6 +68,7 @@
     justify-items: center;
     
     
+    
 }
 
 
@@ -78,6 +79,7 @@
     transition: all .3s ease-in;
     border-radius: .5rem;
     box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
+    
     
 }
 
@@ -117,6 +119,12 @@
     margin-bottom: .5rem;
 }
 
+.NFTCard_box_box_info{
+  background-image: url(../../img/card-background-7.png);
+  border-bottom-left-radius: .5rem;
+  border-bottom-right-radius: .5rem;
+}
+
 .NFTCard_box_info{
     display: flex;
     justify-content: center;
@@ -125,6 +133,7 @@
     padding-top: .25rem;
     align-items: center;
     border-top: .2rem solid rgb(131, 127, 127);
+    
 }
 
 .NFTCard_box_info_left{

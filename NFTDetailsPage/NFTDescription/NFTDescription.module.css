@@ -129,16 +129,17 @@
     font-size: 3rem;
     line-height: 0;
     font-weight: 900;
+    
 }
 
 .NFTDescription_box_profile_biding_box_timer_item span{
     font-weight: 600;
-    
+   
 }
 
 .NFTDescription_box_profile_biding_box_price{
     line-height: 0;
-    margin-top: 4rem;
+    margin-top: 8rem;
     display: grid;
     grid-template-columns: 3fr 1fr;
     gap: 3rem;

@@ -15,6 +15,33 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Good Timing';
+  src: url('../font/good-timing/good-timing-rg.woff2') format('woff2'),
+       url('../font/good-timing/good-timing-rg.woff') format('woff'),
+       url('../font/good-timing/good-timing-rg.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Good Timing';
+  src: url('../font/good-timing/good-timing-bd.woff2') format('woff2'),
+       url('../font/good-timing/good-timing-bd.woff') format('woff'),
+       url('../font/good-timing/good-timing-bd.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Good Timing';
+  src: url('../font/good-timing/good-timing-el.woff2') format('woff2'),
+       url('../font/good-timing/good-timing-el.woff') format('woff'),
+       url('../font/good-timing/good-timing-el.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
 
 /* //THEME 1 */
  :root{

@@ -131,13 +131,13 @@ const NFTDescription = ({ nft }) => {
         {/* //Part ONE */}
         <div className={Style.NFTDescription_box_share}>
           <p>{nft.category}</p>
-          <div className={Style.NFTDescription_box_share_box}  
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}>
+          <div className={Style.NFTDescription_box_share_box}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}>
             <MdCloudUpload
               className={Style.NFTDescription_box_share_box_icon}
-              onClick={() => openSocial()} 
-              
+              onClick={() => openSocial()}
+
             />
 
             {social && (
@@ -164,8 +164,8 @@ const NFTDescription = ({ nft }) => {
 
             {NFTMenu && (
               <div className={Style.NFTDescription_box_share_box_social}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               >
                 <a href="#">
                   <BiDollar /> CHANGE PRICE
@@ -220,34 +220,25 @@ const NFTDescription = ({ nft }) => {
               <div className={Style.NFTDescription_box_profile_box_right_info}>
                 <small>COLLECTION</small> <br />
                 <span>
-                  MEDALS OF HONOR <MdVerified />
+                  {nft.collection} <MdVerified />
                 </span>
               </div>
             </div>
           </div>
 
           <div className={Style.NFTDescription_box_profile_biding}>
-           {/* future auciton functionality 
-                    <MdTimer /> <span>{i + 1} HOURS LEFT</span>
-                    */}
+            <div className={Style.NFTDescription_box}>
+
+            </div>
 
             <div className={Style.NFTDescription_box_profile_biding_box_timer}>
-              <div
-                className={
-                  Style.NFTDescription_box_profile_biding_box_timer_item
-                }
-              >
-                <p> {/* future auciton functionality */}</p>
-                
-                <span>   {/* future auciton functionality */}</span>
+              <div className={Style.NFTDescription_box_profile_biding_box_timer_item}>
+                <p>NFT DESCRIPTION</p>
+                <span>{nft.description}</span>
               </div>
               <div
-                className={
-                  Style.NFTDescription_box_profile_biding_box_timer_item
-                }
-              >
+                className={Style.NFTDescription_box_profile_biding_box_timer_item}>
                 <p> {/* future auciton functionality */}</p>
-
                 <span> {/* future auciton functionality */}</span>
               </div>
               <div
@@ -276,7 +267,7 @@ const NFTDescription = ({ nft }) => {
               >
                 <small>CURRENT PRICE</small>
                 <p>
-                {parseFloat(nft.price) * 10**9} BNB 
+                  {parseFloat(nft.price) * 10 ** 9} BNB
                 </p>
               </div>
 
@@ -309,7 +300,7 @@ const NFTDescription = ({ nft }) => {
               <Button
                 icon={<FaPercentage />}
                 btnName="MAKE OFFER"
-                handleClick={() => {}}
+                handleClick={() => { }}
                 classStyle={Style.button}
               />
             </div>
