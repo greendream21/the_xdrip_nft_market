@@ -63,6 +63,10 @@
     "npm install react-rating": {
       "name": "npm install react-rating",
       "command": "npm install react-rating"
+    },
+    "npm install react-lazy-load-image-component": {
+      "name": "npm install react-lazy-load-image-component",
+      "command": "npm install react-lazy-load-image-component"
     }
   }
 }

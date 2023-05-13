@@ -7,6 +7,10 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import images from "../../img";
 import Image from "next/image";
 
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 //import { AiOutlineHeart, AiFillHeart } from "react-icons/ai"; Can use hearts insetad of stars
 import Link from "next/link";
 
@@ -68,26 +72,28 @@ const NFTCardTwo = ({ NFTData }) => {
 
     if (fileType && fileType.includes("image")) {
       return (
-        <img
-          src={el.image}
-          alt="NFT"
-          width={350}
-          height={300}
-          objectFit="cover"
-          className={Style.NFTCardTwo_box_img_img}
-        />
-      );
+  <LazyLoadImage
+    src={el.image}
+    alt="NFT"
+    width={350}
+    height={300}
+    effect="blur"
+    className={Style.NFTCardTwo_box_img_img}
+  />
+);
     } else if (fileType && fileType.includes("video")) {
       return (
-        <video
-          src={el.image}
-          alt="NFT"
-          width={350}
-          height={300}
-          objectFit="cover"
-          className={Style.NFTCardTwo_box_img_img}
-          controls
-        />
+        <LazyLoadComponent>
+    <video
+      src={el.image}
+      alt="NFT"
+      width={350}
+      height={300}
+      objectFit="cover"
+      className={Style.NFTCardTwo_box_img_img}
+      controls
+    />
+  </LazyLoadComponent>
       );
     } else if (fileType && fileType.includes("audio")) {
       return (
