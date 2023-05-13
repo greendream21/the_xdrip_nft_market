@@ -41,28 +41,12 @@ const NFTDetailsImg = ({ nft }) => {
     <div className={Style.NFTDetailsImg}>
       <div className={Style.NFTDetailsImg_box}>
         <div className={Style.NFTDetailsImg_box_NFT}>
-          <div className={Style.NFTDetailsImg_box_NFT_like}>
-            <BsImages className={Style.NFTDetailsImg_box_NFT_like_icon} />
-            <p onClick={() => likeNFT()}>
-              {like ? (
-                <AiOutlineHeart
-                  className={Style.NFTDetailsImg_box_NFT_like_icon}
-                />
-              ) : (
-                <AiFillHeart
-                  className={Style.NFTDetailsImg_box_NFT_like_icon}
-                />
-              )}
-              <span>23</span>
-            </p>
-          </div>
-
-          <div className={Style.NFTDetailsImg_box_NFT_img}>
+            <div className={Style.NFTDetailsImg_box_NFT_img}>
             <img
               src={nft.image}
               className={Style.NFTDetailsImg_box_NFT_img_img}
               alt="NFT image"
-              width={700}
+              width={800}
               height={800}
               objectFit="cover"
             />
@@ -98,6 +82,10 @@ const NFTDetailsImg = ({ nft }) => {
               <small>CONTRACT ADDRESS</small>
               <br></br>
               {nft.contract}
+            </p>
+            <p>
+              <small>SELLER ROYALTIES</small>
+              &nbsp; &nbsp; {nft.royalties}
             </p>
             <p>
               <small>TOKEN ID</small>

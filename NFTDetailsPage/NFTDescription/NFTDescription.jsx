@@ -227,9 +227,9 @@ const NFTDescription = ({ nft }) => {
           </div>
 
           <div className={Style.NFTDescription_box_profile_biding}>
-            <p>
-              <MdTimer /> <span>AUCTION ENDING IN:</span>
-            </p>
+           {/* future auciton functionality 
+                    <MdTimer /> <span>{i + 1} HOURS LEFT</span>
+                    */}
 
             <div className={Style.NFTDescription_box_profile_biding_box_timer}>
               <div
@@ -237,32 +237,34 @@ const NFTDescription = ({ nft }) => {
                   Style.NFTDescription_box_profile_biding_box_timer_item
                 }
               >
-                <p>12</p>
-                <span>DAYS</span>
+                <p> {/* future auciton functionality */}</p>
+                
+                <span>   {/* future auciton functionality */}</span>
               </div>
               <div
                 className={
                   Style.NFTDescription_box_profile_biding_box_timer_item
                 }
               >
-                <p>3</p>
-                <span>HOURS</span>
+                <p> {/* future auciton functionality */}</p>
+
+                <span> {/* future auciton functionality */}</span>
               </div>
               <div
                 className={
                   Style.NFTDescription_box_profile_biding_box_timer_item
                 }
               >
-                <p>45</p>
-                <span>MINS</span>
+                <p> {/* future auciton functionality */}</p>
+                <span> {/* future auciton functionality */}</span>
               </div>
               <div
                 className={
                   Style.NFTDescription_box_profile_biding_box_timer_item
                 }
               >
-                <p>9</p>
-                <span>SECS</span>
+                <p> {/* future auciton functionality */}</p>
+                <span> {/* future auciton functionality */}</span>
               </div>
             </div>
 
@@ -278,7 +280,7 @@ const NFTDescription = ({ nft }) => {
                 </p>
               </div>
 
-              <span>[96 AVALAIBLE]</span>
+              <span> {/* future Quantity functionality*/}</span>
             </div>
 
             <div className={Style.NFTDescription_box_profile_biding_box_button}>

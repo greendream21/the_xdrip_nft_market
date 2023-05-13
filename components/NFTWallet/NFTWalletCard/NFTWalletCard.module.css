@@ -135,14 +135,15 @@
 
 .NFTWalletCard_box_back {
   position: absolute;
-  width: 100%;
+  width: 101%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: 1rem;
+  background-color: #3f3f3f;
+  border-radius: .5rem;
   transform: rotateY(180deg);
   overflow: hidden ;
   text-align: center;
-  margin-top: -1.5rem;
+  margin-left: -0.05rem;
   margin-bottom: 0rem;
   padding-left: .5rem;
   padding-right: .5rem;

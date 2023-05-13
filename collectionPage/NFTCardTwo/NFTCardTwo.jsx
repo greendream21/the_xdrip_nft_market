@@ -94,9 +94,9 @@ const NFTCardTwo = ({ NFTData }) => {
             src={mp3Image}
             alt="Default"
             width={350}
-            height={300}
+            height={255}
             objectFit="cover"
-            className={Style.NFTCardTwo_box_img_img}
+            className={Style.NFTCardTwo_box_img_audio}
           />
           <audio
             src={el.image}
@@ -118,7 +118,6 @@ const NFTCardTwo = ({ NFTData }) => {
     <div className={Style.NFTCardTwo_container}>
       {loading ? (
         <div className={Style.loading}>
-          <Loader />
           <p
             className={`${Style["loading-message"]} ${Style["loading-message-animate"]}`}
           >
@@ -130,7 +129,7 @@ const NFTCardTwo = ({ NFTData }) => {
           <div className={Style.NFTCardTwo}>
             {currentItems.map((el, i) => (
               <Link
-                href={{ pathname: "/NFT-details", query: el }}
+                href={{ pathname: "/NFTDetails", query: el }}
                 key={`${el.tokenId}-${i}`}
               >
                 <div className={Style.NFTCardTwo_box}>
@@ -141,8 +140,11 @@ const NFTCardTwo = ({ NFTData }) => {
                     <div className={Style.NFTCardTwo_box_info_left}>
                       <p>{el.name}</p>
                     </div>
-                    <small> # {el.tokenId}</small>
+                   
                   </div>
+                    <div className={Style.NFTCardTwo_box_tokenid}>
+                    <small> # {el.tokenId}</small>
+                    </div>
 
                   <div className={Style.NFTCardTwo_box_price}>
                     <div className={Style.likesContainer}>

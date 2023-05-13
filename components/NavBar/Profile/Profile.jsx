@@ -98,8 +98,12 @@ const Profile = ({
 
 
               <div className={styles.profileItem}>
+              <Link href="/account">
+                  <a onClick={() => setIsProfileMenuOpen(false)}>
                 <FaUserEdit />
                 <p>Edit Profile</p>
+                </a>
+                </Link>
               </div>
               <div className={styles.profileItem}>
                 <MdHelpCenter />
