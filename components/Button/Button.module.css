@@ -1,5 +1,5 @@
 .btn {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   padding: 1rem 2.5rem;
   border-left: 4px double rgba(1,122,254,255);
   outline: none;
@@ -8,7 +8,7 @@
   text-transform: uppercase;
   background-color: rgb(14, 14, 26);
   color: rgb(234, 234, 234);
-  font-weight: 400;
+  font-weight: 200;
   font-family: 'Aldrich', sans-serif;
   transition: 0.6s;
   box-shadow: 0px 0px 60px #1f4c65;

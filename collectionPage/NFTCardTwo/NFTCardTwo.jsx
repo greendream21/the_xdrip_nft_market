@@ -78,7 +78,9 @@ const NFTCardTwo = ({ NFTData }) => {
   />
 );
 
+
 const RenderVideo = ({ src }) => (
+
   <LazyLoadComponent>
     <video
       src={src}

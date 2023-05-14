@@ -1,12 +1,12 @@
 
 
-.sliderCard{
+.SliderCard{
     padding: 1rem;
     width: 90%;
     
 }
 
-.sliderCard_box{
+.SliderCard_box{
     transition: all .3s ease-in;
     border-radius: .5rem;
     margin-left: 3rem;
@@ -15,16 +15,16 @@
     box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
 }
 
-.sliderCard_box:hover{
+.SliderCard_box:hover{
     box-shadow: 0 0 5px #017afe99, 0 0 10px #017afe99, 0 0 20px;
     
 }
 
-.sliderCard_box_img_img{
+.SliderCard_box_img_img{
     border-radius: .5rem;
 }
 
-.sliderCard_box_title{
+.SliderCard_box_title{
     display: flex;
     align-items: center;
     padding-inline: 2rem ;
@@ -32,19 +32,19 @@
     gap: 1rem;
 }
 
-.sliderCard_box_title p{
+.SliderCard_box_title p{
     font-size: 1.2rem;
     line-height: .5;
     font-weight: 800;
 }
 
-.sliderCard_box_title_like{
+.SliderCard_box_title_like{
     display: flex;
     align-items: center;
     gap: .5rem;
 }
 
-.sliderCard_box_price{
+.SliderCard_box_price{
     display: flex;
     justify-content: space-between;
     padding-inline: 1rem;
@@ -53,13 +53,13 @@
     text-align: end;
 }
 
-.sliderCard_box_price_box{
+.SliderCard_box_price_box{
     border: 4px double rgba(1,122,254,255);
     padding: .2rem 1rem;
     border-radius: .5rem;
 }
 
-.sliderCard_box_price_box small{
+.SliderCard_box_price_box small{
     background-color: black;
     padding: .2rem .5rem;
     border-radius: .2rem;
@@ -67,36 +67,36 @@
     border: 4px double rgba(1,122,254,255);
 }
 
-.sliderCard_box_price_box p{
+.SliderCard_box_price_box p{
     font-size: 1.3rem;
     font-weight: 700;
     margin-top: 2rem;
     line-height: 0;
 }
 
-.sliderCard_box_price_time{
+.SliderCard_box_price_time{
     align-items: flex-end;
     display: grid;
 }
 
-.sliderCard_box_price_time p{
+.SliderCard_box_price_time p{
     font-size: 1.3rem;
     font-weight: 700;
 }
 
 @media screen and (min-device-width: 320px) and (max-device-width: 375px) {
-    .sliderCard{
+    .SliderCard{
         padding: .5rem;
     }
 
-    .sliderCard_box_title p{
+    .SliderCard_box_title p{
         font-size: 1rem;
     }
-    .sliderCard_box_price_box{
+    .SliderCard_box_price_box{
         padding: .2rem;
     }
 
-    .sliderCard_box_price_time p{
+    .SliderCard_box_price_time p{
         font-size: 1rem;
     }
 }
