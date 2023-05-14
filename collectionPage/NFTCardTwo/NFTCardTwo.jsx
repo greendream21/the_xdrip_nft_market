@@ -67,13 +67,9 @@ const NFTCardTwo = ({ NFTData }) => {
     fetchFileTypes();
   }, [NFTData]);
 
-  const renderFilePreview = (el) => {
-    const fileType = fileTypes[el.image];
-
-    if (fileType && fileType.includes("image")) {
-      return (
+  const RenderImage = ({ src }) => (
   <LazyLoadImage
-    src={el.image}
+    src={src}
     alt="NFT"
     width={350}
     height={300}
@@ -81,11 +77,11 @@ const NFTCardTwo = ({ NFTData }) => {
     className={Style.NFTCardTwo_box_img_img}
   />
 );
-    } else if (fileType && fileType.includes("video")) {
-      return (
-        <LazyLoadComponent>
+
+const RenderVideo = ({ src }) => (
+  <LazyLoadComponent>
     <video
-      src={el.image}
+      src={src}
       alt="NFT"
       width={350}
       height={300}
@@ -94,41 +90,77 @@ const NFTCardTwo = ({ NFTData }) => {
       controls
     />
   </LazyLoadComponent>
-      );
-    } else if (fileType && fileType.includes("audio")) {
-      return (
-        <div className={Style.NFTCardTwo_box_audio}>
-          <img
-            src={mp3Image}
-            alt="Default"
-            width={350}
-            height={255}
-            objectFit="cover"
-            className={Style.NFTCardTwo_box_img_audio}
-          />
-          <audio
-            src={el.image}
-            controls
-            className={Style.NFTCardTwo_box_audio_controls}
-          />
-        </div>
-      );
-    } else {
-      return (
-         <Image
-          src={images.invalidImage}
-          alt="NFT"
-          width={350}
-          height={300}
-          objectFit="cover"
-          className={Style.NFTCardTwo_box_img_img}
-          controls
-        />
-     
-      );
-    }
-  };
+);
 
+const RenderAudio = ({ src }) => (
+  <div className={Style.NFTCardTwo_box_audio}>
+    <img
+      src={mp3Image}
+      alt="Default"
+      width={350}
+      height={255}
+      objectFit="cover"
+      className={Style.NFTCardTwo_box_img_audio}
+    />
+    <audio
+      src={src}
+      controls
+      className={Style.NFTCardTwo_box_audio_controls}
+    />
+  </div>
+);
+
+const RenderDefault = () => (
+  <Image
+    src={images.invalidImage}
+    alt="NFT"
+    width={350}
+    height={300}
+    objectFit="cover"
+    className={Style.NFTCardTwo_box_img_img}
+    controls
+  />
+);
+
+
+
+useEffect(() => {
+const fetchFileTypes = async () => {
+const fileTypesObj = {};
+
+  for (const el of NFTData) {
+    try {
+      const response = await fetch(el.image);
+      const contentType = response.headers.get("content-type");
+      fileTypesObj[el.image] = contentType;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  setFileTypes(fileTypesObj);
+  setLoading(false);
+};
+
+fetchFileTypes();
+
+}, [NFTData]);
+
+
+const renderFilePreview = (el) => {
+const fileType = fileTypes[el.image];
+
+if (fileType && fileType.includes("image")) {
+  return <RenderImage src={el.image} />;
+} else if (fileType && fileType.includes("video")) {
+  return <RenderVideo src={el.image} />;
+} else if (fileType && fileType.includes("audio")) {
+  return <RenderAudio src={el.image} />;
+} else {
+  return <RenderDefault />;
+}
+
+};
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
   const currentItems = NFTData.slice(indexOfFirstItem, indexOfLastItem);
