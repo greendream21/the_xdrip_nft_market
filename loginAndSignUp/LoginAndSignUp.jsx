@@ -77,7 +77,7 @@ const LoginAndSignUp = ({ currentAccount, setProfileImageSrc }) => {
   
   
   
-
+/*
   const handleSubmit = async (e) => {
   e.preventDefault();
   const auth = getAuth();
@@ -106,6 +106,53 @@ const LoginAndSignUp = ({ currentAccount, setProfileImageSrc }) => {
     setMessage(`Error: ${error.message}`);
   }
 };
+*/
+
+/* works!
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const auth = getAuth();
+  try {
+    // Sign up new users
+    const { user } = await createUserWithEmailAndPassword(auth, email, password);
+    await addUser(username, email, walletAddress, profileImage);
+
+    setMessage("User added successfully!");
+  } catch (error) {
+    setMessage(`Error: ${error.message}`);
+  }
+};
+*/
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const auth = getAuth();
+  try {
+    // Sign up new users
+    const { user } = await createUserWithEmailAndPassword(auth, email, password);
+    await addUser(username, email, walletAddress, profileImage);
+
+    if (profileImage) {
+      
+      const storage = getStorage();
+      const fileRef = ref(storage, `profileImages/${profileImage.name}`);
+      await uploadBytes(fileRef, profileImage);
+      const imageUrl = await getDownloadURL(fileRef);
+
+      await updateUser(user.uid, {
+        profilePictureUrl: imageUrl,
+      });
+
+      }
+
+    setMessage("User added successfully!");
+    //setProfileImageSrc(imageUrl); 
+  } catch (error) {
+    setMessage(`Error: ${error.message}`);
+  }
+};
+
+
 
   const handleImageUpload = (e) => {
     setProfileImage(e.target.files[0]);
@@ -192,6 +239,7 @@ const LoginAndSignUp = ({ currentAccount, setProfileImageSrc }) => {
             {message && <div className={Style.message}>{message}</div>}
             <div className={Style.continue_button_box}>
               <Button btnName="SUBMIT FORM" classStyle={Style.continue_button} />
+            
             </div>
           </form>          
         </div>

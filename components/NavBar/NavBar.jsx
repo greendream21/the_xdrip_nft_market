@@ -31,7 +31,7 @@ export const getUserProfileImageByWallet = async (walletAddress) => {
   if (!querySnapshot.empty) {
     let profilePictureUrl = null;
     querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
+      
       let userData = doc.data();
       profilePictureUrl = userData.profilePictureUrl;
     });
@@ -61,7 +61,6 @@ const NavBar = () => {
   const [profileImageSrc, setProfileImageSrc] = useState("/default-user.png");
   const [isLoginAndSignUpOpen, setIsLoginAndSignUpOpen] = useState(false);
   const [showLoginAndSignUp, setShowLoginAndSignUp] = useState(false);
-  
   
 
   const { currentAccount, connectWallet, openError } = useContext(

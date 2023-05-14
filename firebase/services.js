@@ -22,15 +22,27 @@ export const addUser = async (username, email, walletAddress, profilePicture) =>
   };
 
   try {
-    const { id } = await addDoc(userRef, newUser);
-    const profilePictureRef = ref(storage, `users/${id}/profilePicture`);
-    await uploadBytes(profilePictureRef, profilePicture);
-    const profilePictureUrl = await getDownloadURL(profilePictureRef);
-    await updateDoc(doc(userRef, id), { profilePictureUrl });
+    const docRef = await addDoc(userRef, newUser);
+    
+    if (profilePicture) {
+      // Upload the profile image to Firebase Storage
+      const storage = getStorage();
+      const profilePictureRef = ref(storage, `users/${docRef.id}/profileImages`);
+      await uploadBytes(profilePictureRef, profilePicture);
+      const profilePictureUrl = await getDownloadURL(profilePictureRef);
+
+      // Update the user's profile picture in the Firebase Firestore database
+      await updateDoc(doc(firestore, "users", docRef.id), {
+        profilePictureUrl: profilePictureUrl,
+      });
+    }
+
   } catch (error) {
     console.error("Error adding user: ", error);
   }
 };
+
+
 
 export const addNft = async (userId, tokenURI) => {
   const userRef = doc(firestore, "users", userId);
