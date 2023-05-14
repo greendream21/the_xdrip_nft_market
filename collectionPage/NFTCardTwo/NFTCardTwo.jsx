@@ -83,7 +83,7 @@ const NFTCardTwo = ({ NFTData }) => {
 );
     } else if (fileType && fileType.includes("video")) {
       return (
-        <LazyLoadComponent>
+  <LazyLoadComponent>
     <video
       src={el.image}
       alt="NFT"

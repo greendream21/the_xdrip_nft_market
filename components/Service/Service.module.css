@@ -88,7 +88,8 @@
     text-transform: uppercase;
     background-color: rgb(14, 14, 26);
     color: rgb(234, 234, 234);
-    font-family: "Good Times";
+    font-family: "Good Timing";
+    font-size: 1rem;
     cursor: pointer;
     transition: 0.6s;
     box-shadow: 0px 0px 60px #1f4c65;

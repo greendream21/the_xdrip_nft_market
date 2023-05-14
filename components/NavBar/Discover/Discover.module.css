@@ -3,11 +3,12 @@
     padding: .5rem 1rem;
     transition:  all .3s ease-in;
     z-index: 2222222222;
-    font-family: 'Aldrich', sans-serif;
+    font-family: 'Good Timing', sans-serif;
+    font-size: 1rem;
 }
 
 .discover:hover{
-    background-color: rgb(37, 37, 37);
-    /*color: var(--shadow-dark-color);*/
+
     border-radius: .2rem;
+    border: .2rem solid blue;
 }
