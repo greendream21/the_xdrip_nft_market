@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// INTERNAL IMPORT
+
 import Style from "./Slider.module.css";
 import SliderCard from "./SliderCard/SliderCard";
-import images from "../../img";
 import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
 
-// Import Swiper styles
+
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -18,33 +18,29 @@ import 'swiper/css/autoplay';
 const Slider = () => {
   const { fetchNFTs, setError } = useContext(NFTMarketplaceContext);
   const [nfts, setNfts] = useState([]);
-  const [nftsCopy, setNftsCopy] = useState([]);
+  const [fileTypes, setFileTypes] = useState({});
+  const [likes, setLikes] = useState({});
+
+//SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        /*if (currentAccount) {*/
         const items = await fetchNFTs();
-        setNfts([items.reverse()]);
-        setNftsCopy(items);
-        setSelectedCategoryData(items);
+        setNfts(items.reverse());
       } catch (error) {
         setError("Please reload the browser", error);
       }
     };
-
     fetchData();
   }, []);
 
-  
-  
-  
-  
-  
-  
   const [width, setWidth] = useState(0);
   const dragSlider = useRef();
 
+
+/*
   useEffect(() => {
     setWidth(dragSlider.current.scrollWidth - dragSlider.current.offsetWidth);
   });
@@ -59,7 +55,36 @@ const Slider = () => {
       current.scrollLeft += scrollAmount;
     }
   };
+  */
   
+  
+  
+  useEffect(() => {
+  const fetchFileTypes = async () => {
+    const fileTypesObj = {};
+
+    for (const el of nfts) {
+      try {
+        const response = await fetch(el.image);
+        const contentType = response.headers.get("content-type");
+        fileTypesObj[el.image] = contentType;
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    setFileTypes(fileTypesObj);
+  };
+
+  fetchFileTypes();
+}, [nfts]);
+
+
+ //const videoNFTs = Array.isArray(NFTData) ? NFTData.filter(nft => fileTypes[nft.image] && fileTypes[nft.image].includes('video')) : [];
+ const videoNFTs = nfts.filter(nft => fileTypes[nft.image] && fileTypes[nft.image].includes('video'));
+
+
+
   return (
     <div className={Style.slider}>
       <div className={Style.slider_box}>
@@ -68,19 +93,35 @@ const Slider = () => {
         <Swiper className={Style.slider_box_items} ref={dragSlider}
           modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
           spaceBetween={100}
-          slidesPerView={2}
+          slidesPerView={1}
           loop={true}
+          /*
           navigation={true}
+          */
+          navigation
           pagination={{ clickable: true }}
-          autoplay={{ delay: 5000 }}
+          autoplay={{ delay: 2000 }}
+          /*
           onSlideChange={() => console.log('slide change')}
           onSwiper={(swiper) => console.log(swiper)}
+          */
         >
-        {nfts.map((nft, el, i) => (
-          <SwiperSlide key={i+1}>
-            <SliderCard NFTData={nft} i={i} el={el} />
-          </SwiperSlide>
-        ))}
+        
+        {/*
+        {nfts.map((nft, i, arr) => {
+        */}
+        
+               
+          {videoNFTs.map((nft, i, arr) => {
+  if (i % 2 === 0) {
+    const nextNft = arr[i+1] ? arr[i+1] : {}; // default to an empty object if arr[i+1] is undefined
+    return (
+      <SwiperSlide key={nft.tokenId}>
+        <SliderCard NFTData={[nft, nextNft]} likes={likes} />
+      </SwiperSlide>
+    )
+  }
+})}
       </Swiper>
     </div>
   );

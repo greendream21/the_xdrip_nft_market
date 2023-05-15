@@ -6,6 +6,7 @@ import {
   HeroSection,
   Service,
   BigNFTSlider,
+  Slider,
   Subscribe,
   Title,
   Category,
@@ -14,7 +15,7 @@ import {
   Collection,
   AudioLive,
   FollowerTab,
-  Slider,
+  
   Brand,
   Video,
   Loader,
