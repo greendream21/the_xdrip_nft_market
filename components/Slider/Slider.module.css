@@ -1,15 +1,19 @@
 
 
 .slider{
-    width: 100%;
+    width: 90%;
     margin-top: 4rem;
+    align-content: center;
+    justify-items: center;
     
 }
 
 .slider_box{
     width: 80%;
-    margin: 0 auto;
+    flex: 0 0 auto; /* Allow the cards to wrap within the container */
+    margin-right: 1rem;
     padding: 0 -1rem 8rem 0;
+
 }
 
 .slider_box h2{
@@ -23,7 +27,7 @@
 }
 
 .slider_box_items{
-    width: 80%;
+    width: 100%;
     overflow: hidden;
     padding-left: 4rem;
    

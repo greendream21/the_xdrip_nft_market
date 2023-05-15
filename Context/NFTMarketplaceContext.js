@@ -443,6 +443,7 @@ async function fetchNFTs() {
         titleData,
         setOpenError,
         openError,
+        setError,
         error,
         transferEther,
         getAllTransactions,
