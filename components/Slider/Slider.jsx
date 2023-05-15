@@ -2,11 +2,9 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-
 import Style from "./Slider.module.css";
 import SliderCard from "./SliderCard/SliderCard";
 import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
-
 
 
 import 'swiper/css';
@@ -40,7 +38,7 @@ const Slider = () => {
   const dragSlider = useRef();
 
 
-/*
+
   useEffect(() => {
     setWidth(dragSlider.current.scrollWidth - dragSlider.current.offsetWidth);
   });
@@ -55,7 +53,6 @@ const Slider = () => {
       current.scrollLeft += scrollAmount;
     }
   };
-  */
   
   
   
@@ -80,48 +77,34 @@ const Slider = () => {
 }, [nfts]);
 
 
- //const videoNFTs = Array.isArray(NFTData) ? NFTData.filter(nft => fileTypes[nft.image] && fileTypes[nft.image].includes('video')) : [];
  const videoNFTs = nfts.filter(nft => fileTypes[nft.image] && fileTypes[nft.image].includes('video'));
-
-
 
   return (
     <div className={Style.slider}>
       <div className={Style.slider_box}>
         <div className={Style.slider_box_button}></div>
-        </div>
-        <Swiper className={Style.slider_box_items} ref={dragSlider}
-          modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-          spaceBetween={100}
-          slidesPerView={1}
-          loop={true}
-          /*
-          navigation={true}
-          */
-          navigation
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 2000 }}
-          /*
-          onSlideChange={() => console.log('slide change')}
-          onSwiper={(swiper) => console.log(swiper)}
-          */
-        >
-        
-        {/*
-        {nfts.map((nft, i, arr) => {
-        */}
-        
-               
-          {videoNFTs.map((nft, i, arr) => {
-  if (i % 2 === 0) {
-    const nextNft = arr[i+1] ? arr[i+1] : {}; // default to an empty object if arr[i+1] is undefined
-    return (
-      <SwiperSlide key={nft.tokenId}>
-        <SliderCard NFTData={[nft, nextNft]} likes={likes} />
-      </SwiperSlide>
-    )
-  }
-})}
+      </div>
+      <Swiper
+        ref={dragSlider}
+        className={Style.slider_box_items}
+        modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+        spaceBetween={100}
+        slidesPerView={1}
+        loop={true}
+        navigation={true}
+        pagination={{ clickable: true }}
+        autoplay={{ delay: 5000 }}
+      >
+        {videoNFTs.map((nft, i, arr) => {
+          if (i % 2 === 0) {
+            const nextNft = arr[i + 1] ? arr[i + 1] : {}; // default to an empty object if arr[i+1] is undefined
+            return (
+              <SwiperSlide key={nft.tokenId}>
+                <SliderCard NFTData={[nft, nextNft]} likes={likes} />
+              </SwiperSlide>
+            );
+          }
+        })}
       </Swiper>
     </div>
   );
