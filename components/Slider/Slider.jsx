@@ -38,7 +38,7 @@ const Slider = () => {
   const dragSlider = useRef();
 
 
-
+/*
   useEffect(() => {
     setWidth(dragSlider.current.scrollWidth - dragSlider.current.offsetWidth);
   });
@@ -53,7 +53,7 @@ const Slider = () => {
       current.scrollLeft += scrollAmount;
     }
   };
-  
+  */
   
   
   useEffect(() => {
