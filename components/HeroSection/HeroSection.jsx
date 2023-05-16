@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import Style from "./HeroSection.module.css";
 import { Button } from "../componentsindex";
-import heroVideo from "../../public/videos/hero-video.mp4";
+import heroVideo from "../../public/videos/hero-video.webm";
 import { FaPause, FaPlay, FaVolumeMute, FaVolumeUp } from "react-icons/fa";
 
 const HeroSection = () => {
