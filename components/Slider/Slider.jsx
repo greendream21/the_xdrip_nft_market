@@ -80,6 +80,7 @@ const Slider = () => {
  const videoNFTs = nfts.filter(nft => fileTypes[nft.image] && fileTypes[nft.image].includes('video'));
 
   return (
+    <div className={Style.sliderContainer}>
     <div className={Style.slider}>
       <div className={Style.slider_box}>
         <div className={Style.slider_box_button}></div>
@@ -88,24 +89,20 @@ const Slider = () => {
         ref={dragSlider}
         className={Style.slider_box_items}
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-        spaceBetween={100}
-        slidesPerView={1}
+        spaceBetween={0}
+        slidesPerView={2}
         loop={true}
         navigation={true}
         pagination={{ clickable: true }}
         autoplay={{ delay: 5000 }}
       >
-        {videoNFTs.map((nft, i, arr) => {
-          if (i % 2 === 0) {
-            const nextNft = arr[i + 1] ? arr[i + 1] : {}; // default to an empty object if arr[i+1] is undefined
-            return (
-              <SwiperSlide key={nft.tokenId}>
-                <SliderCard NFTData={[nft, nextNft]} likes={likes} />
-              </SwiperSlide>
-            );
-          }
-        })}
-      </Swiper>
+  {videoNFTs.map((nft) => (
+    <SwiperSlide key={nft.tokenId}>
+      <SliderCard NFTData={[nft]} likes={likes} />
+    </SwiperSlide>
+  ))}
+</Swiper>
+    </div>
     </div>
   );
 };

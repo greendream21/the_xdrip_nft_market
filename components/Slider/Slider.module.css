@@ -1,15 +1,22 @@
-
+.sliderContainer{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+}
 
 .slider{
-    width: 90%;
+    width: 80%;
     margin-top: 4rem;
     align-content: center;
     justify-items: center;
     
 }
 
+
 .slider_box{
-    width: 80%;
+    width: 100%;
     flex: 0 0 auto; /* Allow the cards to wrap within the container */
     margin-right: 1rem;
     padding: 0 -1rem 8rem 0;

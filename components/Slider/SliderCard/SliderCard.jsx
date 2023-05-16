@@ -94,7 +94,7 @@ const SliderCard = ({ NFTData, likes }) => {
       width={350}
       height={300}
       objectFit="cover"
-      className={Style.SliderCard_box_img_img}
+      className={Style.SliderCard_box_img}
       controls
     />
   );
@@ -115,23 +115,29 @@ const SliderCard = ({ NFTData, likes }) => {
   
   
   return (
-  <motion.div className={Style.SliderCard_container}>
+  <motion.div className={Style.sliderCard_container}>
     {loading ? (
       <div className={Style.loading}>
         <p className={`${Style["loading-message"]} ${Style["loading-message-animate"]}`}>
           Loading NFTs...
         </p>
       </div>
-    ) : (
-      <div className={Style.sliderCard}>
-        {NFTData.map((el, i) => (
-          <motion.div className={Style.sliderCard_box} key={`${el.tokenId}-${i}`}>
-            <div className={Style.sliderCard_box_img}>
-              {renderFilePreview(el)}
-            </div>
-            <div className={Style.sliderCard_box_title}>
-              <p>{el.name}</p>
-              <div className={Style.sliderCard_box_title_like}>
+   ) : (
+    <div className={Style.sliderCard}>
+      {NFTData.map((el, i) => (
+        <motion.div className={Style.sliderCard_box} key={`${el.tokenId}-${i}`}>
+          <div className={Style.sliderCard_box_img}>
+            {renderFilePreview(el)}
+          </div>
+          <div className={Style.sliderCard_box_content}>
+            <div className={Style.sliderCard_box_content_box}>
+              <div className={Style.sliderCard_box_title}>
+                   <p>{el.name}</p>
+                </div>                
+                <div className={Style.sliderCard_box_token}>
+                  <p># {el.tokenId}</p>
+                </div>
+                <div className={Style.sliderCard_box_title_like}>
                 <Rating
                   emptySymbol={<FaRegStar style={{ marginRight: "5px" }} />}
                   fullSymbol={<FaStar style={{ marginRight: "5px" }} />}
@@ -140,22 +146,26 @@ const SliderCard = ({ NFTData, likes }) => {
                 />
                 <div className={Style.likesNumber}>
                   <span>{likes[el.tokenId] ? likes[el.tokenId].count : 0}</span>
-                </div>
-              </div>
+                </div>                
+              </div>              
             </div>
-            <div className={Style.sliderCard_box_price}>
+
+            <div className={Style.sliderCard_box_price}>              
               <div className={Style.sliderCard_box_price_box}>
                 <small>CURRENT PRICE</small>
                 <p>{parseFloat(el.price) * 10 ** 9} BNB</p>
               </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    )}
-  </motion.div>
-);
 
+
+            </div>
+
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  )}
+</motion.div>
+);
 };
 
 export default SliderCard;
