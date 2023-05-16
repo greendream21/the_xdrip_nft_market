@@ -17,8 +17,8 @@
   grid-template-columns: 55% 45%;
   transition: all 0.3s ease-in;
   border-radius: .5rem;
-  margin-left: 5rem;
-  width: 80%;
+  margin-left: 3.5rem;
+  width: 85%;
   gap: 0rem;
   box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
 }
@@ -35,6 +35,7 @@
 .sliderCard_box_img  video{
   justify-content: center;
   width: 100%;
+  
 }
 
 .sliderCard_box_content {
@@ -58,21 +59,31 @@
 .sliderCard_box_title {
   display: flex;
   justify-content:center;
+  margin-bottom: -2rem;
    
 }
 
 .sliderCard_box_title p{
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   padding: 0rem;
   
+  
+}
+
+.sliderCard_box_title_name{
+  display: flex;
+  justify-content:center;
+  margin-bottom: 2rem;
+  font-size: 1.4rem;
+   
 }
 
 .sliderCard_box_token {
   display: flex;
   font-size: 1.2rem;
   justify-content: center;
-  margin-bottom: 0rem;
-}
+  margin-top: 4rem;
+  }
 
 .sliderCard_box_title_like {
   display: flex;
@@ -110,7 +121,7 @@
 }
 
 .sliderCard_box_token {
-  margin-top: 1rem;
+  margin-top: 0rem;
 }
 
 .sliderCard_box_token small {

@@ -60,7 +60,7 @@ const SliderCard = ({ NFTData, likes }) => {
         src={src}
         alt="NFT"
         width={350}
-        height={300}
+        height={350}
         objectFit="cover"
         className={Style.SliderCard_box_img_img}
         controls
@@ -129,11 +129,21 @@ const SliderCard = ({ NFTData, likes }) => {
           <div className={Style.sliderCard_box_img}>
             {renderFilePreview(el)}
           </div>
+          <Link
+                href={{ pathname: "/NFTDetails", query: el }}
+                key={`${el.tokenId}-${i}`}
+                >
           <div className={Style.sliderCard_box_content}>
             <div className={Style.sliderCard_box_content_box}>
-              <div className={Style.sliderCard_box_title}>
+            <div className={Style.sliderCard_box_title}>
+                   <p>NFT NAME:</p>
+                </div> 
+              <div className={Style.sliderCard_box_title_name}>
                    <p>{el.name}</p>
-                </div>                
+                </div> 
+                <div className={Style.sliderCard_box_token}>
+                  <p>NFT MINT ID</p>
+                </div>               
                 <div className={Style.sliderCard_box_token}>
                   <p># {el.tokenId}</p>
                 </div>
@@ -155,11 +165,10 @@ const SliderCard = ({ NFTData, likes }) => {
                 <small>CURRENT PRICE</small>
                 <p>{parseFloat(el.price) * 10 ** 9} BNB</p>
               </div>
-
-
             </div>
 
           </div>
+          </Link>
         </motion.div>
       ))}
     </div>
