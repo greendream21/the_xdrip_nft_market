@@ -67,6 +67,10 @@
     "npm install react-lazy-load-image-component": {
       "name": "npm install react-lazy-load-image-component",
       "command": "npm install react-lazy-load-image-component"
+    },
+    "npm update ": {
+      "name": "npm update ",
+      "command": "npm update "
     }
   }
 }
