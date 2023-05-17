@@ -47,7 +47,7 @@ const DaysComponents = ({ el, i }) => {
             style={{objectFit:"cover"}}
           />
         </div>
-
+        <div className={Style.daysComponent_box_titles}>
         <div className={Style.daysComponent_box_title}>
           <h2>XCELLENT COLLECTION</h2>
           <div className={Style.daysComponent_box_title_info}>
@@ -72,12 +72,11 @@ const DaysComponents = ({ el, i }) => {
               </p>
             </div>
 
-            <div className={Style.daysComponent_box_title_info_price}>
-              <small>{i + 4}.25 BNB</small>
-            </div>
+           
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

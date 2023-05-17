@@ -62,7 +62,7 @@ const Category = () => {
                   src={el.images}
                   className={Style.category_box_img}
                   alt="Category Image"
-                  width={350}
+                  width={360}
                   height={190}
                 />
                 <div className={Style.category_box_title}>

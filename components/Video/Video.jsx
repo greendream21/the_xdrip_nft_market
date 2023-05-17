@@ -28,8 +28,8 @@ const Video = () => {
               <Image
                 src={images.bullet_1}
                 alt="Logo"
-                width={50}
-                height={50}
+                width={70}
+                height={70}
               /></span>
             <small>XCLUSIVE CONTENT THAT YOU WONT FIND ANYWHERE ELSE</small>
           </div>
@@ -39,8 +39,8 @@ const Video = () => {
               <Image
                 src={images.bullet_1}
                 alt="Logo"
-                width={50}
-                height={50}
+                width={70}
+                height={70}
               />
             </span>
             <small>VIDEOS THAT ARE BOTH ENGAGING AND ENTERTAINING</small>
@@ -51,8 +51,8 @@ const Video = () => {
               <Image
                 src={images.bullet_1}
                 alt="Logo"
-                width={50}
-                height={50}
+                width={70}
+                height={70}
               />
             </span>
             <small>INTERACTIVE AND COMMUNITY DRIVEN CONTENT </small>

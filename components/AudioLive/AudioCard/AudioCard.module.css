@@ -1,174 +1,212 @@
 .audioCard_container {
-    display: flex; /* Change display to flex */
-    overflow: hidden; /* Enable horizontal scrolling */
-   
-  }
-  
-  .audioCard {
-    display: flex;
-    flex-direction: column; /* Change flex-direction to column */
-    width: 100%;
-    padding: 1rem;
-    
-  }
-  
-  .audioCard_box {
-    display: grid;
-    grid-template-columns: 55% 45%;
-    transition: all 0.3s ease-in;
-    border-radius: .5rem;
-    margin-left: 3.5rem;
-    width: 85%;
-    gap: 0rem;
-    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
-  }
-  
-  .audioCard_box:hover {
-    box-shadow: 0 0 5px #017afe99, 0 0 10px #017afe99, 0 0 20px;
-  }
-  
-  .audioCard_box_img {
-    border-radius: .5rem;
-    justify-items: center;
-  }
-  
-  .audioCard_box_img  video{
-    justify-content: center;
-    width: 100%;
-    
-  }
+  display: flex;
+  overflow: hidden;
 
-  .audioCard_box_img_audio{
-    justify-content: center;
-    width: 100%;
-    
-  }
+}
+
+.audioCard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
   
-  .audioCard_box_content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-top-right-radius: .5rem;
-    border-bottom-right-radius: .5rem;
-    margin-left: 0rem;
-    padding: 1rem;
-    background-image: url(../../../img/card-background-7.png);
-  }
+}
+
+.audioCard_box {
+  display: grid;
+  grid-template-columns: 55% 45%;
+  transition: all 0.3s ease-in;
+  border-radius: .5rem;
+  margin-left: 3.5rem;
+  width: 85%;
+  gap: 0rem;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
+}
+
+.audioCard_box:hover {
+  box-shadow: 0 0 5px #017afe99, 0 0 10px #017afe99, 0 0 20px;
+}
+
+.audioCard_box_img {
+  border-radius: .5rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.audioCard_box_img video {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.audioCard_box_img_audio {
+  justify-content: center;
+  align-content: center;
+  border-top-left-radius: .5rem;
+  border-bottom-left-radius: .5rem;
+  width: 100%;
   
-  .audioCard_box_content_box {
-    display: flex;
-    flex-direction: column;
-    justify-content:center;
-   
-  }
+}
+
+.audioCard_box_audio_controls {
+  width: 100%;
+}
+
+.audioCard_box_player {
+  display: flex;
+  padding-inline: 2rem;
+  gap: 2rem;
+  z-index: 1234;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
   
-  .audioCard_box_title {
-    display: flex;
-    justify-content:center;
-    margin-bottom: -2rem;
-     
-  }
+}
+
+
+.audioCard_box_musicPlayer_icon {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  border: .2rem double rgba(1, 122, 254, 255);
+  color: var(--xdrip-light-gray);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.audioCard_box_musicPlayer_icon svg {
+  position: relative;
+  color: rgba(1, 122, 254, 255);
+  right: -1px;
+}
+
+.audioCard_box_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top-right-radius: .5rem;
+  border-bottom-right-radius: .5rem;
+  margin-left: 0rem;
+  padding: 1rem;
+  background-image: url(../../../img/card-background-5.png);
+}
+
+.audioCard_box_content_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.audioCard_box_title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: -2.5rem;
+}
+
+.audioCard_box_title p {
+  font-size: 1.2rem;
+  padding: 0rem;
   
-  .audioCard_box_title p{
-    font-size: 1.2rem;
-    padding: 0rem;
-    
-    
-  }
+}
+
+.audioCard_box_title_name {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  font-size: 1.4rem;
   
-  .audioCard_box_title_name{
-    display: flex;
-    justify-content:center;
-    margin-bottom: 2rem;
-    font-size: 1.4rem;
-     
-  }
   
-  .audioCard_box_token {
-    display: flex;
-    font-size: 1.2rem;
-    justify-content: center;
-    margin-top: 4rem;
-    }
-  
-  .audioCard_box_title_like {
-    display: flex;
-    justify-content:center;
-    gap: 0.5rem;
-  }
-  
-  .audioCard_box_price {
-    display: flex;
-    justify-content: center;
-    line-height: 0;
-    margin-top: 0rem;
-    text-align: center;
-  }
-  
-  .audioCard_box_price_box {
-    border: 4px double rgba(1, 122, 254, 255);
-    padding: 0.2rem 1rem;
-    border-radius: 0.5rem;
-  }
-  
-  .audioCard_box_price_box small {
-    background-color: black;
-    padding: 0.25rem 0.95rem;
-    border-radius: 0.2rem;
-    color: white;
-    font-size: .75rem;
-    border: 4px double rgba(1, 122, 254, 255);
-  }
-  
-  .audioCard_box_price_box p {
-    font-size: 1.2rem;
-    margin-top: 2rem;
-    line-height: 0;
-  }
-  
-  .audioCard_box_token {
-    margin-top: 0rem;
-  }
-  
-  .audioCard_box_token small {
-    background-color: black;
-    padding: 0.2rem 0.5rem;
-    border-radius: 0.2rem;
-    color: white;
-    border: 4px double rgba(1, 122, 254, 255);
-  }
-  
-  .audioCard_box_token p {
-    font-size: 1rem;
-    font-weight: 700;
-    margin-top: 0.5rem;
-    line-height: 0;
-  }
-  
-  .audioCard_box_price_time {
-    align-items: flex-end;
-    display: grid;
-  }
-  
-  .audioCard_box_price_time p {
-    font-size: 1.3rem;
-    font-weight:700;
-  }
-  
-  @media screen and (min-device-width: 320px) and (max-device-width: 375px) {
-  .audioCard {
-  padding: 0.5rem;
-  }
-  
-  .audioCard_box_title p {
-  font-size: 1rem;
-  }
-  
-  .audioCard_box_price_box {
-  padding: 0.2rem;
-  }
-  
-  .audioCard_box_price_time p {
-  font-size: 1rem;
-  }
-  }
+}
+
+.audioCard_box_token {
+  display: flex;
+  font-size: 1.2rem;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.audioCard_box_title_like {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.audioCard_box_price {
+  display: flex;
+  justify-content: center;
+  line-height: 0;
+  margin-top: 0rem;
+  text-align: center;
+}
+
+.audioCard_box_price_box {
+  border: 4px double rgba(1, 122,
+
+254, 255);
+padding: 0.2rem 1rem;
+border-radius: 0.5rem;
+}
+
+.audioCard_box_price_box small {
+background-color: black;
+padding: 0.25rem 0.95rem;
+border-radius: 0.2rem;
+color: white;
+font-size: .75rem;
+border: 4px double rgba(1, 122, 254, 255);
+}
+
+.audioCard_box_price_box p {
+font-size: 1.2rem;
+margin-top: 2rem;
+line-height: 0;
+}
+
+.audioCard_box_token {
+margin-top: 0rem;
+}
+
+.audioCard_box_token small {
+background-color: black;
+padding: 0.2rem 0.5rem;
+border-radius: 0.2rem;
+color: white;
+border: 4px double rgba(1, 122, 254, 255);
+}
+
+.audioCard_box_token p {
+font-size: 1rem;
+font-weight: 700;
+margin-top: 0.5rem;
+line-height: 0;
+}
+
+.audioCard_box_price_time {
+align-items: flex-end;
+display: grid;
+}
+
+.audioCard_box_price_time p {
+font-size: 1.3rem;
+font-weight: 700;
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 375px) {
+.audioCard {
+padding: 0.5rem;
+}
+
+.audioCard_box_title p {
+font-size: 1rem;
+}
+
+.audioCard_box_price_box {
+padding: 0.2rem;
+}
+
+.audioCard_box_price_time p {
+font-size: 1rem;
+}
+}

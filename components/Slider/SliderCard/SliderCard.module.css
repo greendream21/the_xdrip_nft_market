@@ -30,13 +30,28 @@
 .sliderCard_box_img {
   border-radius: .5rem;
   justify-items: center;
+   align-items: center;
 }
 
 .sliderCard_box_img  video{
   justify-content: center;
+  align-items: center;
+  width: 100%; 
+}
+
+.audioCard_box_img_audio {
+  justify-content: center;
+  align-content: center;
+  border-top-left-radius: .5rem;
+  border-bottom-left-radius: .5rem;
   width: 100%;
   
 }
+
+.audioCard_box_audio_controls {
+  width: 100%;
+}
+
 
 .sliderCard_box_content {
   display: flex;
@@ -46,7 +61,7 @@
   border-bottom-right-radius: .5rem;
   margin-left: 0rem;
   padding: 1rem;
-  background-image: url(../../../img/card-background-7.png);
+  background-image: url(../../../img/card-background-5.png);
 }
 
 .sliderCard_box_content_box {
@@ -59,7 +74,7 @@
 .sliderCard_box_title {
   display: flex;
   justify-content:center;
-  margin-bottom: -2rem;
+  margin-bottom: -2.5rem;
    
 }
 
