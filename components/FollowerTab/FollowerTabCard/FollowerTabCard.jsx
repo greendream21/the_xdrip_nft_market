@@ -40,8 +40,8 @@ const FollowerTabCard = ({ i, el }) => {
           <Image
             className={Style.FollowerTabCard_box_profile_img}
             alt="profile picture"
-            width={55}
-            height={55}
+            width={80}
+            height={80}
             src={el.user || images[`user${i + 1}`]}
           />
         </div>
@@ -55,19 +55,19 @@ const FollowerTabCard = ({ i, el }) => {
                 <MdVerified />
               </span>
             </h4>
-            <p>{el.total || 0} BNB</p>
+            
           </div>
 
           <div className={Style.FollowerTabCard_box_info_following}>
             {following ? (
               <a onClick={() => followMe()}>
-                Follow{""}{" "}
+                FOLLOWING{""}{" "}
                 <span>
                   <TiTick />
                 </span>
               </a>
             ) : (
-              <a onClick={() => followMe()}>Following</a>
+              <a onClick={() => followMe()}>FOLLOW ME</a>
             )}
           </div>
         </div>

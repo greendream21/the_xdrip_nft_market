@@ -92,8 +92,8 @@ const NFTCard = ({ NFTData }) => {
     } else if (fileType && fileType.includes("audio")) {
       return (
         <div className={Style.NFTCard_box_audio}>
-          <img
-            src={mp3Image}
+          <Image
+            src={images.audio_image}
             alt="Default"
             width={350}
             height={255}

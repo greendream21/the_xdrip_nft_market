@@ -23,6 +23,7 @@
     box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
     align-items: center;
     justify-items: center;
+    background-image: url(../../img/card-background-5.png);
     
     
     
@@ -38,6 +39,7 @@
 .category_box_img{
     border-radius: .5rem;
     padding-left: 2rem;
+    width: 100%;
     
     
 }
@@ -45,16 +47,25 @@
 .category_box_title{
     
     display: flex;
-    align-items: center;
+    align-content: center;
+    justify-content: center;
+   
+    gap: 1rem;
+  }
+
+  .category_box_title span{
+    
+    display: flex;
     padding-left: 1.5rem;
     gap: 0rem;
-   
-}
+    border-radius: 50%;
+  }
 
 .category_box_title_info h4{
     align-items: center;
     padding-top: 1rem;
     font-size: 1.2rem;
+    
 }
 
 .category_box_title span{

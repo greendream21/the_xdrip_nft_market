@@ -96,8 +96,8 @@ const RenderVideo = ({ src }) => (
 
 const RenderAudio = ({ src }) => (
   <div className={Style.NFTCardTwo_box_audio}>
-    <img
-      src={mp3Image}
+    <Image
+      src={images.audio_image}
       alt="Default"
       width={350}
       height={255}

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { MdTimer } from "react-icons/md";
-import { Loader } from "../../../components/componentsindex";
+import { TbPlayerPlay, TbPlayerPause } from "react-icons/tb";
 import Style from "./AudioCard.module.css";
 import Rating from "react-rating";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import images from "../../../img";
 import Image from "next/image";
+
 
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -16,11 +17,13 @@ import { motion } from 'framer-motion';
 
 import Link from "next/link";
 
-const mp3Image = "mp3.jpg";
+/*const mp3Image = "mp3.jpg";*/
 
 const AudioCard = ({ NFTData, likes }) => {
   const [fileTypes, setFileTypes] = useState({});
   const [loading, setLoading] = useState(true);
+  const [like, setLike] = useState(false);
+  const [play, setPlay] = useState(false);
 
   useEffect(() => {
     const fetchFileTypes = async () => {
@@ -71,8 +74,8 @@ const AudioCard = ({ NFTData, likes }) => {
 
   const RenderAudio = ({ src }) => (
     <div className={Style.audioCard_box_audio}>
-      <img
-        src={mp3Image}
+      <Image
+        src={images.audio_image}
         alt="Default"
         width={350}
         height={350}
@@ -82,6 +85,7 @@ const AudioCard = ({ NFTData, likes }) => {
       <audio
         src={src}
         className={Style.audioCard_box_audio_controls}
+        controls
       />
     </div>
   );
@@ -111,17 +115,13 @@ const AudioCard = ({ NFTData, likes }) => {
       return <RenderDefault />;
     }
   };
-  
+
+
+
   
   return (
   <motion.div className={Style.audioCard_container}>
-    {loading ? (
-      <div className={Style.loading}>
-        <p className={`${Style["loading-message"]} ${Style["loading-message-animate"]}`}>
-          Loading NFTs...
-        </p>
-      </div>
-   ) : (
+
     <div className={Style.audioCard}>
       {NFTData.map((el, i) => (
         <motion.div className={Style.audioCard_box} key={`${el.tokenId}-${i}`}>
@@ -171,7 +171,6 @@ const AudioCard = ({ NFTData, likes }) => {
         </motion.div>
       ))}
     </div>
-  )}
 </motion.div>
 );
 };

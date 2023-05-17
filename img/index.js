@@ -73,8 +73,13 @@ import errorgif from "./error.gif";
 import transfer from "./transfer.gif";
 import transferEther from "./ethereTransfer.gif";
 import invalidImage from "./invalidImage.png";
+import audio_image from "./audio-image.png";
+
+
+
 
 export default {
+  audio_image,
   banner_1,
   bullet_1,
   bullet_2,

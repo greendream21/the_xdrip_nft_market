@@ -87,7 +87,6 @@ const Slider = () => {
         </div>
         <Swiper
           ref={dragSlider}
-          className={Style.audioLive_box_items}
           modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
           spaceBetween={0}
           slidesPerView={2}
@@ -95,6 +94,8 @@ const Slider = () => {
           navigation={true}
           pagination={{ clickable: true }}
           autoplay={{ delay: 5000 }}
+          onSlideChange={() => console.log('slide change')}
+          onSwiper={(swiper) => console.log(swiper)}
         >
           {audioNFTs.map((nft) => (
             <SwiperSlide key={nft.tokenId}>

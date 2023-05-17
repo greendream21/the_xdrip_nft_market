@@ -1,12 +1,13 @@
 
 .daysComponent{
     width: 100%;
-    border-radius: 1rem;
+    border-radius: .5rem;
     transition: all .3s ease-in;
     cursor: pointer;
     box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
     
 }
+
 
 .daysComponent:hover{
     box-shadow: 0 0 5px #017afe99, 0 0 10px #017afe99, 0 0 20px;
@@ -23,18 +24,22 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: .5rem;
+    border-bottom: .2rem solid rgb(131, 127, 127);
+    
 }
 
-.daysComponent_box_img_1{
-    border-bottom-left-radius: .5rem;
-}
-.daysComponent_box_img_3{
-    border-bottom-right-radius: .5rem;
-}
+
+
 
 .daysComponent_box_title{
     padding: 1rem 2rem;
     line-height: 0;
+    background-image: url(../../../img/card-background-5.png);
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    overflow: hidden;
+    justify-content: center;
+    justify-items: center;
 }
 
 .daysComponent_box_title_info_profile{
