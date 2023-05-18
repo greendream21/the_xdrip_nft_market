@@ -9,6 +9,7 @@ import Title from "./Title/Title";
 import Category from "./Category/Category";
 import Filter from "./Filter/Filter";
 import Filter2 from "./Filter2/Filter2";
+import Filter3 from "./Filter3/Filter3";
 import NFTCard from "./NFTCard/NFTCard";
 import Collection from "./Collection/Collection";
 import AudioLive from "./AudioLive/AudioLive";
@@ -35,6 +36,7 @@ export {
   Category,
   Filter,
   Filter2,
+  Filter3,
   NFTCard,
   Collection,
   AudioLive,
