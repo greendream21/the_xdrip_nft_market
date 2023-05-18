@@ -40,6 +40,7 @@
     overflow: hidden;
     justify-content: center;
     justify-items: center;
+    text-align: center;
 }
 
 .daysComponent_box_title_info_profile{
@@ -52,7 +53,9 @@
 .daysComponent_box_title_info{
     display: flex;
     justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    
 }
 
 .daysComponent_box_title_info_profile_img{

@@ -87,7 +87,8 @@
 
 .sliderCard_box_title_name{
   display: flex;
-  justify-content:center;
+  justify-content: center;
+  text-align: center;
   margin-bottom: 2rem;
   font-size: 1.4rem;
    

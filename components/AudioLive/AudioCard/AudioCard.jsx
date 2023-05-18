@@ -75,7 +75,7 @@ const AudioCard = ({ NFTData, likes }) => {
   const RenderAudio = ({ src }) => (
     <div className={Style.audioCard_box_audio}>
       <Image
-        src={images.audio_image}
+        src={images.audio_image2}
         alt="Default"
         width={350}
         height={350}

@@ -136,15 +136,22 @@
     
 }
 
+
+
 .NFTCard_box_info_left{
-    line-height: 0rem;
-    text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  line-height: 0rem;
+  text-transform: uppercase;
+
     
 }
 
 
 .NFTCard_box_info_left p{
-    font-size: 1rem;
+  
+    font-size: 1.2rem;
     font-weight: 400;
     
 }
@@ -154,7 +161,7 @@ display: flex;
 justify-content: center;
 align-content: center;
 margin-bottom: 1.2rem;
-font-size: 1rem;
+font-size: 1.2rem;
 font-weight: 900;
 }
 

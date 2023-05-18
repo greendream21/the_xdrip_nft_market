@@ -74,12 +74,16 @@ import transfer from "./transfer.gif";
 import transferEther from "./ethereTransfer.gif";
 import invalidImage from "./invalidImage.png";
 import audio_image from "./audio-image.png";
+import audio_image2 from "./audio-image2.png";
+import audio_image3 from "./audio-image3.png";
 
 
 
 
 export default {
   audio_image,
+  audio_image2,
+  audio_image3,
   banner_1,
   bullet_1,
   bullet_2,
