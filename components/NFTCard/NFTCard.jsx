@@ -151,16 +151,16 @@ const NFTCard = ({ NFTData }) => {
                     {renderFilePreview(el)}
                   </div>
                   <div className={Style.NFTCard_box_box_info}>
-                  <div className={Style.NFTCard_box_info}>
+                  <div className={Style.NFTCard_box_info_info}>
                     <div className={Style.NFTCard_box_info_left}>
                       <p>{el.name}</p>
                     </div>
 
-                  </div>
+                  
                   <div className={Style.NFTCard_box_tokenid}>
                     <small> # {el.tokenId}</small>
                     </div>
-
+                    </div>
                   <div className={Style.NFTCard_box_price}>
                     <div className={Style.likesContainer}>
                       <div className={Style.NFTCard_box_like_box}></div>

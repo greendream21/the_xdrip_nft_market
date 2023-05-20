@@ -30,6 +30,7 @@
 .slider_box_button p{
     margin-top: 0rem;
     font-size: 1.2rem;
+    z-index: 1111;
 }
 
 .slider_box_items{

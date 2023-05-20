@@ -65,27 +65,32 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 2rem;
+    
 }
 
 .aboutus_box_founder_box_img{
-    background-color: var(--icons-color);
-    color: var(--main-bg-color);
+    
+    background-image: url(../img/card-background-5.png);
+    color: white;
     padding: 1rem;
-    border-radius: 1rem;
+    border-radius: .5rem;
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
+
 }
 
 .aboutus_box_founder_box_img_img{
-    border-radius: 1rem;
+    border-radius: .5rem;
 }
 
 .aboutus_box_founder_box_img h3{
     line-height: 0;
     font-size: 2rem;
+    
 }
 
 .aboutus_box_founder_box_img p{
     line-height: 0;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .aboutus_box_facts_box{
@@ -96,10 +101,11 @@
 }
 
 .aboutus_box_facts_box_info{
-    background-color: var(--icons-color);
+    background-image: url(../img/card-background-5.png);
     padding: 1rem 3rem;
     border-radius: 1rem;
-    color: var(--main-bg-color);
+    color: whitesmoke;
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
 }
 
 .aboutus_box_facts_box_info h3{

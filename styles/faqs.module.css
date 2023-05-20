@@ -26,6 +26,7 @@
   max-width: 100%;
   position: relative;
   padding-top: 12rem;
+  
 }
 
 .ui_accordion_title {
@@ -34,16 +35,16 @@
   align-items: center;
   border: 4px double rgba(1,122,254,255);
   padding: 10px;
-  background-color: var(--main-bg-color);
+  background-image: url(../img/card-background-5.png);
   padding: 1rem;
   cursor: pointer;
-  border-radius: 1rem;
-    
+  border-radius: .5rem;
+  
   
 }
 
 .ui_accordion_title:hover {
-  background-color: var(--shadow-color);
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
 }
 
 
@@ -57,14 +58,16 @@
   overflow: hidden;
   padding: 0 1rem;
   transition: max-height 0.4s ease-in-out;
-  margin-top: 0rem;
+  margin-top: 0.5rem;
   margin-bottom: 1.5rem;  
-  background-color: var(--main-bg-color);
-  border-radius: 1rem;
+  background-color: black;
+  border-radius: .5rem;
+  
 }
 
 .ui_accordion_content.active {
   max-height: 1000px;
+  border: 4px double rgba(1,122,254,255);
 }
 
 .brand{

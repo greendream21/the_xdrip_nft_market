@@ -114,9 +114,9 @@ const handlePrev = () => {
   };
 
   return (
-    <div className={Style.filter}>
-      <div className={Style.filter_box}>
-        <div className={Style.filter_box_left}>
+    <div className={Style.filter3}>
+      <div className={Style.filter3_box}>
+        <div className={Style.filter3_box_left}>
           <button onClick={() => setCategory("nfts")}>ALL NFTs</button>
           <button onClick={() => setCategory("ART")}>ART</button>
           <button onClick={() => setCategory("GAMING")}>GAMING</button>
@@ -126,50 +126,50 @@ const handlePrev = () => {
             PHOTOGRAPHY
           </button>
         </div>
-        <div className={Style.filter_box_right}>
-          <div className={Style.filter_box_right_box} onClick={openFilter}>
+        <div className={Style.filter3_box_right}>
+          <div className={Style.filter3_box_right_box} onClick={openFilter}>
             <FaFilter />
             <span>FILTER</span> {filter ? <FaAngleDown /> : <FaAngleUp />}
           </div>
         </div>
       </div>
       {filter && (
-        <div className={Style.filter_box_items}>
-          <div className={Style.filter_box_items_box}>
-            <div className={Style.filter_box_items_box_item}>
+        <div className={Style.filter3_box_items}>
+          <div className={Style.filter3_box_items_box}>
+            <div className={Style.filter3_box_items_box_item}>
               <FaWallet /> <span>.01 BNB - 10 BNB</span>
               <AiFillCloseCircle />
             </div>
           </div>
-          <div className={Style.filter_box_items_box}>
+          <div className={Style.filter3_box_items_box}>
             <div
-              className={Style.filter_box_items_box_item_trans}
+              className={Style.filter3_box_items_box_item_trans}
               onClick={openImage}
             >
               <FaImages /> <small>IMAGES</small>
               {image ? <AiFillCloseCircle /> : <TiTick />}
             </div>
           </div>
-          <div className={Style.filter_box_items_box}>
+          <div className={Style.filter3_box_items_box}>
             <div
-              className={Style.filter_box_items_box_item_trans}
+              className={Style.filter3_box_items_box_item_trans}
               onClick={openVideo}
             >
               <FaVideo /> <small>VIDEOS</small>
               {video ? <AiFillCloseCircle /> : <TiTick />}
             </div>
           </div>
-          <div className={Style.filter_box_items_box}>
+          <div className={Style.filter3_box_items_box}>
             <div
-              className={Style.filter_box_items_box_item_trans}
+              className={Style.filter3_box_items_box_item_trans}
               onClick={openMusic}
             >
               <FaMusic /> <small>MUSIC</small>
               {music ? <AiFillCloseCircle /> : <TiTick />}
             </div>
           </div>
-          <div className={Style.filter_box_items_box}>
-            <div className={Style.filter_box_items_box_item}>
+          <div className={Style.filter3_box_items_box}>
+            <div className={Style.filter3_box_items_box_item}>
               <FaUserAlt /> <span>VERIFIED</span>
               <MdVerified />
             </div>

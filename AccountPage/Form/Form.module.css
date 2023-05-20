@@ -20,7 +20,7 @@
     width: 100%;
     border: 4px double rgba(1,122,254,255);
     padding: 1rem;
-    border-radius: 1rem;
+    border-radius: .5rem;
     background-color: transparent;
     margin-top: .5rem;
     outline: none;
@@ -34,7 +34,7 @@
 .Form_box_input_box{
     width: 100%;
     border: 4px double rgba(1,122,254,255);
-    border-radius: 1rem;
+    border-radius: .5rem;
     align-items: center;
     display: flex;
     gap: 1rem;
@@ -61,7 +61,7 @@
     width: 100%;
     background-color: transparent;
     outline: none;
-    border-radius: 1rem;
+    border-radius: .5rem;
     padding: 1rem;
     border: 4px double rgba(1,122,254,255);
 }

@@ -39,20 +39,8 @@ const Slider = () => {
 
 
 
-  useEffect(() => {
-    setWidth(dragSlider.current.scrollWidth - dragSlider.current.offsetWidth);
-  });
 
-  const handleScroll = (direction) => {
-    const { current } = dragSlider;
-    const scrollAmount = window.innerWidth > 1800 ? 270 : 210;
 
-    if (direction == "left") {
-      current.scrollLeft -= scrollAmount;
-    } else {
-      current.scrollLeft += scrollAmount;
-    }
-  };
   
   
   
@@ -86,7 +74,7 @@ const Slider = () => {
         <div className={Style.slider_box_button}></div>
       </div>
       <Swiper
-        ref={dragSlider}
+       
         className={Style.slider_box_items}
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
         spaceBetween={0}

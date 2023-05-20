@@ -82,6 +82,7 @@
     justify-content: center;
     padding-left: 2rem;
     font-size: .5rem;
+    
 }
 
 .navbar_container_right_help{
@@ -91,13 +92,13 @@
     justify-content: center;
     font-size: .5rem;
     
+    
 }
 
 .navbar_container_right_discover_box,
 .navbar_container_right_help_box{
     position: absolute;
     padding: 1rem .5rem;
-    
     box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
     width: 11rem;
     border-radius: .25rem;

@@ -153,7 +153,7 @@
 .NFTWalletCard_box_back h3 {
   font-size: 1.2rem;
   font-weight: 700;
-  padding-top: 1rem;
+  padding-top: 0rem;
   margin-bottom: 1rem;
   color: rgba(1, 122, 254, .6);
   text-decoration: underline;  
@@ -161,7 +161,7 @@
 } 
 
 .NFTWalletCard_box_back p {
-  font-size: 1rem;
+  font-size: .95rem;
   margin-top: -.5rem;
   
 }
