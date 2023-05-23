@@ -20,7 +20,7 @@
     cursor: pointer;
     padding-block: 0rem;
     padding-bottom: 1rem;
-    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
+    box-shadow: var(--white-glow);
     align-items: center;
     justify-items: center;
     background-image: url(../../img/card-background-5.png);
@@ -32,7 +32,7 @@
 
 
 .category_box:hover{
-    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
+    box-shadow: var(--white-glow);
     
 }
 
