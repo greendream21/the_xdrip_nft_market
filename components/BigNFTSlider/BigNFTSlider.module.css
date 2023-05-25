@@ -13,14 +13,14 @@
 .bigNFTSlider_box_left{
     grid-column: 1 / 7;
     grid-row: 1 / -1;
-    margin-top: 1rem;
+    margin-top: 0; /*1rem;*/
     background-color: #212325c5;
     
     border-radius: .5rem;
     
     padding: 2rem;
     z-index: 111;
-    height: 85vh;
+    height: auto; /*85vh;*/
 }
 
 .bigNFTSlider_box_left h2{
@@ -35,12 +35,11 @@
     grid-column: 6 / -1;
     grid-row:  1 / -1;
     padding: 1rem;
-    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
+    box-shadow: var(--white-glow);
     border-radius: .5rem;
     border: 6px solid #00000088;
     background-image: url(../../img/card-background-5.png);
-    height: 90vh;
-    
+    height: auto; /*90vh;*/
 }
 
 /* //CREATOR SECTION */
@@ -138,12 +137,11 @@
 
 .bigNFTSlider_box_left_bidding_box_timer_item {
     font-size: 1.1rem;
-    margin-top: 2rem;
+    margin-top: 0; /*2rem;*/
     align-items: center;
     padding-left: 4.5rem;
     font-weight: 900;
     margin-bottom: 0rem;
-    
 }
 
 

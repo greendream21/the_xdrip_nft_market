@@ -99,7 +99,7 @@
 .navbar_container_right_help_box{
     position: absolute;
     padding: 1rem .5rem;
-    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px;
+    box-shadow: var(--white-glow);
     width: 11rem;
     border-radius: .25rem;
     background-color: black;

@@ -58,6 +58,8 @@
   --xdrip-dark-gray: #1b1c1e;
   --xdrip-gold: #736b5e;
 
+  --white-glow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px #000;
+
   --box-shadow: 0rem 0rem 0rem var(--shadow-dark-color),
   -1rem -1rem 1rem var(--shadow-light-color);
 
