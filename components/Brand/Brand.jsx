@@ -30,8 +30,8 @@ const Brand = () => {
               <Image
                 src={images.bullet_2}
                 alt="Logo"
-                width={50}
-                height={50}
+                width={70}
+                height={70}
                 /></span>
             <small>DEDICATED DEVELOPMENT TEAM FOCUSED ON FUTURE GROWTH</small>
           </div>
@@ -41,11 +41,11 @@ const Brand = () => {
             <Image
                 src={images.bullet_2}
                 alt="Logo"
-                width={50}
-                height={50}
+                width={70}
+                height={70}
                 />
             </span>
-            <small>commitment to sustainability is evident in every aspect</small>
+            <small>COMMITTED TO PROJECT SUSTAINABILITY</small>
           </div>
 
           <div className={Style.Brand_box_left_box}>
@@ -53,11 +53,11 @@ const Brand = () => {
             <Image
                 src={images.bullet_2}
                 alt="Logo"
-                width={50}
-                height={50}
+                width={70}
+                height={70}
                 />
             </span>
-            <small>More than just a cryptocurrency  - it's a movement </small>
+            <small>MORE THAN JUST A CRYPTO PROJECT- IT'S A MOVEMENT! </small>
           </div>
 
           <div className={Style.Brand_box_left_btn}>

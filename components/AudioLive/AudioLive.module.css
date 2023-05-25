@@ -4,6 +4,7 @@
     align-content: center;
     justify-content: center;
     justify-items: center;
+    width: 100%;
 }
 
 .audioLive{
@@ -16,7 +17,7 @@
 
 
 .audioLive_box{
-    width: 100%;
+    width: 80%;
     flex: 0 0 auto; /* Allow the cards to wrap within the container */
     margin-right: 1rem;
     padding: 0 -1rem 8rem 0;

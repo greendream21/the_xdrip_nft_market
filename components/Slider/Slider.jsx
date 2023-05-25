@@ -74,7 +74,7 @@ const Slider = () => {
         <div className={Style.slider_box_button}></div>
       </div>
       <Swiper
-       
+        ref={dragSlider}
         className={Style.slider_box_items}
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
         spaceBetween={0}

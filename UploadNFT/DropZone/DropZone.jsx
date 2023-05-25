@@ -17,6 +17,7 @@ const DropZone = ({
   website,
   description,
   royalties,
+  editions,
   fileSize,
   setFileSize,
   properties,
@@ -224,7 +225,8 @@ const formatFileSize = (size) => {
           <div className={Style.DropZone_box_aside_box_preview}>
             <div className={Style.DropZone_box_aside_box_preview_one}>
               <p>NFT Name : {name || ""}</p>
-              <p>CATEGORY : {category || ""}</p>
+              <p>Category : {category || ""}</p>
+              <p>Editions : {editions || ""}</p>
             </div>
 
             <div className={Style.DropZone_box_aside_box_preview_two}>

@@ -6,7 +6,7 @@
     margin-top: 8rem;
     margin-bottom: 20rem;
     display: grid;
-    grid-template-columns: repeat(13, 1fr);
+    grid-template-columns: repeat(12, 1fr);
     align-items: center;
 }
 

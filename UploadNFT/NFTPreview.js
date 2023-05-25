@@ -14,6 +14,7 @@ const NFTPreview = ({
   properties,
   website,
   description,
+  editions,
 }) => {
   if (!show) {
     return null;
@@ -93,12 +94,15 @@ const NFTPreview = ({
           {renderMediaPreview()}
           <h2 className={Style.preview_name}>{name}</h2>
           <p className={Style.preview_category}>Category: {category}</p>
+          <p className={Style.preview_editions}>Editions: {editions}</p>
           <p className={Style.preview_royalties}>Royalties: {royalties}%</p>
           <p className={Style.preview_price}>Price: {price} BNB</p>
           <p className={Style.preview_fileSize}>File Size: {fileSize} MB</p>
           <p className={Style.preview_properties}>Properties: {properties}</p>
           <p className={Style.preview_website}>Website: {website}</p>
           <p className={Style.preview_description}>Description: {description}</p>
+          
+
         </div>
       </div>
     </div>

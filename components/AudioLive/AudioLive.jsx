@@ -19,7 +19,7 @@ const Slider = () => {
   const [fileTypes, setFileTypes] = useState({});
   const [likes, setLikes] = useState({});
 
-  //SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
+ 
 
 
   useEffect(() => {
@@ -41,7 +41,8 @@ const Slider = () => {
 
   useEffect(() => {
     setWidth(dragSlider.current.scrollWidth - dragSlider.current.offsetWidth);
-  });
+  }, [dragSlider.current]);
+  
 
   const handleScroll = (direction) => {
     const { current } = dragSlider;

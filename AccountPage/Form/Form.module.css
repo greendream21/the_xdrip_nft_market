@@ -6,6 +6,7 @@
 
 .Form_box_input{
     margin-top: 2rem;
+    
 }
 
 .Form_box_input label{
@@ -14,6 +15,36 @@
     margin-left: 1rem;
     font-weight: 700;
     font-size: 1.3rem;
+}
+
+.Form_box_input select{
+    width: 100%;
+    border: 4px double rgba(1,122,254,255);
+    padding: 1rem;
+    border-radius: .5rem;
+    background-color: transparent;
+    margin-top: .5rem;
+    outline: none;
+}
+
+.Form_box_input option{
+    width: 100%;
+    border: 4px double rgba(1,122,254,255);
+    padding: 1rem;
+    border-radius: .5rem;
+    background-color: black;
+    margin-top: .5rem;
+    outline: none;
+}
+
+.Form_box_input input{
+    width: 100%;
+    border: 4px double rgba(1,122,254,255);
+    padding: 1rem;
+    border-radius: .5rem;
+    background-color: black;
+    margin-top: .5rem;
+    outline: none;
 }
 
 .Form_box_input_userName{
@@ -55,6 +86,7 @@
     border: 0;
     background-color: transparent;
     outline: none;
+    padding: .75rem;
 }
 
 .Form_box_input textarea{
@@ -68,7 +100,7 @@
 
 .Form_box_input_social{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
 }
 .Form_box_btn{

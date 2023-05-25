@@ -1,8 +1,3 @@
-.sliderCard_container {
-  display: flex; /* Change display to flex */
-  overflow: hidden; /* Enable horizontal scrolling */
- 
-}
 
 .sliderCard {
   display: flex;

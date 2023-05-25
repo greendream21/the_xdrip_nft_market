@@ -1,12 +1,33 @@
 
 .upload{
- margin-bottom: 14rem;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-bottom: 14rem;
+    gap: 5rem;
+    justify-content: center;
+
 }
+
+.upload_dropzone{
+    width: 100%;
+}
+
+.upload_dropzone_title{
+    
+   margin-top: 2rem; 
+}
+
+.upload_dropzone_title h2{
+    padding-bottom: .25rem;
+    border-bottom: 4px double rgba(1,122,254,255); 
+ }
 
 .Form_box_input{
     font-size: 2rem;
 }
 .upload_box_input_para{
+    display: grid;
+    grid-template-columns: 4fr, 1fr;
    padding: 0 1rem;
 }
 
@@ -22,11 +43,14 @@
     cursor: pointer;
 }
 
+
+
 .upload_box_slider_box{
     display: flex;
     align-items: center;
     gap: 3rem;
 }
+
 
 .upload_box_slider_box_img_img{
     border-radius: 50%;
@@ -51,7 +75,8 @@
     grid-template-columns: repeat(2, 1fr);
     margin-block: 4rem;
     gap: 0rem;
-    padding-left: 12rem;
+    padding-left: 0rem;
+    justify-items: center;
 }
 
 .upload_box_btn_style{

@@ -24,6 +24,10 @@ const UloadNFT = ({ createNFT }) => {
   const [royalties, setRoyalties] = useState("");
   const [fileSize, setFileSize] = useState("");
   const [category, setCategory] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCollection, setSelectedCollection] = useState("");
+  const [newCollectionName, setNewCollectionName] = useState("");
+  const [editions, setEditions] = useState([]);
   const [properties, setProperties] = useState("");
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
@@ -100,209 +104,220 @@ const UloadNFT = ({ createNFT }) => {
     }
   };
 
+  function handleOptionChange(selectedValue) {
+    setSelectedCollection(selectedValue);
+    if (selectedValue === "new") {
+      window.location.href = "/createCollectionPage";
+    }
+  }
+  
+
   return (
     <div className={Style.upload}>
-      <DropZone
-        title="JPG, GIF, PNG, MP4, MP3, MOV, WMV, MPEG, WEBM, MAX 250MB"
-        heading="DRAG AND DROP VIDEO / AUDIO MEDIA FILE OR"
-        subHeading="CLICK TO BROWSE YOUR DEVICE"
-        name={name}
-        price={price}
-        description={description}
-        category={category}
-        website={website}
-        royalties={royalties}
-        properties={properties}
-        setImage={setImage}
-        uploadToIPFS={uploadToIPFS}
-        setImagePreview={setImagePreview}
-        imagePreview={imagePreview}
-        fileSize={fileSize}
-        isLoading={isLoading}
-        setIsLoading={setIsLoading}
-        setFileType={setFileType}
-        fileType={fileType}
-      />
 
-      <div className={Style.upload_box}>
-        <div className={formStyle.Form_box_input}>
-          <label htmlFor="nft">NFT NAME</label>
-          <input
-            type="text"
-            placeholder="ENTER NFT NAME"
-            className={formStyle.Form_box_input_userName}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-
-        <div className={formStyle.Form_box_input}>
-          <label htmlFor="website">WEBSITE</label>
-          <div className={formStyle.Form_box_input_box}>
-            <div className={formStyle.Form_box_input_box_icon}>
-              <MdOutlineHttp />
-            </div>
-
+      <div className={Style.right_box}>
+        <div className={Style.upload_box}>
+          <div className={formStyle.Form_box_input}>
+            <label htmlFor="nft">NFT NAME</label>
             <input
               type="text"
-              placeholder="ENTER YOUR WEBSITE"
-              onChange={(e) => setWebsite(e.target.value)}
+              placeholder="ENTER NFT NAME"
+              className={formStyle.Form_box_input_userName}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
 
-          <p className={Style.upload_box_input_para}>
-            A LINK TO THIS URL WILL BE INCLUDED ON THIS ITEM'S DETAIL PAGE,
-            ENSURING USERS CAN ACCESS MORE INFORMATION ABOUT YOU AND YOUR NFT.
-          </p>
-        </div>
+          <div className={formStyle.Form_box_input}>
+            <label htmlFor="name">CHOOSE CATEGORY</label>
 
-        <div className={formStyle.Form_box_input}>
-          <label htmlFor="description">DESCRIPTION</label>
-          <textarea
-            name=""
-            id=""
-            cols="30"
-            rows="6"
-            placeholder="TELL US ABOUT YOUR NFT AND WHAT MAKES IT XCELLENT"
-            onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
-          <p>
-            WE WILL INCLUDE THIS DESCRIPTION ON YOUR NFT CARD, INSIDE THE ITEM'S
-            DETAIL PAGE. MARKDOWN SYNTAX IS SUPPORTED AS WELL.
-          </p>
-        </div>
 
-        <div className={formStyle.Form_box_input}>
-          <label htmlFor="name">CHOOSE COLLECTION</label>
-          <p className={Style.upload_box_input_para}>
-            CHOOSE AN EXISTING COLLECTION OR CREATE A NEW ONE
-          </p>
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+            >
+              <option value="">SELECT A CATEGORY FOR YOUR NFT</option>
+              {categoryArry.map((el, i) => (
+                <option key={i} value={el.category}>
+                  {el.category}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={formStyle.Form_box_input}>
+            <label htmlFor="name">CHOOSE COLLECTION</label>
+            <select
+              value={selectedCollection}
+              onChange={(e) => handleOptionChange(e.target.value)}
+            >
+              <option value="">SELECT AN EXISTING COLLECTION OR CREATE A NEW ONE</option>
+              {/* Render existing collections associated with the connected wallet */}
+              {/* {existingCollections.map((collection, i) => (
+               <option key={i} value={collection}>
+                {collection}
+                  </option>
+                ))} */}
+              <option value="new">CREATE A NEW COLLECTION</option>
+            </select>
+            
+          </div>
 
-          <div className={Style.upload_box_slider_div}>
-            {categoryArry.map((el, i) => (
-              <div
-                className={`${Style.upload_box_slider} ${
-                  active == i + 1 ? Style.active : ""
-                }`}
-                key={i + 1}
-                onClick={() => (setActive(i + 1), setCategory(el.category))}
-              >
-                <div className={Style.upload_box_slider_box}>
-                  <div className={Style.upload_box_slider_box_img}>
-                    <Image
-                      src={el.image}
-                      alt="background image"
-                      width={50}
-                      height={50}
-                      className={Style.upload_box_slider_box_img_img}
-                    />
-                  </div>
-                  <div className={Style.upload_box_slider_box_img_icon}>
-                    <TiTick />
-                  </div>
+          <div className={formStyle.Form_box_input}>
+            <label htmlFor="editions">EDITIONS</label>
+            <input
+              type="number"
+              min="1"
+              max="10"
+              value={editions.length}
+              onChange={(e) => {
+                const count = parseInt(e.target.value);
+                if (count > 0 && count <= 10) {
+                  setEditions(Array(count).fill().map((_, index) => index + 1));
+                } else {
+                  setEditions([]);
+                }
+              }}
+            />
+          </div>
+
+
+          <div className={formStyle.Form_box_input}>
+            <label htmlFor="website">YOUR WEBSITE</label>
+            <div className={formStyle.Form_box_input_box}>
+
+
+              <input
+                type="text"
+                placeholder="ENTER YOUR WEBSITE"
+                onChange={(e) => setWebsite(e.target.value)}
+              />
+            </div>
+
+            <p className={Style.upload_box_input_para}>
+              A link to this URL will be included on this items detail page.
+            </p>
+          </div>
+
+          <div className={formStyle.Form_box_input}>
+            <label htmlFor="description">NFT DESCRIPTION</label>
+            <textarea
+              name=""
+              id=""
+              cols="30"
+              rows="6"
+              placeholder="TELL US ABOUT YOUR NFT AND WHAT MAKES IT XCELLENT"
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+            <p>
+              This description will be displayed on your NFT card and NFT detail page. Markdown syntex is supported.             </p>
+          </div>
+
+
+
+          <div className={formStyle.Form_box_input_social}>
+            <div className={formStyle.Form_box_input}>
+              <label htmlFor="Royalties">ROYALTIES</label>
+              <div className={formStyle.Form_box_input_box}>
+                <div className={formStyle.Form_box_input_box_icon}>
+                  <FaPercent />
                 </div>
-                <p>{el.category} </p>
+                <input
+                  type="text"
+                  placeholder="%"
+                  onChange={(e) => setRoyalties(e.target.value)}
+                />
               </div>
-            ))}
-          </div>
-        </div>
-
-        <div className={formStyle.Form_box_input_social}>
-          <div className={formStyle.Form_box_input}>
-            <label htmlFor="Royalties">ROYALTIES</label>
-            <div className={formStyle.Form_box_input_box}>
-              <div className={formStyle.Form_box_input_box_icon}>
-                <FaPercent />
-              </div>
-              <input
-                type="text"
-                placeholder="%"
-                onChange={(e) => setRoyalties(e.target.value)}
-              />
             </div>
-          </div>
 
-          <div className={formStyle.Form_box_input}>
-            <label htmlFor="size">FILE SIZE</label>
-            <div className={formStyle.Form_box_input_box}>
-              <div className={formStyle.Form_box_input_box_icon}>
-                <MdOutlineAttachFile />
+            <div className={formStyle.Form_box_input}>
+              <label htmlFor="size">FILE SIZE</label>
+              <div className={formStyle.Form_box_input_box}>
+                <div className={formStyle.Form_box_input_box_icon}>
+                  <MdOutlineAttachFile />
+                </div>
+                <input
+                  type="text"
+                  placeholder="MB"
+                  onChange={(e) => setFileSize(e.target.value)}
+                />
               </div>
-              <input
-                type="text"
-                placeholder="MB"
-                onChange={(e) => setFileSize(e.target.value)}
-              />
             </div>
-          </div>
-          <div className={formStyle.Form_box_input}>
-            <label htmlFor="Properties">NFT PROPERTIES</label>
-            <div className={formStyle.Form_box_input_box}>
-              <div className={formStyle.Form_box_input_box_icon}>
-                <AiTwotonePropertySafety />
+            <div className={formStyle.Form_box_input}>
+              <label htmlFor="Properties">NFT PROPERTIES</label>
+              <div className={formStyle.Form_box_input_box}>
+                <div className={formStyle.Form_box_input_box_icon}>
+                  <AiTwotonePropertySafety />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Properties"
+                  onChange={(e) => setProperties(e.target.value)}
+                />
               </div>
-              <input
-                type="text"
-                placeholder="Properties"
-                onChange={(e) => setProperties(e.target.value)}
-              />
             </div>
-          </div>
 
-          <div className={formStyle.Form_box_input}>
-            <label htmlFor="Price">PRICE</label>
-            <div className={formStyle.Form_box_input_box}>
-              <div className={formStyle.Form_box_input_box_icon}>
-                <AiTwotonePropertySafety />
-              </div>
-              <input
-                type="text"
-                placeholder="Price in BNB"
-                value={price}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  // Only allow numeric and decimal point characters
-                  const newValue = value.replace(/[^0-9.]/g, "");
-                  // Ensure that there is only one decimal point
-                  const decimalIndex = newValue.indexOf(".");
-                  if (decimalIndex !== -1) {
-                    const decimalCount = newValue.slice(
-                      decimalIndex + 1
-                    ).length;
-                    if (decimalCount > 4) {
-                      return;
+            <div className={formStyle.Form_box_input}>
+              <label htmlFor="Price">PRICE</label>
+              <div className={formStyle.Form_box_input_box}>
+                <div className={formStyle.Form_box_input_box_icon}>
+                  <AiTwotonePropertySafety />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Price in BNB"
+                  value={price}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    // Only allow numeric and decimal point characters
+                    const newValue = value.replace(/[^0-9.]/g, "");
+                    // Ensure that there is only one decimal point
+                    const decimalIndex = newValue.indexOf(".");
+                    if (decimalIndex !== -1) {
+                      const decimalCount = newValue.slice(
+                        decimalIndex + 1
+                      ).length;
+                      if (decimalCount > 4) {
+                        return;
+                      }
                     }
-                  }
-                  setPrice(newValue);
-                }}
-              />
+                    setPrice(newValue);
+                  }}
+                />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className={Style.upload_box_btn}>
-          <Button
-            btnName="UPLOAD YOUR NFT"
-            handleClick={async () =>
-              createNFT(
-                name,
-                price,
-                description,
-                category,
-                website,
-                royalties,
-                properties,
-                image,
-                fileSize
-              )
-            }
-            classStyle={Style.upload_box_btn_style}
-          />
-          <Button
-            btnName="PREVIEW YOUR NFT"
-            handleClick={togglePreview}
-            classStyle={Style.upload_box_btn_style}
-          />
+
+
+
         </div>
+      </div>
+      <div className={Style.upload_dropzone}>
+        <div className={Style.upload_dropzone_title}>
+          <h2> IMAGE, VIDEO, AUDIO, OR 3D MODEL</h2>
+        </div>
+        <DropZone
+          title="JPG, GIF, PNG, MP4, MP3, MOV, WMV, MPEG, WEBM, MAX 250MB"
+          heading="DRAG AND DROP VIDEO / AUDIO MEDIA FILE OR"
+          subHeading="CLICK TO BROWSE YOUR DEVICE"
+          name={name}
+          price={price}
+          description={description}
+          category={category}
+          website={website}
+          royalties={royalties}
+          properties={properties}
+          setImage={setImage}
+          uploadToIPFS={uploadToIPFS}
+          setImagePreview={setImagePreview}
+          imagePreview={imagePreview}
+          fileSize={fileSize}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+          setFileType={setFileType}
+          fileType={fileType}
+          editions={editions}
+          setEditions={setEditions}
+        />
 
         <NFTPreview
           show={showPreview}
@@ -318,6 +333,32 @@ const UloadNFT = ({ createNFT }) => {
           description={description}
           mediaPreview={imagePreview}
           fileType={fileType}
+          editions={editions}
+        />
+      </div>
+      <div className={Style.upload_box_btn}>
+        <Button
+          btnName="UPLOAD YOUR NFT"
+          handleClick={async () =>
+            createNFT(
+              name,
+              price,
+              description,
+              category,
+              website,
+              royalties,
+              properties,
+              image,
+              fileSize,
+              editions
+            )
+          }
+          classStyle={Style.upload_box_btn_style}
+        />
+        <Button
+          btnName="PREVIEW YOUR NFT"
+          handleClick={togglePreview}
+          classStyle={Style.upload_box_btn_style}
         />
       </div>
     </div>

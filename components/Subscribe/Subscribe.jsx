@@ -23,10 +23,10 @@ const Subscribe = () => {
           <div className={Style.subscribe_box_left_box}>
             <span>                
               <Image
-                src={images.bullet_11}
+                src={images.bullet_6}
                 alt="Logo"
-                width={50}
-                height={50}
+                width={70}
+                height={70}
                 /></span>
             <small>GET PRIVATE ACCESS TO LIMITED EDITION DRIPS</small>
           </div>
@@ -34,10 +34,10 @@ const Subscribe = () => {
           <div className={Style.subscribe_box_left_box}>
             <span>
             <Image
-                src={images.bullet_11}
+                src={images.bullet_6}
                 alt="Logo"
-                width={50}
-                height={50}
+                width={70}
+                height={70}
                 />
             </span>
             <small>DISCOUNT PRICING OPPORTUNITIES FOR SUBSCRIBERS</small>
@@ -46,10 +46,10 @@ const Subscribe = () => {
           <div className={Style.subscribe_box_left_box}>
             <span>
             <Image
-                src={images.bullet_11}
+                src={images.bullet_6}
                 alt="Logo"
-                width={50}
-                height={50}
+                width={70}
+                height={70}
                 />
             </span>
             <small>STAY UP TO DATE ON DEVELOPMENTS WITH THE XDRIP ECOSYSTEM</small>
