@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { MdTimer } from "react-icons/md";
-import { Loader } from "../../components/componentsindex";
 import Style from "./NFTCardTwo.module.css";
 import Rating from "react-rating";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import images from "../../img";
 import Image from "next/image";
+import ReactPlayer from 'react-player';
 
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -14,11 +13,9 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 //import { AiOutlineHeart, AiFillHeart } from "react-icons/ai"; Can use hearts insetad of stars
 import Link from "next/link";
 
-const mp3Image = "mp3.jpg";
-
 const NFTCardTwo = ({ NFTData }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const ITEMS_PER_PAGE = 12;
+  const ITEMS_PER_PAGE = 8;
   const [fileTypes, setFileTypes] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -67,6 +64,8 @@ const NFTCardTwo = ({ NFTData }) => {
     fetchFileTypes();
   }, [NFTData]);
 
+
+/*
   const RenderImage = ({ src }) => (
   <LazyLoadImage
     src={src}
@@ -78,11 +77,9 @@ const NFTCardTwo = ({ NFTData }) => {
   />
 );
 
-
 const RenderVideo = ({ src }) => (
-
   <LazyLoadComponent>
-    <video
+    <ReactPlayer
       src={src}
       alt="NFT"
       width={350}
@@ -111,7 +108,7 @@ const RenderAudio = ({ src }) => (
     />
   </div>
 );
-
+*/
 const RenderDefault = () => (
   <Image
     src={images.invalidImage}
@@ -125,7 +122,7 @@ const RenderDefault = () => (
 );
 
 
-
+/*
 useEffect(() => {
 const fetchFileTypes = async () => {
 const fileTypesObj = {};
@@ -147,8 +144,47 @@ const fileTypesObj = {};
 fetchFileTypes();
 
 }, [NFTData]);
+*/
 
 
+
+
+useEffect(() => {
+  const fetchFileTypes = async () => {
+    const fileTypesObj = {};
+    
+    for (const el of NFTData.slice(0, 4)) {
+      try {
+        const response = await fetch(el.image);
+        const contentType = response.headers.get("content-type");
+        fileTypesObj[el.image] = contentType;
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    setFileTypes(fileTypesObj);
+    setLoading(false);
+
+    // Fetch the rest of the items in the background
+    for (const el of NFTData.slice(4)) {
+      try {
+        const response = await fetch(el.image);
+        const contentType = response.headers.get("content-type");
+        fileTypesObj[el.image] = contentType;
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    setFileTypes(fileTypesObj);
+  };
+
+  fetchFileTypes();
+}, [NFTData, currentPage]);
+
+
+/*
 const renderFilePreview = (el) => {
 const fileType = fileTypes[el.image];
 
@@ -163,6 +199,66 @@ if (fileType && fileType.includes("image")) {
 }
 
 };
+*/
+
+
+/* works for all - stil loading all nfts before display*/
+const RenderMedia = ({ src }) => {
+  const isImage = fileTypes[src] && fileTypes[src].startsWith("image");
+  const isAudio = fileTypes[src] && fileTypes[src].startsWith("audio");
+
+  return (
+    <LazyLoadComponent>
+      {isImage ? (
+        <LazyLoadImage
+          src={src}
+          alt="NFT"
+          width={350}
+          height={300}
+          effect="blur"
+          className={Style.NFTCardTwo_box_img_img}
+        />
+      ) : isAudio ? (
+        <div className={Style.NFTCardTwo_box_audio}>
+          <Image
+            src={images.audio_image}
+            alt="Default"
+            width={350}
+            height={255}
+            objectFit="cover"
+            className={Style.NFTCardTwo_box_img_audio}
+          />
+          <audio
+            src={src}
+            controls
+            className={Style.NFTCardTwo_box_audio_controls}
+          />
+        </div>
+      ) : (
+        <ReactPlayer 
+          url={src}
+          controls
+          width='350px'
+          height='300px'
+          className={Style.NFTCardTwo_box_img_img}
+        />
+      )}
+    </LazyLoadComponent>
+  );
+};
+
+
+const renderFilePreview = (el) => {
+  const fileType = fileTypes[el.image];
+
+  if (fileType) {
+    return <RenderMedia src={el.image} />;
+  } else {
+    return <RenderDefault />;
+  }
+};
+
+
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
   const currentItems = NFTData.slice(indexOfFirstItem, indexOfLastItem);
