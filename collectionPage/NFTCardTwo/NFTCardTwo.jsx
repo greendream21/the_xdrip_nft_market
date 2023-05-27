@@ -122,7 +122,7 @@ const RenderDefault = () => (
 );
 
 
-/*
+
 useEffect(() => {
 const fetchFileTypes = async () => {
 const fileTypesObj = {};
@@ -144,11 +144,11 @@ const fileTypesObj = {};
 fetchFileTypes();
 
 }, [NFTData]);
-*/
 
 
 
 
+/*
 useEffect(() => {
   const fetchFileTypes = async () => {
     const fileTypesObj = {};
@@ -182,7 +182,7 @@ useEffect(() => {
 
   fetchFileTypes();
 }, [NFTData, currentPage]);
-
+*/
 
 /*
 const renderFilePreview = (el) => {
