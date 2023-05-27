@@ -373,3 +373,4 @@ const renderFilePreview = (el) => {
 };
 
 export default NFTCardTwo;
+/*comments go here*/
