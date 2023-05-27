@@ -6,6 +6,7 @@ import Rating from "react-rating";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import images from "../../../img";
 import Image from "next/image";
+import ReactPlayer from 'react-player';
 
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -77,7 +78,7 @@ useEffect(() => {
 
 
 
-
+/*
   const RenderImage = ({ src }) => (
     <LazyLoadImage
       src={src}
@@ -147,6 +148,72 @@ useEffect(() => {
       return <RenderDefault />;
     }
   };
+  */
+  
+  const RenderDefault = () => (
+  <Image
+    src={images.invalidImage}
+    alt="NFT"
+    width={350}
+    height={300}
+    objectFit="cover"
+    className={Style.NFTCard_box_img_img}
+    controls
+  />
+);
+
+const RenderMedia = ({ src }) => {
+  const fileType = fileTypes[src];
+  
+  const isImage = fileType && fileType.startsWith("image");
+  const isAudio = fileType && fileType.startsWith("audio");
+  
+  return (
+    <LazyLoadComponent>
+      {isImage ? (
+        <LazyLoadImage
+          src={src}
+          alt="NFT"
+          width={350}
+          height={300}
+          effect="blur"
+          className={Style.NFTCardTwo_box_img_img}
+        />
+      ) : isAudio ? (
+        <div className={Style.NFTCardTwo_box_audio}>
+          <Image
+            src={images.audio_image}
+            alt="Default"
+            width={350}
+            height={255}
+            objectFit="cover"
+            className={Style.NFTCardTwo_box_img_audio}
+          />
+          <audio
+            src={src}
+            controls
+            className={Style.NFTCardTwo_box_audio_controls}
+          />
+        </div>
+      ) : (
+        <ReactPlayer 
+          url={src}
+          controls
+          width='350px'
+          height='300px'
+          className={Style.NFTCardTwo_box_img_img}
+        />
+      )}
+    </LazyLoadComponent>
+  );
+};
+
+const renderFilePreview = (el) => {
+  const fileType = fileTypes[el.image];
+
+  return fileType ? <RenderMedia src={el.image} /> : <RenderDefault />;
+};
+  
   
   
   return (
