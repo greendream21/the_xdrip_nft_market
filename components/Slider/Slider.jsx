@@ -18,6 +18,7 @@ const Slider = () => {
   const [nfts, setNfts] = useState([]);
   const [fileTypes, setFileTypes] = useState({});
   const [likes, setLikes] = useState({});
+   const [loading, setLoading] = useState(true);
 
   //SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 
@@ -51,7 +52,9 @@ const Slider = () => {
       current.scrollLeft += scrollAmount;
     }
   };
-
+  
+  
+/*
   useEffect(() => {
     const fetchFileTypes = async () => {
       const fileTypesObj = {};
@@ -71,6 +74,37 @@ const Slider = () => {
 
     fetchFileTypes();
   }, [nfts]);
+*/
+
+useEffect(() => {
+  const fetchFileTypes = async () => {
+    let fileTypesObj = {};
+
+    const savedData = localStorage.getItem('fileTypesObj');
+    if (savedData) {
+      fileTypesObj = JSON.parse(savedData);
+    } else {
+
+      for (const el of nfts) {
+        try {
+          const response = await fetch(el.image);
+          const contentType = response.headers.get("content-type");
+          fileTypesObj[el.image] = contentType;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
+    }
+
+    setFileTypes(fileTypesObj);
+    setLoading(false);
+  };
+
+  fetchFileTypes();
+}, [nfts]);
+
 
 
   const videoNFTs = nfts.filter(nft => fileTypes[nft.image] && fileTypes[nft.image].includes('video'));

@@ -22,6 +22,7 @@ const SliderCard = ({ NFTData, likes }) => {
   const [fileTypes, setFileTypes] = useState({});
   const [loading, setLoading] = useState(true);
 
+/*
   useEffect(() => {
     const fetchFileTypes = async () => {
       const fileTypesObj = {};
@@ -42,6 +43,40 @@ const SliderCard = ({ NFTData, likes }) => {
 
     fetchFileTypes();
   }, [NFTData]);
+*/
+
+useEffect(() => {
+  const fetchFileTypes = async () => {
+    let fileTypesObj = {};
+
+    const savedData = localStorage.getItem('fileTypesObj');
+    if (savedData) {
+      fileTypesObj = JSON.parse(savedData);
+    } else {
+
+      for (const el of NFTData) {
+        try {
+          const response = await fetch(el.image);
+          const contentType = response.headers.get("content-type");
+          fileTypesObj[el.image] = contentType;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
+    }
+
+    setFileTypes(fileTypesObj);
+    setLoading(false);
+  };
+
+  fetchFileTypes();
+}, [NFTData]);
+
+
+
+
 
   const RenderImage = ({ src }) => (
     <LazyLoadImage

@@ -7,6 +7,11 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import images from "../../img";
 import Image from "next/image";
 
+import ReactPlayer from 'react-player';
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 //import { AiOutlineHeart, AiFillHeart } from "react-icons/ai"; Can use hearts insetad of stars
 import Link from "next/link";
 
@@ -14,7 +19,7 @@ const mp3Image = "/mp3.jpg";
 
 const NFTCard = ({ NFTData }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const ITEMS_PER_PAGE = 12;
+  const ITEMS_PER_PAGE = 8;
   const [fileTypes, setFileTypes] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -42,6 +47,8 @@ const NFTCard = ({ NFTData }) => {
     });
   };
 
+
+/*
   useEffect(() => {
     const fetchFileTypes = async () => {
       const fileTypesObj = {};
@@ -62,7 +69,41 @@ const NFTCard = ({ NFTData }) => {
 
     fetchFileTypes();
   }, [NFTData]);
+  
+  */
+  
+  useEffect(() => {
+  const fetchFileTypes = async () => {
+    let fileTypesObj = {};
 
+    const savedData = localStorage.getItem('fileTypesObj');
+    if (savedData) {
+      fileTypesObj = JSON.parse(savedData);
+    } else {
+
+      for (const el of NFTData) {
+        try {
+          const response = await fetch(el.image);
+          const contentType = response.headers.get("content-type");
+          fileTypesObj[el.image] = contentType;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
+    }
+
+    setFileTypes(fileTypesObj);
+    setLoading(false);
+  };
+
+  fetchFileTypes();
+}, [NFTData]);
+
+
+
+/*
   const renderFilePreview = (el) => {
     const fileType = fileTypes[el.image];
 
@@ -122,6 +163,73 @@ const NFTCard = ({ NFTData }) => {
       );
     }
   };
+*/
+
+const RenderDefault = () => (
+  <Image
+    src={images.invalidImage}
+    alt="NFT"
+    width={350}
+    height={300}
+    objectFit="cover"
+    className={Style.NFTCard_box_img_img}
+    controls
+  />
+);
+
+const RenderMedia = ({ src }) => {
+  const fileType = fileTypes[src];
+  
+  const isImage = fileType && fileType.startsWith("image");
+  const isAudio = fileType && fileType.startsWith("audio");
+  
+  return (
+    <LazyLoadComponent>
+      {isImage ? (
+        <LazyLoadImage
+          src={src}
+          alt="NFT"
+          width={350}
+          height={300}
+          effect="blur"
+          className={Style.NFTCardTwo_box_img_img}
+        />
+      ) : isAudio ? (
+        <div className={Style.NFTCardTwo_box_audio}>
+          <Image
+            src={images.audio_image}
+            alt="Default"
+            width={350}
+            height={255}
+            objectFit="cover"
+            className={Style.NFTCardTwo_box_img_audio}
+          />
+          <audio
+            src={src}
+            controls
+            className={Style.NFTCardTwo_box_audio_controls}
+          />
+        </div>
+      ) : (
+        <ReactPlayer 
+          url={src}
+          controls
+          width='350px'
+          height='300px'
+          className={Style.NFTCardTwo_box_img_img}
+        />
+      )}
+    </LazyLoadComponent>
+  );
+};
+
+const renderFilePreview = (el) => {
+  const fileType = fileTypes[el.image];
+
+  return fileType ? <RenderMedia src={el.image} /> : <RenderDefault />;
+};
+
+
 
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
