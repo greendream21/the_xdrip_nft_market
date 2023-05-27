@@ -1,6 +1,14 @@
+
+
+/*
 import React, { useState, useEffect, useRef, useContext } from "react";
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
+//import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/core';
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
+
+
 
 import Style from "./AudioLive.module.css";
 import AudioCard from "../../components/AudioLive/AudioCard/AudioCard";
@@ -18,8 +26,7 @@ const Slider = () => {
   const [nfts, setNfts] = useState([]);
   const [fileTypes, setFileTypes] = useState({});
   const [likes, setLikes] = useState({});
-
- 
+  const [loading, setLoading] = useState(true);
 
 
   useEffect(() => {
@@ -53,7 +60,7 @@ const Slider = () => {
   };
 
 
-
+/*
   useEffect(() => {
     const fetchFileTypes = async () => {
       const fileTypesObj = {};
@@ -75,6 +82,35 @@ const Slider = () => {
   }, [nfts]);
 
 
+ useEffect(() => {
+  const fetchFileTypes = async () => {
+    let fileTypesObj = {};
+
+    const savedData = localStorage.getItem('fileTypesObj');
+    if (savedData) {
+      fileTypesObj = JSON.parse(savedData);
+    } else {
+
+      for (const el of nfts) {
+        try {
+          const response = await fetch(el.image);
+          const contentType = response.headers.get("content-type");
+          fileTypesObj[el.image] = contentType;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
+    }
+
+    setFileTypes(fileTypesObj);
+    setLoading(false);
+  };
+
+  fetchFileTypes();
+}, [nfts]);
+
   const audioNFTs = nfts.filter(nft => fileTypes[nft.image] && fileTypes[nft.image].includes('audio'));
 
   return (
@@ -85,13 +121,16 @@ const Slider = () => {
         </div>
         <Swiper className={Style.audioLive_box_items}
           ref={dragSlider}
+          
           modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+          
+          autoplay={{ delay: 5000 }}
           spaceBetween={0}
           slidesPerView={2}
           loop={true}
           navigation={true}
           pagination={{ clickable: true }}
-          autoplay={{ delay: 5000 }}
+          
           onSlideChange={() => console.log('slide change')}
           onSwiper={(swiper) => console.log(swiper)}
         >
@@ -108,3 +147,123 @@ const Slider = () => {
 
 export default Slider;
 
+*/
+import React, { useState, useEffect, useRef, useContext } from "react";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
+
+import Style from "./AudioLive.module.css";
+import AudioCard from "../../components/AudioLive/AudioCard/AudioCard";
+import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import 'swiper/css/autoplay';
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
+
+const AudioSlider = () => {
+  const { fetchNFTs, setError } = useContext(NFTMarketplaceContext);
+  const [nfts, setNfts] = useState([]);
+  const [fileTypes, setFileTypes] = useState({});
+  const [likes, setLikes] = useState({});
+  const [loading, setLoading] = useState(true);
+  const dragSlider = useRef(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const items = await fetchNFTs();
+        setNfts(items.reverse());
+      } catch (error) {
+        setError("Please reload the browser", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchFileTypes = async () => {
+      let fileTypesObj = {};
+
+      const savedData = localStorage.getItem('fileTypesObj');
+      if (savedData) {
+        fileTypesObj = JSON.parse(savedData);
+      } else {
+        for (const el of nfts) {
+          try {
+            const response = await fetch(el.image);
+            const contentType = response.headers.get("content-type");
+            fileTypesObj[el.image] = contentType;
+          } catch (error) {
+            console.log(error);
+          }
+        }
+        localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
+      }
+
+      setFileTypes(fileTypesObj);
+      setLoading(false);
+    };
+
+    fetchFileTypes();
+  }, [nfts]);
+
+  useEffect(() => {
+    if (dragSlider.current) {
+      const swiperInstance = dragSlider.current.swiper;
+      swiperInstance.autoplay.start();
+    }
+  }, [nfts]);
+
+  const audioNFTs = nfts.filter(
+    (nft) => fileTypes[nft.image] && fileTypes[nft.image].includes('audio')
+  );
+
+  return (
+    <div className={Style.audioLiveContainer}>
+      {!loading && (
+        <div className={Style.audioLive}>
+          <div className={Style.audioLive_box}>
+            <div className={Style.audioLive_box_button}></div>
+          </div>
+          <div //className={Style.audioLive_box_items} }
+          >
+            <Swiper
+              ref={dragSlider}
+              modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+              autoplay={{ delay: 5000 }}
+              slidesPerView={1}
+              spaceBetween={30}
+              loop={true}
+              navigation={true}
+              
+              /*
+              pagination={{ clickable: true }}
+              */
+          
+              onSlideChange={() => console.log('slide change')}
+              onSwiper={(swiper) => console.log(swiper)}
+              onBeforeInit={(swiper) => {
+                swiper.autoplay.stop(); 
+              }}
+              onInit={(swiper) => {
+                swiper.autoplay.start(); 
+              }}
+            >
+              {audioNFTs.map((nft) => (
+                <SwiperSlide key={nft.tokenId}>
+                  <AudioCard NFTData={[nft]} likes={likes} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default AudioSlider;

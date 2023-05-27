@@ -25,6 +25,7 @@ const AudioCard = ({ NFTData, likes }) => {
   const [like, setLike] = useState(false);
   const [play, setPlay] = useState(false);
 
+  /*
   useEffect(() => {
     const fetchFileTypes = async () => {
       const fileTypesObj = {};
@@ -45,76 +46,102 @@ const AudioCard = ({ NFTData, likes }) => {
 
     fetchFileTypes();
   }, [NFTData]);
+  */
+  
+  useEffect(() => {
+  const fetchFileTypes = async () => {
+    let fileTypesObj = {};
 
-  const RenderImage = ({ src }) => (
-    <LazyLoadImage
-      src={src}
-      alt="NFT"
-      width={350}
-      height={350}
-      effect="blur"
-      className={Style.audioCard_box_img_img}
-    />
-  );
+    const savedData = localStorage.getItem('fileTypesObj');
+    if (savedData) {
+      fileTypesObj = JSON.parse(savedData);
+    } else {
 
-  const RenderVideo = ({ src }) => (
-    <LazyLoadComponent>
-      <video
-        src={src}
-        alt="NFT"
-        width={350}
-        height={350}
-        objectFit="cover"
-        className={Style.audioCard_box_img_img}
-        controls
-        preload="auto"
-      />
-    </LazyLoadComponent>
-  );
+      for (const el of NFTData) {
+        try {
+          const response = await fetch(el.image);
+          const contentType = response.headers.get("content-type");
+          fileTypesObj[el.image] = contentType;
+        } catch (error) {
+          console.log(error);
+        }
+      }
 
-  const RenderAudio = ({ src }) => (
-    <div className={Style.audioCard_box_audio}>
-      <Image
-        src={images.audio_image2}
-        alt="Default"
-        width={350}
-        height={350}
-        objectFit="cover"
-        className={Style.audioCard_box_img_audio}
-      />
-      <audio
-        src={src}
-        className={Style.audioCard_box_audio_controls}
-        controls
-      />
-    </div>
-  );
+      localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
+    }
+
+    setFileTypes(fileTypesObj);
+    setLoading(false);
+  };
+
+  fetchFileTypes();
+}, [NFTData]);
+  
+  
 
   const RenderDefault = () => (
-    <Image
-      src={images.invalidImage}
-      alt="NFT"
-      width={350}
-      height={300}
-      objectFit="cover"
-      className={Style.audioCard_box_img}
-      
-    />
+  <Image
+    src={images.invalidImage}
+    alt="NFT"
+    width={350}
+    height={300}
+    objectFit="cover"
+    className={Style.NFTCard_box_img_img}
+    controls
+  />
+);
+
+const RenderMedia = ({ src }) => {
+  const fileType = fileTypes[src];
+  
+  const isImage = fileType && fileType.startsWith("image");
+  const isAudio = fileType && fileType.startsWith("audio");
+  
+  return (
+    <LazyLoadComponent>
+      {isImage ? (
+        <LazyLoadImage
+          src={src}
+          alt="NFT"
+          width={350}
+          height={300}
+          effect="blur"
+          className={Style.NFTCardTwo_box_img_img}
+        />
+      ) : isAudio ? (
+        <div className={Style.NFTCardTwo_box_audio}>
+          <Image
+            src={images.audio_image}
+            alt="Default"
+            width={350}
+            height={255}
+            objectFit="cover"
+            className={Style.NFTCardTwo_box_img_audio}
+          />
+          <audio
+            src={src}
+            controls
+            className={Style.NFTCardTwo_box_audio_controls}
+          />
+        </div>
+      ) : (
+        <ReactPlayer 
+          url={src}
+          controls
+          width='350px'
+          height='300px'
+          className={Style.NFTCardTwo_box_img_img}
+        />
+      )}
+    </LazyLoadComponent>
   );
+};
 
-  const renderFilePreview = (el) => {
-    const fileType = fileTypes[el.image];
+const renderFilePreview = (el) => {
+  const fileType = fileTypes[el.image];
 
-    if (fileType && fileType.includes("image")) {
-      return <RenderImage src={el.image} />;
-    } else if (fileType && fileType.includes("video")) {
-      return <RenderVideo src={el.image} />;
-    } else if (fileType && fileType.includes("audio")) {
-      return <RenderAudio src={el.image} />;
-    } else {
-      return <RenderDefault />;
-    }
-  };
+  return fileType ? <RenderMedia src={el.image} /> : <RenderDefault />;
+};
 
 
 
