@@ -3,6 +3,7 @@ import Image from "next/image";
 import { AiFillRocket, AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { MdVerified, MdTimer } from "react-icons/md";
 import { TbArrowBigLeftLines, TbArrowBigRightLine } from "react-icons/tb";
+import { useAddress } from "@thirdweb-dev/react";
 
 //INTERNAL IMPORT
 import Style from "./BigNFTSlider.module.css";
@@ -22,6 +23,7 @@ const fetchMohContract = (signerOrProvider) =>
 
 const BigNFTSlider = () => {
   const [idNumber, setIdNumber] = useState(0);
+  const address = useAddress();
 
 
   const sliderData = [
@@ -124,6 +126,12 @@ const BigNFTSlider = () => {
 
   const mint = async (medalType, ipfsHash) => {
     try {
+      // Check if the user is connected
+      if (!address) {
+        // If not, prompt them to connect their wallet
+        window.ethereum.enable(); // or use whatever method thirdweb uses for wallet connections
+        return;
+      }
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const contract = fetchMohContract(signer);
