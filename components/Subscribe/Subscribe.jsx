@@ -57,8 +57,8 @@ const Subscribe = () => {
 
           <div className={Style.subscribe_box_left_btn}>
           <Button
-            btnName="CREATOR PACKAGES"
-            handleClick={() => router.push("/subscription")}
+            btnName="BEGIN CREATING"
+            handleClick={() => router.push("/uploadNFT")}
           />
           </div>
         </div>

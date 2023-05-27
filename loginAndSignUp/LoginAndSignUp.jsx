@@ -22,7 +22,11 @@ const LoginAndSignUp = ({ currentAccount, setProfileImageSrc }) => {
   const [password, setPassword] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
   const [message, setMessage] = useState("");
+  const [isCreator, setIsCreator] = useState(false); // State for the creator selection
 
+  const handleCreatorChange = (event) => {
+    setIsCreator(event.target.checked);
+  };
 
   const address = useAddress();
 
@@ -125,6 +129,8 @@ const handleSubmit = async (e) => {
 */
 
 const handleSubmit = async (e) => {
+
+  
   e.preventDefault();
   const auth = getAuth();
   try {
@@ -235,6 +241,17 @@ const handleSubmit = async (e) => {
                 onChange={(e) => handleImageUpload(e)}
               />
             </div>
+
+            <div className={Style.new_user_box_input_creator}>
+            <label htmlFor="creator">BECOME A CREATOR?</label>
+            <input
+            type="checkbox"
+            id="creator"
+            checked={isCreator}
+            onChange={handleCreatorChange}
+            />
+          </div>
+
 
             {message && <div className={Style.message}>{message}</div>}
             <div className={Style.continue_button_box}>

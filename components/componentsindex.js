@@ -21,10 +21,11 @@ import Video from "./Video/Video";
 import Loader from "./Loader/Loader";
 import Error from "./Error/Error";
 import NFTWallet from "./NFTWallet/NFTWallet";
-
+import CreateButtons from "./CreateButtons/CreateButtons";
 
 export {
   NFTWallet,
+  CreateButtons,
   Button,
   Footer,
   NavBar,

@@ -7,28 +7,24 @@ import Style from "./Discover.module.css";
 const Discover = () => {
   //--------DISCOVER NAVIGATION MENU
   const discover = [
-    {
-      name: "COLLECTION",
-      link: "collection",
-    },
-    {
-      name: "SEARCH",
+     {
+      name: "SEARCH XM",
       link: "searchPage",
     },
     {
-      name: "CREATORS",
+      name: "XM CATEGORIES",
+      link: "categoriesPage",
+    },
+    {
+      name: "XM CREATORS",
       link: "author",
     },
     {
-      name: "NFT DETAILS",
-      link: "NFTDetails",
+      name: "BEGIN CREATING",
+      link: "createButtonsPage",
     },
     {
-      name: "UPLOAD NFT",
-      link: "uploadNFT",
-    },
-    {
-      name: "NEWS",
+      name: "XNEWS",
       link: "https://www.xdrip.io/news",
     },
   ];

@@ -32,6 +32,14 @@
 
 }
 
+.new_user_box_input_creator{
+    display: flex;
+    font-size: 1.2rem;
+    font-weight: bold;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
 
 .user_box_social_item {
     display: flex;

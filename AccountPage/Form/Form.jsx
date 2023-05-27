@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { HiOutlineMail } from "react-icons/hi";
 import { MdOutlineHttp, MdOutlineContentCopy } from "react-icons/md";
 import {
@@ -12,6 +12,13 @@ import Style from "./Form.module.css";
 import { Button } from "../../components/componentsindex.js";
 
 const Form = () => {
+
+  const [isCreator, setIsCreator] = useState(false); // State for the creator selection
+
+  const handleCreatorChange = (event) => {
+    setIsCreator(event.target.checked);
+  };
+
   return (
     <div className={Style.Form}>
       <div className={Style.Form_box}>
@@ -45,7 +52,17 @@ const Form = () => {
               placeholder="XPLAIN TO US WHAT MAKES YOU.....YOU"
             ></textarea>
           </div>
-
+          
+          <div className={Style.Form_box_input_creator}>
+            <label htmlFor="creator">BECOME A CREATOR?</label>
+            <input
+            type="checkbox"
+            id="creator"
+            checked={isCreator}
+            onChange={handleCreatorChange}
+            />
+          </div>
+          
           <div className={Style.Form_box_input}>
             <label htmlFor="website">WEBSITE</label>
             <div className={Style.Form_box_input_box}>
@@ -83,6 +100,15 @@ const Form = () => {
                   <FaInstagram />
                 </div>
                 <input type="text" placeholder="http://instagram" />
+              </div>
+            </div>
+            <div className={Style.Form_box_input}>
+              <label htmlFor="Instragram">TIKTOK</label>
+              <div className={Style.Form_box_input_box}>
+                <div className={Style.Form_box_input_box_icon}>
+                  <FaInstagram />
+                </div>
+                <input type="text" placeholder="http://tiktok" />
               </div>
             </div>
           </div>

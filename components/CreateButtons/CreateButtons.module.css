@@ -1,0 +1,88 @@
+
+.createButtons{
+    width: 80%;
+    margin: 0rem auto;
+    margin-top: 6rem;
+    margin-bottom: 20rem;
+    justify-items: center;
+    
+}
+
+.createButtons_title{
+    display: flex;
+    font-size: 3rem;
+    font-weight: 400;
+   
+
+}
+
+.createButtons_title h1{
+    display: flex;
+    font-size: 3rem;
+    font-weight: 400;
+    border-bottom: 4px double rgba(1,122,254,255); 
+}
+
+.service_box{
+    display: flex;
+    gap: 6rem;
+    justify-content: center;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+Style.service{
+    display: flex;
+    
+    
+}
+
+
+Style.service_box_btn p{
+    display: flex;
+    
+    
+}
+
+
+.service_box_item_step{
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.service_box_item_step span{
+    padding: 1rem 1.25rem;
+    border: none;
+    outline: none;
+    border-radius: 0.4rem;
+    border: 4px double rgba(1,122,254,255);
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: rgb(14, 14, 26);
+    color: rgb(234, 234, 234);
+    font-family: "Good Timing";
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.6s;
+    box-shadow: 0px 0px 60px #1f4c65;
+    
+}
+
+.service_box_item_step span:hover {
+    background: rgb(2,29,78);
+    background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(1,122,254, 0.873) 60%);
+    color: rgb(4, 4, 38);
+  }
+
+@media screen and (max-width: 35em) {
+    .service{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 50em) {
+    .service_box{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}

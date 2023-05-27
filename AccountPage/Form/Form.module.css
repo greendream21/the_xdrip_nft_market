@@ -1,127 +1,182 @@
-
-
-.Form{
+.Form {
     width: 100%;
-}
-
-.Form_box_input{
+  }
+  
+  .Form_box_input {
     margin-top: 2rem;
-    
-}
-
-.Form_box_input label{
+  }
+  
+  .Form_box_input label {
     display: block;
     width: 100%;
     margin-left: 1rem;
     font-weight: 700;
     font-size: 1.3rem;
-}
-
-.Form_box_input select{
+  }
+  
+  .Form_box_input select {
     width: 100%;
-    border: 4px double rgba(1,122,254,255);
+    border: 4px double rgba(1, 122, 254, 255);
     padding: 1rem;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     background-color: transparent;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     outline: none;
-}
-
-.Form_box_input option{
+  }
+  
+  .Form_box_input option {
     width: 100%;
-    border: 4px double rgba(1,122,254,255);
+    border: 4px double rgba(1, 122, 254, 255);
     padding: 1rem;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     background-color: black;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     outline: none;
-}
-
-.Form_box_input input{
+  }
+  
+  .Form_box_input input {
     width: 100%;
-    border: 4px double rgba(1,122,254,255);
+    border: 4px double rgba(1, 122, 254, 255);
     padding: 1rem;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     background-color: black;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     outline: none;
-}
-
-.Form_box_input_userName{
+  }
+  
+  .Form_box_input_userName {
     width: 100%;
-    border: 4px double rgba(1,122,254,255);
+    border: 4px double rgba(1, 122, 254, 255);
     padding: 1rem;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     background-color: transparent;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     outline: none;
-}
-
-.Form_box_input::placeholder{
+  }
+  
+  .Form_box_input::placeholder {
     font-size: 1.2rem;
     color: var(--icons-color);
-}
-
-.Form_box_input_box{
+  }
+  
+  .Form_box_input_box {
     width: 100%;
-    border: 4px double rgba(1,122,254,255);
-    border-radius: .5rem;
+    border: 4px double rgba(1, 122, 254, 255);
+    border-radius: 0.5rem;
     align-items: center;
     display: flex;
     gap: 1rem;
     overflow: hidden;
-}
-
-.Form_box_input_box_icon{
+  }
+  
+  .Form_box_input_box_icon {
     font-size: 2rem;
     background-color: var(--icons-color);
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     color: var(--main-bg-color);
     display: grid;
     cursor: pointer;
-}
-
-.Form_box_input_box input{
+  }
+  
+  .Form_box_input_box input {
     width: 90%;
     border: 0;
     background-color: transparent;
     outline: none;
-    padding: .75rem;
-}
-
-.Form_box_input textarea{
+    padding: 0.75rem;
+  }
+  
+  .Form_box_input textarea {
     width: 100%;
     background-color: transparent;
     outline: none;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     padding: 1rem;
-    border: 4px double rgba(1,122,254,255);
-}
-
-.Form_box_input_social{
+    border: 4px double rgba(1, 122, 254, 255);
+  }
+  
+  .Form_box_input_social {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-}
-.Form_box_btn{
-    margin: 4rem 0;
-}
+  }
 
-.button{
+  .Form_box_input_creator{
+    display: flex;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    gap: 1rem;
+    align-content: center;
+  }
+  
+  .Form_box_input_checkbox {
+    display: flex;
+    align-items: center;
+    
+  }
+  
+  .Form_box_input_checkbox label {
+    margin-left: 0.5rem;
+    font-size: 1.2rem;
+  }
+  
+  .Form_box_input_checkbox input[type="checkbox"] {
+    display: none;
+  }
+  
+  .Form_box_input_checkbox input[type="checkbox"] + label::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    background-color: #fff;
+  }
+  
+  .Form_box_input_checkbox input[type="checkbox"]:checked + label::before {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .Form_box_input_checkbox input[type="checkbox"] + label::after {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-left: 4px;
+    border-bottom: 2px solid #fff;
+    border-right: 2px solid #fff;
+    transform: rotate(45deg);
+    visibility: hidden;
+  }
+  
+  .Form_box_input_checkbox input[type="checkbox"]:checked + label::after {
+    visibility: visible;
+  }
+  
+  .Form_box_btn {
+    margin: 4rem 0;
+  }
+  
+  .button {
     width: 100%;
     display: flex;
     justify-content: center;
     font-size: 1.5rem;
-}
-
-@media screen and (max-width: 35em) {
-    .Form_box_input_social{
-        grid-template-columns: 1fr;
+  }
+  
+  @media screen and (max-width: 35em) {
+    .Form_box_input_social {
+      grid-template-columns: 1fr;
     }
-}
-
-@media screen and (min-width: 425px) and (max-width: 768px) {
-    .Form_box_input_social{
-        grid-template-columns: 1fr 1fr;
+  }
+  
+  @media screen and (min-width: 425px) and (max-width: 768px) {
+    .Form_box_input_social {
+      grid-template-columns: 1fr 1fr;
     }
-}
+  }
+  

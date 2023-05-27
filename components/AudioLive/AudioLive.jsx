@@ -37,12 +37,9 @@ const Slider = () => {
   const [width, setWidth] = useState(0);
   const dragSlider = useRef();
 
-
-
   useEffect(() => {
     setWidth(dragSlider.current.scrollWidth - dragSlider.current.offsetWidth);
-  }, [dragSlider.current]);
-  
+  });  
 
   const handleScroll = (direction) => {
     const { current } = dragSlider;
@@ -86,7 +83,7 @@ const Slider = () => {
         <div className={Style.audioLive_box}>
           <div className={Style.audioLive_box_button}></div>
         </div>
-        <Swiper
+        <Swiper className={Style.audioLive_box_items}
           ref={dragSlider}
           modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
           spaceBetween={0}

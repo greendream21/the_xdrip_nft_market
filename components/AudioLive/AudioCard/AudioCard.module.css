@@ -64,16 +64,7 @@
 }
 
 
-.audioCard_box_musicPlayer_icon {
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  border-radius: 50%;
-  border: .2rem double rgba(1, 122, 254, 255);
-  color: var(--xdrip-light-gray);
-  font-size: 1.5rem;
-  cursor: pointer;
-}
+
 
 .audioCard_box_musicPlayer_icon svg {
   position: relative;
