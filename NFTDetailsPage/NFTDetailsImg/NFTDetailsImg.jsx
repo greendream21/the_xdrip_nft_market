@@ -94,7 +94,8 @@ const NFTDetailsImg = ({ nft }) => {
 };
 
 export default NFTDetailsImg;
-*/
+original code above */
+
 
 import React, { useState, useEffect } from "react";
 import Style from "./NFTDetailsImg.module.css";
