@@ -96,6 +96,15 @@ const Profile = ({
                 )}
               </div>
 
+              <div className={styles.profileItem}>
+              <Link href="/createButtonsPage">
+                  <a onClick={() => setIsProfileMenuOpen(false)}>
+                <FaUserEdit />
+                <p>Create NFT/Collection</p>
+                </a>
+                </Link>
+              </div>
+
 
               <div className={styles.profileItem}>
               <Link href="/account">
