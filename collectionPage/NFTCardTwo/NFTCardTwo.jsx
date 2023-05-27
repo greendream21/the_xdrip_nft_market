@@ -15,7 +15,7 @@ import Link from "next/link";
 
 const NFTCardTwo = ({ NFTData }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const ITEMS_PER_PAGE = 8;
+  const ITEMS_PER_PAGE = 12;
   const [fileTypes, setFileTypes] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -50,6 +50,8 @@ const NFTCardTwo = ({ NFTData }) => {
   });
 };
 
+
+/* works fine - testing another 
   useEffect(() => {
     const fetchFileTypes = async () => {
       const fileTypesObj = {};
@@ -70,6 +72,36 @@ const NFTCardTwo = ({ NFTData }) => {
 
     fetchFileTypes();
   }, [NFTData]);
+*/
+
+useEffect(() => {
+  const fetchFileTypes = async () => {
+    let fileTypesObj = {};
+
+    const savedData = localStorage.getItem('fileTypesObj');
+    if (savedData) {
+      fileTypesObj = JSON.parse(savedData);
+    } else {
+
+      for (const el of NFTData) {
+        try {
+          const response = await fetch(el.image);
+          const contentType = response.headers.get("content-type");
+          fileTypesObj[el.image] = contentType;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
+    }
+
+    setFileTypes(fileTypesObj);
+    setLoading(false);
+  };
+
+  fetchFileTypes();
+}, [NFTData]);
 
 
 /*
@@ -129,7 +161,7 @@ const RenderDefault = () => (
 );
 
 
-
+/*
 useEffect(() => {
 const fetchFileTypes = async () => {
 const fileTypesObj = {};
@@ -151,7 +183,7 @@ const fileTypesObj = {};
 fetchFileTypes();
 
 }, [NFTData]);
-
+*/
 
 
 
