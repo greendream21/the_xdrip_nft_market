@@ -92,14 +92,14 @@ const author = () => {
       />
 
       <AuthorNFTCardBox
-        collectiables={collectiables}
-        created={created}
-        like={like}
-        follower={follower}
-        following={following}
-        nfts={nfts}
-        myNFTS={myNFTs}
-      />
+  collectiables={collectiables}
+  created={created}
+  like={like}
+  follower={follower}
+  following={following}
+  nfts={nfts && nfts.length > 0 ? nfts : []}
+  myNFTS={myNFTs && myNFTs.length > 0 ? myNFTs : []}
+/>
       <Title
         heading="POPULAR CREATORS"
         paragraph="CLICK ON THE PROFILE IMAGE TO VIEW THE CREATORS PORTFOLIO 

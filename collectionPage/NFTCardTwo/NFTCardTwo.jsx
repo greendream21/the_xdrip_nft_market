@@ -20,28 +20,35 @@ const NFTCardTwo = ({ NFTData }) => {
   const [loading, setLoading] = useState(true);
 
   const [likes, setLikes] = useState(() => {
+  if (typeof window !== 'undefined') {
     const savedLikes = localStorage.getItem("nftLikes");
     return savedLikes ? JSON.parse(savedLikes) : {};
-  });
+  }
+  return {};
+});
 
   const likeNFT = (tokenId, ratingValue) => {
-    setLikes((prevState) => {
-      const newLikes = { ...prevState };
-      if (!newLikes[tokenId]) {
-        newLikes[tokenId] = { count: 0, liked: false, rating: 0 };
-      }
-      newLikes[tokenId].liked = !newLikes[tokenId].liked;
-      if (newLikes[tokenId].liked) {
-        newLikes[tokenId].count++;
-        newLikes[tokenId].rating = ratingValue;
-      } else {
-        newLikes[tokenId].count--;
-        newLikes[tokenId].rating = 0;
-      }
+  setLikes((prevState) => {
+    const newLikes = { ...prevState };
+    if (!newLikes[tokenId]) {
+      newLikes[tokenId] = { count: 0, liked: false, rating: 0 };
+    }
+    newLikes[tokenId].liked = !newLikes[tokenId].liked;
+    if (newLikes[tokenId].liked) {
+      newLikes[tokenId].count++;
+      newLikes[tokenId].rating = ratingValue;
+    } else {
+      newLikes[tokenId].count--;
+      newLikes[tokenId].rating = 0;
+    }
+
+    if (typeof window !== 'undefined') {
       localStorage.setItem("nftLikes", JSON.stringify(newLikes));
-      return newLikes;
-    });
-  };
+    }
+    
+    return newLikes;
+  });
+};
 
   useEffect(() => {
     const fetchFileTypes = async () => {
@@ -261,6 +268,7 @@ const renderFilePreview = (el) => {
 
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
+  
   const currentItems = NFTData.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
