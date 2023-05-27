@@ -1,3 +1,5 @@
+
+/*
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { BsImages } from "react-icons/bs";
@@ -86,6 +88,78 @@ const NFTDetailsImg = ({ nft }) => {
             </p>
           </div>
         )}
+      </div>
+    </div>
+  );
+};
+
+export default NFTDetailsImg;
+*/
+
+import React, { useState, useEffect } from "react";
+import Style from "./NFTDetailsImg.module.css";
+import { BsImages } from "react-icons/bs";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import ReactPlayer from 'react-player';
+import "react-lazy-load-image-component/src/effects/blur.css";
+
+const NFTDetailsImg = ({ nft }) => {
+  const [information, setInformation] = useState(true);
+  const [details, setDetails] = useState(true);
+  const [like, setLike] = useState(false);
+  const [fileType, setFileType] = useState("");
+
+  useEffect(() => {
+    const fetchFileType = async () => {
+      try {
+        const response = await fetch(nft.image);
+        const contentType = response.headers.get("content-type");
+        setFileType(contentType);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchFileType();
+  }, [nft.image]);
+
+  const isImage = fileType.startsWith("image");
+  const isAudio = fileType.startsWith("audio");
+
+  return (
+    <div className={Style.NFTDetailsImg}>
+      <div className={Style.NFTDetailsImg_box}>
+        <div className={Style.NFTDetailsImg_box_NFT}>
+          <div className={Style.NFTDetailsImg_box_NFT_img}>
+            {isImage ? (
+              <LazyLoadImage
+                src={nft.image}
+                alt="NFT image"
+                width={800}
+                height={800}
+                effect="blur"
+                className={Style.NFTDetailsImg_box_NFT_img_img}
+              />
+            ) : isAudio ? (
+              <audio
+                src={nft.image}
+                controls
+                className={Style.NFTDetailsImg_box_NFT_img_img}
+              />
+            ) : (
+              <ReactPlayer
+                url={nft.image}
+                width="100%"
+                height="100%"
+                className={Style.NFTDetailsImg_box_NFT_img_img}
+                controls
+              />
+            )}
+          </div>
+        </div>
+        {/* other details  */}
       </div>
     </div>
   );
