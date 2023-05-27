@@ -71,6 +71,10 @@
     "npm update ": {
       "name": "npm update ",
       "command": "npm update "
+    },
+    "npm install react-responsive-carousel": {
+      "name": "npm install react-responsive-carousel",
+      "command": "npm install react-responsive-carousel"
     }
   }
 }

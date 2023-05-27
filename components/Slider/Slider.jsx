@@ -180,21 +180,13 @@ export default VideoSlider;
 */
 
 
-import React, { useState, useEffect, useRef, useContext } from "react";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
+import React, { useState, useEffect, useContext } from "react";
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import Style from "./Slider.module.css";
 import SliderCard from "./SliderCard/SliderCard";
 import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
-
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import 'swiper/css/autoplay';
-
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 
 const VideoSlider = () => {
   const { fetchNFTs, setError } = useContext(NFTMarketplaceContext);
@@ -202,7 +194,6 @@ const VideoSlider = () => {
   const [fileTypes, setFileTypes] = useState({});
   const [likes, setLikes] = useState({});
   const [loading, setLoading] = useState(true);
-  const dragSlider = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -243,54 +234,30 @@ const VideoSlider = () => {
     fetchFileTypes();
   }, [nfts]);
 
-  useEffect(() => {
-    if (dragSlider.current) {
-      const swiperInstance = dragSlider.current.swiper;
-      swiperInstance.autoplay.start();
-    }
-  }, [nfts]);
+ 
 
   const videoNFTs = nfts.filter(
     (nft) => fileTypes[nft.image] && fileTypes[nft.image].includes('video')
   );
 
-  return (
+ return (
     <div className={Style.sliderContainer}>
-      <div className={Style.slider}>
-        <div className={Style.slider_box}>
-          <div className={Style.slider_box_button}></div>
+      {!loading && (
+        <div className={Style.slider}>
+          <div className={Style.slider_box}>
+            <div className={Style.slider_box_button}></div>
+          </div>
+          <div className={Style.slider_box_items}>
+            <Carousel showThumbs={false} infiniteLoop useKeyboardArrows autoPlay>
+              {videoNFTs.map((nft) => (
+                <div key={nft.tokenId}>
+                  <SliderCard NFTData={[nft]} likes={likes} />
+                </div>
+              ))}
+            </Carousel>
+          </div>
         </div>
-        <div className={Style.slider_box_items}>
-          <Swiper
-            ref={dragSlider}
-            modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-            autoplay={{ delay: 5000 }}
-            slidesPerView={1}
-            spaceBetween={30}
-            loop={true}
-            navigation={true}
-            
-            /*
-            pagination={{ clickable: true }}
-            */
-            
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
-            onBeforeInit={(swiper) => {
-              swiper.autoplay.stop(); 
-            }}
-            onInit={(swiper) => {
-              swiper.autoplay.start();
-            }}
-          >
-            {videoNFTs.map((nft) => (
-              <SwiperSlide key={nft.tokenId}>
-                <SliderCard NFTData={[nft]} likes={likes} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </div>
+      )}
     </div>
   );
 };

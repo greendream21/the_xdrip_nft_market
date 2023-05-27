@@ -148,21 +148,13 @@ const Slider = () => {
 export default Slider;
 
 */
-import React, { useState, useEffect, useRef, useContext } from "react";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
+import React, { useState, useEffect, useContext } from "react";
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 
 import Style from "./AudioLive.module.css";
 import AudioCard from "../../components/AudioLive/AudioCard/AudioCard";
 import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
-
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import 'swiper/css/autoplay';
-
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 
 const AudioSlider = () => {
   const { fetchNFTs, setError } = useContext(NFTMarketplaceContext);
@@ -170,7 +162,6 @@ const AudioSlider = () => {
   const [fileTypes, setFileTypes] = useState({});
   const [likes, setLikes] = useState({});
   const [loading, setLoading] = useState(true);
-  const dragSlider = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -211,54 +202,32 @@ const AudioSlider = () => {
     fetchFileTypes();
   }, [nfts]);
 
-  useEffect(() => {
-    if (dragSlider.current) {
-      const swiperInstance = dragSlider.current.swiper;
-      swiperInstance.autoplay.start();
-    }
-  }, [nfts]);
+
+
+
 
   const audioNFTs = nfts.filter(
     (nft) => fileTypes[nft.image] && fileTypes[nft.image].includes('audio')
   );
+  
+  
+  
 
-  return (
+ return (
     <div className={Style.audioLiveContainer}>
       {!loading && (
         <div className={Style.audioLive}>
           <div className={Style.audioLive_box}>
             <div className={Style.audioLive_box_button}></div>
           </div>
-          <div //className={Style.audioLive_box_items} }
-          >
-            <Swiper
-              ref={dragSlider}
-              modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-              autoplay={{ delay: 5000 }}
-              slidesPerView={1}
-              spaceBetween={30}
-              loop={true}
-              navigation={true}
-              
-              /*
-              pagination={{ clickable: true }}
-              */
-          
-              onSlideChange={() => console.log('slide change')}
-              onSwiper={(swiper) => console.log(swiper)}
-              onBeforeInit={(swiper) => {
-                swiper.autoplay.stop(); 
-              }}
-              onInit={(swiper) => {
-                swiper.autoplay.start(); 
-              }}
-            >
+          <div>
+            <Carousel showThumbs={false} infiniteLoop useKeyboardArrows autoPlay>
               {audioNFTs.map((nft) => (
-                <SwiperSlide key={nft.tokenId}>
+                <div key={nft.tokenId}>
                   <AudioCard NFTData={[nft]} likes={likes} />
-                </SwiperSlide>
+                </div>
               ))}
-            </Swiper>
+            </Carousel>
           </div>
         </div>
       )}
