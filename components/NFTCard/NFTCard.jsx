@@ -72,6 +72,8 @@ const NFTCard = ({ NFTData }) => {
   
   */
   
+  
+  /*
   useEffect(() => {
   const fetchFileTypes = async () => {
     let fileTypesObj = {};
@@ -100,6 +102,52 @@ const NFTCard = ({ NFTData }) => {
 
   fetchFileTypes();
 }, [NFTData]);
+*/
+
+
+useEffect(() => {
+  const fetchFileTypes = async () => {
+    let fileTypesObj = {};
+    let useLocalStorage = true;
+
+    try {
+      const savedData = localStorage.getItem('fileTypesObj');
+      if (savedData) {
+        fileTypesObj = JSON.parse(savedData);
+      } else {
+        throw new Error("No data in local storage");
+      }
+    } catch (error) {
+      console.log('Local storage not accessible:', error);
+      useLocalStorage = false;
+    }
+
+    if (!useLocalStorage) {
+      for (const el of NFTData) {
+        try {
+          const response = await fetch(el.image);
+          const contentType = response.headers.get("content-type");
+          fileTypesObj[el.image] = contentType;
+        } catch (error) {
+          console.log(error);
+          
+          fileTypesObj[el.image] = 'image/png';
+        }
+      }
+      try {
+        localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
+      } catch (error) {
+        console.log('Could not write to local storage:', error);
+      }
+    }
+
+    setFileTypes(fileTypesObj);
+    setLoading(false);
+  };
+
+  fetchFileTypes();
+}, [NFTData]);
+
 
 
 
