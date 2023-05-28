@@ -203,11 +203,11 @@ const AudioSlider = () => {
 
     fetchFileTypes();
   }, [nfts]);
+*/
 
 
 
-
-
+/*
   const audioNFTs = nfts.filter(
     (nft) => fileTypes[nft.image] && fileTypes[nft.image].includes('audio')
   );
@@ -238,3 +238,4 @@ const AudioSlider = () => {
 };
 
 export default AudioSlider;
+*/
