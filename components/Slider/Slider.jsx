@@ -17,7 +17,7 @@ import 'swiper/css/autoplay';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 
-const VideoSlider = () => {
+const Slider = () => {
   const { fetchNFTs, setError } = useContext(NFTMarketplaceContext);
   const [nfts, setNfts] = useState([]);
   const [fileTypes, setFileTypes] = useState({});
@@ -151,7 +151,7 @@ useEffect(() => {
   );
 };
 
-export default VideoSlider;
+export default Slider;
 
 
 /*
