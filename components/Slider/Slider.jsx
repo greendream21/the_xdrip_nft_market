@@ -1,5 +1,4 @@
 
-/*
 import React, { useState, useEffect, useRef, useContext } from "react";
 //import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -83,7 +82,7 @@ const swiperRef = useRef(null);
     fetchFileTypes();
   }, [nfts]);
 */
-/*
+
 useEffect(() => {
   const fetchFileTypes = async () => {
     let fileTypesObj = {};
@@ -117,30 +116,6 @@ useEffect(() => {
     }, 1000);
   }
 }, [nfts]);
-
-
-  useEffect(() => {
-    if (dragSlider.current) {
-      const scrollAmount = window.innerWidth > 1800 ? 270 : 210;
-
-      const handleScroll = (direction) => {
-        const current = dragSlider.current;
-        if (direction === "left") {
-          current.scrollLeft -= scrollAmount;
-        } else {
-          current.scrollLeft += scrollAmount;
-        }
-      };
-
-      const intervalId = setInterval(() => {
-        handleScroll("right");
-      }, 5000);
-
-      return () => {
-        clearInterval(intervalId);
-      };
-    }
-  }, [dragSlider]);
 
 
 
@@ -177,9 +152,9 @@ useEffect(() => {
 };
 
 export default VideoSlider;
-*/
 
 
+/*
 import React, { useState, useEffect, useContext } from "react";
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -263,3 +238,4 @@ const VideoSlider = () => {
 };
 
 export default VideoSlider;
+*/
