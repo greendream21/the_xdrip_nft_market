@@ -25,7 +25,7 @@ const AudioCard = ({ NFTData, likes }) => {
   const [like, setLike] = useState(false);
   const [play, setPlay] = useState(false);
 
-  /*
+  
   useEffect(() => {
     const fetchFileTypes = async () => {
       const fileTypesObj = {};
@@ -46,8 +46,9 @@ const AudioCard = ({ NFTData, likes }) => {
 
     fetchFileTypes();
   }, [NFTData]);
-  */
   
+  
+  /*
   useEffect(() => {
   const fetchFileTypes = async () => {
     let fileTypesObj = {};
@@ -76,7 +77,7 @@ const AudioCard = ({ NFTData, likes }) => {
 
   fetchFileTypes();
 }, [NFTData]);
-  
+*/
   
 
   const RenderDefault = () => (

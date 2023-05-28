@@ -23,7 +23,7 @@ const SliderCard = ({ NFTData, likes }) => {
   const [fileTypes, setFileTypes] = useState({});
   const [loading, setLoading] = useState(true);
 
-/*
+
   useEffect(() => {
     const fetchFileTypes = async () => {
       const fileTypesObj = {};
@@ -44,8 +44,8 @@ const SliderCard = ({ NFTData, likes }) => {
 
     fetchFileTypes();
   }, [NFTData]);
-*/
 
+/*
 useEffect(() => {
   const fetchFileTypes = async () => {
     let fileTypesObj = {};
@@ -74,7 +74,7 @@ useEffect(() => {
 
   fetchFileTypes();
 }, [NFTData]);
-
+*/
 
 
 

@@ -1,6 +1,6 @@
 
 
-/*
+
 import React, { useState, useEffect, useRef, useContext } from "react";
 //import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -60,7 +60,7 @@ const Slider = () => {
   };
 
 
-/*
+
   useEffect(() => {
     const fetchFileTypes = async () => {
       const fileTypesObj = {};
@@ -81,7 +81,7 @@ const Slider = () => {
     fetchFileTypes();
   }, [nfts]);
 
-
+/*
  useEffect(() => {
   const fetchFileTypes = async () => {
     let fileTypesObj = {};
@@ -110,6 +110,8 @@ const Slider = () => {
 
   fetchFileTypes();
 }, [nfts]);
+*/
+
 
   const audioNFTs = nfts.filter(nft => fileTypes[nft.image] && fileTypes[nft.image].includes('audio'));
 
@@ -147,7 +149,7 @@ const Slider = () => {
 
 export default Slider;
 
-*/
+/*
 import React, { useState, useEffect, useContext } from "react";
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 

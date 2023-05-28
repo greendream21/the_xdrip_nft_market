@@ -51,7 +51,8 @@ const NFTCardTwo = ({ NFTData }) => {
 };
 
 
-/* works fine - testing another 
+/* works fine - Slow AF  */
+
   useEffect(() => {
     const fetchFileTypes = async () => {
       const fileTypesObj = {};
@@ -72,8 +73,9 @@ const NFTCardTwo = ({ NFTData }) => {
 
     fetchFileTypes();
   }, [NFTData]);
-*/
 
+
+/*
 useEffect(() => {
   const fetchFileTypes = async () => {
     let fileTypesObj = {};
@@ -102,7 +104,7 @@ useEffect(() => {
 
   fetchFileTypes();
 }, [NFTData]);
-
+*/
 
 /*
   const RenderImage = ({ src }) => (
