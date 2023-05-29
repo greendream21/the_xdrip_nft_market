@@ -75,6 +75,10 @@
     "npm install react-responsive-carousel": {
       "name": "npm install react-responsive-carousel",
       "command": "npm install react-responsive-carousel"
+    },
+    "npm i --save-dev @types/react-lazy-load-image-component": {
+      "name": "npm i --save-dev @types/react-lazy-load-image-component",
+      "command": "npm i --save-dev @types/react-lazy-load-image-component"
     }
   }
 }

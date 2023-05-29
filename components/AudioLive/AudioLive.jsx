@@ -29,11 +29,15 @@ const Slider = () => {
   const [loading, setLoading] = useState(true);
 
 
+
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const items = await fetchNFTs();
         setNfts(items.reverse());
+        
       } catch (error) {
         setError("Please reload the browser", error);
       }
@@ -60,7 +64,7 @@ const Slider = () => {
   };
 
 
-
+/*
   useEffect(() => {
     const fetchFileTypes = async () => {
       const fileTypesObj = {};
@@ -80,8 +84,10 @@ const Slider = () => {
 
     fetchFileTypes();
   }, [nfts]);
+*/
 
-/*
+
+
  useEffect(() => {
   const fetchFileTypes = async () => {
     let fileTypesObj = {};
@@ -89,9 +95,10 @@ const Slider = () => {
     const savedData = localStorage.getItem('fileTypesObj');
     if (savedData) {
       fileTypesObj = JSON.parse(savedData);
-    } else {
+    }
 
-      for (const el of nfts) {
+    for (const el of nfts) {
+      if (!fileTypesObj[el.image]) {
         try {
           const response = await fetch(el.image);
           const contentType = response.headers.get("content-type");
@@ -100,9 +107,9 @@ const Slider = () => {
           console.log(error);
         }
       }
-
-      localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
     }
+
+    localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
 
     setFileTypes(fileTypesObj);
     setLoading(false);
@@ -110,7 +117,6 @@ const Slider = () => {
 
   fetchFileTypes();
 }, [nfts]);
-*/
 
 
   const audioNFTs = nfts.filter(nft => fileTypes[nft.image] && fileTypes[nft.image].includes('audio'));
