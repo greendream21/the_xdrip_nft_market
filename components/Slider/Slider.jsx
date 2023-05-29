@@ -173,7 +173,7 @@ export default Slider;
 
 /* works great as is w carousel - going to try multi carousel below this*/
 
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -187,6 +187,25 @@ const VideoSlider = () => {
   const [fileTypes, setFileTypes] = useState({});
   const [likes, setLikes] = useState({});
   const [loading, setLoading] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const playerRef = useRef(null);
+  
+  
+  const handleSlideChange = (index) => {
+    setActiveIndex(index);
+  };
+
+  useEffect(() => {
+    const player = playerRef.current?.getInternalPlayer();
+    if (player) {
+      if (activeIndex === playerRef.current.props.index) {
+        player.playVideo();
+      } else {
+        player.pauseVideo();
+      }
+    }
+  }, [activeIndex]);
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -244,7 +263,15 @@ const VideoSlider = () => {
             <div className={Style.slider_box_button}></div>
           </div>
           <div className={Style.slider_box_items}>
-            <Carousel showThumbs={false} infiniteLoop useKeyboardArrows autoPlay>
+            <Carousel 
+              autoPlay={true} 
+              interval={5000} 
+              showThumbs={false} 
+              infiniteLoop 
+              useKeyboardArrows 
+              onChange={handleSlideChange}
+              >
+              
               {videoNFTs.map((nft) => (
                 <div key={nft.tokenId}>
                   <SliderCard NFTData={[nft]} likes={likes} />

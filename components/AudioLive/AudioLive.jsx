@@ -229,7 +229,7 @@ const AudioSlider = () => {
             <div className={Style.audioLive_box_button}></div>
           </div>
           <div>
-            <Carousel showThumbs={false} infiniteLoop useKeyboardArrows autoPlay>
+            <Carousel autoPlay showThumbs={false} infiniteLoop useKeyboardArrows >
               {audioNFTs.map((nft) => (
                 <div key={nft.tokenId}>
                   <AudioCard NFTData={[nft]} likes={likes} />
