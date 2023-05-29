@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { MdTimer } from "react-icons/md";
 import { Loader } from "../../../components/componentsindex";
 import Style from "./SliderCard.module.css";
@@ -12,41 +12,38 @@ import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
-
 import { motion } from 'framer-motion';
 
 import Link from "next/link";
 
-const mp3Image = "mp3.jpg";
-
 const SliderCard = ({ NFTData, likes }) => {
   const [fileTypes, setFileTypes] = useState({});
   const [loading, setLoading] = useState(true);
+  
+  const [isVisible, setIsVisible] = useState(true);
+
+  const playerRefs = useRef([]);
+  const playerRef = useRef(null);
 
 
-/*
+
+const handleSlideChange = (isVisible) => {
+    setIsVisible(isVisible);
+  };
+
   useEffect(() => {
-    const fetchFileTypes = async () => {
-      const fileTypesObj = {};
+    if (isVisible) {
 
-      for (const el of NFTData) {
-        try {
-          const response = await fetch(el.image);
-          const contentType = response.headers.get("content-type");
-          fileTypesObj[el.image] = contentType;
-        } catch (error) {
-          console.log(error);
-        }
-      }
+      playerRef.current?.seekTo(0); // Reset the video to the beginning
+      playerRef.current?.getInternalPlayer()?.playVideo();
+    } else {
 
-      setFileTypes(fileTypesObj);
-      setLoading(false);
-    };
-
-    fetchFileTypes();
-  }, [NFTData]);
-*/
-
+      playerRef.current?.getInternalPlayer()?.pauseVideo();
+    }
+  }, [isVisible]);
+  
+  
+  
 
 useEffect(() => {
   const fetchFileTypes = async () => {
@@ -78,80 +75,7 @@ useEffect(() => {
   fetchFileTypes();
 }, [NFTData]);
 
-
-
-
-/*
-  const RenderImage = ({ src }) => (
-    <LazyLoadImage
-      src={src}
-      alt="NFT"
-      width={350}
-      height={300}
-      effect="blur"
-      className={Style.SliderCard_box_img_img}
-    />
-  );
-
-  const RenderVideo = ({ src }) => (
-    <LazyLoadComponent>
-      <video
-        src={src}
-        alt="NFT"
-        width={350}
-        height={350}
-        objectFit="cover"
-        className={Style.SliderCard_box_img_img}
-        controls
-        preload="auto"
-      />
-    </LazyLoadComponent>
-  );
-
-  const RenderAudio = ({ src }) => (
-    <div className={Style.SliderCard_box_audio}>
-      <img
-        src={mp3Image}
-        alt="Default"
-        width={350}
-        height={255}
-        objectFit="cover"
-        className={Style.SliderCard_box_img_audio}
-      />
-      <audio
-        src={src}
-        controls
-        className={Style.SliderCard_box_audio_controls}
-      />
-    </div>
-  );
-
-  const RenderDefault = () => (
-    <Image
-      src={images.invalidImage}
-      alt="NFT"
-      width={350}
-      height={300}
-      objectFit="cover"
-      className={Style.SliderCard_box_img}
-      controls
-    />
-  );
-
-  const renderFilePreview = (el) => {
-    const fileType = fileTypes[el.image];
-
-    if (fileType && fileType.includes("image")) {
-      return <RenderImage src={el.image} />;
-    } else if (fileType && fileType.includes("video")) {
-      return <RenderVideo src={el.image} />;
-    } else if (fileType && fileType.includes("audio")) {
-      return <RenderAudio src={el.image} />;
-    } else {
-      return <RenderDefault />;
-    }
-  };
-  */
+  
   
   const RenderDefault = () => (
   <Image
@@ -164,6 +88,7 @@ useEffect(() => {
     controls
   />
 );
+
 
 const RenderMedia = ({ src }) => {
   const fileType = fileTypes[src];
@@ -200,10 +125,17 @@ const RenderMedia = ({ src }) => {
         </div>
       ) : (
         <ReactPlayer 
+          ref={playerRef}
           url={src}
+          playing
+          muted
+          loop
           controls
           width='350px'
           height='300px'
+          onPlay={() => handleSlideChange(true)}
+          onPause={() => handleSlideChange(false)}
+          onEnded={() => handleSlideChange(false)}
           className={Style.NFTCardTwo_box_img_img}
         />
       )}
