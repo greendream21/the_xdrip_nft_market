@@ -84,7 +84,7 @@ useEffect(() => {
     width={350}
     height={300}
     objectFit="cover"
-    className={Style.NFTCard_box_img_img}
+    className={Style.sliderCard_box_img_img}
     controls
   />
 );
@@ -105,38 +105,37 @@ const RenderMedia = ({ src }) => {
           width={350}
           height={300}
           effect="blur"
-          className={Style.NFTCardTwo_box_img_img}
+          className={Style.sliderCard_box_img_img}
         />
       ) : isAudio ? (
-        <div className={Style.NFTCardTwo_box_audio}>
+        <div className={Style.sliderCard_box_audio}>
           <Image
-            src={images.audio_image}
+            src={images.audio_image2}
             alt="Default"
-            width={350}
-            height={255}
+            width={450}
+            height={450}
             objectFit="cover"
-            className={Style.NFTCardTwo_box_img_audio}
+            className={Style.sliderCard_box_img_audio}
           />
           <audio
             src={src}
             controls
-            className={Style.NFTCardTwo_box_audio_controls}
+            className={Style.sliderCard_box_audio_controls}
           />
         </div>
       ) : (
         <ReactPlayer 
           ref={playerRef}
           url={src}
-          playing
           muted
           loop
           controls
-          width='350px'
-          height='300px'
+          width='727.45px'
+          height='475px'
           onPlay={() => handleSlideChange(true)}
           onPause={() => handleSlideChange(false)}
           onEnded={() => handleSlideChange(false)}
-          className={Style.NFTCardTwo_box_img_img}
+          className={Style.sliderCard_box_img_img}
         />
       )}
     </LazyLoadComponent>
@@ -178,7 +177,7 @@ const renderFilePreview = (el) => {
               <div className={Style.sliderCard_box_title_name}>
                    <p>{el.name}</p>
                 </div> 
-                <div className={Style.sliderCard_box_token}>
+                <div className={Style.sliderCard_box_token_title}>
                   <p>NFT MINT ID</p>
                 </div>               
                 <div className={Style.sliderCard_box_token}>

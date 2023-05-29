@@ -17,7 +17,7 @@ const CreateButtons = () => {
       <div className={Style.service_box}>
       <div className={Style.service_box_btn}>
       <Image
-            src={images.bullet_1}
+            src={images.bullet_9}
             alt="Stay Updated"
             height={400}
             width={400}
@@ -29,7 +29,7 @@ const CreateButtons = () => {
         </div>
         <div className={Style.service_box_btn}>
         <Image
-            src={images.bullet_1}
+            src={images.bullet_9}
             alt="Stay Updated"
             height={400}
             width={400}

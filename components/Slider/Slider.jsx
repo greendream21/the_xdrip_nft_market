@@ -271,7 +271,7 @@ const VideoSlider = () => {
           <div className={Style.slider_box_items}>
             <Carousel 
               autoPlay={true} 
-              interval={5000} 
+              interval={10000} 
               showThumbs={false} 
               infiniteLoop 
               useKeyboardArrows 

@@ -86,10 +86,10 @@ const AudioCard = ({ NFTData, likes }) => {
   <Image
     src={images.invalidImage}
     alt="NFT"
-    width={350}
-    height={300}
+    width={450}
+    height={450}
     objectFit="cover"
-    className={Style.NFTCard_box_img_img}
+    className={Style.audioCard_box_img_img}
     controls
   />
 );
@@ -112,28 +112,28 @@ const RenderMedia = ({ src }) => {
           className={Style.NFTCardTwo_box_img_img}
         />
       ) : isAudio ? (
-        <div className={Style.NFTCardTwo_box_audio}>
+        <div className={Style.audioCard_box_audio}>
           <Image
-            src={images.audio_image}
+            src={images.audio_image2}
             alt="Default"
-            width={350}
-            height={255}
+            width={450}
+            height={450}
             objectFit="cover"
-            className={Style.NFTCardTwo_box_img_audio}
+            className={Style.audioCard_box_img_audio}
           />
           <audio
             src={src}
             controls
-            className={Style.NFTCardTwo_box_audio_controls}
+            className={Style.audioCard_box_audio_controls}
           />
         </div>
       ) : (
         <ReactPlayer 
           url={src}
           controls
-          width='350px'
-          height='300px'
-          className={Style.NFTCardTwo_box_img_img}
+          width='650px'
+          height='450px'
+          className={Style.audioCard_box_img_img}
         />
       )}
     </LazyLoadComponent>
@@ -170,7 +170,7 @@ const renderFilePreview = (el) => {
               <div className={Style.audioCard_box_title_name}>
                    <p>{el.name}</p>
                 </div> 
-                <div className={Style.audioCard_box_token}>
+                <div className={Style.audioCard_box_token_title}>
                   <p>NFT MINT ID</p>
                 </div>               
                 <div className={Style.audioCard_box_token}>
