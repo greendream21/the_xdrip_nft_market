@@ -1,6 +1,5 @@
 
-
-
+/*
 import React, { useState, useEffect, useRef, useContext } from "react";
 //import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -84,7 +83,7 @@ const Slider = () => {
 
     fetchFileTypes();
   }, [nfts]);
-*/
+*/ /*
 
 
 
@@ -154,8 +153,9 @@ const Slider = () => {
 };
 
 export default Slider;
+*/
 
-/*
+
 import React, { useState, useEffect, useContext } from "react";
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
@@ -190,8 +190,10 @@ const AudioSlider = () => {
       const savedData = localStorage.getItem('fileTypesObj');
       if (savedData) {
         fileTypesObj = JSON.parse(savedData);
-      } else {
-        for (const el of nfts) {
+      }
+
+      for (const el of nfts) {
+        if (!fileTypesObj[el.image]) {
           try {
             const response = await fetch(el.image);
             const contentType = response.headers.get("content-type");
@@ -200,24 +202,22 @@ const AudioSlider = () => {
             console.log(error);
           }
         }
-        localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
       }
 
+      localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
       setFileTypes(fileTypesObj);
       setLoading(false);
     };
 
     fetchFileTypes();
   }, [nfts]);
-*/
 
 
 
-/*
+
   const audioNFTs = nfts.filter(
     (nft) => fileTypes[nft.image] && fileTypes[nft.image].includes('audio')
   );
-  
   
   
 
@@ -244,4 +244,4 @@ const AudioSlider = () => {
 };
 
 export default AudioSlider;
-*/
+

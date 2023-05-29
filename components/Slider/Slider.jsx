@@ -1,4 +1,4 @@
-/*
+/* just old slider swiper code - 2 versions below this - carousel and multi-carousel
 import React, { useState, useEffect, useRef, useContext } from "react";
 //import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -170,6 +170,8 @@ export default Slider;
 */
 
 
+
+/* works great as is w carousel - going to try multi carousel below this*/
 
 import React, { useState, useEffect, useContext } from "react";
 import { Carousel } from 'react-responsive-carousel';
