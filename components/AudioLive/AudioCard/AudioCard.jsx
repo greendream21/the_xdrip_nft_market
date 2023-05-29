@@ -26,6 +26,7 @@ const AudioCard = ({ NFTData, likes }) => {
   const [play, setPlay] = useState(false);
 
   
+  /*
   useEffect(() => {
     const fetchFileTypes = async () => {
       const fileTypesObj = {};
@@ -46,9 +47,9 @@ const AudioCard = ({ NFTData, likes }) => {
 
     fetchFileTypes();
   }, [NFTData]);
+  */
   
   
-  /*
   useEffect(() => {
   const fetchFileTypes = async () => {
     let fileTypesObj = {};
@@ -56,9 +57,10 @@ const AudioCard = ({ NFTData, likes }) => {
     const savedData = localStorage.getItem('fileTypesObj');
     if (savedData) {
       fileTypesObj = JSON.parse(savedData);
-    } else {
+    }
 
-      for (const el of NFTData) {
+    for (const el of NFTData) {
+      if (!fileTypesObj[el.image]) {
         try {
           const response = await fetch(el.image);
           const contentType = response.headers.get("content-type");
@@ -67,9 +69,9 @@ const AudioCard = ({ NFTData, likes }) => {
           console.log(error);
         }
       }
-
-      localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
     }
+
+    localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
 
     setFileTypes(fileTypesObj);
     setLoading(false);
@@ -77,7 +79,7 @@ const AudioCard = ({ NFTData, likes }) => {
 
   fetchFileTypes();
 }, [NFTData]);
-*/
+
   
 
   const RenderDefault = () => (

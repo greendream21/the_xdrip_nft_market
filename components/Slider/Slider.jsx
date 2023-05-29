@@ -27,11 +27,19 @@ const Slider = () => {
 const swiperRef = useRef(null);
 
 
+const startSlide = () => {
+  if (swiperRef.current && swiperRef.current.swiper) {
+    swiperRef.current.swiper.autoplay.start();
+  }
+};
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const items = await fetchNFTs();
         setNfts(items.reverse());
+        startSlide(); 
       } catch (error) {
         setError("Please reload the browser", error);
       }
@@ -41,6 +49,8 @@ const swiperRef = useRef(null);
 
   const [width, setWidth] = useState(0);
   const dragSlider = useRef();
+
+
 
 
   useEffect(() => {
@@ -83,6 +93,8 @@ const swiperRef = useRef(null);
   }, [nfts]);
 */
 
+
+
 useEffect(() => {
   const fetchFileTypes = async () => {
     let fileTypesObj = {};
@@ -90,9 +102,10 @@ useEffect(() => {
     const savedData = localStorage.getItem('fileTypesObj');
     if (savedData) {
       fileTypesObj = JSON.parse(savedData);
-    } else {
+    }
 
-      for (const el of nfts) {
+    for (const el of nfts) {
+      if (!fileTypesObj[el.image]) {
         try {
           const response = await fetch(el.image);
           const contentType = response.headers.get("content-type");
@@ -101,20 +114,15 @@ useEffect(() => {
           console.log(error);
         }
       }
-
-      localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
     }
+
+    localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
 
     setFileTypes(fileTypesObj);
     setLoading(false);
   };
 
   fetchFileTypes();
-    if (swiperRef.current) {
-    setTimeout(() => {
-      swiperRef.current.swiper.autoplay.start();
-    }, 1000);
-  }
 }, [nfts]);
 
 
@@ -134,7 +142,7 @@ useEffect(() => {
           autoplay={{ delay: 4000 }}
           
           spaceBetween={0}
-          slidesPerView={1}
+          slidesPerView={2}
           loop={true}
           navigation={true}
           pagination={{ clickable: true }}

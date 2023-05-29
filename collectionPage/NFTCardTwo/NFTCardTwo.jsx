@@ -6,6 +6,8 @@ import images from "../../img";
 import Image from "next/image";
 import ReactPlayer from 'react-player';
 
+
+
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
@@ -51,7 +53,7 @@ const NFTCardTwo = ({ NFTData }) => {
 };
 
 
-/* works fine - Slow AF  */
+/* works fine - Slow AF  
 
   useEffect(() => {
     const fetchFileTypes = async () => {
@@ -73,9 +75,9 @@ const NFTCardTwo = ({ NFTData }) => {
 
     fetchFileTypes();
   }, [NFTData]);
+*/
 
-
-/*
+/* fast local cache 
 useEffect(() => {
   const fetchFileTypes = async () => {
     let fileTypesObj = {};
@@ -106,50 +108,41 @@ useEffect(() => {
 }, [NFTData]);
 */
 
-/*
-  const RenderImage = ({ src }) => (
-  <LazyLoadImage
-    src={src}
-    alt="NFT"
-    width={350}
-    height={300}
-    effect="blur"
-    className={Style.NFTCardTwo_box_img_img}
-  />
-);
 
-const RenderVideo = ({ src }) => (
-  <LazyLoadComponent>
-    <ReactPlayer
-      src={src}
-      alt="NFT"
-      width={350}
-      height={300}
-      objectFit="cover"
-      className={Style.NFTCardTwo_box_img_img}
-      controls
-    />
-  </LazyLoadComponent>
-);
+/* testing more */
+useEffect(() => {
+  const fetchFileTypes = async () => {
+    let fileTypesObj = {};
 
-const RenderAudio = ({ src }) => (
-  <div className={Style.NFTCardTwo_box_audio}>
-    <Image
-      src={images.audio_image}
-      alt="Default"
-      width={350}
-      height={255}
-      objectFit="cover"
-      className={Style.NFTCardTwo_box_img_audio}
-    />
-    <audio
-      src={src}
-      controls
-      className={Style.NFTCardTwo_box_audio_controls}
-    />
-  </div>
-);
-*/
+    const savedData = localStorage.getItem('fileTypesObj');
+    if (savedData) {
+      fileTypesObj = JSON.parse(savedData);
+    }
+
+    for (const el of NFTData) {
+      if (!fileTypesObj[el.image]) {
+        try {
+          const response = await fetch(el.image);
+          const contentType = response.headers.get("content-type");
+          fileTypesObj[el.image] = contentType;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+
+    localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
+
+    setFileTypes(fileTypesObj);
+    setLoading(false);
+  };
+
+  fetchFileTypes();
+}, [NFTData]);
+
+
+
+
 const RenderDefault = () => (
   <Image
     src={images.invalidImage}
@@ -187,8 +180,6 @@ fetchFileTypes();
 }, [NFTData]);
 */
 
-
-
 /*
 useEffect(() => {
   const fetchFileTypes = async () => {
@@ -225,23 +216,6 @@ useEffect(() => {
 }, [NFTData, currentPage]);
 */
 
-/*
-const renderFilePreview = (el) => {
-const fileType = fileTypes[el.image];
-
-if (fileType && fileType.includes("image")) {
-  return <RenderImage src={el.image} />;
-} else if (fileType && fileType.includes("video")) {
-  return <RenderVideo src={el.image} />;
-} else if (fileType && fileType.includes("audio")) {
-  return <RenderAudio src={el.image} />;
-} else {
-  return <RenderDefault />;
-}
-
-};
-*/
-
 
 /* works for all - stil loading all nfts before display*/
 const RenderMedia = ({ src }) => {
@@ -250,41 +224,41 @@ const RenderMedia = ({ src }) => {
 
   return (
     <LazyLoadComponent>
-      {isImage ? (
-        <LazyLoadImage
-          src={src}
-          alt="NFT"
-          width={350}
-          height={300}
-          effect="blur"
-          className={Style.NFTCardTwo_box_img_img}
-        />
-      ) : isAudio ? (
-        <div className={Style.NFTCardTwo_box_audio}>
-          <Image
-            src={images.audio_image}
-            alt="Default"
-            width={350}
-            height={255}
-            objectFit="cover"
-            className={Style.NFTCardTwo_box_img_audio}
-          />
-          <audio
-            src={src}
-            controls
-            className={Style.NFTCardTwo_box_audio_controls}
-          />
-        </div>
-      ) : (
-        <ReactPlayer 
-          url={src}
-          controls
-          width='350px'
-          height='300px'
-          className={Style.NFTCardTwo_box_img_img}
-        />
-      )}
-    </LazyLoadComponent>
+  {isImage ? (
+    <LazyLoadImage
+      src={src}
+      alt="NFT"
+      width={350}
+      height={300}
+      effect="blur"
+      className={Style.NFTCardTwo_box_img_img}
+    />
+  ) : isAudio ? (
+    <div className={Style.NFTCardTwo_box_audio}>
+      <Image
+        src={images.audio_image}
+        alt="Default"
+        width={350}
+        height={255}
+        objectFit="cover"
+        className={Style.NFTCardTwo_box_img_audio}
+      />
+      <audio
+        src={src}
+        controls
+        className={Style.NFTCardTwo_box_audio_controls}
+      />
+    </div>
+  ) : (
+    <ReactPlayer 
+      url={src}
+      controls
+      width='350px'
+      height='300px'
+      className={Style.NFTCardTwo_box_img_img}
+    />
+  )}
+</LazyLoadComponent>
   );
 };
 

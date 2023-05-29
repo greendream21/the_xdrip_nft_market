@@ -126,10 +126,8 @@ const BigNFTSlider = () => {
 
   const mint = async (medalType, ipfsHash) => {
     try {
-      // Check if the user is connected
       if (!address) {
-        // If not, prompt them to connect their wallet
-        window.ethereum.enable(); // or use whatever method thirdweb uses for wallet connections
+      window.ethereum.enable(); 
         return;
       }
       const provider = new ethers.providers.Web3Provider(window.ethereum);

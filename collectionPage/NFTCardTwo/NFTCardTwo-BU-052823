@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { MdTimer } from "react-icons/md";
-import { Loader } from "../../components/componentsindex";
-import Style from "./NFTCard.module.css";
+import Style from "./NFTCardTwo.module.css";
 import Rating from "react-rating";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import images from "../../img";
 import Image from "next/image";
-
 import ReactPlayer from 'react-player';
+
+import lozad from 'lozad';
+
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
@@ -15,40 +15,55 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 //import { AiOutlineHeart, AiFillHeart } from "react-icons/ai"; Can use hearts insetad of stars
 import Link from "next/link";
 
-const mp3Image = "/mp3.jpg";
-
-const NFTCard = ({ NFTData }) => {
+const NFTCardTwo = ({ NFTData }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const ITEMS_PER_PAGE = 8;
+  const ITEMS_PER_PAGE = 12;
   const [fileTypes, setFileTypes] = useState({});
   const [loading, setLoading] = useState(true);
+  
+  const observer = lozad('.lazy-load', {
+  // Optional configuration options
+});
+
+useEffect(() => {
+    const elements = document.querySelectorAll('.lazy-load');
+    observer.observe(elements);
+  }, []);
 
   const [likes, setLikes] = useState(() => {
+  if (typeof window !== 'undefined') {
     const savedLikes = localStorage.getItem("nftLikes");
     return savedLikes ? JSON.parse(savedLikes) : {};
-  });
+  }
+  return {};
+});
 
   const likeNFT = (tokenId, ratingValue) => {
-    setLikes((prevState) => {
-      const newLikes = { ...prevState };
-      if (!newLikes[tokenId]) {
-        newLikes[tokenId] = { count: 0, liked: false, rating: 0 };
-      }
-      newLikes[tokenId].liked = !newLikes[tokenId].liked;
-      if (newLikes[tokenId].liked) {
-        newLikes[tokenId].count++;
-        newLikes[tokenId].rating = ratingValue;
-      } else {
-        newLikes[tokenId].count--;
-        newLikes[tokenId].rating = 0;
-      }
+  setLikes((prevState) => {
+    const newLikes = { ...prevState };
+    if (!newLikes[tokenId]) {
+      newLikes[tokenId] = { count: 0, liked: false, rating: 0 };
+    }
+    newLikes[tokenId].liked = !newLikes[tokenId].liked;
+    if (newLikes[tokenId].liked) {
+      newLikes[tokenId].count++;
+      newLikes[tokenId].rating = ratingValue;
+    } else {
+      newLikes[tokenId].count--;
+      newLikes[tokenId].rating = 0;
+    }
+
+    if (typeof window !== 'undefined') {
       localStorage.setItem("nftLikes", JSON.stringify(newLikes));
-      return newLikes;
-    });
-  };
+    }
+    
+    return newLikes;
+  });
+};
 
 
-/*
+/* works fine - Slow AF  
+
   useEffect(() => {
     const fetchFileTypes = async () => {
       const fileTypesObj = {};
@@ -69,12 +84,10 @@ const NFTCard = ({ NFTData }) => {
 
     fetchFileTypes();
   }, [NFTData]);
-  
-  */
-  
-  
-  /*
-  useEffect(() => {
+*/
+
+/* fast local cache 
+useEffect(() => {
   const fetchFileTypes = async () => {
     let fileTypesObj = {};
 
@@ -105,6 +118,7 @@ const NFTCard = ({ NFTData }) => {
 */
 
 
+/* testing more */
 useEffect(() => {
   const fetchFileTypes = async () => {
     let fileTypesObj = {};
@@ -138,68 +152,51 @@ useEffect(() => {
 
 
 
+
 /*
-  const renderFilePreview = (el) => {
-    const fileType = fileTypes[el.image];
+  const RenderImage = ({ src }) => (
+  <LazyLoadImage
+    src={src}
+    alt="NFT"
+    width={350}
+    height={300}
+    effect="blur"
+    className={Style.NFTCardTwo_box_img_img}
+  />
+);
 
-    if (fileType && fileType.includes("image")) {
-      return (
-        <img
-          src={el.image}
-          alt="NFT"
-          width={350}
-          height={300}
-          objectFit="cover"
-          className={Style.NFTCard_box_img_img}
-        />
-      );
-    } else if (fileType && fileType.includes("video")) {
-      return (
-        <video
-          src={el.image}
-          alt="NFT"
-          width={350}
-          height={300}
-          objectFit="cover"
-          className={Style.NFTCard_box_img_img}
-          controls
-        />
-      );
-    } else if (fileType && fileType.includes("audio")) {
-      return (
-        <div className={Style.NFTCard_box_audio}>
-          <Image
-            src={images.audio_image}
-            alt="Default"
-            width={350}
-            height={255}
-            objectFit="cover"
-            className={Style.NFTCard_box_img_audio}
-          />
-          <audio
-            src={el.image}
-            controls
-            className={Style.NFTCard_box_audio_controls}
-          />
-        </div>
-      );
-    } else {
-      return (
-        <Image
-          src={images.invalidImage}
-          alt="NFT"
-          width={350}
-          height={300}
-          objectFit="cover"
-          className={Style.NFTCard_box_img_img}
-          controls
-        />
-       
-      );
-    }
-  };
+const RenderVideo = ({ src }) => (
+  <LazyLoadComponent>
+    <ReactPlayer
+      src={src}
+      alt="NFT"
+      width={350}
+      height={300}
+      objectFit="cover"
+      className={Style.NFTCardTwo_box_img_img}
+      controls
+    />
+  </LazyLoadComponent>
+);
+
+const RenderAudio = ({ src }) => (
+  <div className={Style.NFTCardTwo_box_audio}>
+    <Image
+      src={images.audio_image}
+      alt="Default"
+      width={350}
+      height={255}
+      objectFit="cover"
+      className={Style.NFTCardTwo_box_img_audio}
+    />
+    <audio
+      src={src}
+      controls
+      className={Style.NFTCardTwo_box_audio_controls}
+    />
+  </div>
+);
 */
-
 const RenderDefault = () => (
   <Image
     src={images.invalidImage}
@@ -207,112 +204,195 @@ const RenderDefault = () => (
     width={350}
     height={300}
     objectFit="cover"
-    className={Style.NFTCard_box_img_img}
+    className={Style.NFTCardTwo_box_img_img}
     controls
   />
 );
 
+
+/*
+useEffect(() => {
+const fetchFileTypes = async () => {
+const fileTypesObj = {};
+
+  for (const el of NFTData) {
+    try {
+      const response = await fetch(el.image);
+      const contentType = response.headers.get("content-type");
+      fileTypesObj[el.image] = contentType;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  setFileTypes(fileTypesObj);
+  setLoading(false);
+};
+
+fetchFileTypes();
+
+}, [NFTData]);
+*/
+
+
+
+/*
+useEffect(() => {
+  const fetchFileTypes = async () => {
+    const fileTypesObj = {};
+    
+    for (const el of NFTData.slice(0, 4)) {
+      try {
+        const response = await fetch(el.image);
+        const contentType = response.headers.get("content-type");
+        fileTypesObj[el.image] = contentType;
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    setFileTypes(fileTypesObj);
+    setLoading(false);
+
+    // Fetch the rest of the items in the background
+    for (const el of NFTData.slice(4)) {
+      try {
+        const response = await fetch(el.image);
+        const contentType = response.headers.get("content-type");
+        fileTypesObj[el.image] = contentType;
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    setFileTypes(fileTypesObj);
+  };
+
+  fetchFileTypes();
+}, [NFTData, currentPage]);
+*/
+
+/*
+const renderFilePreview = (el) => {
+const fileType = fileTypes[el.image];
+
+if (fileType && fileType.includes("image")) {
+  return <RenderImage src={el.image} />;
+} else if (fileType && fileType.includes("video")) {
+  return <RenderVideo src={el.image} />;
+} else if (fileType && fileType.includes("audio")) {
+  return <RenderAudio src={el.image} />;
+} else {
+  return <RenderDefault />;
+}
+
+};
+*/
+
+
+/* works for all - stil loading all nfts before display*/
 const RenderMedia = ({ src }) => {
-  const fileType = fileTypes[src];
-  
-  const isImage = fileType && fileType.startsWith("image");
-  const isAudio = fileType && fileType.startsWith("audio");
-  
+  const isImage = fileTypes[src] && fileTypes[src].startsWith("image");
+  const isAudio = fileTypes[src] && fileTypes[src].startsWith("audio");
+
   return (
     <LazyLoadComponent>
-      {isImage ? (
-        <LazyLoadImage
-          src={src}
-          alt="NFT"
-          width={350}
-          height={300}
-          effect="blur"
-          className={Style.NFTCardTwo_box_img_img}
-        />
-      ) : isAudio ? (
-        <div className={Style.NFTCardTwo_box_audio}>
-          <Image
-            src={images.audio_image}
-            alt="Default"
-            width={350}
-            height={255}
-            objectFit="cover"
-            className={Style.NFTCardTwo_box_img_audio}
-          />
-          <audio
-            src={src}
-            controls
-            className={Style.NFTCardTwo_box_audio_controls}
-          />
-        </div>
-      ) : (
-        <ReactPlayer 
-          url={src}
-          controls
-          width='350px'
-          height='300px'
-          className={Style.NFTCardTwo_box_img_img}
-        />
-      )}
-    </LazyLoadComponent>
+  {isImage ? (
+    <LazyLoadImage
+      src={src}
+      alt="NFT"
+      width={350}
+      height={300}
+      effect="blur"
+      className={`lazy-load ${Style.NFTCardTwo_box_img_img}`}
+    />
+  ) : isAudio ? (
+    <div className={`${Style.NFTCardTwo_box_audio} lazy-load`}>
+      <Image
+        src={images.audio_image}
+        alt="Default"
+        width={350}
+        height={255}
+        objectFit="cover"
+        className={Style.NFTCardTwo_box_img_audio}
+      />
+      <audio
+        src={src}
+        controls
+        className={Style.NFTCardTwo_box_audio_controls}
+      />
+    </div>
+  ) : (
+    <ReactPlayer 
+      url={src}
+      controls
+      width='350px'
+      height='300px'
+      className={`lazy-load ${Style.NFTCardTwo_box_img_img}`}
+    />
+  )}
+</LazyLoadComponent>
   );
 };
+
 
 const renderFilePreview = (el) => {
   const fileType = fileTypes[el.image];
 
-  return fileType ? <RenderMedia src={el.image} /> : <RenderDefault />;
+  if (fileType) {
+    return <RenderMedia src={el.image} />;
+  } else {
+    return <RenderDefault />;
+  }
 };
-
 
 
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
+  
   const currentItems = NFTData.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
-    <div className={Style.NFTCard_container}>
+    <div className={Style.NFTCardTwo_container}>
       {loading ? (
         <div className={Style.loading}>
-          <Loader />
           <p
             className={`${Style["loading-message"]} ${Style["loading-message-animate"]}`}
           >
-            Loading XMARKET NFTs...
+            Loading NFTs...
           </p>
         </div>
       ) : (
         <>
-          <div className={Style.NFTCard}>
+          <div className={Style.NFTCardTwo}>
             {currentItems.map((el, i) => (
               <Link
                 href={{ pathname: "/NFTDetails", query: el }}
                 key={`${el.tokenId}-${i}`}
               >
-                <div className={Style.NFTCard_box}>
-                  <div className={Style.NFTCard_box_img}>
+                <div className={Style.NFTCardTwo_box}>
+                  <div className={Style.NFTCardTwo_box_img}>
                     {renderFilePreview(el)}
                   </div>
-                  <div className={Style.NFTCard_box_box_info}>
-                  <div className={Style.NFTCard_box_info_info}>
-                    <div className={Style.NFTCard_box_info_left}>
+                  <div className={Style.NFTCardTwo_box_info}>
+                    <div className={Style.NFTCardTwo_box_info_left}>
                       <p>{el.name}</p>
                     </div>
-
-                  
-                  <div className={Style.NFTCard_box_tokenid}>
+                   
+                  </div>
+                    <div className={Style.NFTCardTwo_box_tokenid}>
                     <small> # {el.tokenId}</small>
                     </div>
-                    </div>
-                  <div className={Style.NFTCard_box_price}>
+
+                  <div className={Style.NFTCardTwo_box_price}>
                     <div className={Style.likesContainer}>
-                      <div className={Style.NFTCard_box_like_box}></div>
+                      <div className={Style.NFTCardTwo_box_like_box}></div>
                     </div>
-                    <div className={Style.NFTCard_box_price_box}>
+                    <div className={Style.NFTCardTwo_box_price_box}>
                       <small>CURRENT PRICE</small>
                       <p>{parseFloat(el.price) * 10 ** 9} BNB</p>
                     </div>
-                    <p className={Style.NFTCard_box_price_stock}>
+                    <p className={Style.NFTCardTwo_box_price_stock}>
                       {/* future auciton functionality 
                     <MdTimer /> <span>{i + 1} HOURS LEFT</span>
                     */}
@@ -334,7 +414,6 @@ const renderFilePreview = (el) => {
                         </span>
                       </div>
                     </p>
-                  </div>
                   </div>
                 </div>
               </Link>
@@ -374,4 +453,5 @@ const renderFilePreview = (el) => {
   );
 };
 
-export default NFTCard;
+export default NFTCardTwo;
+/*comments go here*/
