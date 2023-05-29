@@ -254,6 +254,12 @@ const VideoSlider = () => {
   const videoNFTs = nfts.filter(
     (nft) => fileTypes[nft.image] && fileTypes[nft.image].includes('video')
   );
+  
+  useEffect(() => {
+    // get a random one
+    setNfts((prevNfts) => prevNfts.sort(() => Math.random() - 0.5));
+  }, [nfts]);
+  
 
  return (
     <div className={Style.sliderContainer}>
