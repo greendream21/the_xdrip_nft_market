@@ -1,4 +1,4 @@
-
+/*
 import React, { useState, useEffect, useRef, useContext } from "react";
 //import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -94,7 +94,7 @@ const startSlide = () => {
 */
 
 
-
+/*
 useEffect(() => {
   const fetchFileTypes = async () => {
     let fileTypesObj = {};
@@ -130,7 +130,10 @@ useEffect(() => {
   const videoNFTs = nfts.filter(nft => fileTypes[nft.image] && fileTypes[nft.image].includes('video'));
 
   return (
+    
+    /*
     <div className={Style.sliderContainer}>
+    
       <div className={Style.slider}>
         <div className={Style.slider_box}>
           <div className={Style.slider_box_button}></div>
@@ -155,14 +158,19 @@ useEffect(() => {
           ))}
         </Swiper>
       </div>
+      
+      /*
     </div>
+    
+    
   );
 };
 
 export default Slider;
+*/
 
 
-/*
+
 import React, { useState, useEffect, useContext } from "react";
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -191,31 +199,34 @@ const VideoSlider = () => {
   }, []);
 
   useEffect(() => {
-    const fetchFileTypes = async () => {
-      let fileTypesObj = {};
+  const fetchFileTypes = async () => {
+    let fileTypesObj = {};
 
-      const savedData = localStorage.getItem('fileTypesObj');
-      if (savedData) {
-        fileTypesObj = JSON.parse(savedData);
-      } else {
-        for (const el of nfts) {
-          try {
-            const response = await fetch(el.image);
-            const contentType = response.headers.get("content-type");
-            fileTypesObj[el.image] = contentType;
-          } catch (error) {
-            console.log(error);
-          }
+    const savedData = localStorage.getItem('fileTypesObj');
+    if (savedData) {
+      fileTypesObj = JSON.parse(savedData);
+    }
+
+    for (const el of nfts) {
+      if (!fileTypesObj[el.image]) {
+        try {
+          const response = await fetch(el.image);
+          const contentType = response.headers.get("content-type");
+          fileTypesObj[el.image] = contentType;
+        } catch (error) {
+          console.log(error);
         }
-        localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
       }
+    }
 
-      setFileTypes(fileTypesObj);
-      setLoading(false);
-    };
+    localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
 
-    fetchFileTypes();
-  }, [nfts]);
+    setFileTypes(fileTypesObj);
+    setLoading(false);
+  };
+
+  fetchFileTypes();
+}, [nfts]);
 
  
 
@@ -246,4 +257,3 @@ const VideoSlider = () => {
 };
 
 export default VideoSlider;
-*/
