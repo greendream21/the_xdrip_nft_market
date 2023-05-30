@@ -2,11 +2,18 @@
 .createButtons{
     width: 80%;
     margin: 0rem auto;
-    margin-top: 6rem;
+    margin-top: 12rem;
     margin-bottom: 20rem;
-    justify-items: center;
+    gap: 6rem;
     
 }
+
+.createButtons_service_box{
+    display: flex;
+    
+}
+
+
 
 .createButtons_title{
     display: flex;
@@ -25,20 +32,20 @@
 
 .service_box{
     display: flex;
-    gap: 6rem;
+    gap: 12rem;
     justify-content: center;
     text-align: center;
-    margin-top: 2rem;
+    
 }
 
-Style.service{
+.service{
     display: flex;
     
     
 }
 
 
-Style.service_box_btn p{
+.service_box_btn p{
     display: flex;
     
     

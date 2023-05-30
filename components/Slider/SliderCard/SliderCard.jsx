@@ -130,8 +130,9 @@ const RenderMedia = ({ src }) => {
           muted
           loop
           controls
+          playing={isVisible}
           width='759.9px'
-          height='475px'
+          height='525px'
           onPlay={() => handleSlideChange(true)}
           onPause={() => handleSlideChange(false)}
           onEnded={() => handleSlideChange(false)}
@@ -172,17 +173,20 @@ const renderFilePreview = (el) => {
           <div className={Style.sliderCard_box_content}>
             <div className={Style.sliderCard_box_content_box}>
             <div className={Style.sliderCard_box_title}>
-                   <p>NFT NAME:</p>
+                   <p>VIDEO NAME:</p>
                 </div> 
               <div className={Style.sliderCard_box_title_name}>
                    <p>{el.name}</p>
                 </div> 
                 <div className={Style.sliderCard_box_token_title}>
-                  <p>NFT MINT ID</p>
+                  <p>CONTRACT MINT ID</p>
                 </div>               
                 <div className={Style.sliderCard_box_token}>
                   <p># {el.tokenId}</p>
                 </div>
+                <div className={Style.sliderCard_box_token_title}>
+                  <p>XMARKET RATING</p>
+                </div> 
                 <div className={Style.sliderCard_box_title_like}>
                 <Rating
                   emptySymbol={<FaRegStar style={{ marginRight: "5px" }} />}

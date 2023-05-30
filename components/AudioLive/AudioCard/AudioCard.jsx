@@ -79,8 +79,8 @@ const RenderMedia = ({ src }) => {
         <LazyLoadImage
           src={src}
           alt="NFT"
-          width={350}
-          height={300}
+          width={450}
+          height={450}
           effect="blur"
           className={Style.NFTCardTwo_box_img_img}
         />
@@ -89,7 +89,7 @@ const RenderMedia = ({ src }) => {
           <Image
             src={images.audio_image2}
             alt="Default"
-            width={450}
+            width={760}
             height={450}
             objectFit="cover"
             className={Style.audioCard_box_img_audio}
@@ -104,6 +104,7 @@ const RenderMedia = ({ src }) => {
         <ReactPlayer 
           url={src}
           controls
+          playing={isVisible}
           width='650px'
           height='450px'
           className={Style.audioCard_box_img_img}
@@ -146,6 +147,9 @@ const renderFilePreview = (el) => {
                 <div className={Style.audioCard_box_token}>
                   <p># {el.tokenId}</p>
                 </div>
+                <div className={Style.audioCard_box_token_title}>
+                  <p>NFT RATING</p>
+                </div>    
                 <div className={Style.audioCard_box_title_like}>
                 <Rating
                   emptySymbol={<FaRegStar style={{ marginRight: "5px" }} />}

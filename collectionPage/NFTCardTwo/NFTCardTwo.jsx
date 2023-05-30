@@ -4,10 +4,8 @@ import Rating from "react-rating";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import images from "../../img";
 import Image from "next/image";
+
 import ReactPlayer from 'react-player';
-
-
-
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
@@ -52,64 +50,6 @@ const NFTCardTwo = ({ NFTData }) => {
   });
 };
 
-
-/* works fine - Slow AF  
-
-  useEffect(() => {
-    const fetchFileTypes = async () => {
-      const fileTypesObj = {};
-
-      for (const el of NFTData) {
-        try {
-          const response = await fetch(el.image);
-          const contentType = response.headers.get("content-type");
-          fileTypesObj[el.image] = contentType;
-        } catch (error) {
-          console.log(error);
-        }
-      }
-
-      setFileTypes(fileTypesObj);
-      setLoading(false);
-    };
-
-    fetchFileTypes();
-  }, [NFTData]);
-*/
-
-/* fast local cache 
-useEffect(() => {
-  const fetchFileTypes = async () => {
-    let fileTypesObj = {};
-
-    const savedData = localStorage.getItem('fileTypesObj');
-    if (savedData) {
-      fileTypesObj = JSON.parse(savedData);
-    } else {
-
-      for (const el of NFTData) {
-        try {
-          const response = await fetch(el.image);
-          const contentType = response.headers.get("content-type");
-          fileTypesObj[el.image] = contentType;
-        } catch (error) {
-          console.log(error);
-        }
-      }
-
-      localStorage.setItem('fileTypesObj', JSON.stringify(fileTypesObj));
-    }
-
-    setFileTypes(fileTypesObj);
-    setLoading(false);
-  };
-
-  fetchFileTypes();
-}, [NFTData]);
-*/
-
-
-/* testing more */
 useEffect(() => {
   const fetchFileTypes = async () => {
     let fileTypesObj = {};
@@ -140,9 +80,6 @@ useEffect(() => {
   fetchFileTypes();
 }, [NFTData]);
 
-
-
-
 const RenderDefault = () => (
   <Image
     src={images.invalidImage}
@@ -156,68 +93,6 @@ const RenderDefault = () => (
 );
 
 
-/*
-useEffect(() => {
-const fetchFileTypes = async () => {
-const fileTypesObj = {};
-
-  for (const el of NFTData) {
-    try {
-      const response = await fetch(el.image);
-      const contentType = response.headers.get("content-type");
-      fileTypesObj[el.image] = contentType;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  setFileTypes(fileTypesObj);
-  setLoading(false);
-};
-
-fetchFileTypes();
-
-}, [NFTData]);
-*/
-
-/*
-useEffect(() => {
-  const fetchFileTypes = async () => {
-    const fileTypesObj = {};
-    
-    for (const el of NFTData.slice(0, 4)) {
-      try {
-        const response = await fetch(el.image);
-        const contentType = response.headers.get("content-type");
-        fileTypesObj[el.image] = contentType;
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    setFileTypes(fileTypesObj);
-    setLoading(false);
-
-    // Fetch the rest of the items in the background
-    for (const el of NFTData.slice(4)) {
-      try {
-        const response = await fetch(el.image);
-        const contentType = response.headers.get("content-type");
-        fileTypesObj[el.image] = contentType;
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    setFileTypes(fileTypesObj);
-  };
-
-  fetchFileTypes();
-}, [NFTData, currentPage]);
-*/
-
-
-/* works for all - stil loading all nfts before display*/
 const RenderMedia = ({ src }) => {
   const isImage = fileTypes[src] && fileTypes[src].startsWith("image");
   const isAudio = fileTypes[src] && fileTypes[src].startsWith("audio");
@@ -275,8 +150,7 @@ const renderFilePreview = (el) => {
 
 
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
-  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
-  
+  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;  
   const currentItems = NFTData.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
@@ -286,7 +160,7 @@ const renderFilePreview = (el) => {
           <p
             className={`${Style["loading-message"]} ${Style["loading-message-animate"]}`}
           >
-            Loading NFTs...
+            Loading XMARKET NFTs...
           </p>
         </div>
       ) : (
@@ -381,4 +255,3 @@ const renderFilePreview = (el) => {
 };
 
 export default NFTCardTwo;
-/*comments go here*/

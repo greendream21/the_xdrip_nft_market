@@ -16,11 +16,13 @@ const CreateButtons = () => {
 
       <div className={Style.service_box}>
       <div className={Style.service_box_btn}>
-      <Image
-            src={images.bullet_9}
+      <video
+            src={videos.create_select}
             alt="Stay Updated"
             height={400}
             width={400}
+            autoPlay 
+            loop
             className={Style.subscribe_box_right_img}
             
           />
@@ -28,11 +30,13 @@ const CreateButtons = () => {
         <p>Create a single NFT or mint into your existing collection.</p>
         </div>
         <div className={Style.service_box_btn}>
-        <Image
-            src={images.bullet_9}
+        <video
+            src={videos.create_select_2}
             alt="Stay Updated"
             height={400}
             width={400}
+            autoPlay 
+            loop
             className={Style.subscribe_box_right_img}
             
           />
