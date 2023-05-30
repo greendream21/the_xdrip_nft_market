@@ -18,6 +18,13 @@
   box-shadow: var(--white-glow);
 }
 
+.audioCard_box_audio{
+  display: grid;
+  width: 100%;
+  justify-items: center;
+ 
+}
+
 .audioCard_box:hover {
   box-shadow: 0 0 5px #017afe99, 0 0 10px #017afe99, 0 0 20px;
 }
@@ -37,7 +44,7 @@
 }
 
 .audioCard_box_img_audio {
-  justify-content: center;
+  justify-items: center;
   
   border-top-left-radius: .5rem;
   border-bottom-left-radius: .5rem;
@@ -47,18 +54,10 @@
 
 .audioCard_box_audio_controls {
   width: 100%;
+  margin-top: -7rem;
 }
 
-.audioCard_box_player {
-  display: flex;
-  padding-inline: 2rem;
-  gap: 2rem;
-  z-index: 1234;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 1rem;
-  
-}
+
 
 
 
@@ -156,9 +155,7 @@
 }
 
 .audioCard_box_price_box {
-  border: 4px double rgba(1, 122,
-
-254, 255);
+  border: 4px double rgba(1, 122, 254, 255);
 padding: 0.2rem 1rem;
 border-radius: 0.5rem;
 }

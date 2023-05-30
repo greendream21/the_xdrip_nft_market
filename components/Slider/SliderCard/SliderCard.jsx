@@ -130,7 +130,7 @@ const RenderMedia = ({ src }) => {
           muted
           loop
           controls
-          width='727.45px'
+          width='759.9px'
           height='475px'
           onPlay={() => handleSlideChange(true)}
           onPause={() => handleSlideChange(false)}

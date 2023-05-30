@@ -17,38 +17,11 @@ import { motion } from 'framer-motion';
 
 import Link from "next/link";
 
-/*const mp3Image = "mp3.jpg";*/
-
 const AudioCard = ({ NFTData, likes }) => {
   const [fileTypes, setFileTypes] = useState({});
   const [loading, setLoading] = useState(true);
   const [like, setLike] = useState(false);
   const [play, setPlay] = useState(false);
-
-  
-  /*
-  useEffect(() => {
-    const fetchFileTypes = async () => {
-      const fileTypesObj = {};
-
-      for (const el of NFTData) {
-        try {
-          const response = await fetch(el.image);
-          const contentType = response.headers.get("content-type");
-          fileTypesObj[el.image] = contentType;
-        } catch (error) {
-          console.log(error);
-        }
-      }
-
-      setFileTypes(fileTypesObj);
-      setLoading(false);
-    };
-
-    fetchFileTypes();
-  }, [NFTData]);
-  */
-  
   
   useEffect(() => {
   const fetchFileTypes = async () => {
@@ -145,10 +118,7 @@ const renderFilePreview = (el) => {
 
   return fileType ? <RenderMedia src={el.image} /> : <RenderDefault />;
 };
-
-
-
-  
+ 
   return (
   <motion.div className={Style.audioCard_container}>
 

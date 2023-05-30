@@ -1,68 +1,61 @@
-.audioLiveContainer{
+.audioLiveContainer {
     display: flex;
     align-items: center;
     align-content: center;
     justify-content: center;
     justify-items: center;
     width: 100%;
-}
-
-.audioLive{
+  }
+  
+  .audioLive {
     width: 80%;
     margin-top: 4rem;
     align-content: center;
     justify-items: center;
-    
-}
-
-
-.audioLive_box{
+  }
+  
+  .audioLive_box {
     width: 80%;
-    flex: 0 0 auto; /* Allow the cards to wrap within the container */
+    flex: 0 0 auto;
     margin-right: 1rem;
     padding: 0 -1rem 8rem 0;
-
-}
-
-.audioLive_box h2{
+    
+  }
+  
+  .audioLive_box h2 {
     font-size: 3rem;
     line-height: 0;
-}
-
-.audioLive_box_button p{
+  }
+  
+  .audioLive_box_button p {
     margin-top: 0rem;
     font-size: 1.2rem;
-}
-
-.audioLive_box_items{
+  }
+  
+  .audioLive_box_items {
     width: 100%;
-    
-    
-   
-}
-
-
-
-
-.audioLive_box_item::-webkit-scrollbar{
+  }
+  
+  .audioLive_box_item::-webkit-scrollbar {
     display: none;
-}
-
-@media screen and (max-width: 35em) {
-    .audioLive_box h2{
-        font-size: 2rem;
+  }
+  
+  @media screen and (max-width: 35em) {
+    .audioLive_box h2 {
+      font-size: 2rem;
     }
-    .audioLive_box_item{
-        overflow: auto;
-        grid-template-columns: repeat(6, 95%);
-        padding: 4rem 0;
+    .audioLive_box_item {
+      overflow: auto;
+      grid-template-columns: repeat(6, 95%);
+      padding: 4rem 0;
     }
-
-    .audioLive_box{
-        width: 90%;
+  
+    .audioLive_box {
+      width: 90%;
     }
-
-    .audioLive_box_button_btn_icon{
-        padding: .5rem;
+  
+    .audioLive_box_button_btn_icon {
+      padding: .5rem;
     }
-}
+  }
+  
