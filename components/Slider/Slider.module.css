@@ -6,12 +6,42 @@
     justify-items: center;
 }
 
+.customArrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 75px; 
+    height: 75px; 
+    background-color: transparent; 
+    z-index: 1;
+    cursor: pointer;
+  }
+  
+  .customPrevArrow {
+    left: 0px; 
+  }
+  
+  .customNextArrow {
+    right: 0px; 
+  }
+
+  .slideCounter {
+    text-align: center;
+    margin-top: 6px;
+    font-size: 1.1rem; 
+  }
+  
+
 .slider{
     width: 80%;
     margin-top: 4rem;
     align-content: center;
     justify-items: center;
     
+}
+
+.slider_box_slider {
+    margin-left: 0rem;
 }
 
 .slider_box{

@@ -6,6 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 import Style from "./AudioLive.module.css";
 import AudioCard from "../../components/AudioLive/AudioCard/AudioCard";
 import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
+import Image from "next/image";
+import images from "../../img";
 
 const AudioSlider = () => {
   const { fetchNFTs, setError } = useContext(NFTMarketplaceContext);
@@ -13,6 +15,7 @@ const AudioSlider = () => {
   const [fileTypes, setFileTypes] = useState({});
   const [likes, setLikes] = useState({});
   const [loading, setLoading] = useState(true);
+  const [currentSlide, setCurrentSlide] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,20 +63,23 @@ const AudioSlider = () => {
   );
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 300,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 10000,
+    autoplaySpeed: 15000,
     arrows: true,
     useKeyboardArrows: true,
     accessibility: true,
     fade: false,
     rows: 1,
     swipe: true,
-    
+    lazyLoad: 'ondemand',
+    beforeChange: (current, next) => setCurrentSlide(next + 1), 
+    prevArrow: <CustomPrevArrow />, // Custom previous arrow component
+    nextArrow: <CustomNextArrow />, // Custom next arrow component
   };
 
   return (
@@ -91,9 +97,32 @@ const AudioSlider = () => {
                 </div>
               ))}
             </Slider>
+            <div className={Style.slideCounter}>
+             {currentSlide} of {audioNFTs.length}
+            </div>
           </div>
         </div>
       )}
+    </div>
+  );
+};
+
+// Custom previous arrow component
+const CustomPrevArrow = (props) => {
+  const { onClick } = props;
+  return (
+    <div className={`${Style.customArrow} ${Style.customPrevArrow}`} onClick={onClick}>
+      <Image src={images.left_arrow} alt="Previous" />
+    </div>
+  );
+};
+
+// Custom next arrow component
+const CustomNextArrow = (props) => {
+  const { onClick } = props;
+  return (
+    <div className={`${Style.customArrow} ${Style.customNextArrow}`} onClick={onClick}>
+      <Image src={images.right_arrow} alt="Next" />
     </div>
   );
 };

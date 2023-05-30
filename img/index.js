@@ -76,11 +76,15 @@ import invalidImage from "./invalidImage.png";
 import audio_image from "./audio-image.png";
 import audio_image2 from "./audio-image2.png";
 import audio_image3 from "./audio-image3.png";
+import left_arrow from "./left-arrow.png";
+import right_arrow from "./right-arrow.png";
 
 
 
 
 export default {
+  left_arrow,
+  right_arrow,
   audio_image,
   audio_image2,
   audio_image3,
