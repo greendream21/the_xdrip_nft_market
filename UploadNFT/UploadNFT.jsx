@@ -131,18 +131,21 @@ const UloadNFT = ({ createNFT }) => {
 
           <div className={formStyle.Form_box_input}>
             <label htmlFor="name">CHOOSE CATEGORY</label>
-            <select
-              value={selectedCategory}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option value="">SELECT A CATEGORY FOR YOUR NFT</option>
-              {categoryArry.map((el, i) => (
-                <option key={i} value={el.category}>
-                  {el.category}
-                  </option>
-              ))}
-            </select>
-          </div>
+        <select
+          value={selectedCategory}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <option value="">SELECT A CATEGORY FOR YOUR NFT</option>
+          {categoryArry.map((el, i) => (
+            <option key={i} value={el.category}>
+              {el.category}
+            </option>
+          ))}
+        </select>
+        {selectedCategory && (
+          <p>Selected Category: {categoryArry.find(el => el.category === selectedCategory)?.category}</p>
+        )}
+      </div>
 
 
 
