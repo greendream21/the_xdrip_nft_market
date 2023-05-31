@@ -1,12 +1,12 @@
 
 import React, { useState, useEffect } from "react";
-import { create as ipfsHttpClient } from "ipfs-http-client";
+
 import Web3Modal from "web3modal";
 import { NFTStorage, Blob } from 'nft.storage';
-import marketplaceCA_ABI from "./marketplaceCA_ABI.json";
+import marketplace2CA_ABI from "./marketplace2CA_ABI.json";
 import mohCA_ABI from "./mohCA_ABI.json";
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
-import {uploadToIPFS } from "../UploadNFT/UploadNFT"
+import {uploadToIPFS } from "../UploadNFT/UploadNFT2"
 
 import Web3 from 'web3';
 
@@ -16,17 +16,9 @@ const apiKey = process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY;
 
 const client = new NFTStorage({ token: apiKey });
 
-//not actually using this http client but keeping code and web3 provider  wrapper for now
 
-const ipfs = ipfsHttpClient({
-  host: 'ipfs.nft.storage',
-  port: 443,
-  protocol: 'https',
-});
-
-
-const NFTMarketplaceAddress = marketplaceCA_ABI.address;
-const NFTMarketplaceABI = marketplaceCA_ABI.abi;
+const NFTMarketplaceAddress = marketplace2CA_ABI.address;
+const NFTMarketplaceABI = marketplace2CA_ABI.abi;
 const MohAddress = mohCA_ABI.address;
 const MohABI = mohCA_ABI.abi;
 
@@ -124,19 +116,21 @@ export const NFTMarketplaceProvider = ({ children }) => {
 
 
 
-async function createNFT(name, price, description, category, website, royalties, properties, image ) {
-  if (!name || !description || !price || !image)
+async function createNFT(name, price, description, category, website, royalties, properties, image, editions) {
+  if (!name || !description || !price || !image || !editions)
     return setError("Data Is Missing"), setOpenError(true);
-    const data = JSON.stringify({ name, price, description, category, website, royalties, properties, image });
+  const data = JSON.stringify({ name, price, editions, description, category, website, royalties, properties, image });
 
   try {
     const cid = await client.storeBlob(new Blob([data]));
-    const url = `https://${cid}.ipfs.nftstorage.link`; // Updated base URL
+    const url = `https://${cid}.ipfs.nftstorage.link`;
 
-    // convert the price to gwei before passing it to createSale
     const priceInGwei = ethers.utils.parseUnits(price.toString(), "gwei");
 
-    await createSale(url, priceInGwei, currentAccount); 
+    for(let i = 0; i < editions; i++) {
+      await createSale(url, priceInGwei, currentAccount);
+    }
+
     router.push("/searchPage");
   } catch (error) {
     setError("Error while creating NFT");
@@ -145,17 +139,19 @@ async function createNFT(name, price, description, category, website, royalties,
 }
 
   //--- createSale FUNCTION
-  async function createSale(tokenURI, price) {
+  async function createSale(tokenURI, price, editions) {
   const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
   const account = accounts[0];
 
   const nftMarketplaceContract = new web3.eth.Contract(NFTMarketplaceABI, NFTMarketplaceAddress);
+  
+  const priceInWei = web3.utils.toWei(price.toString(), 'ether'); // Convert price to Wei
+
   const transactionParameters = {
     to: NFTMarketplaceAddress,
     from: account,
-    data: nftMarketplaceContract.methods.createToken(tokenURI, price).encodeABI(),
+    data: nftMarketplaceContract.methods.createToken(tokenURI, priceInWei, editions).encodeABI(),
     
-    //Hardcoded price - needs to be updated to form input price (gas issues below .025)
     value: web3.utils.toHex(web3.utils.toWei('0.025', 'ether')) // Assuming the listing price is 0.025 ETH
   };
 

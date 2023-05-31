@@ -5,6 +5,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <link
             href="/font/good_times_rg.woff2"
             rel="preload"
