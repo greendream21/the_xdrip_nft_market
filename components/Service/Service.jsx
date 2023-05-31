@@ -11,7 +11,7 @@ const Service = () => {
   return (
     <div className={Style.service}>
       <div className={Style.service_box}>
-        <Link href="/">
+        <Link href="/loginandsignup">
           <a>
             <div className={Style.service_box_item1}>
             <video width="250" height="250" autoPlay loop muted>
@@ -59,18 +59,18 @@ const Service = () => {
           </a>
         </Link>
 
-        <Link href="#category">
+        <Link href="/createButtonsPage">
           <a>
             <div className={Style.service_box_item4}>
             <video width="250" height="250" autoPlay loop muted>
             <source src={videos.coin5} type="video/mp4" />
           </video>
               <h1 className={Style.service_box_item_step}>
-                <span>START TRADING WITH XMARKET</span>
+                <span>START CREATING WITH XMARKET</span>
               </h1>
 
               <p>
-                BEGIN YOUR TRADING XPERIENCE WITH THE XMARKET FAMILY.
+                BEGIN YOUR ARTISITC XPERIENCE WITH THE XMARKET FAMILY.
               </p>
             </div>
           </a>

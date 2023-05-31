@@ -247,6 +247,7 @@ const formatFileSize = (size) => {
   </div>
 );
 
+
 };
 
 export default DropZone;

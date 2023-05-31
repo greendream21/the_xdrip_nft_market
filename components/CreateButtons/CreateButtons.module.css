@@ -44,6 +44,10 @@
     
 }
 
+.service_box_btn_btn{
+    margin-top: 1rem;
+}
+
 
 .service_box_btn p{
     display: flex;

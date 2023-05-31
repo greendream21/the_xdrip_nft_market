@@ -5,7 +5,7 @@
   width: 100%;
   padding: 1rem;
   margin-left: 3.5rem;
-  
+
 }
 
 .audioCard_box {
@@ -19,11 +19,11 @@
   box-shadow: var(--white-glow);
 }
 
-.audioCard_box_audio{
+.audioCard_box_audio {
   display: grid;
   width: 100%;
   justify-items: center;
- 
+
 }
 
 .audioCard_box:hover {
@@ -31,31 +31,31 @@
 }
 
 .audioCard_box_img {
-  
+
   border-radius: .5rem;
   justify-items: center;
- 
+
   width: 100%;
 }
 
 .audioCard_box_img video {
   justify-content: center;
- 
+
   width: 100%;
 }
 
 .audioCard_box_img_audio {
   justify-items: center;
-  
+
   border-top-left-radius: .5rem;
   border-bottom-left-radius: .5rem;
   width: 100%;
-  
+
 }
 
 .audioCard_box_audio_controls {
   width: 100%;
-  margin-top: -4rem;
+  margin-top: -4.5rem;
 }
 
 
@@ -105,19 +105,20 @@
   text-align: center;
   margin-bottom: 0rem;
   font-size: 2rem;
-  
-  
+
+
 }
 
 .audioCard_box_token {
   display: flex;
   justify-content: center;
-  
+
 }
-.audioCard_box_token p{
+
+.audioCard_box_token p {
   display: flex;
   justify-content: center;
-  
+
 }
 
 .audioCard_box_token_title {
@@ -126,11 +127,38 @@
 
 }
 
-.audioCard_box_token_title p{
+.audioCard_box_token_title p {
   font-size: 1.5rem;
   padding: 0rem;
   border-bottom: 4px double rgba(1, 122, 254, 255);
 
+}
+
+.detailsButton {
+  font-size: 1.1rem;
+  padding: 1rem 2.5rem;
+  border-left: 4px double rgba(1,122,254,255);
+  outline: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  background-color: rgb(14, 14, 26);
+  color: rgb(234, 234, 234);
+  font-weight: 200;
+  font-family: 'Aldrich', sans-serif;
+  transition: 0.6s;
+  box-shadow: 0px 0px 60px #1f4c65;
+  -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+}
+
+.detailsButton:active{
+  scale: 0.92;
+}
+
+.detailsButton:hover{
+  background: rgb(2,29,78);
+  background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+  color: rgb(4, 4, 38);
 }
 
 
@@ -150,75 +178,77 @@
 .audioCard_box_price {
   display: flex;
   justify-content: center;
+  align-items: center;
   line-height: 0;
   margin-top: 0rem;
   text-align: center;
+  gap: 3rem;
 }
 
 .audioCard_box_price_box {
   border: 4px double rgba(1, 122, 254, 255);
-padding: 0.2rem 1rem;
-border-radius: 0.5rem;
+  padding: 0.02rem .5rem;
+  border-radius: 0.25rem;
 }
 
 .audioCard_box_price_box small {
-background-color: black;
-padding: 0.25rem 0.95rem;
-border-radius: 0.2rem;
-color: white;
-font-size: .75rem;
-border: 4px double rgba(1, 122, 254, 255);
+  background-color: black;
+  padding: 0.2rem 0.8rem;
+  border-radius: 0.2rem;
+  color: white;
+  font-size: .75rem;
+  border: 4px double rgba(1, 122, 254, 255);
 }
 
 .audioCard_box_price_box p {
-font-size: 1.2rem;
-margin-top: 2rem;
-line-height: 0;
+  font-size: 1.1rem;
+  margin-top: 2rem;
+  
 }
 
 .audioCard_box_token {
-margin-top: 0rem;
+  margin-top: 0rem;
 }
 
 .audioCard_box_token small {
-background-color: black;
-padding: 0.2rem 0.5rem;
-border-radius: 0.2rem;
-color: white;
-border: 4px double rgba(1, 122, 254, 255);
+  background-color: black;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.2rem;
+  color: white;
+  border: 4px double rgba(1, 122, 254, 255);
 }
 
 .audioCard_box_token p {
-font-size: 1rem;
-font-weight: 700;
-margin-top: 0.5rem;
-line-height: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+  line-height: 0;
 }
 
 .audioCard_box_price_time {
-align-items: flex-end;
-display: grid;
+  align-items: flex-end;
+  display: grid;
 }
 
 .audioCard_box_price_time p {
-font-size: 1.3rem;
-font-weight: 700;
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 
 @media screen and (min-device-width: 320px) and (max-device-width: 375px) {
-.audioCard {
-padding: 0.5rem;
-}
+  .audioCard {
+    padding: 0.5rem;
+  }
 
-.audioCard_box_title p {
-font-size: 1rem;
-}
+  .audioCard_box_title p {
+    font-size: 1rem;
+  }
 
-.audioCard_box_price_box {
-padding: 0.2rem;
-}
+  .audioCard_box_price_box {
+    padding: 0.2rem;
+  }
 
-.audioCard_box_price_time p {
-font-size: 1rem;
-}
+  .audioCard_box_price_time p {
+    font-size: 1rem;
+  }
 }

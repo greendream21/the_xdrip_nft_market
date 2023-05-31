@@ -45,75 +45,15 @@ const CreateCollection = ({ }) => {
 
     //const router = useRouter();
 
-    const categoryArry = [
-        {
-            image: images.category_art,
-            category: "ART",
-        },
-        {
-            image: images.category_gaming,
-            category: "GAMING",
-        },
-        {
-            image: images.category_metaverse,
-            category: "METAVERSE",
-        },
-        {
-            image: images.category_music,
-            category: "MUSIC",
-        },
-        {
-            image: images.category_photography,
-            category: "PHOTOGRAPHY",
-        },
-        {
-            image: images.category_videos,
-            category: "VIDEOS",
-        },
-        {
-            image: images.category_sports,
-            category: "SPORTS",
-        },
-    ];
-
-    // this process is logged for visibility in console
+   
 
     const [isLoading, setIsLoading] = useState(false);
-
-    const uploadToIPFS = async (file) => {
-        const apiKey = process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY;
-        const client = new NFTStorage({ token: apiKey });
-
-        try {
-            console.log("Uploading to nft.storage...");
-            const content = await client.storeBlob(
-                new Blob([file], { type: file.type })
-            );
-
-            console.log("Upload complete, content:", content);
-            console.log("Content CID:", content);
-
-            const ipfsMediaUrl = `https://${content}.ipfs.nftstorage.link`;
-
-            console.log("Generated IPFS Media URL:", ipfsMediaUrl);
-            if (ipfsMediaUrl.includes("undefined")) {
-                console.error("Error: IPFS URL contains 'undefined'");
-            } else {
-                setImage(ipfsMediaUrl);
-                setImagePreview(URL.createObjectURL(file)); // set image preview
-
-                return ipfsMediaUrl;
-            }
-        } catch (error) {
-            console.error("Error uploading Media to nft.storage:", error);
-        }
-    };
 
     return (
         <div className={Style.CreateCollection}>
 
             <div className={Style.right_box}>
-            <div className={Style.upload_details_title}>
+                <div className={Style.upload_details_title}>
                     <h2>COLLECTION DETAILS + SOCIALS</h2>
                 </div>
                 <div className={Style.upload_box}>
@@ -126,23 +66,6 @@ const CreateCollection = ({ }) => {
                             onChange={(e) => setCollectionName(e.target.value)}
                         />
                     </div>
-
-                    <div className={formStyle.Form_box_input}>
-                        <label htmlFor="name">CHOOSE A CATEGORY</label>
-                        <select
-                            value={selectedCategory}
-                            onChange={(e) => setSelectedCategory(e.target.value)}
-                        >
-                            <option value="">SELECT A CATEGORY FOR YOUR NFT</option>
-                            {categoryArry.map((el, i) => (
-                                <option key={i} value={el.category}>
-                                    {el.category}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-
-
                     <div className={formStyle.Form_box_input}>
                         <label htmlFor="website">YOUR COLLECTIONS WEBSITE</label>
                         <div className={formStyle.Form_box_input_box}>
@@ -225,70 +148,90 @@ const CreateCollection = ({ }) => {
                 <div className={Style.upload_dropzone_title}>
                     <h2> LOGO + FEATURED + BANNER IMAGES</h2>
                 </div>
-                <DropZoneB
-                    title="LOGO IMAGE*"
-                    heading="THIS IMAGE WILL BE USED FOR DISPLAY PURPOSES."
-                    subHeading="RECOMMENDED SIZE: 350 x 350"
-                    name={collectionName}
-                    description={description}
-                    category={category}
-                    website={website}
-                    setImage={setImage}
-                    setImagePreview={setImagePreview}
-                    imagePreview={imagePreview}
-                    fileSize={fileSize}
-                    isLoading={isLoading}
-                    setIsLoading={setIsLoading}
-                    setFileType={setFileType}
-                    fileType={fileType}
+                <div className={Style.dropzone_container}>
+                    <div className={Style.dropzone_item}>
+                        <h3>LOGO IMAGE*</h3>
+                    </div>
+                    <DropZoneB
+                        heading="THIS IMAGE WILL BE USED FOR DISPLAY PURPOSES."
+                        subHeading="RECOMMENDED SIZE: 350 x 350"
+                        name={collectionName}
+                        description={description}
+                        category={category}
+                        website={website}
+                        setImage={setImage}
+                        setImagePreview={setImagePreview}
+                        imagePreview={imagePreview}
+                        fileSize={fileSize}
+                        isLoading={isLoading}
+                        setIsLoading={setIsLoading}
+                        setFileType={setFileType}
+                        fileType={fileType}
 
 
-                />
-
-                <DropZoneB
-                    title="FEATURED IMAGE"
-                    heading="THIS IMAGE WILL BE USED IN XMARKET FEATURED SPACES"
-                    subHeading="RECOMMENDED SIZE: 600 x 600 "
-                    name={collectionName}
-                    description={description}
-                    category={category}
-                    website={website}
-                    setImage={setImage}
-                    setImagePreview={setImagePreview}
-                    imagePreview={imagePreview}
-                    fileSize={fileSize}
-                    isLoading={isLoading}
-                    setIsLoading={setIsLoading}
-                    setFileType={setFileType}
-                    fileType={fileType}
-
-
-                />
-                <DropZoneB
-                    title="BANNER IMAGE"
-                    heading="THIS IMAGE WILL APPEAR AT THE TOP OF YOUR COLLECTION PAGE"
-                    subHeading="RECOMMENDED SIZE: 1400 x 350"
-                    name={collectionName}
-                    description={description}
-                    category={category}
-                    website={website}
-                    setImage={setImage}
-                    setImagePreview={setImagePreview}
-                    imagePreview={imagePreview}
-                    fileSize={fileSize}
-                    isLoading={isLoading}
-                    setIsLoading={setIsLoading}
-                    setFileType={setFileType}
-                    fileType={fileType}
+                    />
+                </div>
+                <div className={Style.dropzone_container}>
+                    <div className={Style.dropzone_item}>
+                        <h3>FEATURED IMAGE</h3>
+                    </div>
+                    <div className={Style.dropzone}>
+                        <DropZoneB
+                            heading="THIS IMAGE WILL BE USED IN XMARKET FEATURED SPACES"
+                            subHeading="RECOMMENDED SIZE: 600 x 600 "
+                            name={collectionName}
+                            description={description}
+                            category={category}
+                            website={website}
+                            setImage={setImage}
+                            setImagePreview={setImagePreview}
+                            imagePreview={imagePreview}
+                            fileSize={fileSize}
+                            isLoading={isLoading}
+                            setIsLoading={setIsLoading}
+                            setFileType={setFileType}
+                            fileType={fileType}
 
 
-                />
+                        />
+                    </div>
+                </div>
+
+                <div className={Style.dropzone_container}>
+                    <div className={Style.dropzone_item}>
+                        <h3>BANNER IMAGE</h3>
+                    </div>
+                    <div className={Style.dropzone}>
+                        <DropZoneB
+                            heading="THIS IMAGE WILL APPEAR AT THE TOP OF YOUR COLLECTION PAGE"
+                            subHeading="RECOMMENDED SIZE: 1400 x 350"
+                            name={collectionName}
+                            description={description}
+                            category={category}
+                            website={website}
+                            setImage={setImage}
+                            setImagePreview={setImagePreview}
+                            imagePreview={imagePreview}
+                            fileSize={fileSize}
+                            isLoading={isLoading}
+                            setIsLoading={setIsLoading}
+                            setFileType={setFileType}
+                            fileType={fileType}
+
+
+                        />
+                    </div>
+                </div>
                 <div className={Style.upload_box_btn}>
                     <Button
                         btnName="CREATE YOUR NEW COLLECTION"
-                        handleClick={togglePreview}
+                        handleClick={() => {
+                            togglePreview();
+                            saveCollectionDetails();
+                        }}
                         classStyle={Style.upload_box_btn_style}
                     />
+
                 </div>
             </div>
 
