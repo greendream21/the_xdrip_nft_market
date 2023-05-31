@@ -1,0 +1,25 @@
+
+
+.MOHDetailsPage{
+    width: 100%;
+    padding-top: 14rem;
+}
+
+.MOHDetailsPage_box{
+    width: 80%;
+    margin:  0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+}
+
+@media screen and (max-width: 50em) {
+    .MOHDetailsPage{
+        margin-block: 2rem;
+    }
+
+    .MOHDetailsPage_box{
+        width: 90%;
+        grid-template-columns: 1fr;
+    }
+}
