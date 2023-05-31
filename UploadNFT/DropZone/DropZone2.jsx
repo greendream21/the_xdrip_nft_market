@@ -28,6 +28,7 @@ const DropZone = ({
   fileType,
   setPreviewMedia, 
   setPreviewFileType,
+  editions,
 }) => {
   const [fileUrl, setFileUrl] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
