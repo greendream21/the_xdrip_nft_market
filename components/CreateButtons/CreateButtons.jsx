@@ -26,8 +26,10 @@ const CreateButtons = () => {
             className={Style.subscribe_box_right_img}
             
           />
+          <div className={Style.service_box_btn_btn}>
         <Button btnName="CREATE YOUR NFT" handleClick={() => router.push("/uploadNFT")} />
         <p>Create a single NFT or mint into your existing collection.</p>
+        </div>
         </div>
         <div className={Style.service_box_btn}>
         <video
@@ -40,8 +42,10 @@ const CreateButtons = () => {
             className={Style.subscribe_box_right_img}
             
           />
+          <div className={Style.service_box_btn_btn}>
         <Button btnName="CREATE A COLLECTION" handleClick={() => router.push("/createCollectionPage")} />
         <p>Create your new collection and begin minting your NFTs</p>
+        </div>
         </div>
       </div>
     </div>

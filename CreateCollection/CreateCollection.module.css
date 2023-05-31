@@ -8,6 +8,22 @@
 
 }
 
+.dropzone_container{
+
+}
+
+.dropzone{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.dropzone_item{
+    display: flex;
+    justify-content: center;
+    margin-bottom: -4rem;
+}
+
 .upload_dropzone{
     margin-top: 2rem;
     display: grid;
@@ -50,6 +66,8 @@
 
 .Form_box_input{
     font-size: 2rem;
+    
+    
 }
 .upload_box_input_para{
     display: grid;

@@ -129,10 +129,6 @@ const renderFilePreview = (el) => {
           <div className={Style.audioCard_box_img}>
             {renderFilePreview(el)}
           </div>
-          <Link
-                href={{ pathname: "/NFTDetails", query: el }}
-                key={`${el.tokenId}-${i}`}
-                >
           <div className={Style.audioCard_box_content}>
             <div className={Style.audioCard_box_content_box}>
             <div className={Style.audioCard_box_title}>
@@ -168,15 +164,23 @@ const renderFilePreview = (el) => {
                 <small>CURRENT PRICE</small>
                 <p>{parseFloat(el.price) * 10 ** 9} BNB</p>
               </div>
+
+              <div className={Style.audioCard_box_price_box_btn_btn}>
+                    <Link href={{ pathname: "/NFTDetails", query: el }} key={`${el.tokenId}-${i}`}>
+                    <button className={Style.detailsButton}>DETAILS</button>
+                    </Link>
+                  </div>
+              
             </div>
 
           </div>
-          </Link>
+         
         </motion.div>
       ))}
     </div>
 </motion.div>
 );
 };
+
 
 export default AudioCard;

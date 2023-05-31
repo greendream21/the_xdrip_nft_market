@@ -127,22 +127,25 @@ const UloadNFT = ({ createNFT }) => {
             />
           </div>
 
+
+
           <div className={formStyle.Form_box_input}>
             <label htmlFor="name">CHOOSE CATEGORY</label>
-
-
             <select
               value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
+              onChange={(e) => setCategory(e.target.value)}
             >
               <option value="">SELECT A CATEGORY FOR YOUR NFT</option>
               {categoryArry.map((el, i) => (
                 <option key={i} value={el.category}>
                   {el.category}
-                </option>
+                  </option>
               ))}
             </select>
           </div>
+
+
+
           <div className={formStyle.Form_box_input}>
             <label htmlFor="name">CHOOSE COLLECTION</label>
             <select
@@ -153,10 +156,11 @@ const UloadNFT = ({ createNFT }) => {
               {/* Render existing collections associated with the connected wallet */}
               {/* {existingCollections.map((collection, i) => (
                <option key={i} value={collection}>
-                {collection}
+                {el.collection}
                   </option>
                 ))} */}
               <option value="new">CREATE A NEW COLLECTION</option>
+              <option value="na">NONE</option>
             </select>
             
           </div>

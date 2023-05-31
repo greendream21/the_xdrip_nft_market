@@ -19,9 +19,8 @@
 
 .DropZone_box_input_img_img{
     border-radius: 1rem;
-    padding-left: 2rem;
-    align-self: center;
-    /* filter: invert(); */
+    padding-left: 0rem;
+    
 }
 
 .DropZone_box_aside{
@@ -32,9 +31,9 @@
 }
 
 .DropZone_box_aside_box{
-    display: grid;
-    grid-template-columns: 1.5fr 4fr;
-    gap: 0rem;
+    display: flex;
+    justify-content: center;
+    
 }
 
 .DropZone_box_aside_box_preview p {
