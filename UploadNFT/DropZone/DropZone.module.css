@@ -4,6 +4,12 @@
     margin-block: 3rem;
 }
 
+.DropZone_boxed{
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}
+
 .DropZone_box{
     border: 5px dotted rgba(1,122,254,255);
    border-radius: 1rem;
@@ -18,22 +24,26 @@
 
 .DropZone_box_input_img_img{
     
-    padding-left: 2rem;
+    padding: 0.5rem;
     align-self: center;
     /* filter: invert(); */
 }
 
 .DropZone_box_aside{
-    padding: .5rem;
-    border: 4px double rgba(1,122,254,255);
-    margin-top: 2rem;
-    
+  width: 90%;
+    padding: .5rem;  
+    margin-top: 1rem;
+    box-shadow: 0 0 5px #017afe99, 0 0 10px #017afe99, 0 0 18px;
 }
 
 .DropZone_box_aside_box{
-    display: grid;
-    grid-template-columns: 1.5fr 4fr;
+    display: flex;   
     gap: 0rem;
+    justify-content: center;
+    border-top: 4px double #636363;
+    border-left: 4px double #636363;
+    border-right: 4px double #636363; 
+      
 }
 
 .DropZone_box_aside_box_preview p {
@@ -65,6 +75,24 @@
   font-weight: bold;
   text-align: center;
 }
+
+.DropZone_box_aside_box_preview table {
+  display: flex;
+  flex-direction: column;
+}
+
+.DropZone_box_aside_box_preview table tr {
+  display: flex;
+  flex-direction: row;
+}
+
+.DropZone_box_aside_box_preview table td {
+  flex: 1;
+  font-size: 1.1rem;
+  padding: 5px;
+  border: 4px double #636363;
+}
+
 
 
 

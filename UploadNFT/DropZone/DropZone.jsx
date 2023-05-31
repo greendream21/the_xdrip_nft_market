@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import Image from "next/image";
 import Img from "next/image";
-//INTRNAL IMPORT
+//INTERNAL IMPORT
 import Style from "./DropZone.module.css";
 import images from "../../img";
 
@@ -149,27 +149,53 @@ const DropZone = ({
 
   return (
     <div className={Style.DropZone}>
+      <div className={Style.DropZone_boxed}>
       {imagePreview ? (
         <aside className={Style.DropZone_box_aside}>
           <div className={Style.DropZone_box_aside_box}>
             {renderMediaPreview()}
-            <div className={Style.DropZone_box_aside_box_preview}>
-              <div className={Style.DropZone_box_aside_box_preview_one}>
-                <p>NFT Name : {name || ""}</p>
-                <p>Category : {category || ""}</p>
-                <p>Editions : {editions || ""}</p>
-              </div>
-              <div className={Style.DropZone_box_aside_box_preview_two}>
-                <p>Royalties : {royalties ? handleInputValue(royalties) : ""}</p>
-                <p>Price : {price ? handleInputValue(price) : ""}</p>
-                <p>FileSize : {formatFileSize(localFileSize)}</p>
-                <p>Properties : {properties || ""}</p>
-                <p>Website : {website || ""}</p>
-              </div>
-              <div className={Style.DropZone_box_aside_box_preview_three}>
-                <p>Description : {description || ""}</p>
-              </div>
-            </div>
+          </div>
+          <div className={Style.DropZone_box_aside_box_preview}>
+            <table>
+              <tbody>
+                <tr>
+                  <td>NFT Name:</td>
+                  <td>{name || ""}</td>
+                </tr>
+                <tr>
+                  <td>Category:</td>
+                  <td>{category || ""}</td>
+                </tr>
+                <tr>
+                  <td>Editions:</td>
+                  <td>{editions || ""}</td>
+                </tr>
+                <tr>
+                  <td>Royalties:</td>
+                  <td>{royalties ? handleInputValue(royalties) : ""}</td>
+                </tr>
+                <tr>
+                  <td>Price:</td>
+                  <td>{price ? handleInputValue(price) : ""}</td>
+                </tr>
+                <tr>
+                  <td>FileSize:</td>
+                  <td>{formatFileSize(localFileSize)}</td>
+                </tr>
+                <tr>
+                  <td>Properties:</td>
+                  <td>{properties || ""}</td>
+                </tr>
+                <tr>
+                  <td>Website:</td>
+                  <td>{website || ""}</td>
+                </tr>
+                <tr>
+                  <td>Description:</td>
+                  <td>{description || ""}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </aside>
       ) : (
@@ -202,6 +228,7 @@ const DropZone = ({
           <p className={Style.loadingText}>Loading...</p>
         </div>
       )}
+      </div>
     </div>
   );
 };
