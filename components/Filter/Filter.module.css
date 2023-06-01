@@ -21,6 +21,11 @@
     
 }
 
+.verified_img{
+    border-radius:  50%;
+        
+}
+
 .filter_box_left button{
     padding: 1rem 1.25rem;
     border-radius: 0.4rem;
@@ -71,11 +76,13 @@
 }
 
 .filter_box_items_box{
+    display: flex;
+    align-items: center;
     padding: 1rem;
 }
 
 .filter_box_items_box_item{
-    padding: 1rem 1.25rem;
+    padding: .75rem 1rem;
     border-radius: 0.4rem;
     border: 4px double rgba(1,122,254,255);
     cursor: pointer;

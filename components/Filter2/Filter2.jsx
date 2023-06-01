@@ -16,6 +16,8 @@ import Style from "./Filter2.module.css";
 import Loader from "../Loader/Loader";
 import NFTCardTwo from "../../collectionPage/NFTCardTwo/NFTCardTwo";
 import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
+import images from "../../img";
+import Image from "next/image";
 
 const Filter2 = () => {
   const [filter, setFilter] = useState(true);
@@ -27,11 +29,13 @@ const Filter2 = () => {
   const [nftsCopy, setNftsCopy] = useState([]);
   const [category, setCategory] = useState("nfts");
   const [selectedCategoryData, setSelectedCategoryData] = useState([]);
+  const [fileTypes, setFileTypes] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        /*if (currentAccount) {*/
         const items = await fetchNFTs();
         setNfts(items.reverse());
         setNftsCopy(items);
@@ -43,6 +47,37 @@ const Filter2 = () => {
 
     fetchData();
   }, []);
+
+
+  useEffect(() => {
+    const fetchFileTypes = async () => {
+      let fileTypesObj = {};
+
+      const savedData = localStorage.getItem("fileTypesObj");
+      if (savedData) {
+        fileTypesObj = JSON.parse(savedData);
+      }
+
+      for (const el of nfts) {
+        if (!fileTypesObj[el.image]) {
+          try {
+            const response = await fetch(el.image);
+            const contentType = response.headers.get("content-type");
+            fileTypesObj[el.image] = contentType;
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      }
+
+      localStorage.setItem("fileTypesObj", JSON.stringify(fileTypesObj));
+
+      setFileTypes(fileTypesObj);
+      setLoading(false);
+    };
+
+    fetchFileTypes();
+  }, [nfts]);
 
   useEffect(() => {
     switch (category) {
@@ -69,22 +104,6 @@ const Filter2 = () => {
     }
   }, [category, nfts, nftsCopy]);
 
-  const openFilter = () => {
-    setFilter(!filter);
-  };
-
-  const openImage = () => {
-    setImage(!image);
-  };
-
-  const openVideo = () => {
-    setVideo(!video);
-  };
-
-  const openMusic = () => {
-    setMusic(!music);
-  };
-
   return (
     <div className={Style.filter2}>
       <div className={Style.filter2_box}>
@@ -98,7 +117,7 @@ const Filter2 = () => {
         </div>
 
         <div className={Style.filter2_box_right}>
-          <div className={Style.filter2_box_right_box} onClick={() => openFilter()}>
+          <div className={Style.filter2_box_right_box} onClick={() => setFilter(!filter)}>
             <FaFilter />
             <span>FILTER</span> {filter ? <FaAngleDown /> : <FaAngleUp />}
           </div>
@@ -108,64 +127,71 @@ const Filter2 = () => {
       {filter && (
         <div className={Style.filter2_box_items}>
           <div className={Style.filter2_box_items_box}>
-            <div className={Style.filter2_box_items_box_item}>
-              <FaWallet /> <span>.01 BNB - 10 BNB</span>
-              <AiFillCloseCircle />
-            </div>
-          </div>
-
-          <div className={Style.filter2_box_items_box}>
-            <div
-              className={Style.filter2_box_items_box_item_trans}
-              onClick={() => openImage()}
+            <div className={Style.filter2_box_items_box_item_trans}
+              onClick={() => setImage(!image)}
             >
               <FaImages /> <small>IMAGES</small>
-              {image ? <AiFillCloseCircle /> : <TiTick />}
+              {image ? <TiTick /> : <AiFillCloseCircle />}
             </div>
           </div>
 
           <div className={Style.filter2_box_items_box}>
             <div
               className={Style.filter2_box_items_box_item_trans}
-              onClick={() => openVideo()}
+              onClick={() => setVideo(!video)}
             >
               <FaVideo /> <small>VIDEOS</small>
-              {video ? <AiFillCloseCircle /> : <TiTick />}
+              {video ? <TiTick /> : <AiFillCloseCircle />}
             </div>
           </div>
 
           <div className={Style.filter2_box_items_box}>
             <div
               className={Style.filter2_box_items_box_item_trans}
-              onClick={() => openMusic()}
+              onClick={() => setMusic(!music)}
             >
               <FaMusic /> <small>MUSIC</small>
-              {music ? <AiFillCloseCircle /> : <TiTick />}
+              {music ? <TiTick /> : <AiFillCloseCircle />}
             </div>
           </div>
 
           <div className={Style.filter2_box_items_box}>
             <div className={Style.filter2_box_items_box_item}>
-              <FaUserAlt /> <span>VERIFIED</span>
-              <MdVerified />
+              <span>VERIFIED</span>
+              <Image
+                src={images.xm2}
+                alt="NFT"
+                width={25}
+                height={25}
+                objectFit="cover"
+                className={Style.verified_img}
+                controls
+              />
             </div>
           </div>
         </div>
       )}
 
       <div className={Style.category_section}>
-        {category === "nfts" ? (
-          selectedCategoryData.length === 0 ? (
-            <Loader />
-          ) : (
-            <NFTCardTwo NFTData={selectedCategoryData} />
-          )
+        {selectedCategoryData.length === 0 ? (
+          <Loader />
         ) : (
-          selectedCategoryData.length === 0 ? (
-            <p>NO {category} NFT'S CURRENTLY AVAILABLE</p>
-          ) : (
-            <NFTCardTwo NFTData={selectedCategoryData} />
-          )
+          <NFTCardTwo
+            NFTData={selectedCategoryData.filter((nft) => {
+              const fileType = fileTypes[nft.image];
+              if (!fileType) {
+                return true;
+              }
+              if (
+                (image && fileType.startsWith("image")) ||
+                (video && fileType.startsWith("video")) ||
+                (music && fileType.startsWith("audio"))
+              ) {
+                return true;
+              }
+              return false;
+            })}
+          />
         )}
       </div>
     </div>

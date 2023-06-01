@@ -30,6 +30,8 @@ import mohCA_ABI from "../../Context/mohCA_ABI.json";
 const MohAddress = mohCA_ABI.address;
 const MohABI = mohCA_ABI.abi;
 
+import MyNFTData, { MyNFTDataContext } from '../../Context/MyNFTDataContext';
+
 const fetchMohContract = (signerOrProvider) =>
   new ethers.Contract(MohAddress, MohABI, signerOrProvider);
 
@@ -132,6 +134,7 @@ const MOHDescription = ({ nft }) => {
 
   return (
     <div className={Style.MOHDescription}>
+      {currentItems.map((el, i) => (
       <div className={Style.MOHDescription_box}>
         {/* //Part ONE */}
         <div className={Style.MOHDescription_box_share}>
@@ -335,6 +338,7 @@ const MOHDescription = ({ nft }) => {
           </div>
         </div>
       </div>
+      ))}
     </div>
   );
 };

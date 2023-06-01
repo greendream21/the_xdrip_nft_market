@@ -16,6 +16,8 @@ import Style from "./Filter.module.css";
 import Loader from "../Loader/Loader";
 import NFTCard from "../NFTCard/NFTCard";
 import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
+import images from "../../img";
+import Image from "next/image";
 
 const Filter = () => {
   const [filter, setFilter] = useState(true);
@@ -27,11 +29,13 @@ const Filter = () => {
   const [nftsCopy, setNftsCopy] = useState([]);
   const [category, setCategory] = useState("nfts");
   const [selectedCategoryData, setSelectedCategoryData] = useState([]);
+    const [fileTypes, setFileTypes] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [priceRange, setPriceRange] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        /*if (currentAccount) {*/
         const items = await fetchNFTs();
         setNfts(items.reverse());
         setNftsCopy(items);
@@ -43,6 +47,37 @@ const Filter = () => {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const fetchFileTypes = async () => {
+      let fileTypesObj = {};
+
+      const savedData = localStorage.getItem("fileTypesObj");
+      if (savedData) {
+        fileTypesObj = JSON.parse(savedData);
+      }
+
+      for (const el of nfts) {
+        if (!fileTypesObj[el.image]) {
+          try {
+            const response = await fetch(el.image);
+            const contentType = response.headers.get("content-type");
+            fileTypesObj[el.image] = contentType;
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      }
+
+      localStorage.setItem("fileTypesObj", JSON.stringify(fileTypesObj));
+
+      setFileTypes(fileTypesObj);
+      setLoading(false);
+    };
+
+    fetchFileTypes();
+  }, [nfts]);
+
 
   useEffect(() => {
     switch (category) {
@@ -69,22 +104,6 @@ const Filter = () => {
     }
   }, [category, nfts, nftsCopy]);
 
-  const openFilter = () => {
-    setFilter(!filter);
-  };
-
-  const openImage = () => {
-    setImage(!image);
-  };
-
-  const openVideo = () => {
-    setVideo(!video);
-  };
-
-  const openMusic = () => {
-    setMusic(!music);
-  };
-
   return (
     <div className={Style.filter}>
       <div className={Style.filter_box}>
@@ -108,16 +127,8 @@ const Filter = () => {
       {filter && (
         <div className={Style.filter_box_items}>
           <div className={Style.filter_box_items_box}>
-            <div className={Style.filter_box_items_box_item}>
-              <FaWallet /> <span>.01 BNB - 10 BNB</span>
-              <AiFillCloseCircle />
-            </div>
-          </div>
-
-          <div className={Style.filter_box_items_box}>
-            <div
-              className={Style.filter_box_items_box_item_trans}
-              onClick={() => openImage()}
+            <div className={Style.filter_box_items_box_item_trans}
+              onClick={() => setImage()}
             >
               <FaImages /> <small>IMAGES</small>
               {image ? <AiFillCloseCircle /> : <TiTick />}
@@ -127,7 +138,7 @@ const Filter = () => {
           <div className={Style.filter_box_items_box}>
             <div
               className={Style.filter_box_items_box_item_trans}
-              onClick={() => openVideo()}
+              onClick={() => setVideo()}
             >
               <FaVideo /> <small>VIDEOS</small>
               {video ? <AiFillCloseCircle /> : <TiTick />}
@@ -137,7 +148,7 @@ const Filter = () => {
           <div className={Style.filter_box_items_box}>
             <div
               className={Style.filter_box_items_box_item_trans}
-              onClick={() => openMusic()}
+              onClick={() => setMusic()}
             >
               <FaMusic /> <small>MUSIC</small>
               {music ? <AiFillCloseCircle /> : <TiTick />}
@@ -146,8 +157,16 @@ const Filter = () => {
 
           <div className={Style.filter_box_items_box}>
             <div className={Style.filter_box_items_box_item}>
-              <FaUserAlt /> <span>VERIFIED</span>
-              <MdVerified />
+              <span>VERIFIED</span>
+              <Image
+                src={images.xm2}
+                alt="NFT"
+                width={25}
+                height={25}
+                objectFit="cover"
+                className={Style.verified_img}
+                controls
+              />
             </div>
           </div>
         </div>
