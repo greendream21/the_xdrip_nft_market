@@ -1,74 +1,93 @@
 .heroSection {
-    position: relative;
-    overflow: hidden;
-    height: 100vh;
-  }
-  
-  .video_background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    opacity: .8;
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.video_background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+.mute_button {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.pause_button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.heroSection_content {
+  position: absolute;
+  top: 77%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 1;
+}
+
+.heroSection_text {
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 5px black;
+}
+
+.heroSection_text h1 {
+  font-size: 4rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.heroSection_text p {
+  font-size: 1.5rem;
+  font-weight: 200;
+  margin-bottom: 2rem;
+}
+
+.heroSection_controls {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  color: white;
+  font-size: 2rem;
+  font-weight: 200;
+  z-index: 1;
+  cursor: pointer;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .heroSection_text h1 {
+    font-size: 3rem;
   }
 
-  .mute_button {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    
-  }
-  
-  .pause_button {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  
-  .heroSection_content {
-    position: absolute;
-    top: 77%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 1;
-  }
-  
-  .heroSection_text {
-    margin-bottom: 2rem;
-    text-shadow: 1 1 5 5 black;
-  }
-  
-  .heroSection_text h1 {
-    font-size: 4rem;
-    font-weight: 400;
-    margin-bottom: 1rem;
-  }
-  
   .heroSection_text p {
-    font-size: 1.5rem;
-    font-weight: 200;
-    margin-bottom: 2rem;
+    font-size: 1.25rem;
   }
-  
-  .heroSection_controls {
-    position: absolute;
-    bottom: 1rem;
-    left: 1rem;
-    color: white;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .heroSection_text h1 {
     font-size: 2rem;
-    font-weight: 200;
-    z-index: 1;
-    cursor: pointer;
   }
-  
+
+  .heroSection_text p {
+    font-size: 1rem;
+  }
+}
