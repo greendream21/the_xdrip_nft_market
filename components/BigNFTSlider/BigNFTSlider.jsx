@@ -297,10 +297,6 @@ const BigNFTSlider = () => {
             />
           </div>
 
-          <div className={Style.bigNFTSlider_box_right_like}>
-            <AiFillHeart className={Style.bigNFTSlider_box_right_like_heart} />
-            <p>{sliderData[idNumber].like}</p>
-          </div>
         </div>
       </div>
     </div>

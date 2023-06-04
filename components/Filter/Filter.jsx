@@ -57,7 +57,7 @@ const Filter = () => {
         fileTypesObj = JSON.parse(savedData);
       }
 
-      for (const el of nfts) {
+      for (const el of selectedCategoryData) {
         if (!fileTypesObj[el.image]) {
           try {
             const response = await fetch(el.image);
@@ -76,7 +76,7 @@ const Filter = () => {
     };
 
     fetchFileTypes();
-  }, [nfts]);
+  }, [selectedCategoryData]);
 
 
   useEffect(() => {
@@ -128,30 +128,29 @@ const Filter = () => {
         <div className={Style.filter_box_items}>
           <div className={Style.filter_box_items_box}>
             <div className={Style.filter_box_items_box_item_trans}
-              onClick={() => setImage()}
+              onClick={() => setImage(!image)}
             >
               <FaImages /> <small>IMAGES</small>
-              {image ? <AiFillCloseCircle /> : <TiTick />}
+              {image ? <TiTick /> : <AiFillCloseCircle />}
             </div>
           </div>
 
           <div className={Style.filter_box_items_box}>
             <div
               className={Style.filter_box_items_box_item_trans}
-              onClick={() => setVideo()}
+              onClick={() => setVideo(!video)}
             >
               <FaVideo /> <small>VIDEOS</small>
-              {video ? <AiFillCloseCircle /> : <TiTick />}
-            </div>
+              {video ? <TiTick /> : <AiFillCloseCircle />}            </div>
           </div>
 
           <div className={Style.filter_box_items_box}>
             <div
               className={Style.filter_box_items_box_item_trans}
-              onClick={() => setMusic()}
+              onClick={() => setMusic(!music)}
             >
               <FaMusic /> <small>MUSIC</small>
-              {music ? <AiFillCloseCircle /> : <TiTick />}
+              {music ? <TiTick /> : <AiFillCloseCircle />}
             </div>
           </div>
 
@@ -173,18 +172,54 @@ const Filter = () => {
       )}
 
       <div className={Style.category_section}>
-        {category === "nfts" ? (
-          selectedCategoryData.length === 0 ? (
-            <Loader />
-          ) : (
-            <NFTCard NFTData={selectedCategoryData} />
-          )
+      {selectedCategoryData.length === 0 ? (
+          <Loader />
         ) : (
-          selectedCategoryData.length === 0 ? (
-            <p>NO {category} NFT'S CURRENTLY AVAILABLE</p>
-          ) : (
-            <NFTCard NFTData={selectedCategoryData} />
-          )
+          <NFTCard
+            NFTData={selectedCategoryData.filter((nft) => {
+              const fileType = fileTypes[nft.image];
+              if (!fileType) {
+                return true;
+              }
+              const fileExtension = fileType.split("/")[1];
+              if (
+                (image && 
+                  (fileExtension === "png" || 
+                   fileExtension === "jpeg" || 
+                   fileExtension === "bmp" || 
+                   fileExtension === "tiff" || 
+                   fileExtension === "xml" || 
+                   fileExtension === "webp")) ||
+
+                (video && 
+                  (fileExtension === "mp4" ||  
+                  fileExtension === "gif" ||
+                  fileExtension === "avi" || 
+                  fileExtension === "mov" || 
+                  fileExtension === "webm" || 
+                  fileExtension === "wmv" || 
+                  fileExtension === "flv" || 
+                  fileExtension === "mkv" || 
+                  nft.category === "VIDEO" || 
+                  fileExtension === "m4v" || 
+                  fileExtension === "3gp" )) ||
+
+                (music && 
+                  (fileExtension === "mp3" || 
+                  fileExtension === "ogg" || 
+                  fileExtension === "wma" || 
+                  fileExtension === "aac" || 
+                  fileExtension === "wav" || 
+                  fileExtension === "mpeg" || 
+                  fileExtension === "mpg" || 
+                  nft.category === "MUSIC" || 
+                  fileExtension === "flac"))
+              ) {
+                return true;
+              }
+              return false;
+            })}
+          />
         )}
       </div>
     </div>
