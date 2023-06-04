@@ -7,7 +7,7 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import images from "../../../img";
 import Image from "next/image";
 
-
+import ReactPlayer from 'react-player';
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
@@ -17,7 +17,7 @@ import { motion } from 'framer-motion';
 
 import Link from "next/link";
 
-const AudioCard = ({ NFTData, likes }) => {
+const AudioCard = ({ NFTData, likes, isVisible }) => {
   const [fileTypes, setFileTypes] = useState({});
   const [loading, setLoading] = useState(true);
   const [like, setLike] = useState(false);
@@ -122,31 +122,30 @@ const renderFilePreview = (el) => {
  
   return (
   <motion.div className={Style.audioCard_container}>
-
     <div className={Style.audioCard}>
       {NFTData.map((el, i) => (
         <motion.div className={Style.audioCard_box} key={`${el.tokenId}-${i}`}>
           <div className={Style.audioCard_box_img}>
-            {renderFilePreview(el)}
+            {isVisible || renderFilePreview(el)}
           </div>
           <div className={Style.audioCard_box_content}>
             <div className={Style.audioCard_box_content_box}>
-            <div className={Style.audioCard_box_title}>
-                   <p>NFT NAME:</p>
-                </div> 
+              <div className={Style.audioCard_box_title}>
+                <p>NFT NAME:</p>
+              </div>
               <div className={Style.audioCard_box_title_name}>
-                   <p>{el.name}</p>
-                </div> 
-                <div className={Style.audioCard_box_token_title}>
-                  <p>NFT MINT ID</p>
-                </div>               
-                <div className={Style.audioCard_box_token}>
-                  <p># {el.tokenId}</p>
-                </div>
-                <div className={Style.audioCard_box_token_title}>
-                  <p>NFT RATING</p>
-                </div>    
-                <div className={Style.audioCard_box_title_like}>
+                <p>{el.name}</p>
+              </div>
+              <div className={Style.audioCard_box_token_title}>
+                <p>NFT MINT ID</p>
+              </div>
+              <div className={Style.audioCard_box_token}>
+                <p># {el.tokenId}</p>
+              </div>
+              <div className={Style.audioCard_box_token_title}>
+                <p>NFT RATING</p>
+              </div>
+              <div className={Style.audioCard_box_title_like}>
                 <Rating
                   emptySymbol={<FaRegStar style={{ marginRight: "5px" }} />}
                   fullSymbol={<FaStar style={{ marginRight: "5px" }} />}
@@ -155,30 +154,27 @@ const renderFilePreview = (el) => {
                 />
                 <div className={Style.likesNumber}>
                   <span>{likes[el.tokenId] ? likes[el.tokenId].count : 0}</span>
-                </div>                
-              </div>              
+                </div>
+              </div>
             </div>
 
-            <div className={Style.audioCard_box_price}>              
+            <div className={Style.audioCard_box_price}>
               <div className={Style.audioCard_box_price_box}>
                 <small>CURRENT PRICE</small>
                 <p>{parseFloat(el.price) * 10 ** 9} BNB</p>
               </div>
 
               <div className={Style.audioCard_box_price_box_btn_btn}>
-                    <Link href={{ pathname: "/NFTDetails", query: el }} key={`${el.tokenId}-${i}`}>
-                    <button className={Style.detailsButton}>DETAILS</button>
-                    </Link>
-                  </div>
-              
+                <Link href={{ pathname: "/NFTDetails", query: el }} key={`${el.tokenId}-${i}`}>
+                  <button className={Style.detailsButton}>DETAILS</button>
+                </Link>
+              </div>
             </div>
-
           </div>
-         
         </motion.div>
       ))}
     </div>
-</motion.div>
+  </motion.div>
 );
 };
 

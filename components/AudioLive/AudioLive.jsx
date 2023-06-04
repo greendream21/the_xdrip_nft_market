@@ -16,6 +16,7 @@ const AudioSlider = () => {
   const [likes, setLikes] = useState({});
   const [loading, setLoading] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(1);
+  const [music, setMusic] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,9 +59,35 @@ const AudioSlider = () => {
     fetchFileTypes();
   }, [nfts]);
 
+
+/*
   const audioNFTs = nfts.filter(
     (nft) => fileTypes[nft.image] && fileTypes[nft.image].includes('audio')
   );
+*/
+
+const audioNFTs = nfts.filter((nft) => {
+    const fileType = fileTypes[nft.image];
+    if (!fileType) {
+      return false;
+    }
+    const fileExtension = fileType.split("/")[1];
+    return (
+      music &&
+      (fileExtension === "mp3" ||
+        fileExtension === "ogg" ||
+        fileExtension === "wma" ||
+        fileExtension === "aac" ||
+        fileExtension === "wav" ||
+        fileExtension === "mpeg" ||
+        fileExtension === "mpg" ||
+        nft.category === "MUSIC" ||
+        fileExtension === "flac"
+    ));
+  });
+
+
+
 
   const settings = {
     dots: false,
