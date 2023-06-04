@@ -31,7 +31,7 @@ const Filter2 = () => {
   const [selectedCategoryData, setSelectedCategoryData] = useState([]);
   const [fileTypes, setFileTypes] = useState({});
   const [loading, setLoading] = useState(true);
-
+  const [sortOrder, setSortOrder] = useState("ascending");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,7 +47,6 @@ const Filter2 = () => {
 
     fetchData();
   }, []);
-
 
   useEffect(() => {
     const fetchFileTypes = async () => {
@@ -102,7 +101,25 @@ const Filter2 = () => {
       default:
         setSelectedCategoryData(nftsCopy);
     }
-  }, [category, nfts, nftsCopy]);
+
+    const sortedData = selectedCategoryData.sort((a, b) => {
+      // Assuming each NFT object has a `price` property
+      const priceA = a.price;
+      const priceB = b.price;
+
+      if (sortOrder === "ascending") {
+        return priceA - priceB;
+      } else {
+        return priceB - priceA;
+      }
+    });
+
+    setSelectedCategoryData([...sortedData]);
+  }, [category, sortOrder, nfts, nftsCopy]);
+
+  const handleSortOrderChange = (order) => {
+    setSortOrder(order);
+  };
 
   return (
     <div className={Style.filter2}>
@@ -127,11 +144,31 @@ const Filter2 = () => {
       {filter && (
         <div className={Style.filter2_box_items}>
           <div className={Style.filter2_box_items_box}>
+          <div className={Style.filter2_box_items_box_item_trans}>
+            <span>Price:</span>
+            <button
+              onClick={() => handleSortOrderChange("ascending")}
+              className={sortOrder === "ascending" ? Style.active : ""}
+            >
+              ASC
+            </button>
+            <button
+              onClick={() => handleSortOrderChange("descending")}
+              className={sortOrder === "descending" ? Style.active : ""}
+            >
+              DESC
+            </button>
+          </div>
+          </div>
+
+          <div className={Style.filter2_box_items_box}>
             <div className={Style.filter2_box_items_box_item_trans} onClick={() => setImage(!image)}>
               <FaImages /> <small>IMAGES</small>
               {image ? <TiTick /> : <AiFillCloseCircle />}
             </div>
           </div>
+
+          
 
           <div className={Style.filter2_box_items_box}>
             <div className={Style.filter2_box_items_box_item_trans} onClick={() => setVideo(!video)}>
@@ -165,55 +202,57 @@ const Filter2 = () => {
       )}
 
       <div className={Style.category_section}>
-        {selectedCategoryData.length === 0 ? (
-          <Loader />
-        ) : (
-          <NFTCardTwo
-            NFTData={selectedCategoryData.filter((nft) => {
-              const fileType = fileTypes[nft.image];
-              if (!fileType) {
-                return true;
-              }
-              const fileExtension = fileType.split("/")[1];
-              if (
-                (image && 
-                  (fileExtension === "png" || 
-                   fileExtension === "jpeg" || 
-                   fileExtension === "bmp" || 
-                   fileExtension === "tiff" || 
-                   fileExtension === "xml" || 
-                   fileExtension === "webp")) ||
+      {selectedCategoryData.length === 0 ? (
+  <Loader />
+) : (
+  <NFTCardTwo
+    NFTData={selectedCategoryData.filter((nft) => {
+      const fileType = fileTypes[nft.image];
+      if (!fileType) {
+        return true;
+      }
+      const fileExtension = fileType.split("/")[1];
+      if (
+        (image &&
+          (fileExtension === "png" ||
+            fileExtension === "jpeg" ||
+            fileExtension === "bmp" ||
+            fileExtension === "tiff" ||
+            fileExtension === "xml" ||
+            fileExtension === "webp")) ||
 
-                (video && 
-                  (fileExtension === "mp4" ||  
-                  fileExtension === "gif" ||
-                  fileExtension === "avi" || 
-                  fileExtension === "mov" || 
-                  fileExtension === "webm" || 
-                  fileExtension === "wmv" || 
-                  fileExtension === "flv" || 
-                  fileExtension === "mkv" || 
-                  nft.category === "VIDEO" || 
-                  fileExtension === "m4v" || 
-                  fileExtension === "3gp" )) ||
+        (video &&
+          (fileExtension === "mp4" ||
+            fileExtension === "gif" ||
+            fileExtension === "avi" ||
+            fileExtension === "mov" ||
+            fileExtension === "webm" ||
+            fileExtension === "wmv" ||
+            fileExtension === "flv" ||
+            fileExtension === "mkv" ||
+            nft.category === "VIDEO" ||
+            fileExtension === "m4v" ||
+            fileExtension === "3gp")) ||
 
-                (music && 
-                  (fileExtension === "mp3" || 
-                  fileExtension === "ogg" || 
-                  fileExtension === "wma" || 
-                  fileExtension === "aac" || 
-                  fileExtension === "wav" || 
-                  fileExtension === "mpeg" || 
-                  fileExtension === "mpg" || 
-                  nft.category === "MUSIC" || 
-                  fileExtension === "flac"))
-              ) {
-                return true;
-              }
-              return false;
-            })}
-          />
-        )}
+        (music &&
+          (fileExtension === "mp3" ||
+            fileExtension === "ogg" ||
+            fileExtension === "wma" ||
+            fileExtension === "aac" ||
+            fileExtension === "wav" ||
+            fileExtension === "mpeg" ||
+            fileExtension === "mpg" ||
+            nft.category === "MUSIC" ||
+            fileExtension === "flac"))
+      ) {
+        return true;
+      }
+      return false;
+    })}
+  />
+)}
+
+
       </div>
     </div>
   );

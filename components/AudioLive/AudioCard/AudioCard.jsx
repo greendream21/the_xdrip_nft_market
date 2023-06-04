@@ -105,7 +105,7 @@ const RenderMedia = ({ src }) => {
           url={src}
           controls
           playing={isVisible}
-          width='650px'
+          width='760px'
           height='450px'
           className={Style.audioCard_box_img_img}
         />

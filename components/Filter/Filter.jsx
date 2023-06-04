@@ -31,7 +31,7 @@ const Filter = () => {
   const [selectedCategoryData, setSelectedCategoryData] = useState([]);
     const [fileTypes, setFileTypes] = useState({});
   const [loading, setLoading] = useState(true);
-  const [priceRange, setPriceRange] = useState("");
+  const [sortOrder, setSortOrder] = useState("ascending");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -78,7 +78,6 @@ const Filter = () => {
     fetchFileTypes();
   }, [selectedCategoryData]);
 
-
   useEffect(() => {
     switch (category) {
       case "nfts":
@@ -102,7 +101,25 @@ const Filter = () => {
       default:
         setSelectedCategoryData(nftsCopy);
     }
-  }, [category, nfts, nftsCopy]);
+
+    const sortedData = selectedCategoryData.sort((a, b) => {
+      // Assuming each NFT object has a `price` property
+      const priceA = a.price;
+      const priceB = b.price;
+
+      if (sortOrder === "ascending") {
+        return priceA - priceB;
+      } else {
+        return priceB - priceA;
+      }
+    });
+
+    setSelectedCategoryData([...sortedData]);
+  }, [category, sortOrder, nfts, nftsCopy]);
+
+  const handleSortOrderChange = (order) => {
+    setSortOrder(order);
+  };
 
   return (
     <div className={Style.filter}>
@@ -127,9 +144,25 @@ const Filter = () => {
       {filter && (
         <div className={Style.filter_box_items}>
           <div className={Style.filter_box_items_box}>
-            <div className={Style.filter_box_items_box_item_trans}
-              onClick={() => setImage(!image)}
+          <div className={Style.filter_box_items_box_item_trans}>
+            <span>Price:</span>
+            <button
+              onClick={() => handleSortOrderChange("ascending")}
+              className={sortOrder === "ascending" ? Style.active : ""}
             >
+              ASC
+            </button>
+            <button
+              onClick={() => handleSortOrderChange("descending")}
+              className={sortOrder === "descending" ? Style.active : ""}
+            >
+              DESC
+            </button>
+          </div>
+          </div>
+
+          <div className={Style.filter_box_items_box}>
+            <div className={Style.filter_box_items_box_item_trans} onClick={() => setImage(!image)}>
               <FaImages /> <small>IMAGES</small>
               {image ? <TiTick /> : <AiFillCloseCircle />}
             </div>

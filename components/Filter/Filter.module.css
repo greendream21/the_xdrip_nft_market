@@ -67,6 +67,37 @@
     color: rgb(4, 4, 38);
 }
 
+
+.filter_box_items_box_item_trans button {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 2px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 1rem ;
+  }
+  
+  
+  .filter_box_items_box_item_trans button.active {
+    background-color: #000000;    
+    color: #fff;
+   
+  }
+  
+ 
+  .filter_box_items_box_item_trans span {
+    font-weight: 400;
+    font-size: 1rem;
+  }
+  
+ 
+.filter_box_right_box:hover {
+    background: rgb(2, 29, 78);
+    background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+    color: rgb(4, 4, 38);
+}
+
 .filter_box_items{
     width: 80%;
     margin:  0 auto;
