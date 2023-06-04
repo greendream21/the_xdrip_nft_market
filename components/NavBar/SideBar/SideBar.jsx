@@ -17,6 +17,9 @@ import {
 import Style from "./SideBar.module.css";
 import images from "../../../img";
 import { Router } from "next/router";
+import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
+
+
 
 const SideBar = ({ setOpenSideMenu }) => {
   //------USESTATE
@@ -28,39 +31,39 @@ const SideBar = ({ setOpenSideMenu }) => {
   //--------DISCOVER NAVIGATION MENU
   const discover = [
     {
-      name: "COLLECTION",
-      link: "collection",
-    },
-    {
-      name: "SEARCH",
-      link: "search",
-    },
-    {
-      name: "CREATORS",
-      link: "author",
-    },
-    {
-      name: "NFT DETAILS",
-      link: "NFTDetails",
-    },
-    {
-      name: "Upload NFT",
-      link: "uploadNFT",
-    },
-    {
-      name: "NEWS",
-      link: "news",
-    },
-  ];
+     name: "SEARCH XM",
+     link: "searchPage",
+   },
+   {
+     name: "XM CATEGORIES",
+     link: "categoriesPage",
+   },
+   {
+     name: "XM CREATORS",
+     link: "author",
+   },
+   {
+     name: "BEGIN CREATING",
+     link: "createButtonsPage",
+   },
+   {
+     name: "XNEWS",
+     link: "https://www.xdrip.io/news",
+   },
+ ];
   //------HELP CENTER
   const helpCenter = [
     {
-      name: "ABOUT",
-      link: "about",
+      name: "ABOUT US",
+      link: "aboutus",
     },
     {
       name: "CONTACT US",
       link: "contactus",
+    },
+    {
+      name: "FAQS",
+      link: "faqs",
     },
   ];
 
@@ -98,21 +101,21 @@ const SideBar = ({ setOpenSideMenu }) => {
           your own stories and share them as well.
         </p>
         <div className={Style.sideBar_social}>
-          <a href="#">
-            <FaFacebookF />
-          </a>
-          <a href="#">
-            <FaTikTok />
-          </a>
-          <a href="#">
-            <FaTwitter />
-          </a>
-          <a href="#">
-            <FaYoutube />
-          </a>
-          <a href="#">
-            <FaInstagram />
-          </a>
+        <a href="https://www.facebook.com/TheXdripOfficial/">
+              <FaFacebookF />
+            </a>
+            <a href="https://www.tiktok.com/@xdripofficial?lang=en">
+              <FaTiktok />
+            </a>
+            <a href="https://twitter.com/XDRIP__">
+              <FaTwitter />
+            </a>
+            <a href="https://www.youtube.com/channel/UCql_clMpK5GYxXUREIGfnRw">
+              <FaYoutube />
+            </a>
+            <a href="https://www.instagram.com/thexdripofficial/">
+              <FaInstagram />
+            </a>
         </div>
       </div>
 
@@ -159,13 +162,13 @@ const SideBar = ({ setOpenSideMenu }) => {
       </div>
 
       <div className={Style.sideBar_button}>
-      {!hasConnectedWallet && (
-  <ConnectWallet
-    className={Style.box_box_right}
-    btnTitle="XCONNECT"    
-    onConnect={() => setHasConnectedWallet(true)}
+      <ConnectWallet
+    className={Style.box_box_right_btn}
+    btnTitle={isWalletConnected ? "XDISCONNECTED" : "XCONNECT"}
+    colorMode="dark"
+    onConnect={handleConnectWallet}
+    disableDisconnect 
   />
-)}
       </div>
     </div>
   );
