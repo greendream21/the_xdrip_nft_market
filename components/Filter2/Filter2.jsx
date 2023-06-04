@@ -31,7 +31,7 @@ const Filter2 = () => {
   const [selectedCategoryData, setSelectedCategoryData] = useState([]);
   const [fileTypes, setFileTypes] = useState({});
   const [loading, setLoading] = useState(true);
-  const [priceRange, setPriceRange] = useState("");
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,7 +58,7 @@ const Filter2 = () => {
         fileTypesObj = JSON.parse(savedData);
       }
 
-      for (const el of nfts) {
+      for (const el of selectedCategoryData) {
         if (!fileTypesObj[el.image]) {
           try {
             const response = await fetch(el.image);
@@ -77,7 +77,7 @@ const Filter2 = () => {
     };
 
     fetchFileTypes();
-  }, [nfts]);
+  }, [selectedCategoryData]);
 
   useEffect(() => {
     switch (category) {
@@ -127,29 +127,21 @@ const Filter2 = () => {
       {filter && (
         <div className={Style.filter2_box_items}>
           <div className={Style.filter2_box_items_box}>
-            <div className={Style.filter2_box_items_box_item_trans}
-              onClick={() => setImage(!image)}
-            >
+            <div className={Style.filter2_box_items_box_item_trans} onClick={() => setImage(!image)}>
               <FaImages /> <small>IMAGES</small>
               {image ? <TiTick /> : <AiFillCloseCircle />}
             </div>
           </div>
 
           <div className={Style.filter2_box_items_box}>
-            <div
-              className={Style.filter2_box_items_box_item_trans}
-              onClick={() => setVideo(!video)}
-            >
+            <div className={Style.filter2_box_items_box_item_trans} onClick={() => setVideo(!video)}>
               <FaVideo /> <small>VIDEOS</small>
               {video ? <TiTick /> : <AiFillCloseCircle />}
             </div>
           </div>
 
           <div className={Style.filter2_box_items_box}>
-            <div
-              className={Style.filter2_box_items_box_item_trans}
-              onClick={() => setMusic(!music)}
-            >
+            <div className={Style.filter2_box_items_box_item_trans} onClick={() => setMusic(!music)}>
               <FaMusic /> <small>MUSIC</small>
               {music ? <TiTick /> : <AiFillCloseCircle />}
             </div>
@@ -182,10 +174,39 @@ const Filter2 = () => {
               if (!fileType) {
                 return true;
               }
+              const fileExtension = fileType.split("/")[1];
               if (
-                (image && fileType.startsWith("image")) ||
-                (video && fileType.startsWith("video")) ||
-                (music && fileType.startsWith("audio"))
+                (image && 
+                  (fileExtension === "png" || 
+                   fileExtension === "jpeg" || 
+                   fileExtension === "bmp" || 
+                   fileExtension === "tiff" || 
+                   fileExtension === "xml" || 
+                   fileExtension === "webp")) ||
+
+                (video && 
+                  (fileExtension === "mp4" ||  
+                  fileExtension === "gif" ||
+                  fileExtension === "avi" || 
+                  fileExtension === "mov" || 
+                  fileExtension === "webm" || 
+                  fileExtension === "wmv" || 
+                  fileExtension === "flv" || 
+                  fileExtension === "mkv" || 
+                  nft.category === "VIDEO" || 
+                  fileExtension === "m4v" || 
+                  fileExtension === "3gp" )) ||
+
+                (music && 
+                  (fileExtension === "mp3" || 
+                  fileExtension === "ogg" || 
+                  fileExtension === "wma" || 
+                  fileExtension === "aac" || 
+                  fileExtension === "wav" || 
+                  fileExtension === "mpeg" || 
+                  fileExtension === "mpg" || 
+                  nft.category === "MUSIC" || 
+                  fileExtension === "flac"))
               ) {
                 return true;
               }
