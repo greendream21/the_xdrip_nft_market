@@ -3,7 +3,7 @@ import Image from "next/image";
 import { AiFillRocket, AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { MdVerified, MdTimer } from "react-icons/md";
 import { TbArrowBigLeftLines, TbArrowBigRightLine } from "react-icons/tb";
-import { useAddress } from "@thirdweb-dev/react";
+import { useAddress } from "@thirdweb-dev/react"
 
 // INTERNAL IMPORT
 import Style from "./BigNFTSlider.module.css";
@@ -258,16 +258,7 @@ const BigNFTSlider = () => {
             </div>
           </div>
 
-          <div className={Style.bigNFTSlider_box_left_sliderBtn}>
-            <TbArrowBigLeftLines
-              className={Style.bigNFTSlider_box_left_sliderBtn_icon}
-              onClick={() => dec()}
-            />
-            <TbArrowBigRightLine
-              className={Style.bigNFTSlider_box_left_sliderBtn_icon}
-              onClick={() => inc()}
-            />
-          </div>
+
         </div>
 
         <div className={Style.bigNFTSlider_box_right}>
@@ -295,8 +286,31 @@ const BigNFTSlider = () => {
                 }
               }}
             />
+          <div className={Style.sliderBtnContainer}>
+          <div className={Style.sliderBtn_icon_left}>
+          <Image
+              src={images.left_arrow}
+              alt="Left Arrow"
+              width={55}
+              height={55}
+              className={Style.sliderBtn_icon_left}
+              onClick={() => dec()}
+            />
+            </div>
+             <div className={Style.sliderBtn_icon_right }>
+            <Image
+              src={images.right_arrow}
+              alt="Right Arrow"
+              width={55}
+              height={55}
+              className={Style.sliderBtn_icon_right}
+              onClick={() => inc()}
+            />
+            </div>
+          </div>
           </div>
 
+      
         </div>
       </div>
     </div>
