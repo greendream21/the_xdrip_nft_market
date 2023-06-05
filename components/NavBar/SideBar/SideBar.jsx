@@ -1,57 +1,48 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { GrClose } from "react-icons/gr";
 import {
   FaFacebookF,
-  FaTikTok,
+  FaTiktok,
   FaTwitter,
   FaYoutube,
   FaInstagram,
   FaArrowDown,
-  FaArrowUp,
 } from "react-icons/fa";
+import { useAddress } from "@thirdweb-dev/react";
 
-//INTERNAL IMPORT
 import Style from "./SideBar.module.css";
 import images from "../../../img";
-import { Router } from "next/router";
-import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
-
-
 
 const SideBar = ({ setOpenSideMenu }) => {
-  //------USESTATE
   const [openDiscover, setOpenDiscover] = useState(false);
   const [openHelp, setOpenHelp] = useState(false);
+  const address = useAddress();
 
-  const router = useRouter();
-
-  //--------DISCOVER NAVIGATION MENU
   const discover = [
     {
-     name: "SEARCH XM",
-     link: "searchPage",
-   },
-   {
-     name: "XM CATEGORIES",
-     link: "categoriesPage",
-   },
-   {
-     name: "XM CREATORS",
-     link: "author",
-   },
-   {
-     name: "BEGIN CREATING",
-     link: "createButtonsPage",
-   },
-   {
-     name: "XNEWS",
-     link: "https://www.xdrip.io/news",
-   },
- ];
-  //------HELP CENTER
+      name: "SEARCH XM",
+      link: "searchPage",
+    },
+    {
+      name: "XM CATEGORIES",
+      link: "categoriesPage",
+    },
+    {
+      name: "XM CREATORS",
+      link: "author",
+    },
+    {
+      name: "BEGIN CREATING",
+      link: "createButtonsPage",
+    },
+    {
+      name: "XNEWS",
+      link: "https://www.xdrip.io/news",
+    },
+  ];
+
   const helpCenter = [
     {
       name: "ABOUT US",
@@ -68,19 +59,11 @@ const SideBar = ({ setOpenSideMenu }) => {
   ];
 
   const openDiscoverMenu = () => {
-    if (!openDiscover) {
-      setOpenDiscover(true);
-    } else {
-      setOpenDiscover(false);
-    }
+    setOpenDiscover(!openDiscover);
   };
 
   const openHelpMenu = () => {
-    if (!openHelp) {
-      setOpenHelp(true);
-    } else {
-      setOpenHelp(false);
-    }
+    setOpenHelp(!openHelp);
   };
 
   const closeSideBar = () => {
@@ -97,25 +80,25 @@ const SideBar = ({ setOpenSideMenu }) => {
       <div className={Style.sideBar_box}>
         <Image src={images.logo} alt="logo" width={150} height={45} />
         <p>
-          Discover Xcellent articles on all topics reguarding NFT's. Write
-          your own stories and share them as well.
+          Discover Xcellent articles on all topics regarding NFT's. Write your
+          own stories and share them as well.
         </p>
         <div className={Style.sideBar_social}>
-        <a href="https://www.facebook.com/TheXdripOfficial/">
-              <FaFacebookF />
-            </a>
-            <a href="https://www.tiktok.com/@xdripofficial?lang=en">
-              <FaTiktok />
-            </a>
-            <a href="https://twitter.com/XDRIP__">
-              <FaTwitter />
-            </a>
-            <a href="https://www.youtube.com/channel/UCql_clMpK5GYxXUREIGfnRw">
-              <FaYoutube />
-            </a>
-            <a href="https://www.instagram.com/thexdripofficial/">
-              <FaInstagram />
-            </a>
+          <a href="https://www.facebook.com/TheXdripOfficial/">
+            <FaFacebookF />
+          </a>
+          <a href="https://www.tiktok.com/@xdripofficial?lang=en">
+            <FaTiktok />
+          </a>
+          <a href="https://twitter.com/XDRIP__">
+            <FaTwitter />
+          </a>
+          <a href="https://www.youtube.com/channel/UCql_clMpK5GYxXUREIGfnRw">
+            <FaYoutube />
+          </a>
+          <a href="https://www.instagram.com/thexdripofficial/">
+            <FaInstagram />
+          </a>
         </div>
       </div>
 
@@ -162,13 +145,14 @@ const SideBar = ({ setOpenSideMenu }) => {
       </div>
 
       <div className={Style.sideBar_button}>
-      <ConnectWallet
-    className={Style.box_box_right_btn}
-    btnTitle={isWalletConnected ? "XDISCONNECTED" : "XCONNECT"}
-    colorMode="dark"
-    onConnect={handleConnectWallet}
-    disableDisconnect 
-  />
+        <button className={Style.box_box_right_btn}>
+          
+          {/* could use in future but navbar does it atm 
+          {address ? "Connected" : "Connect Wallet"}
+          */}
+          
+          
+        </button>
       </div>
     </div>
   );
