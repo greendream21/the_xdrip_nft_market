@@ -1,5 +1,5 @@
 import React from 'react';
-import SideBar from '../components/NavBar/SideBar'; 
+import SideBar from '../components/NavBar/SideBar/SideBar'; 
 
 export default function SideBarTest() {
   const [openSideMenu, setOpenSideMenu] = React.useState(false);
