@@ -84,7 +84,7 @@ const HeroSection = () => {
         <div className={Style.heroSection_content}>
           <div className={Style.heroSection_text}>
             <h1>DISCOVER, COLLECT, & SELL NFTS</h1>
-            <p>WHERE DIGITAL ART MEETS INNOVATION!</p>
+            <p>DRIVING THE NEXT GENERATION OF DIGITAL ASSET SOLUTIONS!</p>
             <Button btnName="BEGIN YOUR JOURNEY" handleClick={() => router.push("/searchPage")} />
           </div>
         </div>
